@@ -1,5 +1,5 @@
 //
-//  DictionaryKeys.m
+//  DictionaryKey.m
 //  Movies
 //
 //  Created by Jerry Hale on 4/11/17.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DictionaryKeys.h"
+#import "DictionaryKey.h"
 
 NSString * const KEY_DAY_OFFSET = @"offset";
 

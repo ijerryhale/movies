@@ -6,9 +6,11 @@
 //  Copyright © 2017 jhale. All rights reserved.
 //
 
-@import EarlGrey;
-
 #import <XCTest/XCTest.h>
+
+#import "AccessibilityString.h"
+
+@import EarlGrey;
 
 @interface movies_embeddedTests : XCTestCase
 
@@ -26,18 +28,29 @@
     [super tearDown];
 }
 
-- (void)test_tapMarqueeView
-{
-	//	just tap on the Marquee
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"marqueeView")]
-      performAction:grey_tap()];
-}
-
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
+}
+
+- (void)test_tapMarqueeView
+{
+	//	just tap on the Marquee
+  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(AXID_marqueeView)]
+      performAction:grey_tap()];
+}
+
+- (void)test_ScrollMarqueeToTop {
+	
+  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(AXID_marqueeScrollView)]
+      performAction:grey_scrollToContentEdge(kGREYContentEdgeTop)];
+}
+
+- (void)test_ScrollMarqueeToBottom {
+  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(AXID_marqueeScrollView)]
+      performAction:grey_scrollToContentEdge(kGREYContentEdgeBottom)];
 }
 
 @end

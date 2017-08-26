@@ -117,7 +117,9 @@ class MarqueeController: UIViewController
 											width: self.view.frame.width,
 											height: self.view.frame.height))
 		marqueeView.clipsToBounds = false;
-		marqueeView.accessibilityIdentifier = "marqueeView"
+		
+		//	set an accessibilityLabel
+		marqueeView.accessibilityIdentifier = AXID_marqueeView
 		
 		var	y:CGFloat = POSTER_BORDER_HGHT
 		let m:[[String: AnyObject]] = gMovie
@@ -150,6 +152,9 @@ class MarqueeController: UIViewController
 		scrollView.addSubview(marqueeView)
 		scrollView.contentSize = CGSize(width: self.view.frame.width, height: y)
 		
+		//	set an accessibilityLabel
+		scrollView.accessibilityIdentifier = AXID_marqueeScrollView
+
 		view.addSubview(scrollView)
 		view.backgroundColor = UIColor.black
 		//	bring prefs button forward

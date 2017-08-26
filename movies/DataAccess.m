@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 
-#import "DictionaryKeys.h"
+#import "DictionaryKey.h"
 
 #import "DataAccess.h"
 

@@ -8,5 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DictionaryKeys.h"
+#import "DictionaryKey.h"
+#import "AccessibilityString.h"
 #import "DataAccess.h"
