@@ -12,7 +12,7 @@ iOS - Display Movies and Theaters for given Zipcode and Day
 Not stable. Still folding in stuff, basic embedded and webservice targets working.
 
 ## Aug 25, 2017
-Added Earl Grey Framework and XCTest for movies_embedded Target. movies_embedded will build without Earl Grey Framework existing in Target.
+Added Earl Grey Framework, XCTest Target and simple Earl Grey test for movies_embedded Target.
 
 ![marquee](https://user-images.githubusercontent.com/4106530/29589019-82b24964-8748-11e7-8c7f-cbe388b4d65a.png) |![boxoffice](https://user-images.githubusercontent.com/4106530/29589021-85d534a8-8748-11e7-8c8c-258063c99ab9.png)
 :-------------------------:|:-------------------------:

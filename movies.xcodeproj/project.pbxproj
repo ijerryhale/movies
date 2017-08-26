@@ -61,9 +61,9 @@
 		2CBCC0A41E9EC78000FF1A08 /* DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCC0A31E9EC78000FF1A08 /* DataAccess.m */; };
 		2CC08E211E8DEBC700145487 /* TrailerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC08E201E8DEBC700145487 /* TrailerController.swift */; };
 		2CC236A41F51CEDD00A901F9 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC236A01F51CE0200A901F9 /* AFNetworking.framework */; };
-		2CC236A51F51CF1400A901F9 /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CC236A21F51CE0A00A901F9 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2CC236BC1F51D8A900A901F9 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC236BB1F51D8A900A901F9 /* EarlGrey.framework */; };
-		2CC236BD1F51D8B400A901F9 /* EarlGrey.framework in Resources */ = {isa = PBXBuildFile; fileRef = 2CC236BB1F51D8A900A901F9 /* EarlGrey.framework */; };
+		2CD11B0D1F51EBAE001ADD81 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC236BB1F51D8A900A901F9 /* EarlGrey.framework */; };
+		2CD11B0E1F51EBB2001ADD81 /* EarlGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CC236BB1F51D8A900A901F9 /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2CD11B0F1F51EBF9001ADD81 /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CC236A01F51CE0200A901F9 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CD643021F49FFA80013F052 /* trailers in Resources */ = {isa = PBXBuildFile; fileRef = 2CD643011F49FFA80013F052 /* trailers */; };
 		2CD643041F49FFB60013F052 /* movies in Resources */ = {isa = PBXBuildFile; fileRef = 2CD643031F49FFB60013F052 /* movies */; };
 		2CE7C8C11EAEB4FB001DB7C7 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7C8C01EAEB4FB001DB7C7 /* Util.swift */; };
@@ -87,7 +87,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2CC236A51F51CF1400A901F9 /* AFNetworking.framework in CopyFiles */,
+				2CD11B0F1F51EBF9001ADD81 /* AFNetworking.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +97,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2CD11B0E1F51EBB2001ADD81 /* EarlGrey.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +140,6 @@
 		2CBCC0A31E9EC78000FF1A08 /* DataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataAccess.m; path = Movies/DataAccess.m; sourceTree = "<group>"; };
 		2CC08E201E8DEBC700145487 /* TrailerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailerController.swift; sourceTree = "<group>"; };
 		2CC236A01F51CE0200A901F9 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../_afnetworking/build/Debug-iphonesimulator/AFNetworking.framework"; sourceTree = "<group>"; };
-		2CC236A21F51CE0A00A901F9 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../_afnetworking/build/Debug-iphonesimulator/AFNetworking.framework"; sourceTree = "<group>"; };
 		2CC236BB1F51D8A900A901F9 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "EarlGrey/build/Debug-iphonesimulator/EarlGrey.framework"; sourceTree = "<group>"; };
 		2CD643011F49FFA80013F052 /* trailers */ = {isa = PBXFileReference; lastKnownFileType = folder; name = trailers; path = Resource/trailers; sourceTree = "<group>"; };
 		2CD643031F49FFB60013F052 /* movies */ = {isa = PBXFileReference; lastKnownFileType = folder; name = movies; path = Resource/movies; sourceTree = "<group>"; };
@@ -160,7 +160,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CC236BC1F51D8A900A901F9 /* EarlGrey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD11B0D1F51EBAE001ADD81 /* EarlGrey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +237,7 @@
 		2C7BDC6E1E7B79DC00772D2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2CC236BB1F51D8A900A901F9 /* EarlGrey.framework */,
 				2CC236A01F51CE0200A901F9 /* AFNetworking.framework */,
 			);
 			name = Frameworks;
@@ -245,8 +246,6 @@
 		2C83BF2E1D82238E006B4CC6 = {
 			isa = PBXGroup;
 			children = (
-				2CC236BB1F51D8A900A901F9 /* EarlGrey.framework */,
-				2CC236A21F51CE0A00A901F9 /* AFNetworking.framework */,
 				2C4FE1271D82664100F1A3FF /* movies-Bridging-Header.h */,
 				2C4FE12A1D8267C700F1A3FF /* Objective C */,
 				2C83BF391D82238E006B4CC6 /* movies */,
@@ -413,7 +412,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CC236BD1F51D8B400A901F9 /* EarlGrey.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

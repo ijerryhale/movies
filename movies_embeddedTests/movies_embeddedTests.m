@@ -26,7 +26,8 @@
     [super tearDown];
 }
 
-- (void)testTapMarqueeView {
+- (void)test_tapMarqueeView
+{
 	//	just tap on the Marquee
   [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"marqueeView")]
       performAction:grey_tap()];
