@@ -1,0 +1,1371 @@
+[{"pages":[[{
+    "address" :     {
+        "city" : "Incline Village",
+        "country" : "USA",
+        "postal_code" : "89450",
+        "state" : "NV",
+        "street" : "901 Tahoe Blvd.",
+        "street_ext" : ""
+    },
+    "id" : "620",
+    "name" : "Incline Village Cinema",
+    "now_showing" :     [
+                {
+            "actors" :             [
+                "John Krasinski"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "05:15 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "07:15 PM"
+                }
+            ],
+            "film_id" : "18988",
+            "genres" :             [
+                "Family",
+                "Documentary"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/disneynature-born-in-china/id1225410920",
+            "poster" : "/trailers/disney/born-in-china/images/poster-large.jpg",
+            "rating" : "G",
+            "release_date" : "2017-04-21",
+            "run_time" : "1:19",
+            "title" : "Born in China",
+            "tms_id" : "MV008738450000"
+        }
+    ],
+    "tel" : "530-546-5951",
+    "url" : "cinemasonline.com"
+}, {
+    "address" :     {
+        "city" : "Sparks",
+        "country" : "USA",
+        "postal_code" : "89431",
+        "state" : "NV",
+        "street" : "555 El Rancho Drive",
+        "street_ext" : ""
+    },
+    "id" : "7762",
+    "name" : "West Wind El Rancho Drive-In",
+    "now_showing" :     [
+                {
+            "actors" :             [
+                "Chris Pratt",
+                "Zoe Saldana",
+                "Dave Bautista",
+                "Vin Diesel",
+                "Bradley Cooper",
+                "Michael Rooker",
+                "Karen Gillan",
+                "Pom Klementieff",
+                "Elizabeth Debicki",
+                "Kurt Russell"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "08:30 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:15 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:50 PM"
+                }
+            ],
+            "film_id" : "18065",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/guardians-of-the-galaxy-vol-2/id1225848804",
+            "poster" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-05-05",
+            "run_time" : "2:15",
+            "title" : "Guardians of the Galaxy Vol. 2",
+            "tms_id" : "MV007508410000",
+            "trailer_url" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/guardiansofthegalaxy-tlr4_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Eugenio Derbez",
+                "Salma Hayek",
+                "Rob Lowe",
+                "Kristen Bell",
+                "Raquel Welch",
+                "Michael Cera",
+                "Rob Riggle",
+                "Rob Corddry",
+                "Michaela Watkins",
+                "Rob Huebel"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "08:30 PM"
+                }
+            ],
+            "film_id" : "18309",
+            "genres" :             [
+                "Comedy",
+                "Family"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/how-to-be-a-latin-lover/id1225484469",
+            "poster" : "/trailers/independent/how-to-be-a-latin-lover/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-28",
+            "run_time" : "1:55",
+            "title" : "How to Be a Latin Lover",
+            "tms_id" : "MV009459060000",
+            "trailer_url" : "/trailers/independent/how-to-be-a-latin-lover/how-to-be-a-latin-lover-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Alec Baldwin",
+                "Steve Buscemi",
+                "Jimmy Kimmel",
+                "Lisa Kudrow",
+                "Miles Bakshi"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "10:45 PM"
+                }
+            ],
+            "film_id" : "18054",
+            "genres" :             [
+                "Comedy"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/the-boss-baby/id1216954198",
+            "poster" : "/trailers/dreamworks/the-boss-baby/images/poster-large.jpg",
+            "rating" : "PG",
+            "release_date" : "2017-03-31",
+            "run_time" : "1:37",
+            "title" : "The Boss Baby",
+            "tms_id" : "MV009141240000",
+            "trailer_url" : "/trailers/dreamworks/the-boss-baby/boss-baby-trailer-c_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Vin Diesel",
+                "Dwayne Johnson",
+                "Jason Statham",
+                "Michelle Rodriguez",
+                "Tyrese Gibson",
+                "Chris &quot,Ludacris&quot, Bridges",
+                "Helen Mirren",
+                "Nathalie Emmanuel",
+                "Elsa Pataky",
+                "Scott Eastwood"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "08:30 PM"
+                }
+            ],
+            "film_id" : "18221",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/the-fate-of-the-furious/id1220995579",
+            "poster" : "/trailers/universal/the-fate-of-the-furious/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-14",
+            "run_time" : "2:16",
+            "title" : "The Fate of the Furious",
+            "tms_id" : "MV007534630000",
+            "trailer_url" : "/trailers/universal/the-fate-of-the-furious/the-fate-of-the-furious-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Dax Shepard",
+                "Michael Péna"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:10 PM"
+                }
+            ],
+            "film_id" : "18337",
+            "genres" :             [
+                "Comedy"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/CHIPS-2017/id1216914823",
+            "poster" : "/trailers/wb/chips/images/poster.jpg",
+            "rating" : "R",
+            "release_date" : "2017-03-24",
+            "run_time" : "1:41",
+            "title" : "CHIPS",
+            "tms_id" : "MV009051750000",
+            "trailer_url" : "/trailers/wb/chips/chips-trailer-1_h.480.mov"
+        }
+    ],
+    "tel" : "775-358-6920",
+    "url" : "http://www.westwinddi.com/locations/el-rancho"
+}, {
+    "address" :     {
+        "city" : "South Lake Tahoe",
+        "country" : "USA",
+        "postal_code" : "96150",
+        "state" : "CA",
+        "street" : "1021 Heavenly Village Way",
+        "street_ext" : ""
+    },
+    "id" : "2209",
+    "name" : "Heavenly Village Cinema",
+    "now_showing" :     [
+                {
+            "actors" :             [
+                "Chris Pratt",
+                "Zoe Saldana",
+                "Dave Bautista",
+                "Vin Diesel",
+                "Bradley Cooper",
+                "Michael Rooker",
+                "Karen Gillan",
+                "Pom Klementieff",
+                "Elizabeth Debicki",
+                "Kurt Russell"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:30 AM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:40 AM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "02:30 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "02:40 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:45 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:55 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:45 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:55 PM"
+                }
+            ],
+            "film_id" : "18065",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/guardians-of-the-galaxy-vol-2/id1225848804",
+            "poster" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-05-05",
+            "run_time" : "2:15",
+            "title" : "Guardians of the Galaxy Vol. 2",
+            "tms_id" : "MV007508410000",
+            "trailer_url" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/guardiansofthegalaxy-tlr4_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Chris Pratt",
+                "Zoe Saldana",
+                "Dave Bautista",
+                "Vin Diesel",
+                "Bradley Cooper",
+                "Michael Rooker",
+                "Karen Gillan",
+                "Pom Klementieff",
+                "Elizabeth Debicki",
+                "Kurt Russell"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:35 AM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "02:35 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:50 PM"
+                }
+            ],
+            "film_id" : "18065",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/guardians-of-the-galaxy-vol-2/id1225848804",
+            "poster" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-05-05",
+            "run_time" : "2:15",
+            "title" : "Guardians of the Galaxy Vol. 2 3D",
+            "tms_id" : "MV007787080000",
+            "trailer_url" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/guardiansofthegalaxy-tlr4_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Emma Watson",
+                "Tom Hanks",
+                "John Boyega",
+                "Patton Oswalt",
+                "Bill Paxton",
+                "Karen Gillan",
+                "Ellar Coltrane"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:40 AM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "02:10 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "04:40 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "07:15 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:50 PM"
+                }
+            ],
+            "film_id" : "18207",
+            "genres" :             [
+                "Thriller"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/the-circle-2017/id1231710959",
+            "poster" : "/trailers/independent/the-circle/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-28",
+            "run_time" : "1:50",
+            "title" : "The Circle",
+            "tms_id" : "MV009405300000",
+            "trailer_url" : "/trailers/independent/the-circle/the-circle-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Eugenio Derbez",
+                "Salma Hayek",
+                "Rob Lowe",
+                "Kristen Bell",
+                "Raquel Welch",
+                "Michael Cera",
+                "Rob Riggle",
+                "Rob Corddry",
+                "Michaela Watkins",
+                "Rob Huebel"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:35 AM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "02:10 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "04:45 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "07:20 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:55 PM"
+                }
+            ],
+            "film_id" : "18309",
+            "genres" :             [
+                "Comedy",
+                "Family"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/how-to-be-a-latin-lover/id1225484469",
+            "poster" : "/trailers/independent/how-to-be-a-latin-lover/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-28",
+            "run_time" : "1:55",
+            "title" : "How to Be a Latin Lover",
+            "tms_id" : "MV009459060000",
+            "trailer_url" : "/trailers/independent/how-to-be-a-latin-lover/how-to-be-a-latin-lover-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "John Krasinski"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:45 AM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "02:05 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "04:25 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "07:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:20 PM"
+                }
+            ],
+            "film_id" : "18988",
+            "genres" :             [
+                "Family",
+                "Documentary"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/disneynature-born-in-china/id1225410920",
+            "poster" : "/trailers/disney/born-in-china/images/poster-large.jpg",
+            "rating" : "G",
+            "release_date" : "2017-04-21",
+            "run_time" : "1:19",
+            "title" : "Born in China",
+            "tms_id" : "MV008738450000"
+        },
+                {
+            "actors" :             [
+                "Vin Diesel",
+                "Dwayne Johnson",
+                "Jason Statham",
+                "Michelle Rodriguez",
+                "Tyrese Gibson",
+                "Chris &quot,Ludacris&quot, Bridges",
+                "Helen Mirren",
+                "Nathalie Emmanuel",
+                "Elsa Pataky",
+                "Scott Eastwood"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:30 AM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "02:30 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:45 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:45 PM"
+                }
+            ],
+            "film_id" : "18221",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/the-fate-of-the-furious/id1220995579",
+            "poster" : "/trailers/universal/the-fate-of-the-furious/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-14",
+            "run_time" : "2:16",
+            "title" : "The Fate of the Furious",
+            "tms_id" : "MV007534630000",
+            "trailer_url" : "/trailers/universal/the-fate-of-the-furious/the-fate-of-the-furious-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Emma Watson",
+                "Dan Stevens",
+                "Luke Evans",
+                "Kevin Kline",
+                "Josh Gad",
+                "Ewan McGregor",
+                "Stanley Tucci",
+                "Gugu Mbatha-Raw",
+                "Audra McDonald",
+                "Ian McKellen",
+                "Emma Thompson"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "11:30 AM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "02:20 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:40 PM"
+                }
+            ],
+            "film_id" : "17641",
+            "genres" :             [
+                "Musical",
+                "Fantasy"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/beauty-and-the-beast-2017/id1212678379",
+            "poster" : "/trailers/disney/beautyandthebeast/images/poster-large.jpg",
+            "rating" : "PG",
+            "release_date" : "2017-03-17",
+            "run_time" : "2:09",
+            "title" : "Beauty and the Beast",
+            "tms_id" : "MV007343300000",
+            "trailer_url" : "/trailers/disney/beautyandthebeast/beautyandthebeast-tlr1_h.480.mov"
+        }
+    ],
+    "tel" : "530-544-1110",
+    "url" : "www.heavenlycinema.com"
+}, {
+    "address" :     {
+        "city" : "Minden",
+        "country" : "USA",
+        "postal_code" : "89423",
+        "state" : "NV",
+        "street" : "1760 US Highway 395 N",
+        "street_ext" : ""
+    },
+    "id" : "2102",
+    "name" : "Ironwood Cinema 8",
+    "now_showing" :     [
+                {
+            "actors" :             [
+                "Chris Pratt",
+                "Zoe Saldana",
+                "Dave Bautista",
+                "Vin Diesel",
+                "Bradley Cooper",
+                "Michael Rooker",
+                "Karen Gillan",
+                "Pom Klementieff",
+                "Elizabeth Debicki",
+                "Kurt Russell"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "12:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "03:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "07:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:40 PM"
+                }
+            ],
+            "film_id" : "18065",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/guardians-of-the-galaxy-vol-2/id1225848804",
+            "poster" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-05-05",
+            "run_time" : "2:15",
+            "title" : "Guardians of the Galaxy Vol. 2",
+            "tms_id" : "MV007508410000",
+            "trailer_url" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/guardiansofthegalaxy-tlr4_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Chris Pratt",
+                "Zoe Saldana",
+                "Dave Bautista",
+                "Vin Diesel",
+                "Bradley Cooper",
+                "Michael Rooker",
+                "Karen Gillan",
+                "Pom Klementieff",
+                "Elizabeth Debicki",
+                "Kurt Russell"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "01:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "04:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "07:10 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:45 PM"
+                }
+            ],
+            "film_id" : "18065",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/guardians-of-the-galaxy-vol-2/id1225848804",
+            "poster" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-05-05",
+            "run_time" : "2:15",
+            "title" : "Guardians of the Galaxy Vol. 2 3D",
+            "tms_id" : "MV007787080000",
+            "trailer_url" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/guardiansofthegalaxy-tlr4_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Emma Watson",
+                "Tom Hanks",
+                "John Boyega",
+                "Patton Oswalt",
+                "Bill Paxton",
+                "Karen Gillan",
+                "Ellar Coltrane"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "12:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "03:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:15 PM"
+                }
+            ],
+            "film_id" : "18207",
+            "genres" :             [
+                "Thriller"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/the-circle-2017/id1231710959",
+            "poster" : "/trailers/independent/the-circle/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-28",
+            "run_time" : "1:50",
+            "title" : "The Circle",
+            "tms_id" : "MV009405300000",
+            "trailer_url" : "/trailers/independent/the-circle/the-circle-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "John Krasinski"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "01:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "04:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "08:50 PM"
+                }
+            ],
+            "film_id" : "18988",
+            "genres" :             [
+                "Family",
+                "Documentary"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/disneynature-born-in-china/id1225410920",
+            "poster" : "/trailers/disney/born-in-china/images/poster-large.jpg",
+            "rating" : "G",
+            "release_date" : "2017-04-21",
+            "run_time" : "1:19",
+            "title" : "Born in China",
+            "tms_id" : "MV008738450000"
+        },
+                {
+            "actors" :             [
+                "Vin Diesel",
+                "Dwayne Johnson",
+                "Jason Statham",
+                "Michelle Rodriguez",
+                "Tyrese Gibson",
+                "Chris &quot,Ludacris&quot, Bridges",
+                "Helen Mirren",
+                "Nathalie Emmanuel",
+                "Elsa Pataky",
+                "Scott Eastwood"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "12:30 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "03:30 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:30 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:10 PM"
+                }
+            ],
+            "film_id" : "18221",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/the-fate-of-the-furious/id1220995579",
+            "poster" : "/trailers/universal/the-fate-of-the-furious/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-14",
+            "run_time" : "2:16",
+            "title" : "The Fate of the Furious",
+            "tms_id" : "MV007534630000",
+            "trailer_url" : "/trailers/universal/the-fate-of-the-furious/the-fate-of-the-furious-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Chris Evans",
+                "Mckenna Grace",
+                "Lindsay Duncan",
+                "Jenny Slate",
+                "Octavia Spencer"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "12:45 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:45 PM"
+                }
+            ],
+            "film_id" : "18103",
+            "genres" :             [
+                "Drama"
+            ],
+            "iTunesURL" : "",
+            "poster" : "/trailers/fox_searchlight/gifted/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-12",
+            "run_time" : "1:41",
+            "title" : "Gifted",
+            "tms_id" : "MV009074370000",
+            "trailer_url" : "/trailers/fox_searchlight/gifted/gifted-trailer-1_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Morgan Freeman",
+                "Michael Caine",
+                "Alan Arkin",
+                "Ann-Margret",
+                "Joey King",
+                "Matt Dillon",
+                "Christopher Lloyd"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "03:45 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:00 PM"
+                }
+            ],
+            "film_id" : "18263",
+            "genres" :             [
+                "Comedy"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/going-in-style-2017/id1221216139",
+            "poster" : "/trailers/wb/going-in-style/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-07",
+            "run_time" : "1:36",
+            "title" : "Going in Style",
+            "tms_id" : "MV008227890000",
+            "trailer_url" : "/trailers/wb/going-in-style/going-in-style-trailer-1_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Alec Baldwin",
+                "Steve Buscemi",
+                "Jimmy Kimmel",
+                "Lisa Kudrow",
+                "Miles Bakshi"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "0",
+                    "time" : "12:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "03:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "08:50 PM"
+                }
+            ],
+            "film_id" : "18054",
+            "genres" :             [
+                "Comedy"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/the-boss-baby/id1216954198",
+            "poster" : "/trailers/dreamworks/the-boss-baby/images/poster-large.jpg",
+            "rating" : "PG",
+            "release_date" : "2017-03-31",
+            "run_time" : "1:37",
+            "title" : "The Boss Baby",
+            "tms_id" : "MV009141240000",
+            "trailer_url" : "/trailers/dreamworks/the-boss-baby/boss-baby-trailer-c_h.480.mov"
+        }
+    ],
+    "tel" : "775-782-7469",
+    "url" : "www.ironwoodcinemas.com"
+}, {
+    "address" :     {
+        "city" : "Auburn",
+        "country" : "USA",
+        "postal_code" : "95603",
+        "state" : "CA",
+        "street" : "500 Nevada St.",
+        "street_ext" : ""
+    },
+    "id" : "5650",
+    "name" : "Regal Auburn Stadium 10",
+    "now_showing" :     [
+                {
+            "actors" :             [
+                "Chris Pratt",
+                "Zoe Saldana",
+                "Dave Bautista",
+                "Vin Diesel",
+                "Bradley Cooper",
+                "Michael Rooker",
+                "Karen Gillan",
+                "Pom Klementieff",
+                "Elizabeth Debicki",
+                "Kurt Russell"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "12:00 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "02:35 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "03:20 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "05:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:10 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:40 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "08:45 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:30 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "10:00 PM"
+                }
+            ],
+            "film_id" : "18065",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/guardians-of-the-galaxy-vol-2/id1225848804",
+            "poster" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-05-05",
+            "run_time" : "2:15",
+            "title" : "Guardians of the Galaxy Vol. 2",
+            "tms_id" : "MV007508410000",
+            "trailer_url" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/guardiansofthegalaxy-tlr4_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Chris Pratt",
+                "Zoe Saldana",
+                "Dave Bautista",
+                "Vin Diesel",
+                "Bradley Cooper",
+                "Michael Rooker",
+                "Karen Gillan",
+                "Pom Klementieff",
+                "Elizabeth Debicki",
+                "Kurt Russell"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "12:30 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "03:50 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "07:10 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "10:30 PM"
+                }
+            ],
+            "film_id" : "18065",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/guardians-of-the-galaxy-vol-2/id1225848804",
+            "poster" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-05-05",
+            "run_time" : "2:15",
+            "title" : "Guardians of the Galaxy Vol. 2 3D",
+            "tms_id" : "MV007787080000",
+            "trailer_url" : "/trailers/marvel/guardians-of-the-galaxy-vol-2/guardiansofthegalaxy-tlr4_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Eugenio Derbez",
+                "Salma Hayek",
+                "Rob Lowe",
+                "Kristen Bell",
+                "Raquel Welch",
+                "Michael Cera",
+                "Rob Riggle",
+                "Rob Corddry",
+                "Michaela Watkins",
+                "Rob Huebel"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "05:45 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "01:00 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "04:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "07:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "10:05 PM"
+                }
+            ],
+            "film_id" : "18309",
+            "genres" :             [
+                "Comedy",
+                "Family"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/how-to-be-a-latin-lover/id1225484469",
+            "poster" : "/trailers/independent/how-to-be-a-latin-lover/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-28",
+            "run_time" : "1:55",
+            "title" : "How to Be a Latin Lover",
+            "tms_id" : "MV009459060000",
+            "trailer_url" : "/trailers/independent/how-to-be-a-latin-lover/how-to-be-a-latin-lover-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Eugenio Derbez",
+                "Salma Hayek",
+                "Rob Lowe",
+                "Kristen Bell",
+                "Raquel Welch",
+                "Michael Cera",
+                "Rob Riggle",
+                "Rob Corddry",
+                "Michaela Watkins",
+                "Rob Huebel"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "05:45 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "01:00 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "04:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "07:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "10:05 PM"
+                }
+            ],
+            "film_id" : "18309",
+            "genres" :             [
+                "Comedy",
+                "Family"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/how-to-be-a-latin-lover/id1225484469",
+            "poster" : "/trailers/independent/how-to-be-a-latin-lover/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-28",
+            "run_time" : "1:55",
+            "title" : "How to Be a Latin Lover",
+            "tms_id" : "MV009459060000",
+            "trailer_url" : "/trailers/independent/how-to-be-a-latin-lover/how-to-be-a-latin-lover-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Emma Watson",
+                "Tom Hanks",
+                "John Boyega",
+                "Patton Oswalt",
+                "Bill Paxton",
+                "Karen Gillan",
+                "Ellar Coltrane"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "12:40 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "03:30 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:20 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:10 PM"
+                }
+            ],
+            "film_id" : "18207",
+            "genres" :             [
+                "Thriller"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/the-circle-2017/id1231710959",
+            "poster" : "/trailers/independent/the-circle/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-28",
+            "run_time" : "1:50",
+            "title" : "The Circle",
+            "tms_id" : "MV009405300000",
+            "trailer_url" : "/trailers/independent/the-circle/the-circle-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "John Krasinski"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "12:50 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "03:15 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "05:40 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "08:00 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "10:20 PM"
+                }
+            ],
+            "film_id" : "18988",
+            "genres" :             [
+                "Family",
+                "Documentary"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/disneynature-born-in-china/id1225410920",
+            "poster" : "/trailers/disney/born-in-china/images/poster-large.jpg",
+            "rating" : "G",
+            "release_date" : "2017-04-21",
+            "run_time" : "1:19",
+            "title" : "Born in China",
+            "tms_id" : "MV008738450000"
+        },
+                {
+            "actors" :             [
+                "Vin Diesel",
+                "Dwayne Johnson",
+                "Jason Statham",
+                "Michelle Rodriguez",
+                "Tyrese Gibson",
+                "Chris &quot,Ludacris&quot, Bridges",
+                "Helen Mirren",
+                "Nathalie Emmanuel",
+                "Elsa Pataky",
+                "Scott Eastwood"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "12:15 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "03:35 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:55 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "10:15 PM"
+                }
+            ],
+            "film_id" : "18221",
+            "genres" :             [
+                "Action and Adventure"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/the-fate-of-the-furious/id1220995579",
+            "poster" : "/trailers/universal/the-fate-of-the-furious/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-14",
+            "run_time" : "2:16",
+            "title" : "The Fate of the Furious",
+            "tms_id" : "MV007534630000",
+            "trailer_url" : "/trailers/universal/the-fate-of-the-furious/the-fate-of-the-furious-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Chris Evans",
+                "Mckenna Grace",
+                "Lindsay Duncan",
+                "Jenny Slate",
+                "Octavia Spencer"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "12:25 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "03:05 PM"
+                }
+            ],
+            "film_id" : "18103",
+            "genres" :             [
+                "Drama"
+            ],
+            "iTunesURL" : "",
+            "poster" : "/trailers/fox_searchlight/gifted/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-12",
+            "run_time" : "1:41",
+            "title" : "Gifted",
+            "tms_id" : "MV009074370000",
+            "trailer_url" : "/trailers/fox_searchlight/gifted/gifted-trailer-1_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Morgan Freeman",
+                "Michael Caine",
+                "Alan Arkin",
+                "Ann-Margret",
+                "Joey King",
+                "Matt Dillon",
+                "Christopher Lloyd"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "12:05 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:05 PM"
+                }
+            ],
+            "film_id" : "18263",
+            "genres" :             [
+                "Comedy"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/going-in-style-2017/id1221216139",
+            "poster" : "/trailers/wb/going-in-style/images/poster-large.jpg",
+            "rating" : "PG-13",
+            "release_date" : "2017-04-07",
+            "run_time" : "1:36",
+            "title" : "Going in Style",
+            "tms_id" : "MV008227890000",
+            "trailer_url" : "/trailers/wb/going-in-style/going-in-style-trailer-1_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Mike Vogel",
+                "Erika Christensen",
+                "Robert Forster",
+                "Faye Dunaway"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "12:10 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "03:05 PM"
+                }
+            ],
+            "film_id" : "18338",
+            "genres" :             [
+                "Drama"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/the-case-for-christ/id1217904344",
+            "poster" : "/trailers/independent/the-case-for-christ/images/poster-large.jpg",
+            "rating" : "PG",
+            "release_date" : "2017-04-07",
+            "run_time" : "1:52",
+            "title" : "The Case for Christ",
+            "tms_id" : "MV009489560000",
+            "trailer_url" : "/trailers/independent/the-case-for-christ/the-case-for-christ-trailer-2_h.480.mov"
+        },
+                {
+            "actors" :             [
+                "Emma Watson",
+                "Dan Stevens",
+                "Luke Evans",
+                "Kevin Kline",
+                "Josh Gad",
+                "Ewan McGregor",
+                "Stanley Tucci",
+                "Gugu Mbatha-Raw",
+                "Audra McDonald",
+                "Ian McKellen",
+                "Emma Thompson"
+            ],
+            "alltimes" :             [
+                                {
+                    "is_bargain" : "1",
+                    "time" : "12:20 PM"
+                },
+                                {
+                    "is_bargain" : "1",
+                    "time" : "03:25 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "06:30 PM"
+                },
+                                {
+                    "is_bargain" : "0",
+                    "time" : "09:35 PM"
+                }
+            ],
+            "film_id" : "17641",
+            "genres" :             [
+                "Musical",
+                "Fantasy"
+            ],
+            "iTunesURL" : "https://itunes.apple.com/us/movie/beauty-and-the-beast-2017/id1212678379",
+            "poster" : "/trailers/disney/beautyandthebeast/images/poster-large.jpg",
+            "rating" : "PG",
+            "release_date" : "2017-03-17",
+            "run_time" : "2:09",
+            "title" : "Beauty and the Beast",
+            "tms_id" : "MV007343300000",
+            "trailer_url" : "/trailers/disney/beautyandthebeast/beautyandthebeast-tlr1_h.480.mov"
+        }
+    ],
+    "tel" : "844-462-7342-17",
+    "url" : "www.REGmovies.com"
+}]]}]

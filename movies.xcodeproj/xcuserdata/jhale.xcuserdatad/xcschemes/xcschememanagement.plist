@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>movies_embedded.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>movies_webservice.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2C24C31F1E8B10E700CE9E4E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2C3FA60E1F48DF4B008C1524</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2C40587D1F50DD6600A6D598</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2C40588B1F50DDDB00A6D598</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2C83BF361D82238E006B4CC6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2CE7DA9D1F50D83E00D34E7C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2CE7DAAB1F50DC3A00D34E7C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2CE7DAB91F50DCEC00D34E7C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
