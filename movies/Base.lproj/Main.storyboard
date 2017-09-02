@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Marquee Controller-->
+        <!--Marquee View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MarqueeStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MarqueeController" customModule="movies_embedded" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MarqueeStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MarqueeViewController" customModule="movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CPN-iI-eF4"/>
                         <viewControllerLayoutGuide type="bottom" id="j4L-lv-t3z"/>
@@ -29,23 +29,37 @@
                                     <action selector="tapPreferencesBtnWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q3n-du-HbN"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UZx-qm-jch">
+                                <rect key="frame" x="63" y="46" width="249" height="575"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="363" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0sy-KN-sSQ">
+                                        <rect key="frame" x="1" y="1" width="247" height="573"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <segue destination="vkK-eu-jgA" kind="custom" identifier="s2_box_office" customClass="CustomSegue" customModule="movies_embedded" customModuleProvider="target" id="7C0-81-quY"/>
-                        <segue destination="IUy-CX-BEZ" kind="custom" identifier="s2_preference" customClass="CustomSegue" customModule="movies_embedded" customModuleProvider="target" id="rTz-8P-pvc"/>
+                        <outlet property="tableView" destination="0sy-KN-sSQ" id="3Vl-vI-75K"/>
+                        <segue destination="vkK-eu-jgA" kind="custom" identifier="s2_box_office" customClass="CustomSegue" customModule="movies" customModuleProvider="target" id="7C0-81-quY"/>
+                        <segue destination="IUy-CX-BEZ" kind="custom" identifier="s2_preference" customClass="CustomSegue" customModule="movies" customModuleProvider="target" id="rTz-8P-pvc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2372" y="-663.41829085457277"/>
         </scene>
-        <!--Box Office Controller-->
+        <!--Box Office View Controller-->
         <scene sceneID="PzD-du-YH5">
             <objects>
-                <viewController storyboardIdentifier="BoxOfficeStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vkK-eu-jgA" customClass="BoxOfficeController" customModule="movies_embedded" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BoxOfficeStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vkK-eu-jgA" customClass="BoxOfficeViewController" customModule="movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dql-He-0n6"/>
                         <viewControllerLayoutGuide type="bottom" id="4cN-gU-psC"/>
@@ -54,6 +68,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="khO-Df-sHF">
+                                <rect key="frame" x="0.0" y="364" width="375" height="303"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIm-kl-tUm">
                                 <rect key="frame" x="110" y="22" width="61" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -78,13 +97,8 @@
                                     <action selector="tapAllMoviesBtnWithSender:" destination="vkK-eu-jgA" eventType="touchUpInside" id="Hpy-qF-A7a"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="khO-Df-sHF">
-                                <rect key="frame" x="0.0" y="297" width="375" height="370"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Oq-Bw-XQi">
-                                <rect key="frame" x="0.0" y="46" width="375" height="250"/>
+                                <rect key="frame" x="0.0" y="46" width="375" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -116,8 +130,10 @@
                         <outlet property="prefsbtn" destination="BRh-eA-sgP" id="AuU-Yf-yN2"/>
                         <outlet property="showdate" destination="YyP-81-mF7" id="Day-K1-Pwc"/>
                         <outlet property="tableView" destination="khO-Df-sHF" id="g4d-RI-wn8"/>
-                        <segue destination="CHi-D3-pk0" kind="unwind" identifier="s2_marquee" unwindAction="unwindToMarqueeWithSegue:" id="fd0-o4-hW5"/>
-                        <segue destination="IUy-CX-BEZ" kind="custom" identifier="s2_preference" customClass="CustomSegue" customModule="movies_embedded" customModuleProvider="target" id="BZi-Do-Y88"/>
+                        <segue destination="CHi-D3-pk0" kind="unwind" identifier="s2_marquee" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToMarqueeWithSegue:" id="fd0-o4-hW5"/>
+                        <segue destination="IUy-CX-BEZ" kind="custom" identifier="s2_preference" customClass="CustomSegue" customModule="movies" customModuleProvider="target" id="BZi-Do-Y88"/>
+                        <segue destination="QKh-Np-RWW" kind="custom" identifier="s2_map" customClass="CustomSegue" customModule="movies" customModuleProvider="target" id="wjI-CE-OE0"/>
+                        <segue destination="tQj-Sx-tfe" kind="custom" identifier="s2_itunes" customClass="CustomSegue" customModule="movies" customModuleProvider="target" id="3Kt-h7-SYO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r4W-az-T93" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -128,34 +144,34 @@
         <!--Container Controller-->
         <scene sceneID="N6O-od-BFY">
             <objects>
-                <viewController id="2qq-HZ-p87" customClass="ContainerController" customModule="movies_embedded" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2qq-HZ-p87" customClass="ContainerController" customModule="movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IY8-bW-bWN"/>
                         <viewControllerLayoutGuide type="bottom" id="QiF-aj-UtL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LF1-Rq-j19">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="HDs-f9-cH6"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="250"/>
+                    <size key="freeformSize" width="375" height="320"/>
                     <connections>
-                        <segue destination="b20-Iq-rZf" kind="custom" identifier="s2_movie_detail" customClass="EmptySegue" customModule="movies_embedded" customModuleProvider="target" id="4U6-W5-xYe"/>
-                        <segue destination="bOL-p8-veW" kind="custom" identifier="s2_movie_trailer" customClass="EmptySegue" customModule="movies_embedded" customModuleProvider="target" id="B8u-6H-Ks9"/>
-                        <segue destination="yQF-yu-dki" kind="custom" identifier="s2_theater_detail" customClass="EmptySegue" customModule="movies_embedded" customModuleProvider="target" id="tnv-pU-LNJ"/>
+                        <segue destination="b20-Iq-rZf" kind="custom" identifier="s2_movie_detail" customClass="EmptySegue" customModule="movies" customModuleProvider="target" id="4U6-W5-xYe"/>
+                        <segue destination="bOL-p8-veW" kind="custom" identifier="s2_movie_trailer" customClass="EmptySegue" customModule="movies" customModuleProvider="target" id="B8u-6H-Ks9"/>
+                        <segue destination="yQF-yu-dki" kind="custom" identifier="s2_theater_detail" customClass="EmptySegue" customModule="movies" customModuleProvider="target" id="tnv-pU-LNJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25N-QW-tKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-770" y="-594"/>
+            <point key="canvasLocation" x="-759" y="-566"/>
         </scene>
-        <!--Show Date Controller-->
+        <!--Show Date View Controller-->
         <scene sceneID="TQi-EY-MpG">
             <objects>
-                <tableViewController id="vPC-jK-1cV" customClass="ShowDateController" customModule="Movies" sceneMemberID="viewController">
+                <tableViewController id="vPC-jK-1cV" customClass="ShowDateViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="18" sectionHeaderHeight="18" sectionFooterHeight="18" id="tT3-na-MBe">
                         <rect key="frame" x="0.0" y="0.0" width="110" height="126"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -297,148 +313,141 @@
             </objects>
             <point key="canvasLocation" x="-1816" y="-55"/>
         </scene>
-        <!--Movie Detail Controller-->
+        <!--Movie Detail View Controller-->
         <scene sceneID="AXG-ZH-yME">
             <objects>
-                <viewController id="b20-Iq-rZf" customClass="MovieDetailController" customModule="movies_embedded" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="b20-Iq-rZf" customClass="MovieDetailViewController" customModule="movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7sq-ld-eAq"/>
                         <viewControllerLayoutGuide type="bottom" id="pXr-Uk-uKf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Sp5-Wf-I3c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVe-M0-wxW">
-                                <rect key="frame" x="108" y="4" width="215" height="18"/>
+                                <rect key="frame" x="108" y="5" width="215" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Director:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qP-v6-LLr">
-                                <rect key="frame" x="11" y="126" width="45" height="11"/>
+                                <rect key="frame" x="13" y="164" width="56" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrb-WY-Q1Q" userLabel="Buy Tickets">
-                                <rect key="frame" x="124" y="66" width="71" height="14"/>
+                                <rect key="frame" x="127" y="81" width="114" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Buy Tickets " image="gotoarrow"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vK-hW-cag">
-                                <rect key="frame" x="124" y="26" width="72" height="14"/>
+                                <rect key="frame" x="122" y="31" width="119" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="View Trailer " image="gotoarrow"/>
                                 <connections>
                                     <action selector="viewTrailerBtnPressed:" destination="b20-Iq-rZf" eventType="touchUpInside" id="Bnk-rP-CUq"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Run Time:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loh-vg-4U3">
-                                <rect key="frame" x="114" y="94" width="65" height="11"/>
+                                <rect key="frame" x="126" y="126" width="65" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FM-GL-NpD">
-                                <rect key="frame" x="60" y="125" width="280" height="13"/>
+                                <rect key="frame" x="72" y="163" width="280" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cast:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ht-Dm-7hr">
-                                <rect key="frame" x="28" y="154" width="28" height="11"/>
+                                <rect key="frame" x="23" y="206" width="46" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYy-nG-Es1">
-                                <rect key="frame" x="182" y="95" width="78" height="11"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWv-c3-cLy">
-                                <rect key="frame" x="182" y="82" width="141" height="11"/>
+                                <rect key="frame" x="195" y="109" width="113" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Release Date:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDJ-Ex-TBt">
-                                <rect key="frame" x="114" y="82" width="65" height="11"/>
+                                <rect key="frame" x="109" y="109" width="82" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zca-tS-IZ0">
-                                <rect key="frame" x="58" y="139" width="301" height="41"/>
+                                <rect key="frame" x="68" y="182" width="280" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="light"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tomato" translatesAutoresizingMaskIntoConstraints="NO" id="TX8-bR-6cJ">
-                                <rect key="frame" x="325" y="81" width="12" height="12"/>
+                                <rect key="frame" x="325" y="107" width="12" height="12"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sz2-vi-1OV" userLabel="TomatoRating">
-                                <rect key="frame" x="342" y="82" width="22" height="11"/>
+                                <rect key="frame" x="342" y="108" width="22" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2B-g2-ot5" userLabel="View In iTunes">
-                                <rect key="frame" x="111" y="46" width="85" height="14"/>
+                                <rect key="frame" x="110" y="56" width="131" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="View In iTunes " image="gotoarrow"/>
                                 <connections>
                                     <action selector="viewIniTunesBtnPressed:" destination="b20-Iq-rZf" eventType="touchUpInside" id="tW9-AT-ycg"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eoo-jN-WPO">
-                                <rect key="frame" x="58" y="185" width="301" height="58"/>
+                                <rect key="frame" x="68" y="248" width="280" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Synopsis:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdz-OW-UsK">
-                                <rect key="frame" x="11" y="208" width="45" height="11"/>
+                                <rect key="frame" x="13" y="272" width="56" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Genre:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZI-Vu-mT1">
-                                <rect key="frame" x="16" y="110" width="40" height="11"/>
+                                <rect key="frame" x="29" y="143" width="40" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40U-nP-Pnj">
-                                <rect key="frame" x="60" y="109" width="280" height="13"/>
+                                <rect key="frame" x="72" y="142" width="280" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWp-4A-Aiw">
-                                <rect key="frame" x="20" y="5" width="79" height="101"/>
+                                <rect key="frame" x="20" y="7" width="79" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJe-lf-jy0" customClass="UIImageView">
@@ -450,9 +459,16 @@
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgS-hl-6PZ">
-                                <rect key="frame" x="326" y="4" width="39" height="18"/>
+                                <rect key="frame" x="326" y="5" width="39" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYy-nG-Es1">
+                                <rect key="frame" x="195" y="126" width="78" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -462,7 +478,7 @@
                     <navigationItem key="navigationItem" id="Oan-gE-OC7"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="250"/>
+                    <size key="freeformSize" width="375" height="320"/>
                     <connections>
                         <outlet property="cast" destination="zca-tS-IZ0" id="heZ-nc-wZS"/>
                         <outlet property="directors" destination="3FM-GL-NpD" id="8gG-yh-2Uq"/>
@@ -477,33 +493,33 @@
                         <outlet property="tomatorating" destination="sz2-vi-1OV" id="ALi-bP-KYw"/>
                         <outlet property="viewIniTunesBtn" destination="E2B-g2-ot5" id="AEh-fS-um7"/>
                         <outlet property="viewTrailerBtn" destination="6vK-hW-cag" id="nto-DA-8H4"/>
-                        <segue destination="sXx-94-Ghm" kind="unwind" identifier="s2_container_unwind" unwindAction="unwindToContainerWithSegue:" id="O10-7P-tt7"/>
+                        <segue destination="sXx-94-Ghm" kind="unwind" identifier="s2_container_unwind" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToContainerWithSegue:" id="O10-7P-tt7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYo-hQ-Vr6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="sXx-94-Ghm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="16.800000000000001" y="-559.52023988005999"/>
+            <point key="canvasLocation" x="48.799999999999997" y="-560.41979010494754"/>
         </scene>
         <!--Trailer Controller-->
         <scene sceneID="2Df-YL-8aJ">
             <objects>
-                <viewController id="bOL-p8-veW" customClass="TrailerController" customModule="movies_embedded" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bOL-p8-veW" customClass="TrailerController" customModule="movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ou4-AW-TZh"/>
                         <viewControllerLayoutGuide type="bottom" id="L9L-Qq-BOf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JwV-E3-3ch">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ho-K0-kyU" customClass="PlayerView" customModule="movies_embedded" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ho-K0-kyU" customClass="PlayerView" customModule="movies" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="275"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cF4-Rn-Kqj" userLabel="Return Btn">
-                                <rect key="frame" x="16" y="223" width="61" height="18"/>
+                                <rect key="frame" x="16" y="290" width="61" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -513,7 +529,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5A-gJ-gp8">
-                                <rect key="frame" x="85" y="223" width="61" height="18"/>
+                                <rect key="frame" x="85" y="290" width="61" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="pause">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -523,7 +539,7 @@
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="pwK-Np-gDS">
-                                <rect key="frame" x="169" y="218" width="192" height="31"/>
+                                <rect key="frame" x="169" y="288" width="192" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="sliderDidChange:" destination="bOL-p8-veW" eventType="valueChanged" id="bzL-Dd-5g8"/>
@@ -533,40 +549,33 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="250"/>
+                    <size key="freeformSize" width="375" height="320"/>
                     <connections>
                         <outlet property="playPauseBtn" destination="e5A-gJ-gp8" id="hgc-UN-qFd"/>
                         <outlet property="playerView" destination="1ho-K0-kyU" id="IJM-ZR-Ol2"/>
                         <outlet property="slider" destination="pwK-Np-gDS" id="zYG-YU-RPX"/>
-                        <segue destination="ZYa-OD-gIU" kind="unwind" identifier="s2_container_unwind" unwindAction="unwindToContainerWithSegue:" id="nT3-xg-71R"/>
+                        <segue destination="ZYa-OD-gIU" kind="unwind" identifier="s2_container_unwind" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToContainerWithSegue:" id="nT3-xg-71R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tOA-Qf-8oN" sceneMemberID="firstResponder"/>
                 <exit id="ZYa-OD-gIU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="17" y="-210"/>
+            <point key="canvasLocation" x="49" y="-210"/>
         </scene>
         <!--Theater Detail Controller-->
         <scene sceneID="OZY-5g-cF0">
             <objects>
-                <viewController id="yQF-yu-dki" customClass="TheaterDetailController" customModule="movies_embedded" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yQF-yu-dki" customClass="TheaterDetailController" customModule="movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KAq-jh-BjD"/>
                         <viewControllerLayoutGuide type="bottom" id="Nnl-tp-Cj5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5Aq-gz-aPe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ly-Wk-st6">
-                                <rect key="frame" x="181" y="141" width="173" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOU-Yv-0Dj">
-                                <rect key="frame" x="181" y="68" width="173" height="56"/>
+                                <rect key="frame" x="181" y="63" width="173" height="107"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -593,18 +602,28 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ply-wx-OSn">
+                                <rect key="frame" x="6" y="187" width="166" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Show on Map " image="gotoarrow">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showMapBtnPressed" destination="yQF-yu-dki" eventType="touchUpInside" id="n5H-n0-fQs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="250"/>
+                    <size key="freeformSize" width="375" height="320"/>
                     <connections>
                         <outlet property="address" destination="EOU-Yv-0Dj" id="XKf-aU-qRG"/>
                         <outlet property="name" destination="pze-j9-Iwh" id="uiM-wo-mPp"/>
-                        <outlet property="phoneNumber" destination="8Ly-Wk-st6" id="kyE-87-7kj"/>
                         <outlet property="poster" destination="aBz-qS-u2y" id="ncR-9K-pBx"/>
-                        <segue destination="zxP-oc-Z2O" kind="unwind" identifier="s2_container_unwind" unwindAction="unwindToContainerWithSegue:" id="rXk-O8-4P7"/>
+                        <segue destination="zxP-oc-Z2O" kind="unwind" identifier="s2_container_unwind" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToContainerWithSegue:" id="rXk-O8-4P7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQZ-FV-UNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -612,10 +631,10 @@
             </objects>
             <point key="canvasLocation" x="48.799999999999997" y="-909.44527736131943"/>
         </scene>
-        <!--Preference Controller-->
+        <!--Preference View Controller-->
         <scene sceneID="EV6-Qs-tBV">
             <objects>
-                <viewController id="IUy-CX-BEZ" customClass="PreferenceController" customModule="movies_embedded" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IUy-CX-BEZ" customClass="PreferenceViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IB5-mN-FIy"/>
                         <viewControllerLayoutGuide type="bottom" id="Ouu-Hf-Xa5"/>
@@ -678,14 +697,97 @@
                     <connections>
                         <outlet property="locationLabel" destination="4Ms-QP-SAT" id="A4c-Dz-gG4"/>
                         <outlet property="showdateBtn" destination="bM4-ir-Nit" id="rgm-ro-Oca"/>
-                        <segue destination="fsr-lp-DpV" kind="unwind" identifier="s2_marquee" customClass="CustomUnwindSegue" customModule="movies_embedded" customModuleProvider="target" unwindAction="unwindToMarqueeWithSegue:" id="FaV-TX-buX"/>
-                        <segue destination="fsr-lp-DpV" kind="unwind" identifier="s2_box_office" customClass="CustomUnwindSegue" customModule="movies_embedded" customModuleProvider="target" unwindAction="unwindToBoxOfficeWithSegue:" id="xqi-yJ-OjV"/>
+                        <segue destination="fsr-lp-DpV" kind="unwind" identifier="s2_marquee" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToMarqueeWithSegue:" id="FaV-TX-buX"/>
+                        <segue destination="fsr-lp-DpV" kind="unwind" identifier="s2_box_office" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToBoxOfficeWithSegue:" id="xqi-yJ-OjV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ao-ou-3XE" sceneMemberID="firstResponder"/>
                 <exit id="fsr-lp-DpV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2372" y="350.37481259370315"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="3Y3-0J-jx4">
+            <objects>
+                <viewController id="QKh-Np-RWW" customClass="MapViewController" customModule="movies" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e77-ul-tdV"/>
+                        <viewControllerLayoutGuide type="bottom" id="Atp-de-BHt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wht-fK-y8o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oe0-cX-zn8">
+                                <rect key="frame" x="20" y="22" width="62" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="wFw-Fo-Pfl" kind="unwind" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToBoxOfficeWithSegue:" id="lFn-8K-eee"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NLL-td-Sec">
+                                <rect key="frame" x="0.0" y="46" width="375" height="621"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="QKh-Np-RWW" id="lhr-5b-iKa"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="n4p-yb-fj9"/>
+                    <connections>
+                        <outlet property="mapView" destination="NLL-td-Sec" id="4Bk-sX-REX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="njT-AR-dBv" sceneMemberID="firstResponder"/>
+                <exit id="wFw-Fo-Pfl" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="16.800000000000001" y="-1434.3328335832084"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="fui-9C-mmf">
+            <objects>
+                <viewController id="tQj-Sx-tfe" customClass="WebViewController" customModule="movies" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MOI-HX-0qh"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dkr-8L-HWf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FKe-K4-DYU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYt-4p-rgI">
+                                <rect key="frame" x="20" y="22" width="62" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="VjJ-ta-Ezt" kind="unwind" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToBoxOfficeWithSegue:" id="VhB-pH-ayc"/>
+                                </connections>
+                            </button>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28V-0z-rt4">
+                                <rect key="frame" x="0.0" y="46" width="375" height="621"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="28V-0z-rt4" id="KFq-vN-pbW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p7D-vu-ZQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="VjJ-ta-Ezt" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-759.20000000000005" y="-1434.3328335832084"/>
         </scene>
     </scenes>
     <resources>
@@ -696,6 +798,6 @@
         <image name="tomato" width="12" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BZi-Do-Y88"/>
+        <segue reference="rTz-8P-pvc"/>
     </inferredMetricsTieBreakers>
 </document>

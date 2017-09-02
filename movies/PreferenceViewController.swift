@@ -1,5 +1,5 @@
 //
-//  PreferenceController.swift
+//  PreferenceViewController.swift
 //  Movies
 //
 //  Created by Jerry Hale on 9/8/16.
@@ -89,7 +89,7 @@ let DAY_OFFSET = 0;
 
 //	CodeInputViewDelegate
 
-class PreferenceController: UIViewController {
+class PreferenceViewController: UIViewController {
 
     @IBOutlet weak var locationLabel: UILabel!
 
@@ -141,11 +141,11 @@ class PreferenceController: UIViewController {
 	
 	@IBAction func tapDoneBtn(sender: UIButton)
 	{
-		if callingViewControler is BoxOfficeController
+		if callingViewControler is BoxOfficeViewController
 		{
 			//gState[KEY_CO_INDEX] = 0
 
-			let boc = callingViewControler as! BoxOfficeController
+			let boc = callingViewControler as! BoxOfficeViewController
 			switch gDayOffset
 			{
 				case 0:
@@ -221,11 +221,10 @@ class PreferenceController: UIViewController {
 
 	//	MARK: UIViewController overrides
 	override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("PreferenceController viewWillDisappear ") }
+	{ super.viewWillDisappear(animated); print("PreferenceViewController viewWillDisappear ") }
 
     override func viewDidLoad()
-	{
-        super.viewDidLoad(); print("PreferenceController viewDidLoad ")
+	{ super.viewDidLoad(); print("PreferenceViewController viewDidLoad ")
 		
 		let day = Calendar.current.date(byAdding: .day, value: gDayOffset + DAY_OFFSET, to: Date())
 

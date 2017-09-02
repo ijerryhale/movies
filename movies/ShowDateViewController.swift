@@ -1,5 +1,5 @@
 //
-//  ShowDateController.swift
+//  ShowDateViewController.swift
 //  Movies
 //
 //  Created by Jerry Hale on 4/11/17.
@@ -15,7 +15,7 @@ enum AdaptiveMode
     case isAlwaysPopover
 }
 
-class ShowDateController: UITableViewController, UIPopoverPresentationControllerDelegate
+class ShowDateViewController: UITableViewController, UIPopoverPresentationControllerDelegate
 {
 	//    @IBInspectable var popoverOniPhone:Bool = true
 	//    @IBInspectable var popoverOniPhoneLandscape:Bool = false
@@ -103,7 +103,7 @@ class ShowDateController: UITableViewController, UIPopoverPresentationController
         super.init(coder: aDecoder)!
         
         //	cancel button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(ShowDateController.tapCancel(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(ShowDateViewController.tapCancel(_:)))
         
         //	popover settings
         modalPresentationStyle = .popover
@@ -112,8 +112,12 @@ class ShowDateController: UITableViewController, UIPopoverPresentationController
 		self.preferredContentSize = CGSize(width:110, height:126)
 	}
 	//	MARK: UIViewController overrides
+	override func viewWillDisappear(_ animated: Bool)
+	{ super.viewWillDisappear(animated); print("ShowDateViewController viewWillDisappear ") }
+
 	override func viewDidLoad()
-	{
+	{ super.viewDidLoad(); print("ShowDateViewController viewDidLoad ")
+	
 		//	print(tableView.numberOfRows(inSection: 0) as Any)
 
 		self.tableView.separatorStyle = .none

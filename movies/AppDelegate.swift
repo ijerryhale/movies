@@ -79,8 +79,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 			
 			if (t[KEY_RELEASE_DATE] as? NSNull) != nil { gTheater[i][KEY_RELEASE_DATE] = "" as AnyObject }
 			if (t[KEY_RUN_TIME] as? NSNull) != nil { gTheater[i][KEY_RUN_TIME] = "" as AnyObject }
+			
+			if (t[KEY_TEL] as? NSNull) != nil { gTheater[i][KEY_TEL] = "" as AnyObject }
 			if (t[KEY_TOMATO_RATING] as? NSNull) != nil  { gTheater[i][KEY_TOMATO_RATING] = "" as AnyObject }
-
+			
 			//	thisMov is one Movie in this Theaters 'now_showing' array
 			for thisMov in t[KEY_NOW_SHOWING] as! [[String:AnyObject]]
 			{
@@ -143,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 //	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
 //	{
 //        
-//        if self.window?.rootViewController?.presentedViewController is BoxOfficeController {
+//        if self.window?.rootViewController?.presentedViewController is BoxOfficeViewController {
 //            
 //            return UIInterfaceOrientationMask.all;
 //            
@@ -220,7 +222,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 					self.window = UIWindow(frame: UIScreen.main.bounds)
 					let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-					let mvc: MarqueeController = mainStoryboard.instantiateViewController(withIdentifier: "MarqueeStoryboard") as! MarqueeController
+					let mvc: MarqueeViewController = mainStoryboard.instantiateViewController(withIdentifier: "MarqueeStoryboard") as! MarqueeViewController
 					self.window?.rootViewController = mvc
 					self.window?.makeKeyAndVisible()
 				}
@@ -237,7 +239,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 			self.window = UIWindow(frame: UIScreen.main.bounds)
 			let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-			let mvc: MarqueeController = mainStoryboard.instantiateViewController(withIdentifier: "MarqueeStoryboard") as! MarqueeController
+			let mvc: MarqueeViewController = mainStoryboard.instantiateViewController(withIdentifier: "MarqueeStoryboard") as! MarqueeViewController
 			self.window?.rootViewController = mvc
 			self.window?.makeKeyAndVisible()
 		#endif

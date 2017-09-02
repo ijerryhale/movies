@@ -333,11 +333,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 { NSLog(@"DataAccess.parsetheaters");
 
 	NSString	*jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
-	//	we don't like double quotes mixed in with the JSON data!
-	jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&#x201C;" withString:@"&#x2018;"];
-	jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&#x201D;" withString:@"&#x2019;"];
-	//	some other stuff we don't like
+
     jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&#x00E9;" withString:@"é"];
     jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&apos;" withString:@"'"];
     jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];

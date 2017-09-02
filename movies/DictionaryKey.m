@@ -78,6 +78,9 @@ NSString * const KEY_TRAILER_URL = @"text";
 NSString * const KEY_ITUNES_URL = @"iTunesURL";
 
 //	UITableView cell names
+
+NSString * const VALUE_MARQUEE_CELL = @"Marquee_Cell";
+
 NSString * const VALUE_L0_CELL = @"L0_Cell";
 NSString * const VALUE_L0_CELL_MOVIE = @"L0_Cell_movie";
 NSString * const VALUE_L0_CELL_THEATER = @"L0_Cell_theater";
@@ -104,6 +107,9 @@ NSString * const S2_MOVIE_DETAIL = @"s2_movie_detail";
 NSString * const S2_CONTAINER = @"s2_container";
 NSString * const S2_BOX_OFFICE = @"s2_box_office";
 NSString * const S2_MARQUEE = @"s2_marquee";
+NSString * const S2_MAP = @"s2_map";
+
+NSString * const S2_ITUNES = @"s2_itunes";
 
 NSString * const S2_SHOWDATE = @"s2_showdate";
 NSString * const S2_PREFERENCE = @"s2_preference";

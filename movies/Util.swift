@@ -155,6 +155,7 @@ func getShowDateFromDayOffset(dayoffset: Int) -> String
 
 func getPosterImage(movie: AnyObject) -> UIImage
 {
+	//	FIX THIS !!!
 	var image = UIImage(named: "filmclip.png")
 	
 	if (movie[KEY_POSTER] as? NSNull) != nil
@@ -167,10 +168,10 @@ func getPosterImage(movie: AnyObject) -> UIImage
 					NSMutableAttributedString(string: movie[KEY_TITLE] as! String,
 				attributes: [NSFontAttributeName:UIFont(name: "Helvetica", size: 17)!])
 		
-		titleString.addAttribute(
-				NSForegroundColorAttributeName,
-					value: UIColor.white,
-					range: NSRange(location:0, length:titleString.length))
+//		titleString.addAttribute(
+//				NSForegroundColorAttributeName,
+//					value: UIColor.white,
+//					range: NSRange(location:0, length:titleString.length))
 		
 		let paraStyle = NSMutableParagraphStyle()
 		paraStyle.alignment = .center

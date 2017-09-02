@@ -1,5 +1,5 @@
 //
-//  MovieDetailController.swift
+//  MovieDetailViewController.swift
 //  Movies
 //
 //  Created by Jerry Hale on 4/2/17.
@@ -10,7 +10,7 @@
 
 import UIKit
 
-class MovieDetailController : UIViewController
+class MovieDetailViewController : UIViewController
 {
 	@IBOutlet weak var poster: UIImageView!
 	@IBOutlet weak var filmtitle: UILabel!
@@ -31,18 +31,14 @@ class MovieDetailController : UIViewController
 	@IBAction func viewTrailerBtnPressed(_ sender: UIButton)
 	{
 		//	disable Prefs Button
-		(parent?.parent as! BoxOfficeController).disablePrefsBtn()
-		//	pop MovieDetailController push TrailerController
+		(parent?.parent as! BoxOfficeViewController).disablePrefsBtn()
+		//	pop MovieDetailViewController push TrailerController
 		(parent as! ContainerController).trailerSegueWind()
 	}
 
 	@IBAction func viewIniTunesBtnPressed(_ sender: UIButton)
 	{
-		//	open iTunes page in Safari
-		let index = gState[KEY_CO_INDEX] as! Int
-		let movie = gMovie[index]
-		
-		UIApplication.shared.open(URL(string: movie[KEY_ITUNES_URL] as! String)!, options: [:], completionHandler: nil)
+		(parent?.parent as! BoxOfficeViewController).performSegue(withIdentifier: S2_ITUNES, sender: self)
 	}
 	
 	func updateView()
@@ -135,15 +131,15 @@ class MovieDetailController : UIViewController
 	}
 	//	func getTicketPurchasePageUrl(movieId, theaterId, time) -> String
 	func segue_to_marquee()
-	{ (parent?.parent as! BoxOfficeController).performSegue(withIdentifier: S2_MARQUEE, sender: self) }
+	{ (parent?.parent as! BoxOfficeViewController).performSegue(withIdentifier: S2_MARQUEE, sender: self) }
 
 	//	MARK: UIViewController overrides
 	override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("MovieDetailController viewWillDisappear ") }
+	{ super.viewWillDisappear(animated); print("MovieDetailViewController viewWillDisappear ") }
 
 	override func viewDidLoad()
-	{
-		super.viewDidLoad(); print("MovieDetailController viewDidLoad ")
+	{ super.viewDidLoad(); print("MovieDetailViewController viewDidLoad ")
+
 		poster.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(segue_to_marquee)))
 	}
 }

@@ -78,6 +78,7 @@ extern NSString * const KEY_TRAILER_URL;
 
 extern NSString * const KEY_ITUNES_URL;
 
+extern NSString * const VALUE_MARQUEE_CELL;
 extern NSString * const VALUE_L0_CELL;
 extern NSString * const VALUE_L0_CELL_MOVIE;
 extern NSString * const VALUE_L0_CELL_THEATER;
@@ -103,6 +104,9 @@ extern NSString * const S2_MOVIE_DETAIL;
 extern NSString * const S2_CONTAINER;
 extern NSString * const S2_BOX_OFFICE;
 extern NSString * const S2_MARQUEE;
+extern NSString * const S2_MAP;
+
+extern NSString * const S2_ITUNES;
 
 extern NSString * const S2_SHOWDATE;
 extern NSString * const S2_PREFERENCE;

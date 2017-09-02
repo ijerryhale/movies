@@ -71,7 +71,8 @@ class TrailerController: UIViewController
         }
     }
 	
-    @IBAction func sliderDidChange(_ sender: UISlider) {
+    @IBAction func sliderDidChange(_ sender: UISlider)
+	{
         currentTime = Double(sender.value)
     }
 
@@ -188,8 +189,8 @@ class TrailerController: UIViewController
 		player.pause()
 
 		//	disable Prefs Button
-		(parent?.parent as! BoxOfficeController).enablePrefsBtn()
-		//	pop TrailerController push MovieDetailController
+		(parent?.parent as! BoxOfficeViewController).enablePrefsBtn()
+		//	pop TrailerController push MovieDetailViewController
 		(parent as! ContainerController).trailerSegueUnwind()
 	}
 
@@ -297,8 +298,7 @@ class TrailerController: UIViewController
 
 	//	MARK: UIViewController overrides
     override func viewWillDisappear(_ animated: Bool)
-	{
-		super.viewWillDisappear(animated); print("TrailerController viewWillDisappear ")
+	{ super.viewWillDisappear(animated); print("TrailerController viewWillDisappear ")
 		
 		removeObserver(self, forKeyPath: #keyPath(TrailerController.player.currentItem.duration), context: &playerViewControllerKVOContext)
         removeObserver(self, forKeyPath: #keyPath(TrailerController.player.rate), context: &playerViewControllerKVOContext)

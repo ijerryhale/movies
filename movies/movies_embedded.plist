@@ -56,5 +56,7 @@
 	<string>index.xml</string>
 	<key>URL_STRING</key>
 	<string>theaters.json</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This applicaton wants to use your location</string>
 </dict>
 </plist>

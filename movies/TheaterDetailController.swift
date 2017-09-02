@@ -13,7 +13,6 @@ class TheaterDetailController: UIViewController
 	@IBOutlet weak var poster: UIImageView!
 	@IBOutlet weak var name: UILabel!
 	@IBOutlet weak var address: UILabel!
-	@IBOutlet weak var phoneNumber: UILabel!
 
 	func updateView()
 	{
@@ -23,21 +22,26 @@ class TheaterDetailController: UIViewController
 		name.text = theater[KEY_NAME] as? String
 		
 		let aa = theater[KEY_ADDRESS]
-		var a = aa?[KEY_STREET] as! String
+		var addressString = aa?[KEY_STREET] as! String
 
-		a += "\n"
-		a += aa?[KEY_CITY] as! String
-		a += ", "
-		a += aa?[KEY_STATE] as! String
-		a += " "
-		a += aa?[KEY_POSTAL_CODE] as! String
+		addressString += "\n"
+		addressString += aa?[KEY_CITY] as! String
+		addressString += ", "
+		addressString += aa?[KEY_STATE] as! String
+		addressString += " "
+		addressString += aa?[KEY_POSTAL_CODE] as! String
 		
-		address.text = a
-		phoneNumber.text = theater[KEY_TEL] as? String
+		let phone = theater[KEY_TEL] as! String
+		
+		if !phone.isEmpty { addressString += "\n\n" + phone }
+
+		address.text = addressString
 	}
 
+	@IBAction func showMapBtnPressed() { (parent?.parent as! BoxOfficeViewController).performSegue(withIdentifier: S2_MAP, sender: self) }
+
 	func segue_to_marquee()
-	{ (parent?.parent as! BoxOfficeController).performSegue(withIdentifier: S2_MARQUEE, sender: self) }
+	{ (parent?.parent as! BoxOfficeViewController).performSegue(withIdentifier: S2_MARQUEE, sender: self) }
 
 	//	MARK: UIViewController overrides
 	override func viewWillDisappear(_ animated: Bool)
