@@ -14,8 +14,9 @@ Not stable. Still folding in stuff, basic embedded and webservice targets workin
 ## Aug 25, 2017
 Added Earl Grey Framework, XCTest Target and simple Earl Grey test for movies_embedded Target.
 
-![marquee](https://user-images.githubusercontent.com/4106530/29589019-82b24964-8748-11e7-8c7f-cbe388b4d65a.png) |![boxoffice](https://user-images.githubusercontent.com/4106530/29589021-85d534a8-8748-11e7-8c8c-258063c99ab9.png)
+![marquee](https://user-images.githubusercontent.com/4106530/29996841-fe997834-8fba-11e7-8666-ee7271436fcf.png) |![theaters_for_moview](https://user-images.githubusercontent.com/4106530/29996843-01ec617c-8fbb-11e7-9797-417df46bad35.png)
 :-------------------------:|:-------------------------:
-Marquee | Box Office |
-![trailer](https://user-images.githubusercontent.com/4106530/29589030-8c512094-8748-11e7-8cb4-dac3ce72155a.png) | ![theater](https://user-images.githubusercontent.com/4106530/29589038-93445632-8748-11e7-967c-52d45be01f25.png) |
-Trailer | Theater
+Marquee | Theaters for Movie |
+![movies_for_theater](https://user-images.githubusercontent.com/4106530/29996844-045b1994-8fbb-11e7-9d90-cfac30290203.png) | ![trailers](https://user-images.githubusercontent.com/4106530/29996845-06f3ee6a-8fbb-11e7-8de3-d6b4f812c598.png) |
+Movies for Theater | Trailers |
+![itunes](https://user-images.githubusercontent.com/4106530/29996846-091fb03e-8fbb-11e7-9d37-2ccd60cdd938.png) | ![driving_directions](https://user-images.githubusercontent.com/4106530/29996848-0b3a21d8-8fbb-11e7-8338-e4e7ee205490.png)
