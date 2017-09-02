@@ -1,5 +1,5 @@
 # Movies
-iOS - Display Movies and Theaters for given Zipcode and Day
+iOS - Display Movies and Theaters for given Location and Day
 
 ## Requirements
 
