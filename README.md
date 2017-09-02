@@ -1,5 +1,5 @@
 # Movies
-iOS - Display Movies and Theaters for given Location and Day
+iOS - Display a listing of Movies and Theaters for given Location and Day
 
 ## Requirements
 
