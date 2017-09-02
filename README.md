@@ -14,6 +14,9 @@ Not stable. Still folding in stuff, basic embedded and webservice targets workin
 ## Aug 25, 2017
 Added Earl Grey Framework, XCTest Target and simple Earl Grey test for movies_embedded Target.
 
+## Sep 2, 2017
+Added Map View and Web View. Rewrote Marquee View to use UITableView. Cleaned up some trash.
+
 ![marquee](https://user-images.githubusercontent.com/4106530/29996841-fe997834-8fba-11e7-8666-ee7271436fcf.png) |![theaters_for_moview](https://user-images.githubusercontent.com/4106530/29996843-01ec617c-8fbb-11e7-9797-417df46bad35.png)
 :-------------------------:|:-------------------------:
 Marquee | Theaters for Movie |
