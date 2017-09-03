@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 {
 	var window: UIWindow?
 
+	
+	
 	private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController?
 	{
 		if (rootViewController == nil) { return nil }

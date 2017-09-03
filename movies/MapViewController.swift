@@ -16,7 +16,6 @@ class MapViewController: UIViewController
 	{
 		//	let nameString = "West Wind El Rancho Drive-In"
 		//	let addressString = "555 El Rancho Drive, Sparks NV 89431"
-
 		let index = gState[KEY_CO_INDEX] as! Int
 		let theater = gTheater[index]
 		
@@ -55,11 +54,6 @@ class MapViewController: UIViewController
 				{ annotation.subtitle = "\(number) \(street) \(city), \(state) \(zip)" }
 			
 			self.mapView.addAnnotation(annotation)
-
-			let span = MKCoordinateSpanMake(0.05, 0.05)
-			let region = MKCoordinateRegionMake(placemark.coordinate, span)
-			self.mapView.setRegion(region, animated: true)
-			
 			self.placemark = placemark
         }
 	}
@@ -72,47 +66,38 @@ class MapViewController: UIViewController
         mapItem.openInMaps(launchOptions: launchOptions)
     }
 
+
 	override func viewWillDisappear(_ animated: Bool)
 	{ super.viewWillDisappear(animated); print("MapViewController viewWillDisappear ") }
 
     override func viewDidLoad()
 	{ super.viewDidLoad(); print("MapViewController viewDidLoad ")
-        
+		
+		definesPresentationContext = true
+
 		locationManager.delegate = self
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
  
-		definesPresentationContext = true
+		locationManager.startUpdatingLocation()
 		
+ 		mapView.delegate = self
+		mapView.showsUserLocation = true
+
 		add_annotation_at_theater_address()
-
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        //manager.stopUpdatingLocation()
-
-		//        let center = CLLocationCoordinate2D(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
-		//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-		//        
-		//        mapView.setRegion(region, animated: true)
 	}
 }
 
-extension MapViewController : CLLocationManagerDelegate {
-    
+extension MapViewController : CLLocationManagerDelegate
+{
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
 	{
         if status == .authorizedWhenInUse { locationManager.requestLocation() }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-	{
-        guard let location = locations.first else { return }
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegion(center: location.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-    }
-    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { }
+	
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
 	{
         print("error:: \(error)")
@@ -121,6 +106,12 @@ extension MapViewController : CLLocationManagerDelegate {
 
 extension MapViewController : MKMapViewDelegate
 {
+	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation)
+	{
+		//	zoom to level which shows both annotations
+		mapView.showAnnotations(mapView.annotations, animated: true)
+	}
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
 	{
 		print(annotation)
