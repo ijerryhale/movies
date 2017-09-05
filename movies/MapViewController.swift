@@ -5,6 +5,7 @@ import MapKit
 import Contacts
 import CoreLocation
 
+//	MARK: MapViewController
 class MapViewController: UIViewController
 {
     var placemark: MKPlacemark?
@@ -81,6 +82,7 @@ class MapViewController: UIViewController
 	}
 }
 
+//	MARK: MKMapViewDelegate Methods
 extension MapViewController : MKMapViewDelegate
 {
 	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation)

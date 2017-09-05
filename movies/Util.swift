@@ -9,6 +9,65 @@
 import CoreLocation
 import UIKit
 
+//	MARK: LazyPoster
+class LazyPoster
+{
+	var tms_id: String
+    let title: String
+    var urlString: String
+    
+    var state = RowState.new
+    var image = UIImage()
+	
+    init(tmsid: String, title: String, urlString: Any)
+	{
+		self.tms_id = tmsid
+        self.title = title
+
+		if urlString is NSNull { self.urlString = "" }
+		else { self.urlString = urlString as! String }
+		
+		self.image = createGenericPoster(title: title)
+    }
+}
+
+//	MARK: PendingOperations
+class PendingOperations
+{
+    lazy var downloadInProgress = [NSIndexPath:Operation]()
+    
+    lazy var downloadQueue: OperationQueue = {
+        var queue = OperationQueue()
+        queue.name = UUID().uuidString
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+}
+
+//	MARK: ImageDownloader Operation
+class ImageDownloader: Operation
+{
+    let lazyPoster: LazyPoster
+    
+    init(lazyPoster: LazyPoster) { self.lazyPoster = lazyPoster }
+    
+    override func main()
+	{
+        if self.isCancelled { return }
+		
+		if lazyPoster.urlString.isEmpty == false
+		{
+			if let data = DataAccess.get_DATA(lazyPoster.urlString)
+			{
+				self.lazyPoster.image = UIImage(data: data)!
+			}
+		}
+
+		self.lazyPoster.state = .downloaded
+	}
+}
+
+//	MARK: EmptySegue
 class EmptySegue: UIStoryboardSegue
 {
     override func perform()
@@ -17,6 +76,7 @@ class EmptySegue: UIStoryboardSegue
 	}
 }
 
+//	MARK: CustomSegue
 class CustomSegue: UIStoryboardSegue
 {
     override func perform()
@@ -32,6 +92,7 @@ class CustomSegue: UIStoryboardSegue
     }
 }
 
+//	MARK: CustomUnwindSegue
 class CustomUnwindSegue: UIStoryboardSegue
 {
     override func perform()
@@ -141,6 +202,7 @@ class Geocode {
 	}
 }
 
+//	MARK: getShowDateFromDayOffset
 func getShowDateFromDayOffset(dayoffset: Int) -> String
 {
 	let day = Calendar.current.date(byAdding: .day, value: dayoffset + DAY_OFFSET, to: Date())
@@ -151,6 +213,37 @@ func getShowDateFromDayOffset(dayoffset: Int) -> String
 	//print(df.string(from: day!))
 	
 	return (df.string(from: day!))
+}
+
+//	MARK: createGenericPoster
+func createGenericPoster(title: String) -> UIImage
+{
+	var image = UIImage(named: "filmclip.png")
+
+	UIGraphicsBeginImageContext((image?.size)!)
+	
+	image?.draw(in: CGRect(x: 0, y: 0, width: (image?.size.width)!, height: (image?.size.height)!))
+
+	let titleString =
+				NSMutableAttributedString(string: title,
+			attributes: [NSFontAttributeName:UIFont(name: "Helvetica", size: 17)!])
+	
+	titleString.addAttribute(
+			NSForegroundColorAttributeName,
+				value: UIColor.white,
+				range: NSRange(location:0, length:titleString.length))
+	
+	let paraStyle = NSMutableParagraphStyle()
+	paraStyle.alignment = .center
+
+	titleString.addAttribute(NSParagraphStyleAttributeName, value:paraStyle,			range:NSRange(location:0, length:titleString.length))
+	
+	titleString.draw(in: CGRect(x: 10, y: 50, width: (image?.size.width)! - 20, height: (image?.size.height)!))
+
+	image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext()
+
+	return image!
 }
 
 func getTicketPurchasePageUrl(tmsID: String, theaterId: String, date: String, time: String) -> String

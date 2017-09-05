@@ -8,6 +8,7 @@
 
 import UIKit
 
+//	MARK: TheaterDetailController
 class TheaterDetailController: UIViewController
 {
 	@IBOutlet weak var poster: UIImageView!

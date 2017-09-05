@@ -10,7 +10,7 @@ import UIKit
 
 private let theaterOffset = 0
 
-// MARK: BoxOfficeViewController
+//	MARK: ContainerController
 class ContainerController: UIViewController
 {
 	func trailerSegueUnwind()
@@ -94,7 +94,7 @@ class ContainerController: UIViewController
         source.removeFromParentViewController()
 	}
 
-	// MARK: UIViewController overrides
+	//	MARK: UIViewController overrides
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
 	{
 		//	print(segue.identifier)
@@ -135,7 +135,7 @@ class ContainerController: UIViewController
 	}
 }
 
-// MARK: BoxOfficeViewController
+//	MARK: BoxOfficeViewController
 class BoxOfficeViewController: UIViewController
 {
 	@IBOutlet weak var	tableView: UITableView!
@@ -377,7 +377,7 @@ class BoxOfficeViewController: UIViewController
 						//	print(movie[KEY_TITLE])
 						DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100))
 						{
-							self.tableView.scrollToRow(at: [0, i], at: .middle, animated: false)
+							self.tableView.scrollToRow(at: [0, i], at: .top, animated: false)
 						}
 						break
 					}
@@ -427,7 +427,7 @@ class BoxOfficeViewController: UIViewController
 	}
 }
 
-// MARK: UITableView Datasource Methods
+//	MARK: UITableView Datasource Methods
 extension BoxOfficeViewController : UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return rowDictionary.count  }
@@ -517,7 +517,7 @@ extension BoxOfficeViewController : UITableViewDataSource
     }
 }
 
-// MARK: UITableView Delegate Methods
+//	MARK: UITableView Delegate Methods
 extension BoxOfficeViewController : UITableViewDelegate
 {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat

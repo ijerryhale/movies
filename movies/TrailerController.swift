@@ -28,6 +28,7 @@ class PlayerView: UIView
 */
 private var playerViewControllerKVOContext = 0
 
+//	MARK: TrailerController
 class TrailerController: UIViewController
 {
     @IBOutlet weak var playPauseBtn: UIButton!

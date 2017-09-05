@@ -8,6 +8,17 @@
 
 import UIKit
 import CoreLocation
+import MapKit
+
+var gDayOffset = 0
+var gState = [KEY_CO_STATE : COType.cot_app_launch, KEY_CO_INDEX : 0] as [String : Any]
+var gPostalCode = "92315"
+
+var gIndex = [[String : AnyObject]]()
+var gTheater = [[String : AnyObject]]()
+
+var gMovie = [[String : AnyObject]]()
+var gLazyPoster = [LazyPoster]()
 
 enum COType {
 	case cot_app_launch
@@ -29,25 +40,12 @@ extension DispatchQueue
     }
 }
 
-enum RowState { case new, downloaded, failed }
-
-
-
-
-var gDayOffset = 0
-var gState = [KEY_CO_STATE : COType.cot_app_launch, KEY_CO_INDEX : 0] as [String : Any]
-var gPostalCode = "92315"
-
-var gIndex = [[String : AnyObject]]()
-var gTheater = [[String : AnyObject]]()
-
-var gMovie = [[String : AnyObject]]()
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 {
 	var window: UIWindow?
 	var locationManager = CLLocationManager()
+	var currentLoc = CLLocation()
 	
 	private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController?
 	{
@@ -112,11 +110,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 				if tms_id.contains(tmsid) { continue }
 
 				tms_id.add(tmsid)
+				
 				gMovie.append(thisMov);
+				
+				var urlString = ""
+
+				//	print(movie[i][KEY_POSTER])
+				if (thisMov[KEY_POSTER] is NSNull) == false
+				{
+					urlString = thisMov[KEY_POSTER] as! String
+				}
+
+				let lazyPoster = LazyPoster(tmsid: tmsid, title: thisMov[KEY_TITLE] as! String, urlString: urlString)
+				
+				gLazyPoster.append(lazyPoster)
 			}
 		}
 
 		//	sort the Movies by Movie rating, title
+		//	this is why we have to add the tmsid
+		//	to gLazyPoster
 		gMovie.sort
 		{
 			var lhsrating = "NR"
@@ -129,7 +142,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 			if lhsrating != rhsrating { return lhsrating < rhsrating }
 			else { return ($0[KEY_TITLE]! as! String) < ($1[KEY_TITLE]! as! String) }
 		}
-		
+		//	sort order of gMovie and gLazyPoster is now
+		//	different but we have saved having to loop thru
+		//	gMovies again in order to create the array of gLazyPoster
+
+
 		//	for index in stride(from: self.movie.count - 1, through: 3, by: -1)
 		//	{
 		//		self.movie.removeObject(at: index)
@@ -284,7 +301,10 @@ extension AppDelegate : CLLocationManagerDelegate
         if status == .authorizedWhenInUse { locationManager.requestLocation() }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+	{
+		currentLoc = locations[0]
+	}
 	
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
 	{

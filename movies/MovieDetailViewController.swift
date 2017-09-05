@@ -10,6 +10,7 @@
 
 import UIKit
 
+//	MARK: MovieDetailViewController
 class MovieDetailViewController : UIViewController
 {
 	@IBOutlet weak var poster: UIImageView!
@@ -45,53 +46,17 @@ class MovieDetailViewController : UIViewController
 	{
 		let index = gState[KEY_CO_INDEX] as! Int
 		let movie = gMovie[index]
-		
-		func get_generic_poster() -> UIImage
-		{
-			var image = UIImage(named: "filmclip.png")
 
-			UIGraphicsBeginImageContext((image?.size)!)
-			
-			image?.draw(in: CGRect(x: 0, y: 0, width: (image?.size.width)!, height: (image?.size.height)!))
-
-			let titleString =
-						NSMutableAttributedString(string: movie[KEY_TITLE] as! String,
-					attributes: [NSFontAttributeName:UIFont(name: "Helvetica", size: 17)!])
-			
-			titleString.addAttribute(
-					NSForegroundColorAttributeName,
-						value: UIColor.white,
-						range: NSRange(location:0, length:titleString.length))
-			
-			let paraStyle = NSMutableParagraphStyle()
-			paraStyle.alignment = .center
-
-			titleString.addAttribute(NSParagraphStyleAttributeName, value:paraStyle,			range:NSRange(location:0, length:titleString.length))
-			
-			titleString.draw(in: CGRect(x: 10, y: 50, width: (image?.size.width)! - 20, height: (image?.size.height)!))
-
-			image = UIGraphicsGetImageFromCurrentImageContext();
-			UIGraphicsEndImageContext()
-		
-			return image!
-		}
-		
-		if movie[KEY_POSTER] is NSNull
-		{
-			poster.image = get_generic_poster()
-		}
+		if movie[KEY_POSTER] is NSNull { poster.image = createGenericPoster(title: movie[KEY_TITLE] as! String) }
 		else
 		{
 			if let data = DataAccess.get_DATA(movie[KEY_POSTER] as! String)
 			{
 				poster.image = UIImage(data: data)!
 			}
-			else
-			{
-				poster.image = get_generic_poster()
-			}
+			else { poster.image = createGenericPoster(title: movie[KEY_TITLE] as! String) }
 		}
-		
+
 		filmtitle.text = movie[KEY_TITLE] as? String
 		
 		if (movie[KEY_RATING] is NSNull) == false { rating.text = movie[KEY_RATING] as? String }

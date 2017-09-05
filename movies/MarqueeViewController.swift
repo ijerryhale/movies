@@ -9,92 +9,9 @@
 import Foundation
 import UIKit
 
-//	MARK: MoviePoster
-class MoviePoster
-{
-    let title: String
-    var urlString: String
-    
-    var state = RowState.new
-    var image = UIImage()
-	
-    init(title: String, urlString: Any)
-	{
-        self.title = title
+public enum RowState { case new, downloaded, failed }
 
-		if (urlString is NSNull)
-		{
-			self.urlString = ""
-		}
-		else
-		{
-			self.urlString = urlString as! String
-		}
-
-		let image = UIImage(named: "filmclip.png")
-		
-		UIGraphicsBeginImageContext((image?.size)!)
-		
-		image?.draw(in: CGRect(x: 0, y: 0, width: (image?.size.width)!, height: (image?.size.height)!))
-
-		let titleString =
-					NSMutableAttributedString(string: title,
-				attributes: [NSFontAttributeName:UIFont(name: "Helvetica", size: 17)!])
-		
-		titleString.addAttribute(
-				NSForegroundColorAttributeName,
-					value: UIColor.white,
-					range: NSRange(location:0, length:titleString.length))
-		
-		let paraStyle = NSMutableParagraphStyle()
-		paraStyle.alignment = .center
-
-		titleString.addAttribute(NSParagraphStyleAttributeName, value:paraStyle,			range:NSRange(location:0, length:titleString.length))
-		
-		titleString.draw(in: CGRect(x: 10, y: 50, width: (image?.size.width)! - 20, height: (image?.size.height)!))
-
-		self.image = UIGraphicsGetImageFromCurrentImageContext()!;
-		UIGraphicsEndImageContext()
-    }
-}
-
-//	MARK: PendingOperations
-class PendingOperations
-{
-    lazy var downloadInProgress = [NSIndexPath:Operation]()
-    
-    lazy var downloadQueue: OperationQueue = {
-        var queue = OperationQueue()
-        queue.name = "Dowload Queue"
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
-}
-
-//	MARK: ImageDownloader Operation
-class ImageDownloader: Operation
-{
-    let moviePoster: MoviePoster
-    
-    init(moviePoster: MoviePoster) { self.moviePoster = moviePoster }
-    
-    override func main()
-	{
-        if self.isCancelled { return }
-		
-		print(moviePoster.urlString)
-		if moviePoster.urlString.isEmpty == false
-		{
-			if let data = DataAccess.get_DATA(moviePoster.urlString)
-			{
-				self.moviePoster.image = UIImage(data: data)!
-			}
-		}
-
-		self.moviePoster.state = .downloaded
-	}
-}
-
+//	MARK: MarqueeViewController
 class MarqueeViewController: UIViewController
 {
 	@IBOutlet weak var	tableView: UITableView!
@@ -102,7 +19,6 @@ class MarqueeViewController: UIViewController
 	@IBAction func unwindToMarquee(segue: UIStoryboardSegue) { }
 	@IBAction func tapPreferencesBtn(sender: UIButton) { self.performSegue(withIdentifier: S2_PREFERENCE, sender: self) }
 
-	var poster = [MoviePoster]()
     let pendingOperations = PendingOperations()
 
 	override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
@@ -133,13 +49,18 @@ class MarqueeViewController: UIViewController
             for indexPath in toBeStarted
 			{
                 let indexPath = indexPath as NSIndexPath
-                let recordToProcess = poster[indexPath.row]
-                startOperationsForPoster(poster: recordToProcess, indexPath: indexPath)
+				let tmsid = gMovie[indexPath.row][KEY_TMS_ID] as! String
+		
+				guard
+					let thisPoster = gLazyPoster.filter({ $0.tms_id == tmsid }).first
+					else { fatalError("loadImagesforOnScreenCells returned NULL LazyPoster") }
+
+                startOperationsForPoster(poster: thisPoster, indexPath: indexPath)
             }
         }
     }
     
-    func startOperationsForPoster(poster: MoviePoster, indexPath: NSIndexPath)
+    func startOperationsForPoster(poster: LazyPoster, indexPath: NSIndexPath)
 	{
         switch poster.state
 		{
@@ -147,7 +68,7 @@ class MarqueeViewController: UIViewController
 				
 				if let _ = pendingOperations.downloadInProgress[indexPath] { return }
 				
-				let downloader = ImageDownloader(moviePoster: poster)
+				let downloader = ImageDownloader(lazyPoster: poster)
 				
 				downloader.completionBlock = {
 					
@@ -155,7 +76,7 @@ class MarqueeViewController: UIViewController
 					
 					DispatchQueue.main.async(execute: {
 						self.pendingOperations.downloadInProgress.removeValue(forKey: indexPath)
-						self.tableView.reloadRows(at: [indexPath as IndexPath], with: .fade)
+						self.tableView.reloadRows(at: [indexPath as IndexPath], with: .left)
 					})
 					
 				}
@@ -196,25 +117,6 @@ class MarqueeViewController: UIViewController
 		
 		tableView.register(UINib(nibName: VALUE_MARQUEE_CELL, bundle: nil), forCellReuseIdentifier: VALUE_MARQUEE_CELL)
 
-		for i in 0...gMovie.count - 1
-		{
-			let movie:[[String: AnyObject]] = gMovie
-			let title = movie[i][KEY_TITLE] as! String
-			
-			var urlString = ""
-
-			print(movie[i][KEY_POSTER])
-			if (movie[i][KEY_POSTER] is NSNull) == false
-			{
-				urlString = movie[i][KEY_POSTER] as! String
-			}
-			
-			
-			let moviePoster = MoviePoster(title: title, urlString: urlString)
-			
-			self.poster.append(moviePoster)
-		}
-
 		self.tableView.reloadData()
 	}
 }
@@ -224,21 +126,28 @@ extension MarqueeViewController : UITableViewDataSource
 {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-        return poster.count
+        return gLazyPoster.count
     }
     
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
         let cell = tableView.dequeueReusableCell(withIdentifier: VALUE_MARQUEE_CELL, for: indexPath) as! Marquee_Cell
-		let thisPoster = poster[indexPath.row]
-
+		
+		let tmsid = gMovie[indexPath.row][KEY_TMS_ID] as! String
+		
+		guard
+            let thisPoster = gLazyPoster.filter({ $0.tms_id == tmsid }).first
+			else { fatalError("cellForRowAt returned NULL LazyPoster") }
+		
 		cell.poster.image = thisPoster.image
 		
         switch thisPoster.state
 		{
 			case .failed:
+				///	print(".failed")
 				cell.indicator.stopAnimating()
 			case .new:
+				//	print(".new")
 				cell.indicator.startAnimating()
 				
 				if (!tableView.isDragging && !tableView.isDecelerating)
