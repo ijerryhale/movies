@@ -118,11 +118,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Movies/DataAccess.m"
-            timestampString = "525019669.165874"
+            timestampString = "526322580.47569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "293"
@@ -148,11 +148,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "movies_embedded.L1_Cell_movie.__deallocating_deinit"
-                  moduleName = "movies_embedded"
+                  symbolName = "movies.L1_Cell_movie.__deallocating_deinit"
+                  moduleName = "movies"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jhale/Desktop/movies/movies/movies/Resource/L1_Cell_movie.swift"
-                  timestampString = "526090019.658703"
+                  timestampString = "526323472.208621"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -163,11 +163,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "movies_embedded.L1_Cell_movie.init (style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; movies_embedded.L1_Cell_movie"
-                  moduleName = "movies_embedded"
+                  symbolName = "movies.L1_Cell_movie.init (style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; movies.L1_Cell_movie"
+                  moduleName = "movies"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jhale/Desktop/movies/movies/movies/Resource/L1_Cell_movie.swift"
-                  timestampString = "526090019.660769"
+                  timestampString = "526323472.212704"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "11"
@@ -190,6 +190,38 @@
             startingLineNumber = "24"
             endingLineNumber = "24"
             landmarkName = "testExample()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "movies/MarqueeViewController.swift"
+            timestampString = "526322841.625527"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "movies/MovieDetailViewController.swift"
+            timestampString = "526323460.601328"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "updateView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

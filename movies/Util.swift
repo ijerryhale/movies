@@ -153,47 +153,6 @@ func getShowDateFromDayOffset(dayoffset: Int) -> String
 	return (df.string(from: day!))
 }
 
-func getPosterImage(movie: AnyObject) -> UIImage
-{
-	//	FIX THIS !!!
-	var image = UIImage(named: "filmclip.png")
-	
-	if (movie[KEY_POSTER] as? NSNull) != nil
-	{
-		UIGraphicsBeginImageContext((image?.size)!)
-		
-		image?.draw(in: CGRect(x: 0, y: 0, width: (image?.size.width)!, height: (image?.size.height)!))
-
-		let titleString =
-					NSMutableAttributedString(string: movie[KEY_TITLE] as! String,
-				attributes: [NSFontAttributeName:UIFont(name: "Helvetica", size: 17)!])
-		
-//		titleString.addAttribute(
-//				NSForegroundColorAttributeName,
-//					value: UIColor.white,
-//					range: NSRange(location:0, length:titleString.length))
-		
-		let paraStyle = NSMutableParagraphStyle()
-		paraStyle.alignment = .center
-
-		titleString.addAttribute(NSParagraphStyleAttributeName, value:paraStyle,			range:NSRange(location:0, length:titleString.length))
-		
-		titleString.draw(in: CGRect(x: 10, y: 50, width: (image?.size.width)! - 20, height: (image?.size.height)!))
-
-		image = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext()
-	}
-	else
-	{
-		//	print(movie[KEY_POSTER])
-		let data = DataAccess.get_DATA(movie[KEY_POSTER] as! String)
-		
-		image = UIImage(data: data! as Data)
-	}
-	
-	return (image)!
-}
-
 func getTicketPurchasePageUrl(tmsID: String, theaterId: String, date: String, time: String) -> String
 {
 	//	print(tmsID)

@@ -8,19 +8,18 @@ import CoreLocation
 class MapViewController: UIViewController
 {
     var placemark: MKPlacemark?
-    let locationManager = CLLocationManager()
 
     @IBOutlet weak var mapView: MKMapView!
 
 	private func add_annotation_at_theater_address()
 	{
-		//	let nameString = "West Wind El Rancho Drive-In"
-		//	let addressString = "555 El Rancho Drive, Sparks NV 89431"
 		let index = gState[KEY_CO_INDEX] as! Int
 		let theater = gTheater[index]
-		
+
+		//	let nameString = "West Wind El Rancho Drive-In"
 		let nameString = theater[KEY_NAME] as? String
 		
+		//	let addressString = "555 El Rancho Drive, Sparks NV 89431"
 		let aa = theater[KEY_ADDRESS]
 		var addressString = aa?[KEY_STREET] as! String
 
@@ -48,8 +47,8 @@ class MapViewController: UIViewController
 
 			if let number = placemark.subThoroughfare,
 				let street = placemark.thoroughfare,
-				let city = placemark.locality,
-				 let state = placemark.administrativeArea,
+				 let city = placemark.locality,
+				  let state = placemark.administrativeArea,
 					let zip = placemark.postalCode
 				{ annotation.subtitle = "\(number) \(street) \(city), \(state) \(zip)" }
 			
@@ -62,7 +61,7 @@ class MapViewController: UIViewController
 	{
         guard let placemark = placemark else { return }
         let mapItem = MKMapItem(placemark: placemark)
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault]
         mapItem.openInMaps(launchOptions: launchOptions)
     }
 
@@ -74,13 +73,6 @@ class MapViewController: UIViewController
 	{ super.viewDidLoad(); print("MapViewController viewDidLoad ")
 		
 		definesPresentationContext = true
-
-		locationManager.delegate = self
-		locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
- 
-		locationManager.startUpdatingLocation()
 		
  		mapView.delegate = self
 		mapView.showsUserLocation = true
@@ -89,27 +81,13 @@ class MapViewController: UIViewController
 	}
 }
 
-extension MapViewController : CLLocationManagerDelegate
-{
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
-	{
-        if status == .authorizedWhenInUse { locationManager.requestLocation() }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { }
-	
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-	{
-        print("error:: \(error)")
-    }
-}
-
 extension MapViewController : MKMapViewDelegate
 {
 	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation)
 	{
 		//	zoom to level which shows both annotations
-		mapView.showAnnotations(mapView.annotations, animated: true)
+		//	only do this when map is initial displayed
+		DispatchQueue.once(token: "showAnnotations") { mapView.showAnnotations(mapView.annotations, animated: true) }
 	}
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?

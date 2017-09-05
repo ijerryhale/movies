@@ -290,8 +290,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 	
 	if (data == nil)
 	{
-	
-	
+		return nil;
 	}
 	
 	return (data);

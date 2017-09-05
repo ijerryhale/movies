@@ -15,20 +15,39 @@ enum COType {
 	case cot_movie_detail
 }
 
+extension DispatchQueue
+{
+    private static var _onceTracker = [String]()
+    public class func once(token: String, block:@noescape(Void)->Void)
+	{
+        objc_sync_enter(self); defer { objc_sync_exit(self) }
+
+        if _onceTracker.contains(token) { return }
+
+        _onceTracker.append(token)
+        block()
+    }
+}
+
+enum RowState { case new, downloaded, failed }
+
+
+
+
 var gDayOffset = 0
 var gState = [KEY_CO_STATE : COType.cot_app_launch, KEY_CO_INDEX : 0] as [String : Any]
 var gPostalCode = "92315"
 
 var gIndex = [[String : AnyObject]]()
 var gTheater = [[String : AnyObject]]()
+
 var gMovie = [[String : AnyObject]]()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 {
 	var window: UIWindow?
-
-	
+	var locationManager = CLLocationManager()
 	
 	private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController?
 	{
@@ -78,22 +97,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 		for i in 0...gTheater.count - 1
 		{
 			var t = gTheater[i] as [String : AnyObject]
+
+			if (t[KEY_RELEASE_DATE] is NSNull) { gTheater[i][KEY_RELEASE_DATE] = "" as AnyObject }
+			if (t[KEY_RUN_TIME] is NSNull) { gTheater[i][KEY_RUN_TIME] = "" as AnyObject }
 			
-			if (t[KEY_RELEASE_DATE] as? NSNull) != nil { gTheater[i][KEY_RELEASE_DATE] = "" as AnyObject }
-			if (t[KEY_RUN_TIME] as? NSNull) != nil { gTheater[i][KEY_RUN_TIME] = "" as AnyObject }
-			
-			if (t[KEY_TEL] as? NSNull) != nil { gTheater[i][KEY_TEL] = "" as AnyObject }
-			if (t[KEY_TOMATO_RATING] as? NSNull) != nil  { gTheater[i][KEY_TOMATO_RATING] = "" as AnyObject }
+			if (t[KEY_TEL] is NSNull) { gTheater[i][KEY_TEL] = "" as AnyObject }
+			if (t[KEY_TOMATO_RATING] is NSNull) { gTheater[i][KEY_TOMATO_RATING] = "" as AnyObject }
 			
 			//	thisMov is one Movie in this Theaters 'now_showing' array
-			for thisMov in t[KEY_NOW_SHOWING] as! [[String:AnyObject]]
+			for var thisMov in t[KEY_NOW_SHOWING] as! [[String:AnyObject]]
 			{
 				let tmsid = (thisMov as [String : AnyObject])[KEY_TMS_ID] as! String
 
 				if tms_id.contains(tmsid) { continue }
 
 				tms_id.add(tmsid)
-				
 				gMovie.append(thisMov);
 			}
 		}
@@ -101,9 +119,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 		//	sort the Movies by Movie rating, title
 		gMovie.sort
 		{
-			let lhsrating = $0[KEY_RATING]! as! String
-			let rhsrating = $1[KEY_RATING]! as! String
-				
+			var lhsrating = "NR"
+			var rhsrating = "NR"
+			
+			if ($0[KEY_RATING] is NSNull) == false { lhsrating = $0[KEY_RATING]! as! String }
+			
+			if ($1[KEY_RATING] is NSNull) == false { rhsrating = $1[KEY_RATING]! as! String }
+			
 			if lhsrating != rhsrating { return lhsrating < rhsrating }
 			else { return ($0[KEY_TITLE]! as! String) < ($1[KEY_TITLE]! as! String) }
 		}
@@ -135,7 +157,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 		{
 			(theaters, error) in
 
-			//	print(theaters?.count)
 			if (error != nil) { self.handleNetworkError(error: error); return }
 			else if theaters?.count == 0 { self.handleNoDataAvailable(error: error); return }
 
@@ -196,10 +217,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 	func applicationWillTerminate(_ application: UIApplication)
 	{
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+		locationManager.stopUpdatingLocation()
 	}
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
 	{
+		locationManager.delegate = self
+		locationManager.desiredAccuracy = kCLLocationAccuracyBest
+		locationManager.requestWhenInUseAuthorization()
+		
+		locationManager.startUpdatingLocation()
+
 		#if HAS_WEB_SERVICE
 			DataAccess().getindex()
 			{
@@ -214,7 +242,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 				{
 					(theaters, error) in
 
-					//	print(theaters?.count)
 					if (error != nil) { self.handleNetworkError(error: error); return }
 					else if theaters?.count == 0 { self.handleNoDataAvailable(error: error); return }
 
@@ -248,5 +275,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 		// Override point for customization after application launch.
 		return true
 	}
+}
+
+extension AppDelegate : CLLocationManagerDelegate
+{
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
+	{
+        if status == .authorizedWhenInUse { locationManager.requestLocation() }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { }
+	
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+	{
+        print("error:: \(error)")
+    }
 }
 

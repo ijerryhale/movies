@@ -6,25 +6,11 @@
 //  Copyright © 2017 jhale. All rights reserved.
 //
 
-//		let alert = UIAlertController(title: "Notification!",
-//									  message:"\(message)",
-//									  preferredStyle: UIAlertControllerStyle.alert)
-//		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-//		self.present(alert, animated: true, completion: nil)
-
-
-//		let containerController: ContainerController = childViewControllers.flatMap({ $0 as? ContainerController }).first!
-//		let movieDetailViewController: MovieDetailViewController? = containerController.childViewControllers.flatMap({ $0 as? MovieDetailViewController }).first
-//		let mdv = MovieDetailViewController?.view as! MovieDetailView
-
 import UIKit
 
 private let theaterOffset = 0
 
-//	always a valid Contained
-//	Object Type and Contained Object
-//	Index, default to Index of zero
-//	on Movies or Theaters button click
+// MARK: BoxOfficeViewController
 class ContainerController: UIViewController
 {
 	func trailerSegueUnwind()
@@ -149,7 +135,7 @@ class ContainerController: UIViewController
 	}
 }
 
-
+// MARK: BoxOfficeViewController
 class BoxOfficeViewController: UIViewController
 {
 	@IBOutlet weak var	tableView: UITableView!
@@ -470,16 +456,18 @@ extension BoxOfficeViewController : UITableViewDataSource
 			{
 				(cell as! L0_Cell_movie).title?.text = (rowDict[KEY_TITLE] as! String)
 				
-				var rating = ""
-
-				switch rowDict[KEY_RATING] as! String
+				var rating = "NR"
+	
+				if (rowDict[KEY_RATING] is NSNull) == false
 				{
-					case "PG-13", "R", "NC17", "PG", "G":
-						rating = rowDict[KEY_RATING] as! String
-					default:
-						rating = ""
+					switch rowDict[KEY_RATING] as! String
+					{
+						case "PG-13", "R", "NC17", "PG", "G":
+							rating = rowDict[KEY_RATING] as! String
+						default:
+							rating = ""
+					}
 				}
-			
 				(cell as! L0_Cell_movie).rating.text = rating
 			}
 			else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
@@ -501,16 +489,19 @@ extension BoxOfficeViewController : UITableViewDataSource
 			{
 				(cell as! L1_Cell_movie).title?.text = (rowDict[KEY_TITLE] as! String)
 
-				var rating = ""
+				var rating = "NR"
 
-				switch rowDict[KEY_RATING] as! String
+				if (rowDict[KEY_RATING] is NSNull) == false
 				{
-					case "PG-13", "R", "NC17", "PG", "G":
-						rating = rowDict[KEY_RATING] as! String
-					default:
-						rating = ""
+					switch rowDict[KEY_RATING] as! String
+					{
+						case "PG-13", "R", "NC17", "PG", "G":
+							rating = rowDict[KEY_RATING] as! String
+						default:
+							rating = ""
+					}
 				}
-			
+				
 				(cell as! L1_Cell_movie).rating.text = rating
 			}
 			else
@@ -664,3 +655,13 @@ extension BoxOfficeViewController : UITableViewDelegate
 		tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: UITableViewRowAnimation.fade)
     }
 }
+
+//		let alert = UIAlertController(title: "Notification!",
+//									  message:"\(message)",
+//									  preferredStyle: UIAlertControllerStyle.alert)
+//		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+//		self.present(alert, animated: true, completion: nil)
+
+//		let containerController: ContainerController = childViewControllers.flatMap({ $0 as? ContainerController }).first!
+//		let movieDetailViewController: MovieDetailViewController? = containerController.childViewControllers.flatMap({ $0 as? MovieDetailViewController }).first
+//		let mdv = MovieDetailViewController?.view as! MovieDetailView
