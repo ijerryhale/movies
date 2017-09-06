@@ -336,7 +336,7 @@ class TrailerController: UIViewController
 		let movie = gMovie[gState[KEY_CO_INDEX] as! Int]
 		//	don't have to check info here as we never
 		//	get here if there isn't a good info
-		let info = gIndex.filter({ $0[KEY_ID] as? String == movie[KEY_FILM_ID] as? String }).first
+		let info = gIndex.filter({ $0[KEY_ID] as? String == movie.movie[KEY_FILM_ID] as? String }).first
 
 		let previews = info?[KEY_PREVIEWS] as! [String : AnyObject]
 		let preview = previews[KEY_PREVIEW] as! [String : AnyObject]

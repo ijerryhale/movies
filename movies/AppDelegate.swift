@@ -10,6 +10,30 @@ import UIKit
 import CoreLocation
 import MapKit
 
+enum COType {
+	case cot_app_launch
+	case cot_theater_detail
+	case cot_movie_detail
+}
+
+public enum RowState { case new, downloaded, failed }
+//	MARK: LazyPoster
+class LazyPoster
+{
+    var urlString: String
+    
+    var state = RowState.new
+    var image = UIImage()
+	
+    init(title: String, urlString: Any)
+	{
+		if urlString is NSNull { self.urlString = "" }
+		else { self.urlString = urlString as! String }
+		
+		self.image = createGenericPoster(title: title)
+    }
+}
+
 var gDayOffset = 0
 var gState = [KEY_CO_STATE : COType.cot_app_launch, KEY_CO_INDEX : 0] as [String : Any]
 var gPostalCode = "92315"
@@ -17,14 +41,9 @@ var gPostalCode = "92315"
 var gIndex = [[String : AnyObject]]()
 var gTheater = [[String : AnyObject]]()
 
-var gMovie = [[String : AnyObject]]()
-var gLazyPoster = [LazyPoster]()
+typealias tuple = (poster: LazyPoster, movie: [String : AnyObject])
 
-enum COType {
-	case cot_app_launch
-	case cot_theater_detail
-	case cot_movie_detail
-}
+var gMovie = [tuple]()
 
 extension DispatchQueue
 {
@@ -110,43 +129,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeocodeDelegate
 				if tms_id.contains(tmsid) { continue }
 
 				tms_id.add(tmsid)
-				
-				gMovie.append(thisMov);
-				
 				var urlString = ""
 
-				//	print(movie[i][KEY_POSTER])
 				if (thisMov[KEY_POSTER] is NSNull) == false
 				{
 					urlString = thisMov[KEY_POSTER] as! String
 				}
 
-				let lazyPoster = LazyPoster(tmsid: tmsid, title: thisMov[KEY_TITLE] as! String, urlString: urlString)
+				let lazyPoster = LazyPoster(title: thisMov[KEY_TITLE] as! String, urlString: urlString)
 				
-				gLazyPoster.append(lazyPoster)
+				gMovie.append((lazyPoster, thisMov))
 			}
 		}
 
-		//	sort the Movies by Movie rating, title
-		//	this is why we have to add the tmsid
-		//	to gLazyPoster
 		gMovie.sort
 		{
 			var lhsrating = "NR"
 			var rhsrating = "NR"
 			
-			if ($0[KEY_RATING] is NSNull) == false { lhsrating = $0[KEY_RATING]! as! String }
+			if ($0.movie[KEY_RATING] is NSNull) == false { lhsrating = $0.movie[KEY_RATING]! as! String }
 			
-			if ($1[KEY_RATING] is NSNull) == false { rhsrating = $1[KEY_RATING]! as! String }
+			if ($1.movie[KEY_RATING] is NSNull) == false { rhsrating = $1.movie[KEY_RATING]! as! String }
 			
 			if lhsrating != rhsrating { return lhsrating < rhsrating }
-			else { return ($0[KEY_TITLE]! as! String) < ($1[KEY_TITLE]! as! String) }
+			else { return ($0.movie[KEY_TITLE]! as! String) < ($1.movie[KEY_TITLE]! as! String) }
 		}
-		//	sort order of gMovie and gLazyPoster is now
-		//	different but we have saved having to loop thru
-		//	gMovies again in order to create the array of gLazyPoster
-
-
 		//	for index in stride(from: self.movie.count - 1, through: 3, by: -1)
 		//	{
 		//		self.movie.removeObject(at: index)

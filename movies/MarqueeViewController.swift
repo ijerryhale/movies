@@ -13,8 +13,6 @@
 import Foundation
 import UIKit
 
-public enum RowState { case new, downloaded, failed }
-
 //	MARK: MarqueeViewController
 class MarqueeViewController: UIViewController
 {
@@ -22,6 +20,19 @@ class MarqueeViewController: UIViewController
 
 	@IBAction func unwindToMarquee(segue: UIStoryboardSegue) { }
 	@IBAction func tapPreferencesBtn(sender: UIButton) { self.performSegue(withIdentifier: S2_PREFERENCE, sender: self) }
+
+	//	MARK: PendingOperations
+	class PendingOperations
+	{
+		lazy var downloadInProgress = [NSIndexPath:Operation]()
+		
+		lazy var downloadQueue: OperationQueue = {
+			var queue = OperationQueue()
+			queue.name = UUID().uuidString
+			queue.maxConcurrentOperationCount = 1
+			return queue
+		}()
+	}
 
     let pendingOperations = PendingOperations()
 
@@ -53,12 +64,8 @@ class MarqueeViewController: UIViewController
             for indexPath in toBeStarted
 			{
                 let indexPath = indexPath as NSIndexPath
-				let tmsid = gMovie[indexPath.row][KEY_TMS_ID] as! String
-		
-				guard
-					let thisPoster = gLazyPoster.filter({ $0.tms_id == tmsid }).first
-					else { fatalError("loadImagesforOnScreenCells returned NULL LazyPoster") }
-
+				let thisPoster = gMovie[indexPath.row].poster
+			
                 startOperationsForPoster(poster: thisPoster, indexPath: indexPath)
             }
         }
@@ -66,6 +73,29 @@ class MarqueeViewController: UIViewController
     
     func startOperationsForPoster(poster: LazyPoster, indexPath: NSIndexPath)
 	{
+		//	MARK: ImageDownloader Operation
+		class ImageDownloader: Operation
+		{
+			let lazyPoster: LazyPoster
+			
+			init(lazyPoster: LazyPoster) { self.lazyPoster = lazyPoster }
+			
+			override func main()
+			{
+				if self.isCancelled { return }
+				
+				if lazyPoster.urlString.isEmpty == false
+				{
+					if let data = DataAccess.get_DATA(lazyPoster.urlString)
+					{
+						self.lazyPoster.image = UIImage(data: data)!
+					}
+				}
+
+				self.lazyPoster.state = .downloaded
+			}
+		}
+
         switch poster.state
 		{
 			case .new:
@@ -134,18 +164,14 @@ extension MarqueeViewController : UITableViewDataSource
 {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-        return gLazyPoster.count
+        return gMovie.count
     }
     
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
         let cell = tableView.dequeueReusableCell(withIdentifier: VALUE_MARQUEE_CELL, for: indexPath) as! Marquee_Cell
 		
-		let tmsid = gMovie[indexPath.row][KEY_TMS_ID] as! String
-		
-		guard
-            let thisPoster = gLazyPoster.filter({ $0.tms_id == tmsid }).first
-			else { fatalError("cellForRowAt returned NULL LazyPoster") }
+		let thisPoster = gMovie[indexPath.row].poster
 		
 		cell.poster.image = thisPoster.image
 		

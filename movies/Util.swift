@@ -9,64 +9,6 @@
 import CoreLocation
 import UIKit
 
-//	MARK: LazyPoster
-class LazyPoster
-{
-	var tms_id: String
-    let title: String
-    var urlString: String
-    
-    var state = RowState.new
-    var image = UIImage()
-	
-    init(tmsid: String, title: String, urlString: Any)
-	{
-		self.tms_id = tmsid
-        self.title = title
-
-		if urlString is NSNull { self.urlString = "" }
-		else { self.urlString = urlString as! String }
-		
-		self.image = createGenericPoster(title: title)
-    }
-}
-
-//	MARK: PendingOperations
-class PendingOperations
-{
-    lazy var downloadInProgress = [NSIndexPath:Operation]()
-    
-    lazy var downloadQueue: OperationQueue = {
-        var queue = OperationQueue()
-        queue.name = UUID().uuidString
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
-}
-
-//	MARK: ImageDownloader Operation
-class ImageDownloader: Operation
-{
-    let lazyPoster: LazyPoster
-    
-    init(lazyPoster: LazyPoster) { self.lazyPoster = lazyPoster }
-    
-    override func main()
-	{
-        if self.isCancelled { return }
-		
-		if lazyPoster.urlString.isEmpty == false
-		{
-			if let data = DataAccess.get_DATA(lazyPoster.urlString)
-			{
-				self.lazyPoster.image = UIImage(data: data)!
-			}
-		}
-
-		self.lazyPoster.state = .downloaded
-	}
-}
-
 //	MARK: EmptySegue
 class EmptySegue: UIStoryboardSegue
 {

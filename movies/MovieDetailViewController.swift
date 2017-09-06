@@ -47,25 +47,25 @@ class MovieDetailViewController : UIViewController
 		let index = gState[KEY_CO_INDEX] as! Int
 		let movie = gMovie[index]
 
-		if movie[KEY_POSTER] is NSNull { poster.image = createGenericPoster(title: movie[KEY_TITLE] as! String) }
+		if movie.movie[KEY_POSTER] is NSNull { poster.image = createGenericPoster(title: movie.movie[KEY_TITLE] as! String) }
 		else
 		{
-			if let data = DataAccess.get_DATA(movie[KEY_POSTER] as! String)
+			if let data = DataAccess.get_DATA(movie.movie[KEY_POSTER] as! String)
 			{
 				poster.image = UIImage(data: data)!
 			}
-			else { poster.image = createGenericPoster(title: movie[KEY_TITLE] as! String) }
+			else { poster.image = createGenericPoster(title: movie.movie[KEY_TITLE] as! String) }
 		}
 
-		filmtitle.text = movie[KEY_TITLE] as? String
+		filmtitle.text = movie.movie[KEY_TITLE] as? String
 		
-		if (movie[KEY_RATING] is NSNull) == false { rating.text = movie[KEY_RATING] as? String }
+		if (movie.movie[KEY_RATING] is NSNull) == false { rating.text = movie.movie[KEY_RATING] as? String }
 		else { rating.text = "NR" }
 		
-		runtime.text = movie[KEY_RUN_TIME] as? String
-		releasedate.text = movie[KEY_RELEASE_DATE] as? String
+		runtime.text = movie.movie[KEY_RUN_TIME] as? String
+		releasedate.text = movie.movie[KEY_RELEASE_DATE] as? String
 
-		let info = gIndex.filter({ $0[KEY_ID] as? String == movie[KEY_FILM_ID] as? String }).first
+		let info = gIndex.filter({ $0[KEY_ID] as? String == movie.movie[KEY_FILM_ID] as? String }).first
 
 		//	handle Rotten Tomato stuff
 		#if HAS_WEB_SERVICE
@@ -102,8 +102,8 @@ class MovieDetailViewController : UIViewController
 			
 			directors.text = ""
 			summary.text = ""
-			cast.text = (movie[KEY_ACTORS] as! [String]).joined(separator: ", ")
-			genre.text = (movie[KEY_GENRES] as! [String]).joined(separator: ", ")
+			cast.text = (movie.movie[KEY_ACTORS] as! [String]).joined(separator: ", ")
+			genre.text = (movie.movie[KEY_GENRES] as! [String]).joined(separator: ", ")
 		}
 		else
 		{
@@ -132,11 +132,11 @@ class MovieDetailViewController : UIViewController
 			else { viewTrailerBtn?.isEnabled = false }
 		}
 
-		if movie[KEY_ITUNES_URL] == nil
+		if movie.movie[KEY_ITUNES_URL] == nil
 		{ viewIniTunesBtn?.isEnabled = false }
 		else
 		{
-			let length = (movie[KEY_ITUNES_URL] as? String)?.utf8.count
+			let length = (movie.movie[KEY_ITUNES_URL] as? String)?.utf8.count
 
 			if length! > 0 { viewIniTunesBtn?.isEnabled = true }
 			else { viewIniTunesBtn?.isEnabled = false }

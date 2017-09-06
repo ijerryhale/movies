@@ -277,11 +277,11 @@ class BoxOfficeViewController: UIViewController
 			var l0_dict = _l0_dict
 
 			//	add Movie title and tms_id to dictionary
-			let	this_tms_id = gMovie[i][KEY_TMS_ID] as! String
+			let	this_tms_id = gMovie[i].movie[KEY_TMS_ID] as! String
 			
-			l0_dict[KEY_TMS_ID] = gMovie[i][KEY_TMS_ID]
-			l0_dict[KEY_TITLE] = gMovie[i][KEY_TITLE]
-			l0_dict[KEY_RATING] = gMovie[i][KEY_RATING]
+			l0_dict[KEY_TMS_ID] = gMovie[i].movie[KEY_TMS_ID]
+			l0_dict[KEY_TITLE] = gMovie[i].movie[KEY_TITLE]
+			l0_dict[KEY_RATING] = gMovie[i].movie[KEY_RATING]
 			/* l0_dict["rowNum"] = rowNum for dbug */
 
 			for j in 0...gTheater.count - 1
@@ -372,7 +372,7 @@ class BoxOfficeViewController: UIViewController
 			{
 				if rowDictionary[i][KEY_CELL_IDENTIFIER] as! String == VALUE_L0_CELL
 				{
-					if rowDictionary[i][KEY_TMS_ID] as! String == movie[KEY_TMS_ID] as! String
+					if rowDictionary[i][KEY_TMS_ID] as! String == movie.movie[KEY_TMS_ID] as! String
 					{
 						//	print(movie[KEY_TITLE])
 						DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100))
@@ -607,7 +607,7 @@ extension BoxOfficeViewController : UITableViewDelegate
 				
 				if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L0_CELL
 				{
-					let index = gMovie.index{ $0[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }
+					let index = gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }
 					gState[KEY_CO_INDEX] = index
 
 					//	print("cot_theater_detail LO_CELL")
@@ -639,7 +639,7 @@ extension BoxOfficeViewController : UITableViewDelegate
 				else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
 				|| rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L2_CELL
 				{
-					let index = gMovie.index{ $0[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }
+					let index = gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }
 					gState[KEY_CO_INDEX] = index
 
 					(childViewControllers[0] as! ContainerController).updateMovieDetailView()
