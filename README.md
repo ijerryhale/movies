@@ -20,7 +20,7 @@ Added Map View and Web View. Rewrote Marquee View to use UITableView. Cleaned up
 ![marquee](https://user-images.githubusercontent.com/4106530/30089364-21c7bf20-9261-11e7-823b-794557a4c284.png) | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/30089368-253cb67e-9261-11e7-8bad-536ca0fc31bd.png) |
 :-------------------------:|:-------------------------:
 Marquee | Theaters for Movie |
-![movies_for_theater](https://user-images.githubusercontent.com/4106530/30089370-270bd368-9261-11e7-9a6a-29d667dc1e56.png) | ![trailers]![trailers](https://user-images.githubusercontent.com/4106530/30089375-2a1f555c-9261-11e7-923d-22cbc7bf42b7.png) |
+![movies_for_theater](https://user-images.githubusercontent.com/4106530/30089370-270bd368-9261-11e7-9a6a-29d667dc1e56.png) | ![trailers](https://user-images.githubusercontent.com/4106530/30089375-2a1f555c-9261-11e7-923d-22cbc7bf42b7.png) |
 Movies for Theater | Trailers |
 ![itunes](https://user-images.githubusercontent.com/4106530/30089385-36007a5e-9261-11e7-987c-97c8dcdcf388.png) | ![driving_directions](https://user-images.githubusercontent.com/4106530/30089388-3a0966b0-9261-11e7-8800-fb6752e8a7ab.png) |
 Preview in iTunes | Driving Directions
