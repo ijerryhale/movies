@@ -6,6 +6,10 @@
 //  Copyright © 2017 jhale. All rights reserved.
 //
 
+//	LazyPoster class and lazy loading code is based upon:
+//	https://www.raywenderlich.com/76341/use-nsoperation-nsoperationqueue-swift
+
+
 import Foundation
 import UIKit
 
