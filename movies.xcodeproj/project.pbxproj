@@ -62,6 +62,7 @@
 		2C83BF3B1D82238E006B4CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C83BF3A1D82238E006B4CC6 /* AppDelegate.swift */; };
 		2C83BF3D1D82238E006B4CC6 /* MarqueeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C83BF3C1D82238E006B4CC6 /* MarqueeViewController.swift */; };
 		2C83BF421D82238E006B4CC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C83BF411D82238E006B4CC6 /* Assets.xcassets */; };
+		2C8C19D21F5F776400058C18 /* AccessibilityString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D45941F5211BE003F529A /* AccessibilityString.m */; };
 		2C9C1D2C1E8749F00092AFE7 /* ShowDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C1D2B1E8749F00092AFE7 /* ShowDateViewController.swift */; };
 		2CBB8F271E91DF6900938728 /* TheaterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBB8F261E91DF6900938728 /* TheaterDetailController.swift */; };
 		2CBCC0A11E9E76B800FF1A08 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCC0A01E9E76B800FF1A08 /* SelectableCell.swift */; };
@@ -488,6 +489,7 @@
 				2C3FA61B1F48DF4B008C1524 /* MarqueeViewController.swift in Sources */,
 				2C3FA61C1F48DF4B008C1524 /* PreferenceViewController.swift in Sources */,
 				2CD022811F58D1A800032D92 /* MapViewController.swift in Sources */,
+				2C8C19D21F5F776400058C18 /* AccessibilityString.m in Sources */,
 				2C3FA61D1F48DF4B008C1524 /* L2_Cell.swift in Sources */,
 				2C2A2ACD1F5A29E600636E69 /* Marquee_Cell.swift in Sources */,
 				2C3FA61E1F48DF4B008C1524 /* BoxOfficeViewController.swift in Sources */,
