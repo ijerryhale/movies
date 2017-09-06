@@ -11,5 +11,6 @@
 #import "AccessibilityString.h"
 
 NSString * const AXID_marqueeView = @"marqueeView";
-NSString * const AXID_marqueeScrollView = @"scrollView";
+
+NSString * const AXLABEL_marqueeTableView = @"tableView";
 

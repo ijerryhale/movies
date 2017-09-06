@@ -110,11 +110,15 @@ class MarqueeViewController: UIViewController
 
     override func viewDidLoad()
 	{ super.viewDidLoad(); print("MarqueeViewController viewDidLoad ")
-
+		
+		self.view.accessibilityIdentifier = AXID_marqueeView
+	
 		tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 		
+		tableView.accessibilityLabel = AXLABEL_marqueeTableView
+
 		tableView.register(UINib(nibName: VALUE_MARQUEE_CELL, bundle: nil), forCellReuseIdentifier: VALUE_MARQUEE_CELL)
 
 		self.tableView.reloadData()

@@ -42,15 +42,15 @@
       performAction:grey_tap()];
 }
 
-- (void)test_ScrollMarqueeToTop {
-	
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(AXID_marqueeScrollView)]
-      performAction:grey_scrollToContentEdge(kGREYContentEdgeTop)];
-}
-
-- (void)test_ScrollMarqueeToBottom {
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(AXID_marqueeScrollView)]
-      performAction:grey_scrollToContentEdge(kGREYContentEdgeBottom)];
-}
+//- (void)test_ScrollMarqueeToTop {
+//	
+//  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(AXLABEL_marqueeTableView)]
+//      performAction:grey_swipeSlowInDirection(kGREYDirectionUp)];
+//}
+//
+//- (void)test_ScrollMarqueeToBottom {
+//  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(AXLABEL_marqueeTableView)]
+//      performAction:grey_swipeSlowInDirection(kGREYDirectionDown)];
+//}
 
 @end

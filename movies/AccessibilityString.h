@@ -7,5 +7,5 @@
 //
 
 extern NSString * const AXID_marqueeView;
-extern NSString * const AXID_marqueeScrollView;
+extern NSString * const AXLABEL_marqueeTableView;
 

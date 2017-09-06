@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C2A2AC61F59E17300636E69 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2A2AC51F59E17300636E69 /* EarlGrey.framework */; };
-		2C2A2AC91F59E18B00636E69 /* EarlGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C2A2AC81F59E18B00636E69 /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C2A2ACC1F5A29E600636E69 /* Marquee_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A2ACA1F5A29E600636E69 /* Marquee_Cell.swift */; };
 		2C2A2ACD1F5A29E600636E69 /* Marquee_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A2ACA1F5A29E600636E69 /* Marquee_Cell.swift */; };
 		2C2A2ACE1F5A29E600636E69 /* Marquee_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2A2ACB1F5A29E600636E69 /* Marquee_Cell.xib */; };
@@ -58,6 +56,7 @@
 		2C3FA62B1F48DF4B008C1524 /* L0_Cell_theater.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C3FA5FD1F48C4C1008C1524 /* L0_Cell_theater.xib */; };
 		2C3FA62C1F48DF4B008C1524 /* index.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2C3FA5F61F48C44E008C1524 /* index.xml */; };
 		2C40588F1F50DDDC00A6D598 /* movies_embeddedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C40588E1F50DDDC00A6D598 /* movies_embeddedTests.m */; };
+		2C4C88FF1F5F62380069B4CC /* EarlGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C4C88FE1F5F62380069B4CC /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C4FE13E1D82681A00F1A3FF /* DictionaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FE13C1D82681A00F1A3FF /* DictionaryKey.m */; };
 		2C53BBD41EA2C8C9003DF759 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53BBD31EA2C8C9003DF759 /* PreferenceViewController.swift */; };
 		2C83BF3B1D82238E006B4CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C83BF3A1D82238E006B4CC6 /* AppDelegate.swift */; };
@@ -97,7 +96,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2C2A2AC91F59E18B00636E69 /* EarlGrey.framework in CopyFiles */,
+				2C4C88FF1F5F62380069B4CC /* EarlGrey.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,8 +122,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2C2A2AC51F59E17300636E69 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "EarlGrey/build/Debug-iphonesimulator/EarlGrey.framework"; sourceTree = "<group>"; };
-		2C2A2AC81F59E18B00636E69 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "EarlGrey/build/Debug-iphonesimulator/EarlGrey.framework"; sourceTree = "<group>"; };
 		2C2A2ACA1F5A29E600636E69 /* Marquee_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Marquee_Cell.swift; path = movies/Resource/Marquee_Cell.swift; sourceTree = "<group>"; };
 		2C2A2ACB1F5A29E600636E69 /* Marquee_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Marquee_Cell.xib; path = movies/Resource/Marquee_Cell.xib; sourceTree = "<group>"; };
 		2C2D45931F5211BE003F529A /* AccessibilityString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessibilityString.h; path = movies/AccessibilityString.h; sourceTree = "<group>"; };
@@ -149,6 +146,7 @@
 		2C40588C1F50DDDB00A6D598 /* movies_embeddedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = movies_embeddedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C40588E1F50DDDC00A6D598 /* movies_embeddedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = movies_embeddedTests.m; sourceTree = "<group>"; };
 		2C4058901F50DDDC00A6D598 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C4C88FE1F5F62380069B4CC /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "EarlGrey/build/Debug-iphonesimulator/EarlGrey.framework"; sourceTree = "<group>"; };
 		2C4FE1271D82664100F1A3FF /* movies-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "movies-Bridging-Header.h"; path = "Movies/movies-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C4FE13C1D82681A00F1A3FF /* DictionaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryKey.m; path = Movies/DictionaryKey.m; sourceTree = "<group>"; };
 		2C4FE13D1D82681A00F1A3FF /* DictionaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryKey.h; path = Movies/DictionaryKey.h; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C2A2AC61F59E17300636E69 /* EarlGrey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,8 +264,8 @@
 		2C7BDC6E1E7B79DC00772D2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2C2A2AC51F59E17300636E69 /* EarlGrey.framework */,
 				2CC236A01F51CE0200A901F9 /* AFNetworking.framework */,
+				2C4C88FE1F5F62380069B4CC /* EarlGrey.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,7 +273,6 @@
 		2C83BF2E1D82238E006B4CC6 = {
 			isa = PBXGroup;
 			children = (
-				2C2A2AC81F59E18B00636E69 /* EarlGrey.framework */,
 				2C4FE1271D82664100F1A3FF /* movies-Bridging-Header.h */,
 				2C4FE12A1D8267C700F1A3FF /* Objective C */,
 				2C83BF391D82238E006B4CC6 /* movies */,
