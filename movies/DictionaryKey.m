@@ -17,6 +17,10 @@ NSString	*gPostalCode = @"92315";
 
 NSString * const KEY_ID = @"id";
 NSString * const KEY_NAME = @"name";
+
+NSString * const KEY_LAT = @"lat";
+NSString * const KEY_LONG = @"long";
+
 NSString * const KEY_TICKET_URL = @"ticket_url";
 
 NSString * const KEY_URL = @"url";

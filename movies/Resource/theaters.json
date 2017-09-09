@@ -9,6 +9,8 @@
     },
     "id" : "620",
     "name" : "Incline Village Cinema",
+	"lat":"39.249600",
+	"long":"-119.952600",
     "now_showing" :     [
                 {
             "actors" :             [
@@ -51,6 +53,8 @@
     },
     "id" : "7762",
     "name" : "West Wind El Rancho Drive-In",
+	"lat":"39.539200",
+	"long":"-119.776000",
     "now_showing" :     [
                 {
             "actors" :             [
@@ -225,6 +229,8 @@
     },
     "id" : "2209",
     "name" : "Heavenly Village Cinema",
+	"lat":"38.955100",
+	"long":"-119.944000",
     "now_showing" :     [
                 {
             "actors" :             [
@@ -567,6 +573,8 @@
     },
     "id" : "2102",
     "name" : "Ironwood Cinema 8",
+	"lat":"38.957800",
+	"long":"-119.773300",
     "now_showing" :     [
                 {
             "actors" :             [
@@ -893,6 +901,8 @@
     },
     "id" : "5650",
     "name" : "Regal Auburn Stadium 10",
+	"lat":"38.912700",
+	"long":"-121.079900",
     "now_showing" :     [
                 {
             "actors" :             [

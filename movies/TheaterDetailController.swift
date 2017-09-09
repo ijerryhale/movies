@@ -18,7 +18,7 @@ class TheaterDetailController: UIViewController
 	func updateView()
 	{
 		let index = gState[KEY_CO_INDEX] as! Int
-		let theater = gTheater[index]
+		let theater = gTheater[index].theater
 		
 		name.text = theater[KEY_NAME] as? String
 		

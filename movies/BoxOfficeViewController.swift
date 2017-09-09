@@ -6,134 +6,11 @@
 //  Copyright © 2017 jhale. All rights reserved.
 //
 
+import CoreLocation
+import MapKit
 import UIKit
 
 private let theaterOffset = 0
-
-//	MARK: ContainerController
-class ContainerController: UIViewController
-{
-	func trailerSegueUnwind()
-	{
-		//	pop the TrailerController and push the MovieDetailViewController
-		let tc: TrailerController = self.childViewControllers[0] as! TrailerController
-		tc.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: tc)
-		self.performSegue(withIdentifier: S2_MOVIE_DETAIL, sender: self)
-		
-		let mdc: MovieDetailViewController? = self.childViewControllers.flatMap({ $0 as? MovieDetailViewController }).first
-
-		mdc?.updateView()
-	}
-
-	func trailerSegueWind()
-	{
-		//	pop the MovieDetailViewController and push the TrailerController
-		let mdc: MovieDetailViewController? = self.childViewControllers.flatMap({ $0 as? MovieDetailViewController }).first
-		
-		mdc?.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: mdc)
-		self.performSegue(withIdentifier: S2_MOVIE_TRAILER, sender: self)
-	}
-
-	func updateMovieDetailView()
-	{
-		var mdc: MovieDetailViewController? = self.childViewControllers[0] as? MovieDetailViewController
-		
-		if mdc == nil
-		{
-			let tdc: TheaterDetailController? = self.childViewControllers[0] as? TheaterDetailController
-		
-			if tdc == nil
-			{
-				let tc: TrailerController? = self.childViewControllers[0] as? TrailerController
-				
-				tc?.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: tc)
-			}
-			else
-			{
-				tdc?.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: tdc)
-			}
-			
-			self.performSegue(withIdentifier: S2_MOVIE_DETAIL, sender: self)
-			mdc = self.childViewControllers[0] as? MovieDetailViewController
-		}
-
-		mdc?.updateView()
-	}
-
-	func updateTheaterDetailView()
-	{
-		var tdc: TheaterDetailController? = self.childViewControllers[0] as? TheaterDetailController
-
-		if tdc == nil
-		{
-			let mdc: MovieDetailViewController? = self.childViewControllers[0] as? MovieDetailViewController
-		
-			if mdc == nil
-			{
-				let tc: TrailerController? = self.childViewControllers[0] as? TrailerController
-				
-				tc?.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: tc)
-			}
-			else
-			{
-				mdc?.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: mdc)
-			}
-			
-			self.performSegue(withIdentifier: S2_THEATER_DETAIL, sender: self)
-			tdc = self.childViewControllers[0] as? TheaterDetailController
-		}
-		
-		tdc?.updateView()
-	}
-
-	@IBAction func unwindToContainer(segue: UIStoryboardSegue)
-	{
-		let source = self.childViewControllers[0]
-        source.willMove(toParentViewController: nil)
-        source.view.removeFromSuperview()
-        source.removeFromParentViewController()
-	}
-
-	//	MARK: UIViewController overrides
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-	{
-		//	print(segue.identifier)
-			func transistion(dest : UIViewController)
-			{
-				self.addChildViewController(dest)
-				let destView : UIView = dest.view
-				
-				destView.autoresizingMask = [ .flexibleWidth, .flexibleHeight ]
-				destView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-				self.view.addSubview(destView)
-				
-				dest.didMove(toParentViewController: self)
-			}
-
-		if segue.identifier == S2_MOVIE_DETAIL
-		{
-			transistion(dest: segue.destination as! MovieDetailViewController)
-			
-			(segue.destination as! MovieDetailViewController).updateView()
-		}
-		else if segue.identifier == S2_THEATER_DETAIL
-		{ transistion(dest: segue.destination as! TheaterDetailController) }
-		else { transistion(dest: segue.destination as! TrailerController) }
-	}
-	
-	override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("ContainerController viewWillDisappear") }
-
-	override func viewDidLoad()
-	{ super.viewDidLoad(); print("ContainerController viewDidLoad")
-
-		if gState[KEY_CO_STATE] as! COType == .cot_theater_detail
-		{
-			self.performSegue(withIdentifier: S2_THEATER_DETAIL, sender: self)
-		}
-		else { self.performSegue(withIdentifier: S2_MOVIE_DETAIL, sender: self) }
-	}
-}
 
 //	MARK: BoxOfficeViewController
 class BoxOfficeViewController: UIViewController
@@ -202,10 +79,10 @@ class BoxOfficeViewController: UIViewController
 			var l0_dict = _l0_dict
 
 			/* l0_dict["rowNum"] = rowNum for dbug */
-			l0_dict[KEY_ID] = gTheater[j][KEY_ID]
-			l0_dict[KEY_NAME] = gTheater[j][KEY_NAME]
+			l0_dict[KEY_ID] = gTheater[j].theater[KEY_ID]
+			l0_dict[KEY_NAME] = gTheater[j].theater[KEY_NAME]
 
-			var nowShowing = gTheater[j][KEY_NOW_SHOWING] as! [[String : AnyObject]]
+			var nowShowing = gTheater[j].theater[KEY_NOW_SHOWING] as! [[String : AnyObject]]
 
 			//	sort the Movies by Movie Rating, Movie Title
 			nowShowing.sort {
@@ -236,7 +113,7 @@ class BoxOfficeViewController: UIViewController
 
 				/*	l1_dict["rowNum"] = rowNum for dbug */
 				l1_dict[KEY_ADDITIONAL_ROWS] = alltimes.count
-				l1_dict[KEY_ID] = gTheater[j][KEY_ID]
+				l1_dict[KEY_ID] = gTheater[j].theater[KEY_ID]
 				
 				rowDictionary.append(l1_dict)
 				
@@ -249,7 +126,7 @@ class BoxOfficeViewController: UIViewController
 					/* l2_dict["rowNum"] = rowNum for dbug */
 					l2_dict[KEY_TIME] = (time as! [String : AnyObject])[KEY_TIME] as! String
 					l2_dict[KEY_TMS_ID] = tms_id
-					l2_dict[KEY_ID] = gTheater[j][KEY_ID]
+					l2_dict[KEY_ID] = gTheater[j].theater[KEY_ID]
 					rowDictionary.append(l2_dict)
 				}
 			}
@@ -286,7 +163,7 @@ class BoxOfficeViewController: UIViewController
 
 			for j in 0...gTheater.count - 1
 			{
-				for ns in gTheater[j][KEY_NOW_SHOWING] as! [AnyObject]	//	loop thru nowShowing for this theater
+				for ns in gTheater[j].theater[KEY_NOW_SHOWING] as! [AnyObject]	//	loop thru nowShowing for this theater
 				{
 					if this_tms_id == ns[KEY_TMS_ID] as! String
 					{
@@ -294,9 +171,9 @@ class BoxOfficeViewController: UIViewController
 
 						var l1_dict = _l1_dict
 
-						l1_dict[KEY_NAME] = gTheater[j][KEY_NAME]
+						l1_dict[KEY_NAME] = gTheater[j].theater[KEY_NAME]
 						l1_dict[KEY_TMS_ID] = this_tms_id
-						l1_dict[KEY_ID] = gTheater[j][KEY_ID]
+						l1_dict[KEY_ID] = gTheater[j].theater[KEY_ID]
 						
 						let alltimes = ns[KEY_ALL_TIMES] as! NSArray
 
@@ -316,7 +193,7 @@ class BoxOfficeViewController: UIViewController
 							/* l2_dict["rowNum"] = rowNum for dbug */
 							l2_dict[KEY_TIME] = (time as! [String : AnyObject])[KEY_TIME] as! String
 							l2_dict[KEY_TMS_ID] = this_tms_id
-							l2_dict[KEY_ID] = gTheater[j][KEY_ID]
+							l2_dict[KEY_ID] = gTheater[j].theater[KEY_ID]
 							rowDictionary.append(l2_dict)
 						}
 						
@@ -333,7 +210,116 @@ class BoxOfficeViewController: UIViewController
 	func disablePrefsBtn() { prefsbtn.isEnabled = false }
 	func enablePrefsBtn() { prefsbtn.isEnabled = true }
 
+    let pendingOperations = PendingOperations()
 
+    func startOperationForDistance(distance: LazyDistance, indexPath: NSIndexPath, lat: Double, long: Double)
+	{
+		//	MARK: CaculateDistance Operation
+		class CaculateDistance: Operation
+		{
+			var lat: Double = 0.0
+			var long: Double = 0.0
+			let lazyDistance: LazyDistance
+			
+			init(lazyDistance: LazyDistance, lat: Double, long: Double)
+			{
+				self.lat = lat
+				self.long = long
+				self.lazyDistance = lazyDistance
+			}
+			
+			override func main()
+			{
+				if self.isCancelled { return }
+
+				//	let theaterAddress = "555 El Rancho Drive, Sparks NV 89431"
+				let appDelegate = UIApplication.shared.delegate as! AppDelegate
+				let location = appDelegate.location()
+
+				let c0 = CLLocation(latitude: location.coordinate.latitude,
+									longitude: location.coordinate.longitude)
+				let c1 = CLLocation(latitude: lat,
+									longitude: long)
+
+				let distanceInMeters = c0.distance(from: c1) // result is in meters
+
+				self.lazyDistance.currentDist = String(format: "%.2f miles", distanceInMeters * 0.000621371 )
+				self.lazyDistance.state = .done
+			}
+		}
+
+        switch distance.state
+		{
+			case .new:
+				
+				if let _ = pendingOperations.inProgress[indexPath] { return }
+				
+				let calcDistance = CaculateDistance(lazyDistance: distance, lat: lat, long: long)
+				
+				calcDistance.completionBlock = {
+					
+					if calcDistance.isCancelled { return }
+
+					DispatchQueue.main.async(execute: {
+						self.pendingOperations.inProgress.removeValue(forKey: indexPath)
+						self.tableView.reloadRows(at: [indexPath as IndexPath], with: .none)
+					})
+				}
+				
+				pendingOperations.inProgress[indexPath] = calcDistance
+				pendingOperations.operationQueue.addOperation(calcDistance)
+
+			default:
+				print("None.")
+        }
+    }
+	
+    func loadDistanceforOnScreenCells()
+	{
+        if let pathsArray = tableView.indexPathsForVisibleRows
+		{
+            let allPendingOperations = Set(pendingOperations.inProgress.keys)
+            
+            var toBeCancelled = allPendingOperations
+            let visiblePaths = Set(pathsArray as [NSIndexPath])
+            toBeCancelled.subtract(visiblePaths)
+            
+            var toBeStarted = visiblePaths
+            toBeStarted.subtract(allPendingOperations)
+            
+            for indexPath in toBeCancelled
+			{
+                if let pendingDownload = pendingOperations.inProgress[indexPath]
+				{
+                    pendingDownload.cancel()
+                }
+                
+                pendingOperations.inProgress.removeValue(forKey: indexPath)
+			}
+
+            for indexPath in toBeStarted
+			{
+				//	there isn't a one to one corresponce for the
+				//	rows in the BoxOfficeViewController UITableView
+				//	as there is in the MarqueeViewController so
+				//	we can't just use the IndexPath as it is
+
+                let indexPath = indexPath as NSIndexPath
+				let rowDict = rowDictionary[indexPath.row] as AnyObject
+
+				guard
+					let theater = gTheater.filter({ $0.theater[KEY_ID] as? String == rowDict[KEY_ID] as? String }).first
+					else { fatalError("no theater returned") }
+			
+				let lat = theater.theater[KEY_LAT] as! String
+				let long = theater.theater[KEY_LONG] as! String
+
+                startOperationForDistance(distance: theater.distance, indexPath: indexPath,
+										lat: Double(lat)!, long: Double(long)!)
+            }
+        }
+    }
+	
 	//	MARK: UIViewController overrides
     override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue
 	{
@@ -468,6 +454,7 @@ extension BoxOfficeViewController : UITableViewDataSource
 							rating = ""
 					}
 				}
+
 				(cell as! L0_Cell_movie).rating.text = rating
 			}
 			else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
@@ -483,7 +470,41 @@ extension BoxOfficeViewController : UITableViewDataSource
 		{
 			if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L0_CELL
 			{
-				(cell as! L0_Cell_theater).name?.text = (rowDict[KEY_NAME] as! String)
+				let c = cell as! L0_Cell_theater
+				
+				c.name?.text = (rowDict[KEY_NAME] as! String)
+
+				guard
+					let theater = gTheater.filter({ $0.theater[KEY_ID] as? String == rowDict[KEY_ID] as? String }).first
+					else { fatalError("no theater returned") }
+
+				let thisDistance = theater.distance
+
+				c.distance.text = thisDistance.currentDist
+
+				switch thisDistance.state
+				{
+					case .failed:
+						///	print(".failed")
+						c.indicator.stopAnimating()
+					case .new:
+						//	print(".new")
+						c.indicator.startAnimating()
+						
+						let lat = theater.theater[KEY_LAT] as! String
+						let long = theater.theater[KEY_LONG] as! String
+
+						if (!tableView.isDragging && !tableView.isDecelerating)
+						{
+							self.startOperationForDistance(distance: thisDistance,
+														indexPath: indexPath as NSIndexPath,
+														lat: Double(lat)!, long: Double(long)!)
+						}
+
+					case .done:
+						//	print(".done")
+						c.indicator.stopAnimating()
+				}
 			}
 			else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
 			{
@@ -520,6 +541,35 @@ extension BoxOfficeViewController : UITableViewDataSource
 //	MARK: UITableView Delegate Methods
 extension BoxOfficeViewController : UITableViewDelegate
 {
+	func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
+	{
+		if gState[KEY_CO_STATE] as! COType == .cot_theater_detail
+		{
+			pendingOperations.operationQueue.isSuspended = true
+		}
+    }
+    
+	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+	{
+		if gState[KEY_CO_STATE] as! COType == .cot_theater_detail
+		{
+			if !decelerate
+			{
+				loadDistanceforOnScreenCells()
+				pendingOperations.operationQueue.isSuspended = false
+			}
+		}
+    }
+    
+	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+	{
+		if gState[KEY_CO_STATE] as! COType == .cot_theater_detail
+		{
+			loadDistanceforOnScreenCells()
+			pendingOperations.operationQueue.isSuspended = false
+		}
+	}
+
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
 	{
 		if rowDictionary[indexPath.row][KEY_IS_VISIBLE] as! Bool == false
@@ -539,7 +589,6 @@ extension BoxOfficeViewController : UITableViewDelegate
 				return 14.0
 		}
     }
-
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
@@ -617,7 +666,7 @@ extension BoxOfficeViewController : UITableViewDelegate
 				else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
 				|| rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L2_CELL
 				{
-					let index = gTheater.index{ $0[KEY_ID] as! String == rowDict[KEY_ID] as! String }
+					let index = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }
 					gState[KEY_CO_INDEX] = index
 
 					(childViewControllers[0] as! ContainerController).updateTheaterDetailView()
@@ -631,7 +680,7 @@ extension BoxOfficeViewController : UITableViewDelegate
 				if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L0_CELL
 				{
 					//	print("cot_theater_detail LO_CELL")
-					let index = gTheater.index{ $0[KEY_ID] as! String == rowDict[KEY_ID] as! String }
+					let index = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }
 					gState[KEY_CO_INDEX] = index
 
 					(childViewControllers[0] as! ContainerController).updateTheaterDetailView()
@@ -655,13 +704,3 @@ extension BoxOfficeViewController : UITableViewDelegate
 		tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: UITableViewRowAnimation.fade)
     }
 }
-
-//		let alert = UIAlertController(title: "Notification!",
-//									  message:"\(message)",
-//									  preferredStyle: UIAlertControllerStyle.alert)
-//		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-//		self.present(alert, animated: true, completion: nil)
-
-//		let containerController: ContainerController = childViewControllers.flatMap({ $0 as? ContainerController }).first!
-//		let movieDetailViewController: MovieDetailViewController? = containerController.childViewControllers.flatMap({ $0 as? MovieDetailViewController }).first
-//		let mdv = MovieDetailViewController?.view as! MovieDetailView

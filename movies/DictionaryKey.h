@@ -22,6 +22,10 @@ extern NSString * const KEY_DAY_OFFSET;
 //	Theater
 extern NSString * const KEY_ID;
 extern NSString * const KEY_NAME;
+
+extern NSString * const KEY_LAT;
+extern NSString * const KEY_LONG;
+
 extern NSString * const KEY_TICKET_URL;
 
 extern NSString * const KEY_URL;

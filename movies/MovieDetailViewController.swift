@@ -69,7 +69,7 @@ class MovieDetailViewController : UIViewController
 
 		//	handle Rotten Tomato stuff
 		#if HAS_WEB_SERVICE
-			let tomatoRating = Int(movie[KEY_TOMATO_RATING] as! String)
+			let tomatoRating = Int(movie.movie[KEY_TOMATO_RATING] as! String)
 
 			if tomatoRating != nil
 			{
@@ -80,7 +80,7 @@ class MovieDetailViewController : UIViewController
 				}
 				else
 				{
-					tomatorating.text = movie[KEY_TOMATO_RATING] as? String
+					tomatorating.text = movie.movie[KEY_TOMATO_RATING] as? String
 					
 					if tomatoRating! > 59 { tomato.image = UIImage(named: "tomato.png") }
 					else { tomato.image = UIImage(named: "splat.png") }

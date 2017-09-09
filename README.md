@@ -24,7 +24,7 @@ Added Map View and Web View. Rewrote Marquee View to use UITableView. Cleaned up
 #### Sep 5, 2017
 Added lasy loading of images in Marquee. Show Current Location pin and destination pin when initially displaying Map.
 
-#### Sep 7, 2017
+#### Sep 9, 2017
 Added lasy loading of distance to Theater based upon Current Location.
 
 

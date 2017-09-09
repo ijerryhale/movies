@@ -11,6 +11,8 @@ import UIKit
 class L0_Cell_theater: UITableViewCell
 {
 	@IBOutlet weak var name: UILabel!
+	@IBOutlet weak var distance: UILabel!
+	@IBOutlet weak var indicator: UIActivityIndicatorView!
 
 	required init?(coder aDecoder: NSCoder)
 	{	

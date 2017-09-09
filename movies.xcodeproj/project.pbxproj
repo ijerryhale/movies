@@ -62,6 +62,8 @@
 		2C83BF3B1D82238E006B4CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C83BF3A1D82238E006B4CC6 /* AppDelegate.swift */; };
 		2C83BF3D1D82238E006B4CC6 /* MarqueeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C83BF3C1D82238E006B4CC6 /* MarqueeViewController.swift */; };
 		2C83BF421D82238E006B4CC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C83BF411D82238E006B4CC6 /* Assets.xcassets */; };
+		2C8A60D71F623206005BF0A2 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A60D61F623206005BF0A2 /* ContainerController.swift */; };
+		2C8A60D81F623206005BF0A2 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A60D61F623206005BF0A2 /* ContainerController.swift */; };
 		2C8C19D21F5F776400058C18 /* AccessibilityString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D45941F5211BE003F529A /* AccessibilityString.m */; };
 		2C9C1D2C1E8749F00092AFE7 /* ShowDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C1D2B1E8749F00092AFE7 /* ShowDateViewController.swift */; };
 		2CBB8F271E91DF6900938728 /* TheaterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBB8F261E91DF6900938728 /* TheaterDetailController.swift */; };
@@ -157,6 +159,7 @@
 		2C83BF3C1D82238E006B4CC6 /* MarqueeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeViewController.swift; sourceTree = "<group>"; };
 		2C83BF411D82238E006B4CC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C83BF461D82238E006B4CC6 /* movies_embedded.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = movies_embedded.plist; sourceTree = "<group>"; };
+		2C8A60D61F623206005BF0A2 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		2C9C1D2B1E8749F00092AFE7 /* ShowDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDateViewController.swift; sourceTree = "<group>"; };
 		2CBB8F261E91DF6900938728 /* TheaterDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheaterDetailController.swift; sourceTree = "<group>"; };
 		2CBCC0A01E9E76B800FF1A08 /* SelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
@@ -305,6 +308,7 @@
 				2CD022821F58D7C100032D92 /* WebViewController.swift */,
 				2CF70E9B1DA2C25F00EF4FA9 /* MovieDetailViewController.swift */,
 				2C9C1D2B1E8749F00092AFE7 /* ShowDateViewController.swift */,
+				2C8A60D61F623206005BF0A2 /* ContainerController.swift */,
 				2C3E4DFB1DA1567200A4E69A /* BoxOfficeViewController.swift */,
 				2C83BF3C1D82238E006B4CC6 /* MarqueeViewController.swift */,
 				2C53BBD31EA2C8C9003DF759 /* PreferenceViewController.swift */,
@@ -483,6 +487,7 @@
 				2C3FA6151F48DF4B008C1524 /* DictionaryKey.m in Sources */,
 				2C3FA6161F48DF4B008C1524 /* DataAccess.m in Sources */,
 				2C3FA6171F48DF4B008C1524 /* Util.swift in Sources */,
+				2C8A60D81F623206005BF0A2 /* ContainerController.swift in Sources */,
 				2C3FA6181F48DF4B008C1524 /* L1_Cell_theater.swift in Sources */,
 				2C3FA6191F48DF4B008C1524 /* TrailerController.swift in Sources */,
 				2C3FA61A1F48DF4B008C1524 /* SelectableCell.swift in Sources */,
@@ -520,6 +525,7 @@
 				2C3FA6061F48C4C1008C1524 /* L0_Cell_theater.swift in Sources */,
 				2C4FE13E1D82681A00F1A3FF /* DictionaryKey.m in Sources */,
 				2CBCC0A41E9EC78000FF1A08 /* DataAccess.m in Sources */,
+				2C8A60D71F623206005BF0A2 /* ContainerController.swift in Sources */,
 				2CD022801F58D1A800032D92 /* MapViewController.swift in Sources */,
 				2CE7C8C11EAEB4FB001DB7C7 /* Util.swift in Sources */,
 				2C3FA60A1F48C4C1008C1524 /* L1_Cell_theater.swift in Sources */,

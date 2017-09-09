@@ -24,14 +24,26 @@
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7o-Cz-c5R" userLabel="Name">
-                        <rect key="frame" x="8" y="-1" width="352" height="30"/>
+                        <rect key="frame" x="8" y="-1" width="265" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHj-J4-D40" userLabel="Distance">
+                        <rect key="frame" x="281" y="-1" width="79" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7bR-bN-UP7">
+                        <rect key="frame" x="316" y="4" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </activityIndicatorView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="distance" destination="YHj-J4-D40" id="l9b-qs-kWC"/>
+                <outlet property="indicator" destination="7bR-bN-UP7" id="Pap-C1-0lF"/>
                 <outlet property="name" destination="s7o-Cz-c5R" id="AiV-Zf-qVA"/>
             </connections>
             <point key="canvasLocation" x="22" y="-581"/>

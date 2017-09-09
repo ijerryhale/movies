@@ -152,7 +152,7 @@
                   moduleName = "movies_embedded"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jhale/Desktop/movies/movies/movies/Resource/L1_Cell_movie.swift"
-                  timestampString = "526418412.990745"
+                  timestampString = "526673452.993523"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -167,7 +167,7 @@
                   moduleName = "movies_embedded"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jhale/Desktop/movies/movies/movies/Resource/L1_Cell_movie.swift"
-                  timestampString = "526418412.994117"
+                  timestampString = "526673452.997502"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "11"
@@ -190,22 +190,6 @@
             startingLineNumber = "24"
             endingLineNumber = "24"
             landmarkName = "testExample()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movies/AppDelegate.swift"
-            timestampString = "526418411.807503"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "294"
-            endingLineNumber = "294"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

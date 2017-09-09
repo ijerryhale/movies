@@ -21,60 +21,12 @@ class MarqueeViewController: UIViewController
 	@IBAction func unwindToMarquee(segue: UIStoryboardSegue) { }
 	@IBAction func tapPreferencesBtn(sender: UIButton) { self.performSegue(withIdentifier: S2_PREFERENCE, sender: self) }
 
-	//	MARK: PendingOperations
-	class PendingOperations
-	{
-		lazy var downloadInProgress = [NSIndexPath:Operation]()
-		
-		lazy var downloadQueue: OperationQueue = {
-			var queue = OperationQueue()
-			queue.name = UUID().uuidString
-			queue.maxConcurrentOperationCount = 1
-			return queue
-		}()
-	}
-
     let pendingOperations = PendingOperations()
 
-	override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
-
-    func loadImagesforOnScreenCells()
+    func startOperationForPoster(poster: LazyPoster, indexPath: NSIndexPath)
 	{
-        if let pathsArray = tableView.indexPathsForVisibleRows
-		{
-            let allPendingOperations = Set(pendingOperations.downloadInProgress.keys)
-            
-            var toBeCancelled = allPendingOperations
-            let visiblePaths = Set(pathsArray as [NSIndexPath])
-            toBeCancelled.subtract(visiblePaths)
-            
-            var toBeStarted = visiblePaths
-            toBeStarted.subtract(allPendingOperations)
-            
-            for indexPath in toBeCancelled
-			{
-                if let pendingDownload = pendingOperations.downloadInProgress[indexPath]
-				{
-                    pendingDownload.cancel()
-                }
-                
-                pendingOperations.downloadInProgress.removeValue(forKey: indexPath)
-			}
-
-            for indexPath in toBeStarted
-			{
-                let indexPath = indexPath as NSIndexPath
-				let thisPoster = gMovie[indexPath.row].poster
-			
-                startOperationsForPoster(poster: thisPoster, indexPath: indexPath)
-            }
-        }
-    }
-    
-    func startOperationsForPoster(poster: LazyPoster, indexPath: NSIndexPath)
-	{
-		//	MARK: ImageDownloader Operation
-		class ImageDownloader: Operation
+		//	MARK: DownloadImage Operation
+		class DownloadImage: Operation
 		{
 			let lazyPoster: LazyPoster
 			
@@ -92,7 +44,7 @@ class MarqueeViewController: UIViewController
 					}
 				}
 
-				self.lazyPoster.state = .downloaded
+				self.lazyPoster.state = .done
 			}
 		}
 
@@ -100,30 +52,61 @@ class MarqueeViewController: UIViewController
 		{
 			case .new:
 				
-				if let _ = pendingOperations.downloadInProgress[indexPath] { return }
+				if let _ = pendingOperations.inProgress[indexPath] { return }
 				
-				let downloader = ImageDownloader(lazyPoster: poster)
+				let downloadImg = DownloadImage(lazyPoster: poster)
 				
-				downloader.completionBlock = {
+				downloadImg.completionBlock = {
 					
-					if downloader.isCancelled { return }
+					if downloadImg.isCancelled { return }
 					
 					DispatchQueue.main.async(execute: {
-						self.pendingOperations.downloadInProgress.removeValue(forKey: indexPath)
-						self.tableView.reloadRows(at: [indexPath as IndexPath], with: .left)
+						self.pendingOperations.inProgress.removeValue(forKey: indexPath)
+						self.tableView.reloadRows(at: [indexPath as IndexPath], with: .fade)
 					})
-					
 				}
 				
-				pendingOperations.downloadInProgress[indexPath] = downloader
-				pendingOperations.downloadQueue.addOperation(downloader)
+				pendingOperations.inProgress[indexPath] = downloadImg
+				pendingOperations.operationQueue.addOperation(downloadImg)
 
 			default:
 				print("None.")
         }
-        
     }
-	
+
+    func loadImageforOnScreenCells()
+	{
+        if let pathsArray = tableView.indexPathsForVisibleRows
+		{
+            let allPendingOperations = Set(pendingOperations.inProgress.keys)
+            
+            var toBeCancelled = allPendingOperations
+            let visiblePaths = Set(pathsArray as [NSIndexPath])
+            toBeCancelled.subtract(visiblePaths)
+            
+            var toBeStarted = visiblePaths
+            toBeStarted.subtract(allPendingOperations)
+            
+            for indexPath in toBeCancelled
+			{
+                if let pendingDownload = pendingOperations.inProgress[indexPath]
+				{
+                    pendingDownload.cancel()
+                }
+                
+                pendingOperations.inProgress.removeValue(forKey: indexPath)
+			}
+
+            for indexPath in toBeStarted
+			{
+                let indexPath = indexPath as NSIndexPath
+				let thisPoster = gMovie[indexPath.row].poster
+			
+                startOperationForPoster(poster: thisPoster, indexPath: indexPath)
+            }
+        }
+    }
+
 	//	MARK: UIViewController overrides
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
 	{
@@ -139,6 +122,8 @@ class MarqueeViewController: UIViewController
 		return CustomUnwindSegue(identifier: identifier, source: fromViewController, destination: toViewController)
     }
 	
+	override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
+
 	override func viewWillDisappear(_ animated: Bool)
 	{ super.viewWillDisappear(animated); print("MarqueeViewController viewWillDisappear ") }
 
@@ -186,11 +171,11 @@ extension MarqueeViewController : UITableViewDataSource
 				
 				if (!tableView.isDragging && !tableView.isDecelerating)
 				{
-					self.startOperationsForPoster(poster: thisPoster, indexPath: indexPath as NSIndexPath)
+					self.startOperationForPoster(poster: thisPoster, indexPath: indexPath as NSIndexPath)
 				}
 
-			case .downloaded:
-				//	print(".downloaded")
+			case .done:
+				//	print(".done")
 				cell.indicator.stopAnimating()
         }
         
@@ -203,22 +188,22 @@ extension MarqueeViewController : UITableViewDelegate
 {
 	func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
 	{
-		pendingOperations.downloadQueue.isSuspended = true
+		pendingOperations.operationQueue.isSuspended = true
     }
     
 	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
 	{
         if !decelerate
 		{
-            loadImagesforOnScreenCells()
-			pendingOperations.downloadQueue.isSuspended = false
+            loadImageforOnScreenCells()
+			pendingOperations.operationQueue.isSuspended = false
  		}
     }
     
 	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
 	{
-        loadImagesforOnScreenCells()
-        pendingOperations.downloadQueue.isSuspended = false
+        loadImageforOnScreenCells()
+        pendingOperations.operationQueue.isSuspended = false
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

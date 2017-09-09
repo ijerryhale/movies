@@ -15,7 +15,7 @@ class MapViewController: UIViewController
 	private func add_annotation_at_theater_address()
 	{
 		let index = gState[KEY_CO_INDEX] as! Int
-		let theater = gTheater[index]
+		let theater = gTheater[index].theater
 
 		//	let nameString = "West Wind El Rancho Drive-In"
 		let nameString = theater[KEY_NAME] as? String
