@@ -3,7 +3,7 @@ iOS - movies displays a list of Movies and Theaters for given Location and Day.
 
 movies contains an example of an embedded UIView which hosts a ContainerController which in turn manages multiple UIViewControllers and Segues.
 
-movies also demonstrates how to set an initial UITableCell image and then replace that image with a lazily loaded image..
+movies demonstrates how to set an initial UITableCell image and then replace that image with a lazily loaded image and movies will lazy load the computed distance from the Current Location to a given Theater.
 
 ## Requirements
 
@@ -22,7 +22,10 @@ Added Earl Grey Framework, XCTest Target and simple Earl Grey test for movies_em
 Added Map View and Web View. Rewrote Marquee View to use UITableView. Cleaned up some trash.
 
 #### Sep 5, 2017
-Added lasy loading of images in Marquee. Show current location pin and destination pin when initially displaying Map.
+Added lasy loading of images in Marquee. Show Current Location pin and destination pin when initially displaying Map.
+
+#### Sep 7, 2017
+Added lasy loading of distance to Theater based upon Current Location.
 
 
 ![marquee](https://user-images.githubusercontent.com/4106530/30089364-21c7bf20-9261-11e7-823b-794557a4c284.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/30242571-8e33527a-954d-11e7-8e3c-adbfb34ffa5c.png "Theaters for Movie") |
