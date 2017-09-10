@@ -3,7 +3,7 @@ iOS - movies displays a list of Movies and Theaters for given Location and Day.
 
 movies contains an example of an embedded UIView which hosts a ContainerController which in turn manages multiple UIViewControllers and Segues.
 
-movies demonstrates how to set an initial UITableCell image and then replace that image with a lazily loaded image and movies will lazy load the computed distance from the Current Location to a given Theater.
+movies demonstrates how to set an initial UITableCell image and then replace that image with a lazily loaded image. movies will also lazy load the computed distance from the Current Location to a given Theater.
 
 ## Requirements
 
