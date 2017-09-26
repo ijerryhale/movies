@@ -232,22 +232,25 @@ class BoxOfficeViewController: UIViewController
 			{
 				if self.isCancelled { return }
 
+				DispatchQueue.main.async(execute: {
+				
 				//	let theaterAddress = "555 El Rancho Drive, Sparks NV 89431"
 				let appDelegate = UIApplication.shared.delegate as! AppDelegate
 				let location = appDelegate.location()
 
 				let c0 = CLLocation(latitude: location.coordinate.latitude,
 									longitude: location.coordinate.longitude)
-				let c1 = CLLocation(latitude: lat,
-									longitude: long)
+				let c1 = CLLocation(latitude: self.lat,
+									longitude: self.long)
 
 				let distanceInMeters = c0.distance(from: c1) // result is in meters
 
 				self.lazyDistance.currentDist = String(format: "%.2f miles", distanceInMeters * 0.000621371 )
+				})
 				self.lazyDistance.state = .done
 			}
 		}
-
+		
         switch distance.state
 		{
 			case .new:
@@ -351,7 +354,8 @@ class BoxOfficeViewController: UIViewController
 	{ super.viewWillAppear(animated); print("BoxOfficeViewController viewWillAppear ")
 	
 		let movie = gMovie[gState[KEY_CO_INDEX] as! Int]
-		
+
+		//	FIX THIS!!! - this shouldn't be needed
 		if gState[KEY_CO_STATE] as! COType == .cot_movie_detail
 		{
 			for i in 0...rowDictionary.count - 1

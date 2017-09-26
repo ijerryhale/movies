@@ -20,8 +20,14 @@ class WebViewController: UIViewController
             let session = URLSession.shared
             
             let task = session.dataTask(with: request) { (data, response, error) in
-                
-                if error == nil { self.webView.loadRequest(request)}
+
+                if error == nil
+                {
+					DispatchQueue.main.async(execute:
+					{
+						self.webView.loadRequest(request)
+					})
+				}
 				else { print("ERROR: \(error)") }
             }
 

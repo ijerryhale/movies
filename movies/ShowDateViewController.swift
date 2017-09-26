@@ -20,7 +20,7 @@ class ShowDateViewController: UITableViewController, UIPopoverPresentationContro
 	//    @IBInspectable var popoverOniPhone:Bool = true
 	//    @IBInspectable var popoverOniPhoneLandscape:Bool = false
 
-	func tapCancel(_ : UIBarButtonItem) { dismiss(animated: true, completion:nil); }
+	@objc func tapCancel(_ : UIBarButtonItem) { dismiss(animated: true, completion:nil); }
 
     //	popover settings, adaptive for horizontal compact trait
 	

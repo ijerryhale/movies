@@ -41,7 +41,7 @@ class TheaterDetailController: UIViewController
 
 	@IBAction func showMapBtnPressed() { (parent?.parent as! BoxOfficeViewController).performSegue(withIdentifier: S2_MAP, sender: self) }
 
-	func segue_to_marquee()
+	@objc func segue_to_marquee()
 	{ (parent?.parent as! BoxOfficeViewController).performSegue(withIdentifier: S2_MARQUEE, sender: self) }
 
 	//	MARK: UIViewController overrides

@@ -67,7 +67,7 @@ var gMovie = [(movie: [String : AnyObject], poster: LazyPoster)]()
 extension DispatchQueue
 {
     private static var _onceTracker = [String]()
-    public class func once(token: String, block:@noescape(Void)->Void)
+    public class func once(token: String, block:()->Void)
 	{
         objc_sync_enter(self); defer { objc_sync_exit(self) }
 
@@ -114,7 +114,7 @@ class AppDelegate: UIResponder
 	{ print("process_theaters start")
 
 		//	sort the Theaters by Theater name
-		theaters.sorted { ($0[KEY_NAME]! as! String) < ($1[KEY_NAME]! as! String) }
+		let theaters = theaters.sorted { ($0[KEY_NAME]! as! String) < ($1[KEY_NAME]! as! String) }
 
 		//	create a set to hold Movie tms_id's
 		let tms_id: NSMutableSet = NSMutableSet()

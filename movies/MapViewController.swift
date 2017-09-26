@@ -12,8 +12,17 @@ class MapViewController: UIViewController
 
     @IBOutlet weak var mapView: MKMapView!
 
-	private func add_annotation_at_theater_address()
+	@objc func getDirections()
 	{
+        guard let placemark = placemark else { return }
+        let mapItem = MKMapItem(placemark: placemark)
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault]
+        mapItem.openInMaps(launchOptions: launchOptions)
+    }
+
+	override func viewWillAppear(_ animated: Bool)
+	{ super.viewWillAppear(animated); print("MapViewController viewWillAppear ")
+
 		let index = gState[KEY_CO_INDEX] as! Int
 		let theater = gTheater[index].theater
 
@@ -29,12 +38,13 @@ class MapViewController: UIViewController
 		addressString += ", "
 		addressString += aa?[KEY_STATE] as! String
 
+		print(addressString)
 		let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = addressString
 
         request.region = mapView.region
         let search = MKLocalSearch(request: request)
-        
+		
         search.start { response, _ in
             guard let response = response else { return }
             var matchingItems: [MKMapItem] = response.mapItems
@@ -51,21 +61,16 @@ class MapViewController: UIViewController
 				 let city = placemark.locality,
 				  let state = placemark.administrativeArea,
 					let zip = placemark.postalCode
-				{ annotation.subtitle = "\(number) \(street) \(city), \(state) \(zip)" }
+				{
+					annotation.subtitle = "\(number) \(street) \(city), \(state) \(zip)"
+				}
 			
 			self.mapView.addAnnotation(annotation)
 			self.placemark = placemark
+			
+			self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         }
 	}
-
-	func getDirections()
-	{
-        guard let placemark = placemark else { return }
-        let mapItem = MKMapItem(placemark: placemark)
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault]
-        mapItem.openInMaps(launchOptions: launchOptions)
-    }
-
 
 	override func viewWillDisappear(_ animated: Bool)
 	{ super.viewWillDisappear(animated); print("MapViewController viewWillDisappear ") }
@@ -77,25 +82,14 @@ class MapViewController: UIViewController
 		
  		mapView.delegate = self
 		mapView.showsUserLocation = true
-
-		add_annotation_at_theater_address()
 	}
 }
 
 //	MARK: MKMapViewDelegate Methods
 extension MapViewController : MKMapViewDelegate
 {
-	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation)
-	{
-		//	zoom to level which shows both annotations
-		//	only do this when map is initial displayed
-		DispatchQueue.once(token: "showAnnotations") { mapView.showAnnotations(mapView.annotations, animated: true) }
-	}
-
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
 	{
-		print(annotation)
-		
         guard !(annotation is MKUserLocation) else { return nil }
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView

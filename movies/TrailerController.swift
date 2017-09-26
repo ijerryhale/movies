@@ -37,7 +37,7 @@ class TrailerController: UIViewController
 	
     static let assetKeysRequiredToPlay = [ "playable", "hasProtectedContent" ]
 
-	let player = AVPlayer()
+	@objc let player = AVPlayer()
 	var timeObserverToken: Any?
 	
 	var currentTime: Double

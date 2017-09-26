@@ -168,17 +168,17 @@ func createGenericPoster(title: String) -> UIImage
 
 	let titleString =
 				NSMutableAttributedString(string: title,
-			attributes: [NSFontAttributeName:UIFont(name: "Helvetica", size: 17)!])
+			attributes: [.font:UIFont(name: "Helvetica", size: 17)!])
 	
 	titleString.addAttribute(
-			NSForegroundColorAttributeName,
+			.foregroundColor,
 				value: UIColor.white,
 				range: NSRange(location:0, length:titleString.length))
 	
 	let paraStyle = NSMutableParagraphStyle()
 	paraStyle.alignment = .center
 
-	titleString.addAttribute(NSParagraphStyleAttributeName, value:paraStyle,			range:NSRange(location:0, length:titleString.length))
+	titleString.addAttribute(.paragraphStyle, value:paraStyle, range:NSRange(location:0, length:titleString.length))
 	
 	titleString.draw(in: CGRect(x: 10, y: 50, width: (image?.size.width)! - 20, height: (image?.size.height)!))
 
@@ -190,11 +190,6 @@ func createGenericPoster(title: String) -> UIImage
 
 func getTicketPurchasePageUrl(tmsID: String, theaterId: String, date: String, time: String) -> String
 {
-	//	print(tmsID)
-	//	print(theaterId)
-	//	print(date)
-	//	print(time)
-	
 	//"07-18-2007+22:25"
 	
 	let isPM = ("PM" == time.substring(from: time.index(time.endIndex, offsetBy: -2)))

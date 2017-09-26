@@ -333,6 +333,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 	NSString	*jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
+	jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&#x00E4;" withString:@"ä"];
     jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&#x00E9;" withString:@"é"];
     jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&apos;" withString:@"'"];
     jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
