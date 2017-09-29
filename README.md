@@ -5,6 +5,8 @@ movies contains an example of an embedded UIView which hosts a ContainerControll
 
 movies demonstrates how to set an initial UITableCell image and then replace that image with a lazily loaded image. movies will also lazy load the computed distance from the Current Location to a given Theater.
 
+The movies XCode project contains a 'movies_embedded' target which will load an embedded set of Movie data.
+
 ## Requirements
 
 - XCode 9
@@ -21,5 +23,5 @@ Update to XCode 9/Swift 4. Bug fixes
 *Marquee* | *Theaters for Movie* |
 ![movies_for_theater](https://user-images.githubusercontent.com/4106530/30836920-3237d1aa-a216-11e7-9d54-762cf4a130b1.png "Movies for Theater") | ![trailers](https://user-images.githubusercontent.com/4106530/30836924-34acd7b4-a216-11e7-89ba-142837ad3cce.png "View Trailers") |
 *Movies for Theater* | *View Trailer* |
-![itunes](https://user-images.githubusercontent.com/4106530/30836926-376b9030-a216-11e7-9ecf-2ae1344cd504.png "iTunes Preview") | ![driving_directions](https://user-images.githubusercontent.com/4106530/30836931-3f476220-a216-11e7-99c9-661485056d6d.png "Driving Directions") |
+![itunes](https://user-images.githubusercontent.com/4106530/31039370-0978f64e-a532-11e7-9f9e-8994d4b0b0af.png "iTunes Preview") | ![driving_directions](https://user-images.githubusercontent.com/4106530/30836931-3f476220-a216-11e7-99c9-661485056d6d.png "Driving Directions") |
 *iTunes Preview* | *Driving Directions*

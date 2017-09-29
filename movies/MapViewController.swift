@@ -2,7 +2,6 @@
 
 import UIKit
 import MapKit
-import Contacts
 import CoreLocation
 
 //	MARK: MapViewController
@@ -16,8 +15,7 @@ class MapViewController: UIViewController
 	{
         guard let placemark = placemark else { return }
         let mapItem = MKMapItem(placemark: placemark)
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault]
-        mapItem.openInMaps(launchOptions: launchOptions)
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault])
     }
 
 	override func viewWillAppear(_ animated: Bool)
