@@ -1,6 +1,6 @@
 //
 //  L1Cell_theater.swift
-//  controller_embed
+//  movies
 //
 //  Created by Jerry Hale on 5/25/17.
 //  Copyright © 2017 jhale. All rights reserved.

@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "0900"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "exec &gt; ${PROJECT_DIR}/prebuild.log 2&gt;&amp;1&#10;&#10;PLIST=$PROJECT_DIR/$INFOPLIST_FILE&#10;&#10;#   get CFBundleShortVersionString&#10;CFBUNDLESHORTVERSSTR=$(/usr/libexec/PlistBuddy -c &quot;Print CFBundleShortVersionString&quot; $PLIST)&#10;&#10;#   increment CFBundleVersion&#10;CFBUNDLEVERSION=$(/usr/libexec/PlistBuddy -c &quot;Print CFBundleVersion&quot; $PLIST)&#10;CFBUNDLEVERSION=$(($CFBUNDLEVERSION + 1))&#10;&#10;#   save new CFBundleVersion&#10;/usr/libexec/PlistBuddy -c &quot;Set :CFBundleVersion $CFBUNDLEVERSION&quot; $PLIST&#10;&#10;TAGVERSION=${CFBUNDLESHORTVERSSTR//./_}&#10;&#10;#   create a buildTag&#10;&#10;#   reserve top nibble for ... whatever, this&#10;#   means 4095 max CFBundleVersion build number&#10;RESERVEDHEX=&quot;0&quot;&#10;HEX_CFBUNDLEVERS=$(printf &quot;%03X&quot; $CFBUNDLEVERSION)&#10;&#10;BUILDTAG=$1$TAGVERSION&quot;_&quot;$RESERVEDHEX$HEX_CFBUNDLEVERS&#10;&#10;#   save BUILDTAG&#10;/usr/libexec/PlistBuddy -c &quot;Set :BUILD_TAG $BUILDTAG&quot; $PLIST&#10;&#10;   echo &quot;CFBundleShortVersionString: &quot; $CFBUNDLESHORTVERSSTR&#10;   echo &quot;CFBundleVersion: &quot; $CFBUNDLEVERSION&#10;&#10;   echo &quot;HEX_CFBUNDLEVERS: &quot; $HEX_CFBUNDLEVERS&#10;   echo &quot;BUILDTAG: &quot; $BUILDTAG&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "2C3FA60E1F48DF4B008C1524"
+                     BuildableName = "movies.app"
+                     BlueprintName = "movies"
+                     ReferencedContainer = "container:movies.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"

@@ -1,6 +1,6 @@
 //
 //  Marquee_Cell.swift
-//  controller_embed
+//  movies
 //
 //  Created by Jerry Hale on 9/1/17.
 //  Copyright © 2017 jhale. All rights reserved.

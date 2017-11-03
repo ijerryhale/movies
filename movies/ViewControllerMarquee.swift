@@ -1,6 +1,6 @@
 //
-//  MarqueeViewController.swift
-//  Movies
+//  ViewControllerMarquee.swift
+//  movies
 //
 //  Created by Jerry Hale on 9/8/16.
 //  Copyright © 2017 jhale. All rights reserved.
@@ -13,13 +13,13 @@
 import Foundation
 import UIKit
 
-//	MARK: MarqueeViewController
-class MarqueeViewController: UIViewController
+//	MARK: ViewControllerMarquee
+class ViewControllerMarquee: UIViewController
 {
 	@IBOutlet weak var	tableView: UITableView!
 
 	@IBAction func unwindToMarquee(segue: UIStoryboardSegue) { }
-	@IBAction func tapPreferencesBtn(sender: UIButton) { self.performSegue(withIdentifier: S2_PREFERENCE, sender: self) }
+	@IBAction func tapSettinsBtn(sender: UIButton) { self.performSegue(withIdentifier: S2_SETTINGS, sender: self) }
 
     let pendingOperations = PendingOperations()
 
@@ -110,10 +110,10 @@ class MarqueeViewController: UIViewController
 	//	MARK: UIViewController overrides
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
 	{
-		if segue.identifier == S2_PREFERENCE
+		if segue.identifier == S2_SETTINGS
 		{
-			let pc = (segue.destination as? PreferenceViewController)!
-			pc.callingViewControler = self
+//			let pc = (segue.destination as? PreferenceViewController)!
+//			pc.callingViewControler = self
 		}
 	}
 
@@ -125,10 +125,10 @@ class MarqueeViewController: UIViewController
 	override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 
 	override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("MarqueeViewController viewWillDisappear ") }
+	{ super.viewWillDisappear(animated); print("ViewControllerMarquee viewWillDisappear ") }
 
     override func viewDidLoad()
-	{ super.viewDidLoad(); print("MarqueeViewController viewDidLoad ")
+	{ super.viewDidLoad(); print("ViewControllerMarquee viewDidLoad ")
 		
 		self.view.accessibilityIdentifier = AXID_marqueeView
 	
@@ -145,7 +145,7 @@ class MarqueeViewController: UIViewController
 }
 
 //	MARK: UITableView Datasource Methods
-extension MarqueeViewController : UITableViewDataSource
+extension ViewControllerMarquee : UITableViewDataSource
 {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
@@ -184,7 +184,7 @@ extension MarqueeViewController : UITableViewDataSource
 }
 
 //	MARK: UITableView Delegate Methods
-extension MarqueeViewController : UITableViewDelegate
+extension ViewControllerMarquee : UITableViewDelegate
 {
 	func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
 	{

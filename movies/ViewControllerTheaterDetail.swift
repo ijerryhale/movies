@@ -1,6 +1,6 @@
 //
-//  TheaterDetailController.swift
-//  Movies
+//  ViewControllerTheaterDetail.swift
+//  movies
 //
 //  Created by Jerry Hale on 4/2/17.
 //  Copyright © 2017 jhale. All rights reserved.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-//	MARK: TheaterDetailController
-class TheaterDetailController: UIViewController
+//	MARK: ViewControllerTheaterDetail
+class ViewControllerTheaterDetail: UIViewController
 {
 	@IBOutlet weak var poster: UIImageView!
 	@IBOutlet weak var name: UILabel!
@@ -39,18 +39,18 @@ class TheaterDetailController: UIViewController
 		address.text = addressString
 	}
 
-	@IBAction func showMapBtnPressed() { (parent?.parent as! BoxOfficeViewController).performSegue(withIdentifier: S2_MAP, sender: self) }
+	@IBAction func showMapBtnPressed() { (parent?.parent as! ViewControllerBoxOffice).performSegue(withIdentifier: S2_MAP, sender: self) }
 
 	@objc func segue_to_marquee()
-	{ (parent?.parent as! BoxOfficeViewController).performSegue(withIdentifier: S2_MARQUEE, sender: self) }
+	{ (parent?.parent as! ViewControllerBoxOffice).performSegue(withIdentifier: S2_MARQUEE, sender: self) }
 
 	//	MARK: UIViewController overrides
 	override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("TheaterDetailController viewWillDisappear ") }
+	{ super.viewWillDisappear(animated); print("ViewControllerTheaterDetail viewWillDisappear ") }
 
 	override func viewDidLoad()
 	{
-		super.viewDidLoad(); print("TheaterDetailController viewDidLoad ")
+		super.viewDidLoad(); print("ViewControllerTheaterDetail viewDidLoad ")
 		poster.image = UIImage(named: "ticket.png")
 		poster.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(segue_to_marquee)))
 	}

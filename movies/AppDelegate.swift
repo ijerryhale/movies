@@ -1,14 +1,13 @@
 //
 //  AppDelegate.swift
-//  Movies
+//  movies
 //
-//  Created by Jerry Hale on 9/8/16.
+//  Created by Jerry Hale on 10/7/17.
 //  Copyright © 2017 jhale. All rights reserved.
 //
 
+import Foundation
 import UIKit
-import CoreLocation
-import MapKit
 
 enum COType { case cot_app_launch, cot_theater_detail, cot_movie_detail }
 enum OpState { case new, done, failed }
@@ -55,40 +54,29 @@ class PendingOperations
 	}()
 }
 
-var gDayOffset = 0
 var gState = [KEY_CO_STATE : COType.cot_app_launch, KEY_CO_INDEX : 0] as [String : Any]
-var gPostalCode = "94024"
-
 var gIndex = [[String : AnyObject]]()
 var gTheater = [(theater: [String : AnyObject], distance: LazyDistance)]()
-
 var gMovie = [(movie: [String : AnyObject], poster: LazyPoster)]()
-
-extension DispatchQueue
-{
-    private static var _onceTracker = [String]()
-    public class func once(token: String, block:()->Void)
-	{
-        objc_sync_enter(self); defer { objc_sync_exit(self) }
-
-        if _onceTracker.contains(token) { return }
-
-        _onceTracker.append(token)
-        block()
-    }
-}
 
 @UIApplicationMain
 class AppDelegate: UIResponder
 {
 	var window: UIWindow?
-	var locationManager = CLLocationManager()
 	
-	func location() -> CLLocation { return locationManager.location! }
-
-
 	func handleNetworkError(error: Error?) { print("handleNetworkError: ", error as Any) }
 	func handleNoDataAvailable(error: Error?) { print("handleNoDataAvailable: ", error as Any) }
+
+	class func getShowDateFromDayOffset(dayoffset: Int) -> String
+	{
+		let day = Calendar.current.date(byAdding: .day, value: dayoffset, to: Date())
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		dateFormatter.locale = Locale(identifier: "en_US")
+		//print(df.string(from: day!))
+
+		return (dateFormatter.string(from: day!))
+	}
 
 	func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController?
 	{
@@ -110,8 +98,22 @@ class AppDelegate: UIResponder
 		return rootViewController
 	}
 
-	func process_theaters(theaters: [[String : AnyObject]])
+	func notif_defaults_changed(notification: Notification)
+	{ print("notif_defaults_changed")
+
+		rebuild_theaters()
+		{
+			(result) -> () in
+		
+			print(result)
+		}
+	}
+
+	private func process_theaters(_ theaters: [[String : AnyObject]])
 	{ print("process_theaters start")
+
+		gTheater.removeAll()
+		gMovie.removeAll()
 
 		//	sort the Theaters by Theater name
 		let theaters = theaters.sorted { ($0[KEY_NAME]! as! String) < ($1[KEY_NAME]! as! String) }
@@ -138,10 +140,10 @@ class AppDelegate: UIResponder
 
 			if (t[KEY_RELEASE_DATE] is NSNull) { gTheater[i].theater[KEY_RELEASE_DATE] = "" as AnyObject }
 			if (t[KEY_RUN_TIME] is NSNull) { gTheater[i].theater[KEY_RUN_TIME] = "" as AnyObject }
-			
+
 			if (t[KEY_TEL] is NSNull) { gTheater[i].theater[KEY_TEL] = "" as AnyObject }
 			if (t[KEY_TOMATO_RATING] is NSNull) { gTheater[i].theater[KEY_TOMATO_RATING] = "" as AnyObject }
-			
+
 			//	thisMov is one Movie in this Theaters 'now_showing' array
 			for var thisMov in t[KEY_NOW_SHOWING] as! [[String:AnyObject]]
 			{
@@ -158,12 +160,12 @@ class AppDelegate: UIResponder
 				}
 
 				let lazyPoster = LazyPoster(title: thisMov[KEY_TITLE] as! String, urlString: urlString)
-				
+
 				gMovie.append((thisMov, lazyPoster))
 			}
 
 			let aa = t[KEY_ADDRESS]
-			
+
 			let street = aa?[KEY_STREET] as! String
 			let city = aa?[KEY_CITY] as! String
 			let state = aa?[KEY_STATE] as! String
@@ -173,62 +175,76 @@ class AppDelegate: UIResponder
 
 			gTheater.append((t, lazyDistance))
 		}
-
 		//	sort Movies by Rating, Title -- if
 		//	Rating is blank label as Not Rated
 		gMovie.sort
 		{
 			var lhsrating = "NR"
 			var rhsrating = "NR"
-			
+
 			if ($0.movie[KEY_RATING] is NSNull) == false { lhsrating = $0.movie[KEY_RATING]! as! String }
-			
+
 			if ($1.movie[KEY_RATING] is NSNull) == false { rhsrating = $1.movie[KEY_RATING]! as! String }
-			
+
 			if lhsrating != rhsrating { return lhsrating < rhsrating }
 			else { return ($0.movie[KEY_TITLE]! as! String) < ($1.movie[KEY_TITLE]! as! String) }
 		}
-		//	for index in stride(from: self.movie.count - 1, through: 3, by: -1)
-		//	{
-		//		self.movie.removeObject(at: index)
-		//	}
 		
 		print("process_theaters end")
 	}
-
-//	func reloadTheaters()
-//	{
-//		DataAccess().gettheaters(getShowDateFromDayOffset(dayoffset: gDayOffset + DAY_OFFSET),
-//									postalcode: gPostalCode)
-//		{
-//			(theaters, error) in
-//
-//			if (error != nil) { self.handleNetworkError(error: error); return }
-//			else if theaters?.count == 0 { self.handleNoDataAvailable(error: error); return }
-//
-//			gTheater = theaters  as! [[String : AnyObject]]
-//			self.process_theaters()
-//		}
-//	}
-}
-
-//	MARK: AppDelegate GeocodeDelegate
-extension AppDelegate : GeocodeDelegate
-{
-    func geocodeDidSucceed(placemark: CLPlacemark?, error: Error?)
-	{
-		gPostalCode = (placemark?.postalCode)!
-		print("geocodeDidSucceed (\(gPostalCode))")
-	}
 	
-    func geocodeDidFail(placemark: CLPlacemark?, error: Error?)
-	{
-		gPostalCode = "92315"
-		print("geocodeDidFail (\(error?.localizedDescription))")
+	private func rebuild_theaters(completion: @escaping (_ result: Bool)->())
+	{ print("rebuild_theaters")
+
+		let da = DataAccess()
+
+		da.getTheaters(AppDelegate.getShowDateFromDayOffset(dayoffset: UserDefault.getDayOffset()), postalcode: UserDefault.getPostalCode())
+		{
+			(theaterArray, error) in
+
+			if (error != nil) { self.handleNetworkError(error: error); completion(false); return }
+
+			let theaters = theaterArray as! [[String : AnyObject]]
+
+			if theaters.count == 0 { self.handleNoDataAvailable(error: error); completion(false); return }
+
+			self.process_theaters(theaters)
+
+			completion(true)
+		}
+	}
+
+	private func rebuild_all(completion: @escaping (_ result: Bool)->())
+	{ print("rebuild_all")
+
+		let da = DataAccess()
+
+		da.getIndex()
+		{
+			(index, error) in
+
+			if (error != nil) { self.handleNetworkError(error: error); completion(false); return }
+
+			gIndex = index as! [[String : AnyObject]]
+			
+			da.getTheaters(AppDelegate.getShowDateFromDayOffset(dayoffset: UserDefault.getDayOffset()), postalcode: UserDefault.getPostalCode())
+			{
+				(theaterArray, error) in
+
+				if (error != nil) { self.handleNetworkError(error: error); completion(false); return }
+	
+				let theaters = theaterArray as! [[String : AnyObject]]
+
+				if theaters.count == 0 { self.handleNoDataAvailable(error: error); completion(false); return }
+	
+				self.process_theaters(theaters)
+
+				completion(true)
+			}
+		}
 	}
 }
 
-//	MARK: AppDelegate UIApplicationDelegate
 extension AppDelegate : UIApplicationDelegate
 {
 	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
@@ -247,103 +263,90 @@ extension AppDelegate : UIApplicationDelegate
 	}
 
 	func applicationWillResignActive(_ application: UIApplication)
-	{
-		// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-		// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+	{ print("applicationWillResignActive")
+		//	Sent when the application is about to move from active to inactive state.
+		//	This can occur for certain types of temporary interruptions (such as an
+		//	incoming phone call or SMS message) or when the user quits the application
+		//	and it begins the transition to the background state.
+		//	Use this method to pause ongoing tasks, disable timers, and invalidate
+		//	graphics rendering callbacks. Games should use this method to pause the game.
 	}
 
 	func applicationDidEnterBackground(_ application: UIApplication)
-	{
-		// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-		// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+	{ print("applicationDidEnterBackground")
+		//	Use this method to release shared resources, save user data, invalidate
+		//	timers, and store enough application state information to restore your
+		//	application to its current state in case it is terminated later.
+		//	If your application supports background execution, this method is called
+		//	instead of applicationWillTerminate: when the user quits.
 	}
-	
+
 	func applicationWillEnterForeground(_ application: UIApplication)
-	{
-		// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+	{ print("applicationWillEnterForeground")
+		//	Called as part of the transition from the background to the active state;
+		//	here you can undo many of the changes made on entering the background.
 	}
 
 	func applicationDidBecomeActive(_ application: UIApplication)
-	{
-		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+	{ print("applicationDidBecomeActive")
+		//	Restart any tasks that were paused (or not yet started) while the
+		//	application was inactive. If the application was previously in
+		//	the background, optionally refresh the user interface.
 	}
 
 	func applicationWillTerminate(_ application: UIApplication)
-	{
+	{ print("applicationWillTerminate")
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-		locationManager.stopUpdatingLocation()
+		
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_LAST_UPDATE_CHANGED))
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_POSTAL_CODE_CHANGED))
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED))
 	}
 
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
-	{
-		locationManager.delegate = self
-		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-		locationManager.requestWhenInUseAuthorization()
+	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+	{ print("willFinishLaunchingWithOptions")
+		//	init locationManager
+		_ = UserLocation.shared
+
+		//	if UserDefaults don't exist, create them
+		if UserDefaults.standard.object(forKey: UserDefault.key.LastUpdate) == nil
+		{ UserDefault.setLastUpdate(Date()) }
 		
-		locationManager.startUpdatingLocation()
+		if UserDefaults.standard.object(forKey: UserDefault.key.DayOffset) == nil
+		{ UserDefault.setDayOffset(0) }
+		
+		if UserDefaults.standard.object(forKey: UserDefault.key.PostalCode) == nil
+		{ UserDefault.setPostalCode("92315") }
 
-		#if HAS_WEB_SERVICE
-			DataAccess().getindex()
-			{
-				(index, error) in
-				
-				if (error != nil) { self.handleNetworkError(error: error); return }
+		//	print(Array(UserDefaults.standard.dictionaryRepresentation()))
+		return (true)
+	}
+	
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+	{ print("didFinishLaunchingWithOptions")
+		//	observe for changes to LastUpdate,
+		//	PostalCode, and DayOffset
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_LAST_UPDATE_CHANGED),
+               object:nil, queue:nil, using:notif_defaults_changed)
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_POSTAL_CODE_CHANGED),
+               object:nil, queue:nil, using:notif_defaults_changed)
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED),
+               object:nil, queue:nil, using:notif_defaults_changed)
 
-				gIndex = index as! [[String : AnyObject]]
-				
-				DataAccess().gettheaters(getShowDateFromDayOffset(dayoffset: gDayOffset + DAY_OFFSET),
-												postalcode: gPostalCode)
-				{
-					(theaters, error) in
-
-					if (error != nil) { self.handleNetworkError(error: error); return }
-					else if theaters?.count == 0 { self.handleNoDataAvailable(error: error); return }
-
-					self.process_theaters(theaters: theaters as! [[String : AnyObject]])
-
-					self.window = UIWindow(frame: UIScreen.main.bounds)
-					let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
-					let mvc: MarqueeViewController = mainStoryboard.instantiateViewController(withIdentifier: "MarqueeStoryboard") as! MarqueeViewController
-					self.window?.rootViewController = mvc
-					self.window?.makeKeyAndVisible()
-				}
-			}
-		#else
-
-			//	let  data = DataAccess.get_DATA("hello")
-			gIndex = DataAccess().parseindex(DataAccess.get_DATA(DataAccess.url_INDEX())) as! [[String : AnyObject]]
-
-			let theaters = DataAccess().parsetheaters(DataAccess.get_DATA(DataAccess.url_STRING()))  as! [[String : AnyObject]]
-
-			process_theaters(theaters: theaters)
+		rebuild_all()
+		{
+			(result) -> () in
 
 			self.window = UIWindow(frame: UIScreen.main.bounds)
 			let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-			let mvc: MarqueeViewController = mainStoryboard.instantiateViewController(withIdentifier: "MarqueeStoryboard") as! MarqueeViewController
+			let mvc: ViewControllerMarquee = mainStoryboard.instantiateViewController(withIdentifier: "MarqueeStoryboard") as! ViewControllerMarquee
 			self.window?.rootViewController = mvc
 			self.window?.makeKeyAndVisible()
-		#endif
-		// Override point for customization after application launch.
-		return true
+
+			print(result)
+		}
+
+		return (true)
 	}
 }
-
-//	MARK: AppDelegate CLLocationManagerDelegate
-extension AppDelegate : CLLocationManagerDelegate
-{
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
-	{
-        if status == .authorizedWhenInUse { locationManager.requestLocation() }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-	{ /* print("locationManager didUpdateLocations") */ }
-	
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-	{
-        print("error:: \(error)")
-    }
-}
-

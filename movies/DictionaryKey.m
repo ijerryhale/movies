@@ -1,6 +1,6 @@
 //
 //  DictionaryKey.m
-//  Movies
+//  movies
 //
 //  Created by Jerry Hale on 4/11/17.
 //  Copyright © 2017 jhale. All rights reserved.
@@ -82,6 +82,7 @@ NSString * const KEY_TRAILER_URL = @"text";
 NSString * const KEY_ITUNES_URL = @"iTunesURL";
 
 //	UITableView cell names
+NSString * const VALUE_SHOWDATE_CELL = @"ShowDate_Cell";
 
 NSString * const VALUE_MARQUEE_CELL = @"Marquee_Cell";
 
@@ -116,11 +117,17 @@ NSString * const S2_MAP = @"s2_map";
 NSString * const S2_ITUNES = @"s2_itunes";
 
 NSString * const S2_SHOWDATE = @"s2_showdate";
-NSString * const S2_PREFERENCE = @"s2_preference";
+NSString * const S2_SETTINGS = @"s2_settings";
 NSString * const S2_CONTAINER_UNWIND = @"s2_container_unwind";
 
 NSString * const KEY_CO_STATE = @"state";
 NSString * const KEY_CO_INDEX = @"index";
 
-NSString * const NOTIF_SHOWDATE = @"Notif Showdate";
+NSString * const NOTIF_DEFAULT_LAST_UPDATE_CHANGED = @"Notif Default Last Update Changed";
+NSString * const NOTIF_DEFAULT_POSTAL_CODE_CHANGED = @"Notif Default Postal Code Changed";
+NSString * const NOTIF_DEFAULT_DAY_OFFSET_CHANGED = @"Notif Default Day Offset Changed";
+
+NSString * const ENAME_MIDATA = @"MIData";
+NSString * const ENAME_MTDATA = @"MTData";
+
 

@@ -1,11 +1,16 @@
-
+//
+//  ViewControllerMap.swift
+//  movies
+//
+//  Created by Jerry Hale on 3/30/17.
+//  Copyright © 2017 jhale. All rights reserved.
+//
 
 import UIKit
 import MapKit
-import CoreLocation
 
-//	MARK: MapViewController
-class MapViewController: UIViewController
+//	MARK: ViewControllerMap
+class ViewControllerMap: UIViewController
 {
     var placemark: MKPlacemark?
 
@@ -19,7 +24,7 @@ class MapViewController: UIViewController
     }
 
 	override func viewWillAppear(_ animated: Bool)
-	{ super.viewWillAppear(animated); print("MapViewController viewWillAppear ")
+	{ super.viewWillAppear(animated); print("ViewControllerMap viewWillAppear ")
 
 		let index = gState[KEY_CO_INDEX] as! Int
 		let theater = gTheater[index].theater
@@ -39,8 +44,8 @@ class MapViewController: UIViewController
 		print(addressString)
 		let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = addressString
-
         request.region = mapView.region
+
         let search = MKLocalSearch(request: request)
 		
         search.start { response, _ in
@@ -71,10 +76,10 @@ class MapViewController: UIViewController
 	}
 
 	override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("MapViewController viewWillDisappear ") }
+	{ super.viewWillDisappear(animated); print("ViewControllerMap viewWillDisappear ") }
 
     override func viewDidLoad()
-	{ super.viewDidLoad(); print("MapViewController viewDidLoad ")
+	{ super.viewDidLoad(); print("ViewControllerMap viewDidLoad ")
 		
 		definesPresentationContext = true
 		
@@ -84,7 +89,7 @@ class MapViewController: UIViewController
 }
 
 //	MARK: MKMapViewDelegate Methods
-extension MapViewController : MKMapViewDelegate
+extension ViewControllerMap : MKMapViewDelegate
 {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
 	{
@@ -99,7 +104,7 @@ extension MapViewController : MKMapViewDelegate
         let smallSquare = CGSize(width: 48, height: 48)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
         button.setBackgroundImage(UIImage(named: "theater"), for: UIControlState())
-        button.addTarget(self, action: #selector(MapViewController.getDirections), for: .touchUpInside)
+        button.addTarget(self, action: #selector(ViewControllerMap.getDirections), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         
         return pinView

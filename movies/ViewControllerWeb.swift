@@ -1,15 +1,22 @@
+//
+//  ViewControllerWeb.swift
+//  movies
+//
+//  Created by Jerry Hale on 3/30/17.
+//  Copyright © 2017 jhale. All rights reserved.
+//
 
 import UIKit
 
-class WebViewController: UIViewController
+class ViewControllerWeb: UIViewController
 {
     @IBOutlet weak var webView: UIWebView!
 
 	override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("WebViewController viewWillDisappear ") }
+	{ super.viewWillDisappear(animated); print("ViewControllerWeb viewWillDisappear ") }
 
     override func viewDidLoad()
-	{ super.viewDidLoad(); print("WebViewController viewDidLoad ")
+	{ super.viewDidLoad(); print("ViewControllerWeb viewDidLoad ")
 
 		//	open iTunes page for this Movie
 		let index = gState[KEY_CO_INDEX] as! Int

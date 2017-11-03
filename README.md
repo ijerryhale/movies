@@ -18,6 +18,11 @@ The movies XCode project contains a 'movies_embedded' target which will load an 
 Update to XCode 9/Swift 4. Bug fixes
 
 
+#### Nov 3, 2017
+Added Core Data layer to cache requests.
+
+
+
 ![marquee](https://user-images.githubusercontent.com/4106530/30836916-2c8de1ea-a216-11e7-86b3-c3bf988b12f3.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/30836918-2fce430e-a216-11e7-9f65-689fcea14b51.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 *Marquee* | *Theaters for Movie* |

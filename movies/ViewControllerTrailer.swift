@@ -1,6 +1,6 @@
 //
-//  TrailerController.swift
-//  Movies
+//  ViewControllerTrailer.swift
+//  movies
 //
 //  Created by Jerry Hale on 3/30/17.
 //  Copyright © 2017 jhale. All rights reserved.
@@ -28,8 +28,8 @@ class PlayerView: UIView
 */
 private var playerViewControllerKVOContext = 0
 
-//	MARK: TrailerController
-class TrailerController: UIViewController
+//	MARK: ViewControllerTrailer
+class ViewControllerTrailer: UIViewController
 {
     @IBOutlet weak var playPauseBtn: UIButton!
     @IBOutlet weak var playerView: PlayerView!
@@ -116,7 +116,7 @@ class TrailerController: UIViewController
             main UI thread) whilst I/O happens to populate the properties. It's
             prudent to defer our work until the properties we need have been loaded.
         */
-        newAsset.loadValuesAsynchronously(forKeys: TrailerController.assetKeysRequiredToPlay)
+        newAsset.loadValuesAsynchronously(forKeys: ViewControllerTrailer.assetKeysRequiredToPlay)
 		{
             /*
                 The asset invokes its completion handler on an arbitrary queue. 
@@ -136,7 +136,7 @@ class TrailerController: UIViewController
                     Test whether the values of each of the keys we need have been
                     successfully loaded.
                 */
-                for key in TrailerController.assetKeysRequiredToPlay
+                for key in ViewControllerTrailer.assetKeysRequiredToPlay
 				{
                     var error: NSError?
                     
@@ -190,9 +190,9 @@ class TrailerController: UIViewController
 		player.pause()
 
 		//	disable Prefs Button
-		(parent?.parent as! BoxOfficeViewController).enablePrefsBtn()
-		//	pop TrailerController push MovieDetailViewController
-		(parent as! ContainerController).trailerSegueUnwind()
+		(parent?.parent as! ViewControllerBoxOffice).enableSettingsBtn()
+		//	pop ViewControllerTrailer push ViewControllerMovieDetail
+		(parent as! ViewControllerContainer).trailerSegueUnwind()
 	}
 
     // MARK: - KVO Observation
@@ -206,7 +206,7 @@ class TrailerController: UIViewController
             return
         }
 
-		if keyPath == #keyPath(TrailerController.player.currentItem.duration)
+		if keyPath == #keyPath(ViewControllerTrailer.player.currentItem.duration)
 		{
             // Update `timeSlider` and enable / disable controls when `duration` > 0.0.
 
@@ -234,7 +234,7 @@ class TrailerController: UIViewController
             
 			slider.isEnabled = hasValidDuration
 		}
-        else if keyPath == #keyPath(TrailerController.player.rate)
+        else if keyPath == #keyPath(ViewControllerTrailer.player.rate)
 		{
             let newRate = (change?[NSKeyValueChangeKey.newKey] as! NSNumber).doubleValue
             let buttonImageName = newRate == 1.0 ? "pause" : "play"
@@ -242,7 +242,7 @@ class TrailerController: UIViewController
 
             playPauseBtn.setImage(buttonImage, for: UIControlState())
         }
-        else if keyPath == #keyPath(TrailerController.player.currentItem.status)
+        else if keyPath == #keyPath(ViewControllerTrailer.player.currentItem.status)
 		{
             // Display an error if status becomes `.Failed`.
 
@@ -272,8 +272,8 @@ class TrailerController: UIViewController
     override class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>
 	{
         let affectedKeyPathsMappingByKey: [String: Set<String>] = [
-            "duration":     [#keyPath(TrailerController.player.currentItem.duration)],
-            "rate":         [#keyPath(TrailerController.player.rate)]
+            "duration":     [#keyPath(ViewControllerTrailer.player.currentItem.duration)],
+            "rate":         [#keyPath(ViewControllerTrailer.player.rate)]
         ]
         
         return affectedKeyPathsMappingByKey[key] ?? super.keyPathsForValuesAffectingValue(forKey: key)
@@ -299,12 +299,12 @@ class TrailerController: UIViewController
 
 	//	MARK: UIViewController overrides
     override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("TrailerController viewWillDisappear ")
+	{ super.viewWillDisappear(animated); print("ViewControllerTrailer viewWillDisappear ")
 		
-		removeObserver(self, forKeyPath: #keyPath(TrailerController.player.currentItem.duration), context: &playerViewControllerKVOContext)
-        removeObserver(self, forKeyPath: #keyPath(TrailerController.player.rate), context: &playerViewControllerKVOContext)
-        removeObserver(self, forKeyPath: #keyPath(TrailerController.player.currentItem.status), context: &playerViewControllerKVOContext)
-		removeObserver(self, forKeyPath: #keyPath(TrailerController.player.currentItem), context: &playerViewControllerKVOContext)
+		removeObserver(self, forKeyPath: #keyPath(ViewControllerTrailer.player.currentItem.duration), context: &playerViewControllerKVOContext)
+        removeObserver(self, forKeyPath: #keyPath(ViewControllerTrailer.player.rate), context: &playerViewControllerKVOContext)
+        removeObserver(self, forKeyPath: #keyPath(ViewControllerTrailer.player.currentItem.status), context: &playerViewControllerKVOContext)
+		removeObserver(self, forKeyPath: #keyPath(ViewControllerTrailer.player.currentItem), context: &playerViewControllerKVOContext)
 
 		if let timeObserverToken = timeObserverToken
 		{
@@ -317,10 +317,10 @@ class TrailerController: UIViewController
 	{
         super.viewWillAppear(animated)
         
-		addObserver(self, forKeyPath: #keyPath(TrailerController.player.currentItem.duration), options: [.new, .initial], context: &playerViewControllerKVOContext)
-        addObserver(self, forKeyPath: #keyPath(TrailerController.player.rate), options: [.new, .initial], context: &playerViewControllerKVOContext)
-        addObserver(self, forKeyPath: #keyPath(TrailerController.player.currentItem.status), options: [.new, .initial], context: &playerViewControllerKVOContext)
-		addObserver(self, forKeyPath: #keyPath(TrailerController.player.currentItem), options: [.new, .initial], context: &playerViewControllerKVOContext)
+		addObserver(self, forKeyPath: #keyPath(ViewControllerTrailer.player.currentItem.duration), options: [.new, .initial], context: &playerViewControllerKVOContext)
+        addObserver(self, forKeyPath: #keyPath(ViewControllerTrailer.player.rate), options: [.new, .initial], context: &playerViewControllerKVOContext)
+        addObserver(self, forKeyPath: #keyPath(ViewControllerTrailer.player.currentItem.status), options: [.new, .initial], context: &playerViewControllerKVOContext)
+		addObserver(self, forKeyPath: #keyPath(ViewControllerTrailer.player.currentItem), options: [.new, .initial], context: &playerViewControllerKVOContext)
 		
         playerView.playerLayer.player = player
 
@@ -367,7 +367,7 @@ class TrailerController: UIViewController
 
 	override func viewDidLoad()
 	{
-		super.viewDidLoad(); print("TrailerController viewDidLoad ")
+		super.viewDidLoad(); print("ViewControllerTrailer viewDidLoad ")
 		
 		slider.setThumbImage(UIImage(named: "scrubthumb.png"), for: .normal)
 	}

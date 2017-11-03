@@ -1,6 +1,6 @@
 //
-//  BoxOfficeViewController.swift
-//  Movies
+//  ViewControllerBoxOffice.swift
+//  movies
 //
 //  Created by Jerry Hale on 10/2/16.
 //  Copyright © 2017 jhale. All rights reserved.
@@ -12,13 +12,13 @@ import UIKit
 
 private let theaterOffset = 0
 
-//	MARK: BoxOfficeViewController
-class BoxOfficeViewController: UIViewController
+//	MARK: ViewControllerBoxOffice
+class ViewControllerBoxOffice: UIViewController
 {
 	@IBOutlet weak var	tableView: UITableView!
     @IBOutlet weak var	showdate: UILabel!
 	
-	@IBOutlet weak var	prefsbtn: UIButton!
+	@IBOutlet weak var	settingsbtn: UIButton!
 
 	let _l0_dict = [KEY_CAN_EXPAND : false, KEY_IS_EXPANDED : true, KEY_IS_VISIBLE : true,
 					KEY_CELL_IDENTIFIER : VALUE_L0_CELL, KEY_ADDITIONAL_ROWS : 0 ] as [String : Any]
@@ -42,7 +42,7 @@ class BoxOfficeViewController: UIViewController
 		tableView.reloadData()
 		self.tableView.scrollToRow(at: [0, 0], at: .top, animated: true)
 
-		(childViewControllers.first as! ContainerController).updateTheaterDetailView()
+		(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView()
 	}
 
 	@IBAction func tapAllMoviesBtn(sender: UIButton)
@@ -55,11 +55,8 @@ class BoxOfficeViewController: UIViewController
 		tableView.reloadData()
 		self.tableView.scrollToRow(at: [0, 0], at: .top, animated: true)
 
-		(childViewControllers.first as! ContainerController).updateMovieDetailView()
+		(childViewControllers.first as! ViewControllerContainer).updateMovieDetailView()
 	}
-	
-	@IBAction func tapPreferencesBtn(sender: UIButton)
-	{ self.performSegue(withIdentifier: S2_PREFERENCE, sender: self) }
 
 	@IBAction func unwindToBoxOffice(segue: UIStoryboardSegue) { /*print("unwindToBoxOffice") */ }
 
@@ -136,7 +133,7 @@ class BoxOfficeViewController: UIViewController
 		}
 	}
 
-	//	containerController.childViewControllers.flatMap({ $0 as? MovieDetailViewController }).first
+	//	containerController.childViewControllers.flatMap({ $0 as? ViewControllerMovieDetail }).first
 	private func all_movies()
 	{
 		rowDictionary.removeAll()
@@ -207,8 +204,8 @@ class BoxOfficeViewController: UIViewController
 		}
 	}
 
-	func disablePrefsBtn() { prefsbtn.isEnabled = false }
-	func enablePrefsBtn() { prefsbtn.isEnabled = true }
+	func disableSettingsBtn() { settingsbtn.isEnabled = false }
+	func enableSettingsBtn() { settingsbtn.isEnabled = true }
 
     let pendingOperations = PendingOperations()
 
@@ -235,11 +232,10 @@ class BoxOfficeViewController: UIViewController
 				DispatchQueue.main.async(execute: {
 				
 				//	let theaterAddress = "555 El Rancho Drive, Sparks NV 89431"
-				let appDelegate = UIApplication.shared.delegate as! AppDelegate
-				let location = appDelegate.location()
+				let location = UserLocation.shared.locationManager.location
 
-				let c0 = CLLocation(latitude: location.coordinate.latitude,
-									longitude: location.coordinate.longitude)
+					let c0 = CLLocation(latitude: (location?.coordinate.latitude)!,
+					                    longitude: (location?.coordinate.longitude)!)
 				let c1 = CLLocation(latitude: self.lat,
 									longitude: self.long)
 
@@ -303,8 +299,8 @@ class BoxOfficeViewController: UIViewController
             for indexPath in toBeStarted
 			{
 				//	there isn't a one to one corresponce for the
-				//	rows in the BoxOfficeViewController UITableView
-				//	as there is in the MarqueeViewController so
+				//	rows in the ViewControllerBoxOffice UITableView
+				//	as there is in the ViewControllerMarquee so
 				//	we can't just use the IndexPath as it is
 
                 let indexPath = indexPath as NSIndexPath
@@ -332,17 +328,17 @@ class BoxOfficeViewController: UIViewController
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
 	{
 		//	print(segue.identifier)
-		if segue.identifier == S2_PREFERENCE
+		if segue.identifier == S2_SETTINGS
 		{
-			let pc = (segue.destination as? PreferenceViewController)!
-			pc.callingViewControler = self
+//			let pc = (segue.destination as? PreferenceViewController)!
+//			pc.callingViewControler = self
 		}
 	}
 
 	//	func canRotate() -> Void { }
 	
 	override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("BoxOfficeViewController viewWillDisappear ")
+	{ super.viewWillDisappear(animated); print("ViewControllerBoxOffice viewWillDisappear ")
 		
 		if (isMovingFromParentViewController)
 		{
@@ -351,7 +347,7 @@ class BoxOfficeViewController: UIViewController
 	}
 
 	override func viewWillAppear(_ animated: Bool)
-	{ super.viewWillAppear(animated); print("BoxOfficeViewController viewWillAppear ")
+	{ super.viewWillAppear(animated); print("ViewControllerBoxOffice viewWillAppear ")
 	
 		let movie = gMovie[gState[KEY_CO_INDEX] as! Int]
 
@@ -377,21 +373,21 @@ class BoxOfficeViewController: UIViewController
 	}
 	
 	override func viewDidLoad()
-	{ super.viewDidLoad(); print("BoxOfficeViewController viewDidLoad ")
+	{ super.viewDidLoad(); print("ViewControllerBoxOffice viewDidLoad ")
 	
-		switch gDayOffset
+		switch UserDefault.getDayOffset()
 		{
 			case 0:
 				showdate.text = "Today"
 			case 1:
 				showdate.text = "Tommorrow"
 			default:
-				let day = Calendar.current.date(byAdding: .day, value: gDayOffset + DAY_OFFSET, to: Date())
-				let _df = DateFormatter()
-				_df.dateFormat = "EEE, MMM dd"
-				_df.locale = Locale(identifier: "en_US")
+				let day = Calendar.current.date(byAdding: .day, value: UserDefault.getDayOffset(), to: Date())
+				let dateFormatter = DateFormatter()
+				dateFormatter.dateFormat = "EEE, MMM dd"
+				dateFormatter.locale = Locale(identifier: "en_US")
 
-				showdate.text = _df.string(from: day!)
+				showdate.text = dateFormatter.string(from: day!)
 		}
 		
 		tableView.delegate = self
@@ -418,7 +414,7 @@ class BoxOfficeViewController: UIViewController
 }
 
 //	MARK: UITableView Datasource Methods
-extension BoxOfficeViewController : UITableViewDataSource
+extension ViewControllerBoxOffice : UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return rowDictionary.count  }
 
@@ -543,7 +539,7 @@ extension BoxOfficeViewController : UITableViewDataSource
 }
 
 //	MARK: UITableView Delegate Methods
-extension BoxOfficeViewController : UITableViewDelegate
+extension ViewControllerBoxOffice : UITableViewDelegate
 {
 	func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
 	{
@@ -596,9 +592,9 @@ extension BoxOfficeViewController : UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
-		//	if TrailerController is current embed
+		//	if ViewControllerTrailer is current embed
 		//	just ignore clicks on the UITableView
-		if (childViewControllers[0].childViewControllers[0] is TrailerController) { return }
+		if (childViewControllers[0].childViewControllers[0] is ViewControllerTrailer) { return }
 		
 		var rowDict = rowDictionary[indexPath.row] as [String:Any]
 
@@ -664,7 +660,7 @@ extension BoxOfficeViewController : UITableViewDelegate
 					gState[KEY_CO_INDEX] = index
 
 					//	print("cot_theater_detail LO_CELL")
-					(childViewControllers[0] as! ContainerController).updateMovieDetailView()
+					(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
 					
 				}
 				else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
@@ -673,7 +669,7 @@ extension BoxOfficeViewController : UITableViewDelegate
 					let index = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }
 					gState[KEY_CO_INDEX] = index
 
-					(childViewControllers[0] as! ContainerController).updateTheaterDetailView()
+					(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
 				}
 			case .cot_theater_detail:
 				//	do opposite for Theater detail
@@ -687,7 +683,7 @@ extension BoxOfficeViewController : UITableViewDelegate
 					let index = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }
 					gState[KEY_CO_INDEX] = index
 
-					(childViewControllers[0] as! ContainerController).updateTheaterDetailView()
+					(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
 				}
 				else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
 				|| rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L2_CELL
@@ -695,7 +691,7 @@ extension BoxOfficeViewController : UITableViewDelegate
 					let index = gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }
 					gState[KEY_CO_INDEX] = index
 
-					(childViewControllers[0] as! ContainerController).updateMovieDetailView()
+					(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
 
 					//	print("cot_theater_detail L1_CELL")
 				}

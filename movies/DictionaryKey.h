@@ -1,21 +1,10 @@
 //
 //  DictionaryKey.h
-//  Movies
+//  movies
 //
 //  Created by Jerry Hale on 4/11/17.
 //  Copyright © 2017 jhale. All rights reserved.
 //
-
-//	we can work either with a
-//	fixed set of embedded data,
-//	or using AFNetworking with
-//	a locally or remotely running
-//	JSON server(s)
-
-//	this version is set up to
-//	run with embedded data,
-//	there is no AFNetworking
-//	with this version
 
 extern NSString * const KEY_DAY_OFFSET;
 
@@ -44,7 +33,6 @@ extern NSString * const KEY_CITY;
 extern NSString * const KEY_STATE;
 extern NSString * const KEY_POSTAL_CODE;
 extern NSString * const KEY_COUNTRY;
-
 
 //	Movie
 extern NSString * const KEY_INDEX;
@@ -82,6 +70,8 @@ extern NSString * const KEY_TRAILER_URL;
 
 extern NSString * const KEY_ITUNES_URL;
 
+extern NSString * const VALUE_SHOWDATE_CELL;
+
 extern NSString * const VALUE_MARQUEE_CELL;
 extern NSString * const VALUE_L0_CELL;
 extern NSString * const VALUE_L0_CELL_MOVIE;
@@ -113,13 +103,18 @@ extern NSString * const S2_MAP;
 extern NSString * const S2_ITUNES;
 
 extern NSString * const S2_SHOWDATE;
-extern NSString * const S2_PREFERENCE;
+extern NSString * const S2_SETTINGS;
 
 extern NSString * const S2_CONTAINER_UNWIND;
-
 
 extern NSString * const KEY_CO_STATE;
 extern NSString * const KEY_CO_INDEX;
 
-extern NSString * const NOTIF_SHOWDATE;
+extern NSString * const NOTIF_DEFAULT_LAST_UPDATE_CHANGED;
+extern NSString * const NOTIF_DEFAULT_POSTAL_CODE_CHANGED;
+extern NSString * const NOTIF_DEFAULT_DAY_OFFSET_CHANGED;
+
+extern NSString * const ENAME_MIDATA;
+extern NSString * const ENAME_MTDATA;
+
 

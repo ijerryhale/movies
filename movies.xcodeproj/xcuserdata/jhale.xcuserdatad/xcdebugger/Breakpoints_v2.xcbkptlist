@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "movies/TrailerController.swift"
-            timestampString = "526325470.446401"
+            timestampString = "531004971.211697"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "342"
@@ -111,68 +111,6 @@
                   startingLineNumber = "340"
                   endingLineNumber = "340"
                   offsetFromSymbolStart = "8754">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movies/DataAccess.m"
-            timestampString = "527961014.26276"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
-            landmarkName = "+GET_DATA:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "movies/Resource/L1_Cell_movie.swift"
-            timestampString = "525127340.977893"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1"
-            endingLineNumber = "1">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "movies.L1_Cell_movie.__deallocating_deinit"
-                  moduleName = "movies"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jhale/Desktop/movies/movies/movies/Resource/L1_Cell_movie.swift"
-                  timestampString = "528419634.332202"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "movies.L1_Cell_movie.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; movies.L1_Cell_movie"
-                  moduleName = "movies"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jhale/Desktop/movies/movies/movies/Resource/L1_Cell_movie.swift"
-                  timestampString = "528419634.336187"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "11"
-                  endingLineNumber = "11"
-                  offsetFromSymbolStart = "32">
                </Location>
             </Locations>
          </BreakpointContent>

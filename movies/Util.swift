@@ -1,6 +1,6 @@
 //
 //  Util.swift
-//  Movies
+//  movies
 //
 //  Created by Jerry Hale on 4/11/17.
 //  Copyright © 2017 jhale. All rights reserved.
@@ -17,6 +17,7 @@ class EmptySegue: UIStoryboardSegue
 
 	}
 }
+
 
 //	MARK: CustomSegue
 class CustomSegue: UIStoryboardSegue
@@ -142,19 +143,6 @@ class Geocode {
 				}
 		}
 	}
-}
-
-//	MARK: getShowDateFromDayOffset
-func getShowDateFromDayOffset(dayoffset: Int) -> String
-{
-	let day = Calendar.current.date(byAdding: .day, value: dayoffset + DAY_OFFSET, to: Date())
-	
-	let df = DateFormatter()
-	df.dateFormat = "yyyy-MM-dd"
-	df.locale = Locale(identifier: "en_US")
-	//print(df.string(from: day!))
-	
-	return (df.string(from: day!))
 }
 
 //	MARK: createGenericPoster

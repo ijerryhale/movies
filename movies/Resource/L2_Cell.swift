@@ -1,6 +1,6 @@
 //
 //  L2Cell.swift
-//  controller_embed
+//  movies
 //
 //  Created by Jerry Hale on 5/27/17.
 //  Copyright © 2017 jhale. All rights reserved.
