@@ -21,7 +21,7 @@ Update to XCode 9/Swift 4. Bug fixes
 Add Core Data layer to cache requests.
 
 #### Nov 8, 2017
-Started wiring in Settings stuff so we can start to code for dynamism in what is requested. Update embedded data -- data was getting old and this new set of embedded data looks a lot more like what would be returned on a request. New embedded data is from Cupertino Area Code too so the Map Stuff matches up better working in the Simulator.
+Start wiring in Settings stuff so we can start to code for dynamism in what is requested. Update embedded data -- data was getting old and this new set of embedded data looks a lot more like what would be returned on a request. New embedded data is from Cupertino Area Code too so the Map Stuff matches up better working in the Simulator.
 
 
 ![marquee](https://user-images.githubusercontent.com/4106530/30836916-2c8de1ea-a216-11e7-86b3-c3bf988b12f3.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/30836918-2fce430e-a216-11e7-9f65-689fcea14b51.png "Theaters for Movie") |
