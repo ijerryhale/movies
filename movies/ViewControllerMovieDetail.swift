@@ -47,14 +47,14 @@ class ViewControllerMovieDetail : UIViewController
 		let index = gState[KEY_CO_INDEX] as! Int
 		let movie = gMovie[index]
 
-		if movie.movie[KEY_POSTER] is NSNull { poster.image = createGenericPoster(title: movie.movie[KEY_TITLE] as! String) }
+		if movie.movie[KEY_POSTER] is NSNull { poster.image = createGenericPoster(movie.movie[KEY_TITLE] as! String) }
 		else
 		{
 			if let data = DataAccess.get_DATA(movie.movie[KEY_POSTER] as! String)
 			{
 				poster.image = UIImage(data: data)!
 			}
-			else { poster.image = createGenericPoster(title: movie.movie[KEY_TITLE] as! String) }
+			else { poster.image = createGenericPoster(movie.movie[KEY_TITLE] as! String) }
 		}
 
 		filmtitle.text = movie.movie[KEY_TITLE] as? String

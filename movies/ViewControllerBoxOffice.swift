@@ -404,7 +404,7 @@ class ViewControllerBoxOffice: UIViewController
 		tableView.register(UINib(nibName: VALUE_L2_CELL, bundle: nil), forCellReuseIdentifier: VALUE_L2_CELL)
 		
 		tableView.contentInset = UIEdgeInsetsMake(2, 0, 0, 0);
-	
+
 		//	MV006798690000
 		if gState[KEY_CO_STATE] as! COType == .cot_theater_detail { all_theaters() }
 		else { all_movies() }

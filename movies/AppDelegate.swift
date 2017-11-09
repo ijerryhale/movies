@@ -37,7 +37,7 @@ class LazyPoster
 		if urlString is NSNull { self.urlString = "" }
 		else { self.urlString = urlString as! String }
 		
-		self.image = createGenericPoster(title: title)
+		self.image = createGenericPoster(title)
 	}
 }
 
@@ -161,6 +161,8 @@ class AppDelegate: UIResponder
 
 				let lazyPoster = LazyPoster(title: thisMov[KEY_TITLE] as! String, urlString: urlString)
 
+				//	dumpData(urlString, filmID: thisMov[KEY_FILM_ID] as? String)
+				
 				gMovie.append((thisMov, lazyPoster))
 			}
 
@@ -316,7 +318,7 @@ extension AppDelegate : UIApplicationDelegate
 		{ UserDefault.setDayOffset(0) }
 		
 		if UserDefaults.standard.object(forKey: UserDefault.key.PostalCode) == nil
-		{ UserDefault.setPostalCode("92315") }
+		{ UserDefault.setPostalCode("95014") }
 
 		//	print(Array(UserDefaults.standard.dictionaryRepresentation()))
 		return (true)

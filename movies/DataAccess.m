@@ -152,6 +152,12 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 {
     //	set the error pointer to the parser's error object
     self.errorPointer = parseError;
+	
+//    NSString *errorString = [NSString stringWithFormat:@"Error %i, Description: %@, Line: %i, Column: %i", [parseError code],
+//        [[parser parserError] localizedDescription], [parser lineNumber],
+//        [parser columnNumber]];
+//
+//    NSLog(errorString);
 }
 
 @end
@@ -374,7 +380,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 	NSString		*xmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSError			*parseError = nil;
 	NSDictionary	*xmlDictionary = [XMLParse dictionaryForXMLString:xmlString error:&parseError];
-
+	
 	return ([[xmlDictionary objectForKey:@"films"] objectForKey:@"movieinfo"]);
 }
 
@@ -458,7 +464,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&#x00E9;" withString:@"é"];
     jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&apos;" withString:@"'"];
     jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-	
+
 	NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError	*error = nil;
     NSArray	*array = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
@@ -472,8 +478,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 		for (int j = 0;j < [pages count];j++)
 			for (int k = 0;k < [pages[j] count];k++)
-				//	theaters[j][k] is a single theater dictionary
-				[theaters addObject:pages[j][k]];
+				[theaters addObject:pages[j][k]];	//	theaters[j][k] is a single theater dictionary
 	}
 
 	return(theaters);

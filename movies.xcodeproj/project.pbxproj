@@ -63,7 +63,6 @@
 		2C8C19D21F5F776400058C18 /* AccessibilityString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D45941F5211BE003F529A /* AccessibilityString.m */; };
 		2C9C1D2C1E8749F00092AFE7 /* ViewControllerShowDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C1D2B1E8749F00092AFE7 /* ViewControllerShowDate.swift */; };
 		2CBB8F271E91DF6900938728 /* ViewControllerTheaterDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBB8F261E91DF6900938728 /* ViewControllerTheaterDetail.swift */; };
-		2CBCC0A11E9E76B800FF1A08 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCC0A01E9E76B800FF1A08 /* SelectableCell.swift */; };
 		2CBCC0A41E9EC78000FF1A08 /* DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCC0A31E9EC78000FF1A08 /* DataAccess.m */; };
 		2CC08E211E8DEBC700145487 /* ViewControllerTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC08E201E8DEBC700145487 /* ViewControllerTrailer.swift */; };
 		2CC236A41F51CEDD00A901F9 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC236A01F51CE0200A901F9 /* AFNetworking.framework */; };
@@ -97,7 +96,6 @@
 		2CE7C8C11EAEB4FB001DB7C7 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7C8C01EAEB4FB001DB7C7 /* Util.swift */; };
 		2CEF91D41FA5506800B7B470 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEF91D31FA5506700B7B470 /* UserDefault.swift */; };
 		2CEF91D51FA5506800B7B470 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEF91D31FA5506700B7B470 /* UserDefault.swift */; };
-		2CEF91D61FA5530900B7B470 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCC0A01E9E76B800FF1A08 /* SelectableCell.swift */; };
 		2CF70E9C1DA2C25F00EF4FA9 /* ViewControllerMovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF70E9B1DA2C25F00EF4FA9 /* ViewControllerMovieDetail.swift */; };
 /* End PBXBuildFile section */
 
@@ -192,7 +190,6 @@
 		2C8A60D61F623206005BF0A2 /* ViewControllerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerContainer.swift; sourceTree = "<group>"; };
 		2C9C1D2B1E8749F00092AFE7 /* ViewControllerShowDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerShowDate.swift; sourceTree = "<group>"; };
 		2CBB8F261E91DF6900938728 /* ViewControllerTheaterDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTheaterDetail.swift; sourceTree = "<group>"; };
-		2CBCC0A01E9E76B800FF1A08 /* SelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
 		2CBCC0A21E9EC78000FF1A08 /* DataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataAccess.h; path = Movies/DataAccess.h; sourceTree = "<group>"; };
 		2CBCC0A31E9EC78000FF1A08 /* DataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataAccess.m; path = Movies/DataAccess.m; sourceTree = "<group>"; };
 		2CC08E201E8DEBC700145487 /* ViewControllerTrailer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTrailer.swift; sourceTree = "<group>"; };
@@ -240,7 +237,6 @@
 		2C09CE071DA1E322000F1FC1 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
-				2CBCC0A01E9E76B800FF1A08 /* SelectableCell.swift */,
 				2CCED7001FA54D0B00DB9A95 /* ShowDate_Cell.swift */,
 				2CCED7011FA54D0B00DB9A95 /* ShowDate_Cell.xib */,
 				2C2A2ACA1F5A29E600636E69 /* Marquee_Cell.swift */,
@@ -345,10 +341,10 @@
 				2C83BF3A1D82238E006B4CC6 /* AppDelegate.swift */,
 				2C9C1D2B1E8749F00092AFE7 /* ViewControllerShowDate.swift */,
 				2CCED7061FA54D9E00DB9A95 /* ViewControllerSettings.swift */,
-				2CC08E201E8DEBC700145487 /* ViewControllerTrailer.swift */,
-				2CD0227F1F58D1A800032D92 /* ViewControllerMap.swift */,
-				2CBB8F261E91DF6900938728 /* ViewControllerTheaterDetail.swift */,
 				2CD022821F58D7C100032D92 /* ViewControllerWeb.swift */,
+				2CD0227F1F58D1A800032D92 /* ViewControllerMap.swift */,
+				2CC08E201E8DEBC700145487 /* ViewControllerTrailer.swift */,
+				2CBB8F261E91DF6900938728 /* ViewControllerTheaterDetail.swift */,
 				2CF70E9B1DA2C25F00EF4FA9 /* ViewControllerMovieDetail.swift */,
 				2C8A60D61F623206005BF0A2 /* ViewControllerContainer.swift */,
 				2C3E4DFB1DA1567200A4E69A /* ViewControllerBoxOffice.swift */,
@@ -364,18 +360,18 @@
 		2C86218B1FA5484B000BF3A2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				2C8621941FA5485F000BF3A2 /* core_data.entitlements */,
 				2C8621901FA5485F000BF3A2 /* ManagedObjectContext.h */,
 				2C8621961FA5485F000BF3A2 /* ManagedObjectContext.m */,
 				2C8621911FA5485F000BF3A2 /* MIData+CoreDataClass.h */,
 				2C8621971FA5485F000BF3A2 /* MIData+CoreDataClass.m */,
 				2C8621951FA5485F000BF3A2 /* MIData+CoreDataProperties.h */,
 				2C86218F1FA5485F000BF3A2 /* MIData+CoreDataProperties.m */,
-				2C86218C1FA5485E000BF3A2 /* Model.xcdatamodeld */,
 				2C86218E1FA5485F000BF3A2 /* MTData+CoreDataClass.h */,
 				2C8621921FA5485F000BF3A2 /* MTData+CoreDataClass.m */,
 				2C8621981FA54860000BF3A2 /* MTData+CoreDataProperties.h */,
 				2C8621931FA5485F000BF3A2 /* MTData+CoreDataProperties.m */,
+				2C8621941FA5485F000BF3A2 /* core_data.entitlements */,
+				2C86218C1FA5485E000BF3A2 /* Model.xcdatamodeld */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -548,7 +544,6 @@
 				2C3FA6141F48DF4B008C1524 /* L0_Cell_theater.swift in Sources */,
 				2C3FA6151F48DF4B008C1524 /* DictionaryKey.m in Sources */,
 				2CCED70B1FA54EE500DB9A95 /* UserLocation.swift in Sources */,
-				2CEF91D61FA5530900B7B470 /* SelectableCell.swift in Sources */,
 				2C3FA6161F48DF4B008C1524 /* DataAccess.m in Sources */,
 				2CEF91D51FA5506800B7B470 /* UserDefault.swift in Sources */,
 				2C3FA6171F48DF4B008C1524 /* Util.swift in Sources */,
@@ -605,7 +600,6 @@
 				2CE7C8C11EAEB4FB001DB7C7 /* Util.swift in Sources */,
 				2C3FA60A1F48C4C1008C1524 /* L1_Cell_theater.swift in Sources */,
 				2CC08E211E8DEBC700145487 /* ViewControllerTrailer.swift in Sources */,
-				2CBCC0A11E9E76B800FF1A08 /* SelectableCell.swift in Sources */,
 				2C2D45951F5211BE003F529A /* AccessibilityString.m in Sources */,
 				2CCED6F51FA5491F00DB9A95 /* ManagedObjectContext.m in Sources */,
 				2CCED6FF1FA54A0A00DB9A95 /* MTData+CoreDataProperties.m in Sources */,

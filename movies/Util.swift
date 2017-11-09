@@ -146,7 +146,7 @@ class Geocode {
 }
 
 //	MARK: createGenericPoster
-func createGenericPoster(title: String) -> UIImage
+func createGenericPoster(_ title: String) -> UIImage
 {
 	var image = UIImage(named: "filmclip.png")
 
@@ -211,4 +211,5 @@ func getTicketPurchasePageUrl(tmsID: String, theaterId: String, date: String, ti
 	//	print(url)
 	return (url)
 }
+
 
