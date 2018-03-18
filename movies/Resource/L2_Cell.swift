@@ -1,5 +1,5 @@
 //
-//  L2Cell.swift
+//  L2_Cell.swift
 //  movies
 //
 //  Created by Jerry Hale on 5/27/17.

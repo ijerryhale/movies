@@ -423,118 +423,120 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 		let rowDict = rowDictionary[indexPath.row] as AnyObject
 		var cellID = rowDict[KEY_CELL_IDENTIFIER] as! String
 
-		if cellID == VALUE_L0_CELL
-		{
-			if gState[KEY_CO_STATE] as! COType == .cot_theater_detail { cellID += "_theater" }
-			else {  cellID += "_movie" }
-		}
-		else if cellID == VALUE_L1_CELL
-		{
-			if gState[KEY_CO_STATE] as! COType == .cot_movie_detail { cellID += "_theater" }
-			else {  cellID += "_movie" }
-		}
-		
-		let	cell = tableView.dequeueReusableCell(withIdentifier:cellID, for: indexPath)
+//		if cellID == VALUE_L0_CELL
+//		{
+//			if gState[KEY_CO_STATE] as! COType == .cot_theater_detail { cellID += "_theater" }
+//			else {  cellID += "_movie" }
+//		}
+//		else if cellID == VALUE_L1_CELL
+//		{
+//			if gState[KEY_CO_STATE] as! COType == .cot_movie_detail { cellID += "_theater" }
+//			else {  cellID += "_movie" }
+//		}
+//		
+//		let	cell = tableView.dequeueReusableCell(withIdentifier:cellID, for: indexPath)
+//
+//		if gState[KEY_CO_STATE] as! COType == .cot_movie_detail
+//		{
+//			if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L0_CELL
+//			{
+//				(cell as! L0_Cell_movie).title?.text = (rowDict[KEY_TITLE] as! String)
+//				
+//				var rating = "NR"
+//	
+//				if (rowDict[KEY_RATING] is NSNull) == false
+//				{
+//					switch rowDict[KEY_RATING] as! String
+//					{
+//						case "PG-13", "R", "NC17", "PG", "G":
+//							rating = rowDict[KEY_RATING] as! String
+//						default:
+//							rating = ""
+//					}
+//				}
+//
+//				(cell as! L0_Cell_movie).rating.text = rating
+//			}
+//			else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
+//			{
+//				(cell as! L1_Cell_theater).name?.text = (rowDict[KEY_NAME] as! String)
+//			}
+//			else
+//			{
+//				(cell as! L2_Cell).time?.text = (rowDict[KEY_TIME] as! String)
+//			}
+//		}
+//		else if gState[KEY_CO_STATE] as! COType == .cot_theater_detail
+//		{
+//			if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L0_CELL
+//			{
+//				let c = cell as! L0_Cell_theater
+//				
+//				c.name?.text = (rowDict[KEY_NAME] as! String)
+//
+//				guard
+//					let theater = gTheater.filter({ $0.theater[KEY_ID] as? String == rowDict[KEY_ID] as? String }).first
+//					else { fatalError("no theater returned") }
+//
+//				let thisDistance = theater.distance
+//
+//				c.distance.text = thisDistance.currentDist
+//
+//				switch thisDistance.state
+//				{
+//					case .failed:
+//						///	print(".failed")
+//						c.indicator.stopAnimating()
+//					case .new:
+//						//	print(".new")
+//						c.indicator.startAnimating()
+//						
+//						let lat = theater.theater[KEY_LAT] as! String
+//						let long = theater.theater[KEY_LONG] as! String
+//
+//						if (!tableView.isDragging && !tableView.isDecelerating)
+//						{
+//							self.startOperationForDistance(distance: thisDistance,
+//														indexPath: indexPath as NSIndexPath,
+//														lat: Double(lat)!, long: Double(long)!)
+//						}
+//
+//					case .done:
+//						//	print(".done")
+//						c.indicator.stopAnimating()
+//				}
+//			}
+//			else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
+//			{
+//				(cell as! L1_Cell_movie).title?.text = (rowDict[KEY_TITLE] as! String)
+//
+//				var rating = "NR"
+//
+//				if (rowDict[KEY_RATING] is NSNull) == false
+//				{
+//					switch rowDict[KEY_RATING] as! String
+//					{
+//						case "PG-13", "R", "NC17", "PG", "G":
+//							rating = rowDict[KEY_RATING] as! String
+//						default:
+//							rating = ""
+//					}
+//				}
+//				
+//				(cell as! L1_Cell_movie).rating.text = rating
+//			}
+//			else
+//			{
+//				(cell as! L2_Cell).time?.text = (rowDict[KEY_TIME] as! String)
+//			}
+//		}
+//
+//		if rowDict[KEY_IS_VISIBLE] as! Bool == true { cell.isHidden = false }
+//		else { cell.isHidden = true }
 
-		if gState[KEY_CO_STATE] as! COType == .cot_movie_detail
-		{
-			if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L0_CELL
-			{
-				(cell as! L0_Cell_movie).title?.text = (rowDict[KEY_TITLE] as! String)
-				
-				var rating = "NR"
-	
-				if (rowDict[KEY_RATING] is NSNull) == false
-				{
-					switch rowDict[KEY_RATING] as! String
-					{
-						case "PG-13", "R", "NC17", "PG", "G":
-							rating = rowDict[KEY_RATING] as! String
-						default:
-							rating = ""
-					}
-				}
+//		return cell
 
-				(cell as! L0_Cell_movie).rating.text = rating
-			}
-			else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
-			{
-				(cell as! L1_Cell_theater).name?.text = (rowDict[KEY_NAME] as! String)
-			}
-			else
-			{
-				(cell as! L2_Cell).time?.text = (rowDict[KEY_TIME] as! String)
-			}
-		}
-		else if gState[KEY_CO_STATE] as! COType == .cot_theater_detail
-		{
-			if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L0_CELL
-			{
-				let c = cell as! L0_Cell_theater
-				
-				c.name?.text = (rowDict[KEY_NAME] as! String)
-
-				guard
-					let theater = gTheater.filter({ $0.theater[KEY_ID] as? String == rowDict[KEY_ID] as? String }).first
-					else { fatalError("no theater returned") }
-
-				let thisDistance = theater.distance
-
-				c.distance.text = thisDistance.currentDist
-
-				switch thisDistance.state
-				{
-					case .failed:
-						///	print(".failed")
-						c.indicator.stopAnimating()
-					case .new:
-						//	print(".new")
-						c.indicator.startAnimating()
-						
-						let lat = theater.theater[KEY_LAT] as! String
-						let long = theater.theater[KEY_LONG] as! String
-
-						if (!tableView.isDragging && !tableView.isDecelerating)
-						{
-							self.startOperationForDistance(distance: thisDistance,
-														indexPath: indexPath as NSIndexPath,
-														lat: Double(lat)!, long: Double(long)!)
-						}
-
-					case .done:
-						//	print(".done")
-						c.indicator.stopAnimating()
-				}
-			}
-			else if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
-			{
-				(cell as! L1_Cell_movie).title?.text = (rowDict[KEY_TITLE] as! String)
-
-				var rating = "NR"
-
-				if (rowDict[KEY_RATING] is NSNull) == false
-				{
-					switch rowDict[KEY_RATING] as! String
-					{
-						case "PG-13", "R", "NC17", "PG", "G":
-							rating = rowDict[KEY_RATING] as! String
-						default:
-							rating = ""
-					}
-				}
-				
-				(cell as! L1_Cell_movie).rating.text = rating
-			}
-			else
-			{
-				(cell as! L2_Cell).time?.text = (rowDict[KEY_TIME] as! String)
-			}
-		}
-
-		if rowDict[KEY_IS_VISIBLE] as! Bool == true { cell.isHidden = false }
-		else { cell.isHidden = true }
-
-		return cell
+		return (UITableViewCell())
     }
 }
 
