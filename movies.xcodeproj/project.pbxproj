@@ -166,6 +166,7 @@
 		2C59608A205F001000182FCD /* L0_Cell_theater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_theater.swift; path = movies/Resource/L0_Cell_theater.swift; sourceTree = "<group>"; };
 		2C59608B205F001000182FCD /* L0_Cell_movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_movie.swift; path = movies/Resource/L0_Cell_movie.swift; sourceTree = "<group>"; };
 		2C596090205F01E100182FCD /* L0_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell.swift; path = movies/Resource/L0_Cell.swift; sourceTree = "<group>"; };
+		2C6BDEEC2065DD5200FF6322 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2C83BF371D82238E006B4CC6 /* movies_embedded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movies_embedded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C83BF3A1D82238E006B4CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../Movies/AppDelegate.swift; sourceTree = "<group>"; };
 		2C83BF3C1D82238E006B4CC6 /* ViewControllerMarquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMarquee.swift; sourceTree = "<group>"; };
@@ -308,6 +309,7 @@
 		2C83BF2E1D82238E006B4CC6 = {
 			isa = PBXGroup;
 			children = (
+				2C6BDEEC2065DD5200FF6322 /* README.md */,
 				2C4FE12A1D8267C700F1A3FF /* Objective C */,
 				2C83BF391D82238E006B4CC6 /* movies */,
 				2C40588D1F50DDDB00A6D598 /* movies_embeddedTests */,

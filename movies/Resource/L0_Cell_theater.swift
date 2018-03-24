@@ -23,7 +23,6 @@ class L0_Cell_theater: L0_Cell
 		
 		//	indicator.hidesWhenStopped = false
 		//	indicator.startAnimating()
-		
 		indicator.translatesAutoresizingMaskIntoConstraints = false
 		
 		contentView.addSubview(indicator)
@@ -32,10 +31,10 @@ class L0_Cell_theater: L0_Cell
 		indicator.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-24).isActive = true
 
 		name.font = UIFont(name: "HelveticaNeue", size: 16)
-		name.textColor = UIColor.black
+		name.textColor = UIColor.white
 		name.translatesAutoresizingMaskIntoConstraints = false
 		name.textAlignment = .left
-		
+
         contentView.addSubview(name)
 
 		name.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
@@ -43,10 +42,10 @@ class L0_Cell_theater: L0_Cell
 		name.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
 		name.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
 
-		name.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:24).isActive = true
+		name.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:28).isActive = true
 		
 		distance.font = UIFont(name: "HelveticaNeue", size: 12)
-		distance.textColor = UIColor.black
+		distance.textColor = UIColor.white
 		distance.translatesAutoresizingMaskIntoConstraints = false
 		distance.textAlignment = .left
 

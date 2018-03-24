@@ -21,10 +21,10 @@ class L0_Cell_movie: L0_Cell
 		let marginGuide = contentView.layoutMarginsGuide
 
 		title.font = UIFont(name: "HelveticaNeue", size: 16)
-		title.textColor = UIColor.black
+		title.textColor = UIColor.white
 		title.translatesAutoresizingMaskIntoConstraints = false
 		title.textAlignment = .left
-		
+
         contentView.addSubview(title)
 
 		title.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
@@ -32,10 +32,10 @@ class L0_Cell_movie: L0_Cell
 		title.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
 		title.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
 
-		title.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:24).isActive = true
+		title.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:28).isActive = true
 		
 		rating.font = UIFont(name: "HelveticaNeue", size: 12)
-		rating.textColor = UIColor.black
+		rating.textColor = UIColor.white
 		rating.translatesAutoresizingMaskIntoConstraints = false
 		rating.textAlignment = .left
 

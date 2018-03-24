@@ -24,14 +24,14 @@ class L0_Cell: UITableViewHeaderFooterView
     override init(reuseIdentifier: String?)
     { super.init(reuseIdentifier: reuseIdentifier)
 
-		let red = CGFloat((0xEEEEEE & 0xFF0000) >> 16) / 255.0
-		let green = CGFloat((0xEEEEEE & 0x00FF00) >> 8) / 255.0
-		let blue = CGFloat(0xEEEEEE & 0x00FF) / 255.0
+		let red = CGFloat((0x666666 & 0xFF0000) >> 16) / 255.0
+		let green = CGFloat((0x666666 & 0x00FF00) >> 8) / 255.0
+		let blue = CGFloat(0x666666 & 0x00FF) / 255.0
 	
 		contentView.backgroundColor = UIColor(red: red,
 											green: green,
 											blue: blue,
-											alpha: 0.2)
+											alpha: 1.0)
 
         let marginGuide = contentView.layoutMarginsGuide
 	
