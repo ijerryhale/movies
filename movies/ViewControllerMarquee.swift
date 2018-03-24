@@ -13,6 +13,35 @@
 import Foundation
 import UIKit
 
+//	MARK: LazyPoster
+class LazyPoster
+{
+	var urlString: String
+	var state = OpState.new
+	var image = UIImage()
+	
+	init(title: String, urlString: Any)
+	{
+		if urlString is NSNull { self.urlString = "" }
+		else { self.urlString = urlString as! String }
+		
+		self.image = createGenericPoster(title)
+	}
+}
+
+//	MARK: PendingMarqueeOperations
+class PendingMarqueeOperations
+{
+	lazy var inProgress = [NSIndexPath:Operation]()
+	
+	lazy var operationQueue: OperationQueue = {
+		var queue = OperationQueue()
+		queue.name = UUID().uuidString
+		queue.maxConcurrentOperationCount = 1
+		return queue
+	}()
+}
+
 //	MARK: ViewControllerMarquee
 class ViewControllerMarquee: UIViewController
 {
@@ -21,7 +50,7 @@ class ViewControllerMarquee: UIViewController
 	@IBAction func unwindToMarquee(segue: UIStoryboardSegue) { }
 	@IBAction func tapSettinsBtn(sender: UIButton) { self.performSegue(withIdentifier: S2_SETTINGS, sender: self) }
 
-    let pendingOperations = PendingOperations()
+    let pendingOperations = PendingMarqueeOperations()
 
     func startOperationForPoster(poster: LazyPoster, indexPath: NSIndexPath)
 	{
@@ -48,29 +77,24 @@ class ViewControllerMarquee: UIViewController
 			}
 		}
 
-        switch poster.state
+        if poster.state == .new
 		{
-			case .new:
+			if let _ = pendingOperations.inProgress[indexPath] { return }
+			
+			let downloadImg = DownloadImage(lazyPoster: poster)
+			
+			downloadImg.completionBlock = {
 				
-				if let _ = pendingOperations.inProgress[indexPath] { return }
+				if downloadImg.isCancelled { return }
 				
-				let downloadImg = DownloadImage(lazyPoster: poster)
-				
-				downloadImg.completionBlock = {
-					
-					if downloadImg.isCancelled { return }
-					
-					DispatchQueue.main.async(execute: {
-						self.pendingOperations.inProgress.removeValue(forKey: indexPath)
-						self.tableView.reloadRows(at: [indexPath as IndexPath], with: .fade)
-					})
-				}
-				
-				pendingOperations.inProgress[indexPath] = downloadImg
-				pendingOperations.operationQueue.addOperation(downloadImg)
-
-			default:
-				print("None.")
+				DispatchQueue.main.async(execute: {
+					self.pendingOperations.inProgress.removeValue(forKey: indexPath)
+					self.tableView.reloadRows(at: [indexPath as IndexPath], with: .fade)
+				})
+			}
+			
+			pendingOperations.inProgress[indexPath] = downloadImg
+			pendingOperations.operationQueue.addOperation(downloadImg)
         }
     }
 
@@ -179,7 +203,7 @@ extension ViewControllerMarquee : UITableViewDataSource
 				cell.indicator.stopAnimating()
         }
         
-        return cell
+        return (cell)
     }
 }
 
@@ -208,7 +232,7 @@ extension ViewControllerMarquee : UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
-		gState = [KEY_CO_STATE : COType.cot_movie_detail, KEY_CO_INDEX : indexPath.row]
+		gState = [KEY_CO_STATE : COType.movie_detail, KEY_CO_INDEX : indexPath.row]
 
 		self.performSegue(withIdentifier: S2_BOX_OFFICE,
 							sender: nil)

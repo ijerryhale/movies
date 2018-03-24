@@ -125,7 +125,7 @@ class ViewControllerContainer: UIViewController
 	override func viewDidLoad()
 	{ super.viewDidLoad(); print("ViewControllerContainer viewDidLoad")
 
-		if gState[KEY_CO_STATE] as! COType == .cot_theater_detail
+		if gState[KEY_CO_STATE] as! COType == .theater_detail
 		{
 			self.performSegue(withIdentifier: S2_THEATER_DETAIL, sender: self)
 		}

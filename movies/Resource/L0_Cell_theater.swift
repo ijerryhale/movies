@@ -2,7 +2,7 @@
 //  L0_Cell_theater.swift
 //  movies
 //
-//  Created by Jerry Hale on 3/28/18.
+//  Created by Jerry Hale on 3/21/18.
 //  Copyright © 2018 jhale. All rights reserved.
 //
 
@@ -10,65 +10,56 @@ import UIKit
 
 class L0_Cell_theater: L0_Cell
 {
-	let titleLabel = UILabel()
-	let disclosureButton = UIButton()
-
+	var name = UILabel()
+	var distance = UILabel()
+	var indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+	
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     override init(reuseIdentifier: String?)
     { super.init(reuseIdentifier: reuseIdentifier)
 
-		let red = CGFloat((0xEEEEEE & 0xFF0000) >> 16) / 255.0
-		let green = CGFloat((0xEEEEEE & 0x00FF00) >> 8) / 255.0
-		let blue = CGFloat(0xEEEEEE & 0x00FF) / 255.0
-	
-		contentView.backgroundColor = UIColor(red: red,
-											green: green,
-											blue: blue,
-											alpha: 0.2)
+		let marginGuide = contentView.layoutMarginsGuide
+		
+		//	indicator.hidesWhenStopped = false
+		//	indicator.startAnimating()
+		
+		indicator.translatesAutoresizingMaskIntoConstraints = false
+		
+		contentView.addSubview(indicator)
+		
+		indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+		indicator.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-24).isActive = true
 
-        let marginGuide = contentView.layoutMarginsGuide
-	
-        disclosureButton.setImage(UIImage(named: "carat.png"), for: UIControlState.normal)
-		disclosureButton.setImage(UIImage(named: "carat-open.png"), for: UIControlState.selected)
+		name.font = UIFont(name: "HelveticaNeue", size: 16)
+		name.textColor = UIColor.black
+		name.translatesAutoresizingMaskIntoConstraints = false
+		name.textAlignment = .left
+		
+        contentView.addSubview(name)
 
-        contentView.addSubview(disclosureButton)
+		name.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
+		
+		name.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
+		name.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
 
-        disclosureButton.translatesAutoresizingMaskIntoConstraints = false
-        disclosureButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        disclosureButton.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
-        disclosureButton.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
-		disclosureButton.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
+		name.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:24).isActive = true
+		
+		distance.font = UIFont(name: "HelveticaNeue", size: 12)
+		distance.textColor = UIColor.black
+		distance.translatesAutoresizingMaskIntoConstraints = false
+		distance.textAlignment = .left
 
-		disclosureButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell_theater.tapHeader(_:))))
+        contentView.addSubview(distance)
+		
+		distance.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
+		
+		distance.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
+		distance.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
+		
+		distance.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-8).isActive = true
+		
 
-        contentView.addSubview(titleLabel)
-
-        titleLabel.font = UIFont(name: "System", size: 16)
-        titleLabel.textColor = UIColor.black
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-	
-		titleLabel.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
-
-		titleLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
-		titleLabel.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
-	
-          addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell_theater.tapHeader(_:))))
+		//	indicator.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-8).isActive = true
     }
-
-	@objc func tapHeader(_ gestureRecognizer: UITapGestureRecognizer)
-	{
-        guard let cell = gestureRecognizer.view as? L0_Cell else {
-			let cell = gestureRecognizer.view as? UIButton
-
-			delegate?.toggleSectionIsExpanded(self, section: (cell?.superview?.superview as! L0_Cell_theater).section)
-	
-			return
-        }
-
-        delegate?.toggleSectionIsExpanded(self, section: cell.section)
-    }
-	
-    func setIsExpanded(_ isExpanded: Bool) { disclosureButton.isSelected = isExpanded }
 }

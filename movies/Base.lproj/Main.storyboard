@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,11 +36,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yaj-Mt-dP3">
-                                <rect key="frame" x="64" y="46" width="247" height="575"/>
+                                <rect key="frame" x="64" y="46" width="247" height="613"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="363" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ah9-IC-JCm">
-                                        <rect key="frame" x="1" y="1" width="245" height="573"/>
+                                        <rect key="frame" x="1" y="1" width="245" height="611"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableView>
@@ -58,7 +58,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2074" y="-843"/>
+            <point key="canvasLocation" x="-2074.4000000000001" y="-843.32833583208401"/>
         </scene>
         <!--View Controller Box Office-->
         <scene sceneID="PzD-du-YH5">
@@ -357,7 +357,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYo-hQ-Vr6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="sXx-94-Ghm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="388" y="-560.41979010494754"/>
+            <point key="canvasLocation" x="388" y="-526"/>
         </scene>
         <!--View Controller Trailer-->
         <scene sceneID="2Df-YL-8aJ">
@@ -418,7 +418,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tOA-Qf-8oN" sceneMemberID="firstResponder"/>
                 <exit id="ZYa-OD-gIU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="388" y="-106"/>
+            <point key="canvasLocation" x="388" y="-108"/>
         </scene>
         <!--View Controller Theater Detail-->
         <scene sceneID="OZY-5g-cF0">
@@ -529,7 +529,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njT-AR-dBv" sceneMemberID="firstResponder"/>
                 <exit id="wFw-Fo-Pfl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="16.800000000000001" y="-1434.3328335832084"/>
+            <point key="canvasLocation" x="-370" y="-1165"/>
         </scene>
         <!--View Controller Web-->
         <scene sceneID="fui-9C-mmf">
@@ -570,7 +570,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p7D-vu-ZQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="VjJ-ta-Ezt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="17" y="-2104"/>
+            <point key="canvasLocation" x="-370" y="-1824"/>
         </scene>
         <!--Settings-->
         <scene sceneID="cYa-OA-Smb">
@@ -795,6 +795,6 @@
         <image name="tomato" width="12" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Bdf-X4-Bd5"/>
+        <segue reference="WkJ-xQ-sq6"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,52 +9,11 @@
 import Foundation
 import UIKit
 
-enum COType { case cot_app_launch, cot_theater_detail, cot_movie_detail }
+enum COType { case app_launch, theater_detail, movie_detail }
 enum OpState { case new, done, failed }
 
-//	MARK: LazyDistance
-class LazyDistance
-{
-	var theaterAddress: String
-	var state = OpState.new
-	var currentDist: String = ""
 
-	init(theaterAddress: String)
-	{
-		self.theaterAddress = theaterAddress
-	}
-}
-
-//	MARK: LazyPoster
-class LazyPoster
-{
-	var urlString: String
-	var state = OpState.new
-	var image = UIImage()
-	
-	init(title: String, urlString: Any)
-	{
-		if urlString is NSNull { self.urlString = "" }
-		else { self.urlString = urlString as! String }
-		
-		self.image = createGenericPoster(title)
-	}
-}
-
-//	MARK: PendingOperations
-class PendingOperations
-{
-	lazy var inProgress = [NSIndexPath:Operation]()
-	
-	lazy var operationQueue: OperationQueue = {
-		var queue = OperationQueue()
-		queue.name = UUID().uuidString
-		queue.maxConcurrentOperationCount = 1
-		return queue
-	}()
-}
-
-var gState = [KEY_CO_STATE : COType.cot_app_launch, KEY_CO_INDEX : 0] as [String : Any]
+var gState = [KEY_CO_STATE : COType.app_launch, KEY_CO_INDEX : 0] as [String : Any]
 var gIndex = [[String : AnyObject]]()
 var gTheater = [(theater: [String : AnyObject], distance: LazyDistance)]()
 var gMovie = [(movie: [String : AnyObject], poster: LazyPoster)]()
@@ -95,7 +54,7 @@ class AppDelegate: UIResponder
 			return topViewControllerWithRootViewController(rootViewController: rootViewController.presentedViewController)
 		}
 		
-		return rootViewController
+		return (rootViewController)
 	}
 
 	func notif_defaults_changed(notification: Notification)
