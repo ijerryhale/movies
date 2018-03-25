@@ -26,10 +26,10 @@ Start wiring in Settings stuff so we can start to code for dynamism in what is r
 #### March 23, 2018
 Redesign UITableView to use Sections. Still a bit of work to do here but a lot of it is done.
 
-![marquee](https://user-images.githubusercontent.com/4106530/30836916-2c8de1ea-a216-11e7-86b3-c3bf988b12f3.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/30836918-2fce430e-a216-11e7-9f65-689fcea14b51.png "Theaters for Movie") |
+![marquee](https://user-images.githubusercontent.com/4106530/37880006-a4c080a6-3036-11e8-8692-86eba4b35286.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/37880008-b1ddb042-3036-11e8-9c9a-0dc0f987d60e.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 *Marquee* | *Theaters for Movie* |
-![movies_for_theater](https://user-images.githubusercontent.com/4106530/30836920-3237d1aa-a216-11e7-9d54-762cf4a130b1.png "Movies for Theater") | ![trailers](https://user-images.githubusercontent.com/4106530/30836924-34acd7b4-a216-11e7-89ba-142837ad3cce.png "View Trailers") |
+![movies_for_theater](https://user-images.githubusercontent.com/4106530/37880014-c06d644a-3036-11e8-8490-efdafa8c71af.png "Movies for Theater") | ![trailers](https://user-images.githubusercontent.com/4106530/37880023-d229479e-3036-11e8-80cc-8b8fe4b611c3.png "View Trailers") |
 *Movies for Theater* | *View Trailer* |
-![itunes](https://user-images.githubusercontent.com/4106530/31039370-0978f64e-a532-11e7-9f9e-8994d4b0b0af.png "iTunes Preview") | ![driving_directions](https://user-images.githubusercontent.com/4106530/30836931-3f476220-a216-11e7-99c9-661485056d6d.png "Driving Directions") |
+![itunes](https://user-images.githubusercontent.com/4106530/37880030-e414e12a-3036-11e8-8926-f8421313b207.png "iTunes Preview") | ![driving_directions](https://user-images.githubusercontent.com/4106530/37880037-f2337866-3036-11e8-9945-16327237f8a9.png "Driving Directions") |
 *iTunes Preview* | *Driving Directions*
