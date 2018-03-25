@@ -26,6 +26,9 @@ Start wiring in Settings stuff so we can start to code for dynamism in what is r
 #### March 23, 2018
 Redesign UITableView to use Sections. Still a bit of work to do here but a lot of it is done.
 
+#### March 25, 2018
+Update embedded data.
+
 ![marquee](https://user-images.githubusercontent.com/4106530/37880006-a4c080a6-3036-11e8-8692-86eba4b35286.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/37880008-b1ddb042-3036-11e8-9c9a-0dc0f987d60e.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 *Marquee* | *Theaters for Movie* |

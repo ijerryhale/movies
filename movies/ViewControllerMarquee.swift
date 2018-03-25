@@ -3,7 +3,7 @@
 //  movies
 //
 //  Created by Jerry Hale on 9/8/16.
-//  Copyright © 2017 jhale. All rights reserved.
+//  Copyright © 2018 jhale. All rights reserved.
 //
 
 //	LazyPoster class and lazy loading code is based upon:

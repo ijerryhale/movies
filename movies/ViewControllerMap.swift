@@ -3,7 +3,7 @@
 //  movies
 //
 //  Created by Jerry Hale on 3/30/17.
-//  Copyright © 2017 jhale. All rights reserved.
+//  Copyright © 2018 jhale. All rights reserved.
 //
 
 import UIKit
@@ -41,7 +41,7 @@ class ViewControllerMap: UIViewController
 		addressString += ", "
 		addressString += aa?[KEY_STATE] as! String
 
-		print(addressString)
+		//	print(addressString)
 		let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = addressString
         request.region = mapView.region

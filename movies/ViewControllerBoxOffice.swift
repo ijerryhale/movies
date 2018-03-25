@@ -3,7 +3,7 @@
 //  movies
 //
 //  Created by Jerry Hale on 10/2/16.
-//  Copyright © 2017 jhale. All rights reserved.
+//  Copyright © 2018 jhale. All rights reserved.
 //
 //	3/20/18 - rewrote most of this to account
 //	for using Sections in UITableView
@@ -500,6 +500,8 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 {
     func toggleSectionIsExpanded(_ header: L0_Cell, section: Int)
     {
+    	if (childViewControllers[0].childViewControllers[0] is ViewControllerTrailer) { return }
+		
         let isExpanded = !rowDictionary[section].isExpanded
 		
         //	toggle collapse

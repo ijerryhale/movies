@@ -378,6 +378,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 { NSLog(@"DataAccess.parseindex");
 
 	NSString		*xmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
 	NSError			*parseError = nil;
 	NSDictionary	*xmlDictionary = [XMLParse dictionaryForXMLString:xmlString error:&parseError];
 	
@@ -470,7 +471,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     NSArray	*array = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
 
 	NSMutableArray	*theaters = [NSMutableArray array];
-	
+
 	if (array) for (int i = 0;i < [array count];i++)
 	{
 		//	array of array of theaters
@@ -478,7 +479,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 		for (int j = 0;j < [pages count];j++)
 			for (int k = 0;k < [pages[j] count];k++)
-				[theaters addObject:pages[j][k]];	//	theaters[j][k] is a single theater dictionary
+				[theaters addObject:pages[j][k]];
 	}
 
 	return(theaters);

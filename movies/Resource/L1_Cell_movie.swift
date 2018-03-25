@@ -3,7 +3,7 @@
 //  movies
 //
 //  Created by Jerry Hale on 5/25/17.
-//  Copyright © 2017 jhale. All rights reserved.
+//  Copyright © 2018 jhale. All rights reserved.
 //
 
 import UIKit
