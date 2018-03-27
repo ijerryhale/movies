@@ -14,35 +14,31 @@
         <tableViewCell clipsSubviews="YES" alpha="0.84999999999999998" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Marquee_Cell" rowHeight="106" id="fYi-e4-7Ag" userLabel="Marquee_Cell" customClass="Marquee_Cell" customModule="movies" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="247" height="365"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fYi-e4-7Ag" id="ipH-s8-BuY">
+            <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fYi-e4-7Ag" id="ipH-s8-BuY">
                 <rect key="frame" x="0.0" y="0.0" width="247" height="364.5"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HSW-qr-P68">
-                        <rect key="frame" x="0.0" y="0.0" width="247" height="365"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BmC-0q-6gd">
-                                <rect key="frame" x="1" y="1" width="245" height="363"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7oc-lH-1d6">
-                                <rect key="frame" x="113" y="220" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7oc-lH-1d6">
+                        <rect key="frame" x="113" y="172" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </activityIndicatorView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="filmclip" translatesAutoresizingMaskIntoConstraints="NO" id="BmC-0q-6gd">
+                        <rect key="frame" x="1" y="0.0" width="245" height="363"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="indicator" destination="7oc-lH-1d6" id="Se7-tf-9Uv"/>
-                <outlet property="poster" destination="BmC-0q-6gd" id="ybh-gz-YFe"/>
+                <outlet property="indicator" destination="7oc-lH-1d6" id="bIW-N3-x4X"/>
+                <outlet property="poster" destination="BmC-0q-6gd" id="CeH-uM-Wv8"/>
             </connections>
             <point key="canvasLocation" x="-23.5" y="-210.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="filmclip" width="134" height="194"/>
+    </resources>
 </document>

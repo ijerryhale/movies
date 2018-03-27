@@ -145,7 +145,6 @@ class Geocode {
 	}
 }
 
-//	MARK: createGenericPoster
 func createGenericPoster(_ title: String) -> UIImage
 {
 	var image = UIImage(named: "filmclip.png")
@@ -156,24 +155,24 @@ func createGenericPoster(_ title: String) -> UIImage
 
 	let titleString =
 				NSMutableAttributedString(string: title,
-			attributes: [.font:UIFont(name: "Helvetica", size: 17)!])
-	
+			attributes: [.font:UIFont(name: "Helvetica Neue", size: 14)!])
+
 	titleString.addAttribute(
 			.foregroundColor,
-				value: UIColor.white,
+				value: UIColor.darkGray,
 				range: NSRange(location:0, length:titleString.length))
-	
+
 	let paraStyle = NSMutableParagraphStyle()
 	paraStyle.alignment = .center
 
 	titleString.addAttribute(.paragraphStyle, value:paraStyle, range:NSRange(location:0, length:titleString.length))
-	
-	titleString.draw(in: CGRect(x: 10, y: 50, width: (image?.size.width)! - 20, height: (image?.size.height)!))
+
+	titleString.draw(in: CGRect(x: 24, y: 50, width: (image?.size.width)! - 48, height: (image?.size.height)!))
 
 	image = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext()
 
-	return image!
+	return (image!)
 }
 
 func getTicketPurchasePageUrl(tmsID: String, theaterId: String, date: String, time: String) -> String
