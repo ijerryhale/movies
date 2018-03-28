@@ -9,6 +9,7 @@
 import UIKit
 
 protocol SectionHeaderDelegate {
+	func ShowSectionDetail(_ header: L0_Cell, section: Int)
     func toggleSectionIsExpanded(_ header: L0_Cell, section: Int)
 }
 
@@ -47,14 +48,22 @@ class L0_Cell: UITableViewHeaderFooterView
 
 		disclosureButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:4).isActive = true
 	
-		disclosureButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapHeader(_:))))
+		disclosureButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapExpandCollapse(_:))))
 
-		addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapHeader(_:))))
+		addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapShowDetail(_:))))
 	}
 	
-	@objc func tapHeader(_ gestureRecognizer: UITapGestureRecognizer)
+	@objc func tapShowDetail(_ gestureRecognizer: UITapGestureRecognizer)
 	{
-        guard let cell = gestureRecognizer.view as? L0_Cell else {
+		let	cell = gestureRecognizer.view as? L0_Cell
+
+		delegate?.ShowSectionDetail(self, section: (cell?.section)!)
+    }
+
+	@objc func tapExpandCollapse(_ gestureRecognizer: UITapGestureRecognizer)
+	{
+        guard let cell = gestureRecognizer.view as? UILabel else
+        {
 			let cell = gestureRecognizer.view as? UIButton
 
 			delegate?.toggleSectionIsExpanded(self, section: (cell?.superview?.superview as! L0_Cell).section)
@@ -62,7 +71,7 @@ class L0_Cell: UITableViewHeaderFooterView
 			return
         }
 
-        delegate?.toggleSectionIsExpanded(self, section: cell.section)
+		delegate?.toggleSectionIsExpanded(self, section: (cell.superview?.superview as! L0_Cell).section)
     }
 
     func setIsExpanded(_ isExpanded: Bool) { disclosureButton.isSelected = isExpanded }

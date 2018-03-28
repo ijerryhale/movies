@@ -22,8 +22,8 @@
                         <rect key="frame" x="113" y="172" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </activityIndicatorView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="filmclip" translatesAutoresizingMaskIntoConstraints="NO" id="BmC-0q-6gd">
-                        <rect key="frame" x="1" y="0.0" width="245" height="363"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="filmclip" translatesAutoresizingMaskIntoConstraints="NO" id="BmC-0q-6gd">
+                        <rect key="frame" x="1" y="0.0" width="245" height="364"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>

@@ -35,6 +35,9 @@ class L0_Cell_theater: L0_Cell
 		name.translatesAutoresizingMaskIntoConstraints = false
 		name.textAlignment = .left
 
+		name.isUserInteractionEnabled = true
+		name.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapExpandCollapse(_:))))
+
         contentView.addSubview(name)
 
 		name.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
@@ -57,8 +60,8 @@ class L0_Cell_theater: L0_Cell
 		distance.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
 		
 		distance.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-8).isActive = true
-		
-
-		//	indicator.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-8).isActive = true
-    }
+	
+		distance.isUserInteractionEnabled = true
+		distance.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapExpandCollapse(_:))))
+	}
 }

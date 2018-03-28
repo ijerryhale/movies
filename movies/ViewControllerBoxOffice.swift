@@ -8,6 +8,7 @@
 //	3/20/18 - rewrote most of this to account
 //	for using Sections in UITableView
 
+import QuartzCore
 import CoreLocation
 import MapKit
 import UIKit
@@ -473,6 +474,9 @@ class ViewControllerBoxOffice: UIViewController
 				showdate.text = dateFormatter.string(from: day!)
 		}
 		
+//		tableView.layer.borderWidth = 1.0;
+//		tableView.layer.borderColor = UIColor.white.cgColor
+
 		tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -498,6 +502,35 @@ class ViewControllerBoxOffice: UIViewController
 
 extension ViewControllerBoxOffice: SectionHeaderDelegate
 {
+   func ShowSectionDetail(_ header: L0_Cell, section: Int)
+    {
+    	if (childViewControllers[0].childViewControllers[0] is ViewControllerTrailer) { return }
+
+		switch gState[KEY_CO_STATE] as! COType
+		{
+			case .movie_detail:
+				//	if we are showing Movie detail
+				//	and click is on L0 row show
+				//	Movie detail
+
+				gState[KEY_CO_INDEX]
+						= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }
+
+				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
+			case .theater_detail:
+				//	do opposite for Theater detail
+				//	and click is on L0 row show
+				//	Theater detail
+
+				gState[KEY_CO_INDEX]
+						= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }
+
+				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
+			default:
+				print("unexpected COType in toggleSectionIsExpanded")
+		}
+    }
+
     func toggleSectionIsExpanded(_ header: L0_Cell, section: Int)
     {
     	if (childViewControllers[0].childViewControllers[0] is ViewControllerTrailer) { return }

@@ -305,7 +305,7 @@ extension AppDelegate : UIApplicationDelegate
 			self.window?.rootViewController = mvc
 			self.window?.makeKeyAndVisible()
 
-			print(result)
+			//	print(result)
 		}
 
 		return (true)

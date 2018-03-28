@@ -25,6 +25,9 @@ class L0_Cell_movie: L0_Cell
 		title.translatesAutoresizingMaskIntoConstraints = false
 		title.textAlignment = .left
 
+		title.isUserInteractionEnabled = true
+		title.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapExpandCollapse(_:))))
+		
         contentView.addSubview(title)
 
 		title.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
@@ -47,5 +50,8 @@ class L0_Cell_movie: L0_Cell
 		rating.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
 		
 		rating.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-8).isActive = true
+		
+		rating.isUserInteractionEnabled = true
+		rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapExpandCollapse(_:))))
     }
 }

@@ -9,7 +9,7 @@
 //	LazyPoster class and lazy loading code is based upon:
 //	https://www.raywenderlich.com/76341/use-nsoperation-nsoperationqueue-swift
 
-
+import QuartzCore
 import Foundation
 import UIKit
 
@@ -156,6 +156,9 @@ class ViewControllerMarquee: UIViewController
 		
 		self.view.accessibilityIdentifier = AXID_marqueeView
 	
+		tableView.layer.borderWidth = 1.0;
+		tableView.layer.borderColor = UIColor.white.cgColor
+		
 		tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: CGRect.zero)
