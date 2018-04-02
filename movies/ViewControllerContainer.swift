@@ -18,7 +18,7 @@ class ViewControllerContainer: UIViewController
 		tc.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: tc)
 		self.performSegue(withIdentifier: S2_MOVIE_DETAIL, sender: self)
 		
-		let mdc: ViewControllerMovieDetail? = self.childViewControllers.flatMap({ $0 as? ViewControllerMovieDetail }).first
+		let mdc: ViewControllerMovieDetail? = self.childViewControllers.compactMap({ $0 as? ViewControllerMovieDetail }).first
 
 		mdc?.updateView()
 	}
@@ -26,7 +26,7 @@ class ViewControllerContainer: UIViewController
 	func trailerSegueWind()
 	{
 		//	pop the ViewControllerMovieDetail and push the ViewControllerTrailer
-		let mdc: ViewControllerMovieDetail? = self.childViewControllers.flatMap({ $0 as? ViewControllerMovieDetail }).first
+		let mdc: ViewControllerMovieDetail? = self.childViewControllers.compactMap({ $0 as? ViewControllerMovieDetail }).first
 		
 		mdc?.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: mdc)
 		self.performSegue(withIdentifier: S2_MOVIE_TRAILER, sender: self)

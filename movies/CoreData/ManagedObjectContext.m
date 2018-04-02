@@ -3,7 +3,7 @@
 //  movies
 //
 //  Created by Jerry Hale on 10/28/17.
-//  Copyright © 2017 jhale. All rights reserved.
+//  Copyright © 2018 jhale. All rights reserved.
 //
 
 NSString * const CORE_DATA_EXCEPTION = @"Core Data exception";
@@ -61,7 +61,7 @@ NSString * const MANAGED_CONTEXT_DID_SAVE_FAILED = @"DataManagerDidSaveFailedNot
 	NSURL *storeURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
             storeURL = [storeURL URLByAppendingPathComponent:@"movies.sqlite"];
 
-	NSLog(storeURL.absoluteString);
+	NSLog(@"%@", storeURL.absoluteString);
 	
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
 						       configuration:nil URL:storeURL options:options error:&error])

@@ -281,7 +281,7 @@ class ViewControllerTrailer: UIViewController
 
 	func handleErrorWithMessage(_ message: String?, error: Error? = nil)
 	{
-        NSLog("Error occured with message: \(message), error: \(error).")
+		NSLog("Error occured with message: \(message ?? "No Message"), error: \(String(describing: error)).")
     
         let alertTitle = NSLocalizedString("alert.error.title", comment: "Alert title for errors")
         let defaultAlertMessage = NSLocalizedString("error.default.description", comment: "Default error message when no NSError provided")

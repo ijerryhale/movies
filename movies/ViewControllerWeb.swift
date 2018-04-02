@@ -35,7 +35,7 @@ class ViewControllerWeb: UIViewController
 						self.webView.loadRequest(request)
 					})
 				}
-				else { print("ERROR: \(error)") }
+				else { print("ERROR: \(String(describing: error))") }
             }
 
             task.resume()

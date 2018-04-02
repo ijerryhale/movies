@@ -68,18 +68,17 @@ class PendingDistanceOperations
 	}()
 }
 //	tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
-extension UITableView {
-
+extension UITableView
+{
     //	the table section headers that are visible in the table view. (read-only)
     //	the value of this property is an array containing UITableViewHeaderFooterView objects, each representing a visible cell in the table view.
-	
     //	derived From: [http://stackoverflow.com/a/31029960/5191100](http://stackoverflow.com/a/31029960/5191100)
 
 	func indicesOfVisibleSections() -> Array<Int>?
     {
         //	can't just use indexPathsForVisibleRows, since it
         //	won't return index paths for empty sections.
-        var visibleSectionIndexes = Array<Int>()
+        var visibleSectionIndex = Array<Int>()
 
         for i in 0..<self.numberOfSections
         {
@@ -104,14 +103,11 @@ extension UITableView {
                     height: self.bounds.size.height
                 )
 
-                if (visiblePartOfTableView.intersects(headerRect!))
-                {
-                    visibleSectionIndexes.append(i)
-                }
+                if (visiblePartOfTableView.intersects(headerRect!)) { visibleSectionIndex.append(i) }
             }
         }
 
-        return (visibleSectionIndexes)
+        return (visibleSectionIndex)
     }
 }
 

@@ -157,9 +157,16 @@ func createGenericPoster(_ title: String) -> UIImage
 				NSMutableAttributedString(string: title,
 			attributes: [.font:UIFont(name: "Helvetica Neue", size: 14)!])
 
+	let red = CGFloat((0x333333 & 0xFF0000) >> 16) / 255.0
+	let green = CGFloat((0x333333 & 0x00FF00) >> 8) / 255.0
+	let blue = CGFloat(0x333333 & 0x00FF) / 255.0
+
 	titleString.addAttribute(
 			.foregroundColor,
-				value: UIColor.darkGray,
+				value: UIColor(red: red,
+								green: green,
+								blue: blue,
+								alpha: 1.0),
 				range: NSRange(location:0, length:titleString.length))
 
 	let paraStyle = NSMutableParagraphStyle()
@@ -179,27 +186,27 @@ func getTicketPurchasePageUrl(tmsID: String, theaterId: String, date: String, ti
 {
 	//"07-18-2007+22:25"
 	
-	let isPM = ("PM" == time.substring(from: time.index(time.endIndex, offsetBy: -2)))
-	
-	let hour = time.substring(to: time.index(time.startIndex, offsetBy: 2))
-	var min = time.substring(from: time.index(time.startIndex, offsetBy: 2))
-
-	min = min.substring(to: min.index(min.endIndex, offsetBy: -3))
+//	let isPM = ("PM" == time.substring(from: time.index(time.endIndex, offsetBy: -2)))
+//
+//	let hour = time.substring(to: time.index(time.startIndex, offsetBy: 2))
+//	var min = time.substring(from: time.index(time.startIndex, offsetBy: 2))
+//
+//	min = min.substring(to: min.index(min.endIndex, offsetBy: -3))
 	//	print(hour)
 	//	print(min)
 	
-	var timeStr = hour + min
+//	var timeStr = hour + min
 	
-	if (isPM)
-	{
-		if (Int(hour)! < 12)
-		{
-			let fmt = Int(hour)! + 12
-			
-			timeStr = String(fmt) + min;
-		}
-	}
-	else if (Int(hour)! == 12) { timeStr = "00" + min }
+//	if (isPM)
+//	{
+//		if (Int(hour)! < 12)
+//		{
+//			let fmt = Int(hour)! + 12
+//
+//			timeStr = String(fmt) + min;
+//		}
+//	}
+//	else if (Int(hour)! == 12) { timeStr = "00" + min }
 	
 	//	print(timeStr)
 	

@@ -136,8 +136,6 @@ class ViewControllerMarquee: UIViewController
 	{
 		if segue.identifier == S2_SETTINGS
 		{
-//			let pc = (segue.destination as? PreferenceViewController)!
-//			pc.callingViewControler = self
 		}
 	}
 
