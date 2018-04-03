@@ -42,9 +42,8 @@ class ViewControllerMovieDetail : UIViewController
 		(parent?.parent as! ViewControllerBoxOffice).performSegue(withIdentifier: S2_ITUNES, sender: self)
 	}
 	
-	func updateView()
+	func updateView(index: Int)
 	{
-		let index = gState[KEY_CO_INDEX] as! Int
 		let movie = gMovie[index]
 
 		if movie.movie[KEY_POSTER] is NSNull { poster.image = createGenericPoster(movie.movie[KEY_TITLE] as! String) }
@@ -144,7 +143,10 @@ class ViewControllerMovieDetail : UIViewController
 	}
 	//	func getTicketPurchasePageUrl(movieId, theaterId, time) -> String
 	@objc func segue_to_marquee()
-	{ (parent?.parent as! ViewControllerBoxOffice).performSegue(withIdentifier: S2_MARQUEE, sender: self) }
+	{
+		gState = .marquee
+		(parent?.parent as! ViewControllerBoxOffice).performSegue(withIdentifier: S2_MARQUEE, sender: self)
+	}
 
 	//	MARK: UIViewController overrides
 	override func viewWillDisappear(_ animated: Bool)

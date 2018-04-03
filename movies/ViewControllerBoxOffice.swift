@@ -124,26 +124,28 @@ class ViewControllerBoxOffice: UIViewController
 	
 	@IBAction func tapAllTheatersBtn(sender: UIButton)
 	{
-		gState[KEY_CO_STATE] = COType.theater_detail
-		gState[KEY_CO_INDEX] = 0
-
+		gState = .theater
+		gIndexPath.section = 0
+		gIndexPath.row = NSNotFound
+		
 		all_theaters()
 		tableView.reloadData()
 		tableView.scrollToRow(at: [0, NSNotFound], at: .top, animated: false)
 		
-		(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView()
+		(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView(index: 0)
 	}
 
 	@IBAction func tapAllMoviesBtn(sender: UIButton)
 	{
-		gState[KEY_CO_STATE] = COType.movie_detail
-		gState[KEY_CO_INDEX] = 0
-		
+		gState = .movie
+		gIndexPath.section = 0
+		gIndexPath.row = NSNotFound
+
 		all_movies()
 		tableView.reloadData()
 		tableView.scrollToRow(at: [0, NSNotFound], at: .top, animated: false)
 
-		(childViewControllers.first as! ViewControllerContainer).updateMovieDetailView()
+		(childViewControllers.first as! ViewControllerContainer).updateMovieDetailView(index: 0)
 	}
 
 	@IBAction func unwindToBoxOffice(segue: UIStoryboardSegue) { /*print("unwindToBoxOffice") */ }
@@ -434,27 +436,39 @@ class ViewControllerBoxOffice: UIViewController
         }
 	}
 
-	override func viewWillAppear(_ animated: Bool)
-	{ super.viewWillAppear(animated); print("ViewControllerBoxOffice viewWillAppear ")
-	
-		let movie = gMovie[gState[KEY_CO_INDEX] as! Int]
-
-		if gState[KEY_CO_STATE] as! COType == .movie_detail
-		{
-			for i in 0...rowDictionary.count - 1
-			{
-				if rowDictionary[i].dict[KEY_TMS_ID] as! String == movie.movie[KEY_TMS_ID] as! String
-				{
-					tableView.scrollToRow(at: [i, NSNotFound], at: .top, animated: false)
-					break
-				}
-			}
-		}
-	}
-	
 	override func viewDidLoad()
 	{ super.viewDidLoad(); print("ViewControllerBoxOffice viewDidLoad ")
+
+		//	only called from ViewControllerMarquee
+		tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+		tableView.separatorColor = UIColor.clear;
+
+        tableView.register(UINib(nibName: VALUE_L0_CELL_MOVIE, bundle: nil), forCellReuseIdentifier: VALUE_L0_CELL_MOVIE)
+        tableView.register(UINib(nibName: VALUE_L0_CELL_THEATER, bundle: nil), forCellReuseIdentifier: VALUE_L0_CELL_THEATER)
+        tableView.register(UINib(nibName: VALUE_L1_CELL_MOVIE, bundle: nil), forCellReuseIdentifier: VALUE_L1_CELL_MOVIE)
+        tableView.register(UINib(nibName: VALUE_L1_CELL_THEATER, bundle: nil), forCellReuseIdentifier: VALUE_L1_CELL_THEATER)
+		tableView.register(UINib(nibName: VALUE_L2_CELL, bundle: nil), forCellReuseIdentifier: VALUE_L2_CELL)
+		
+		tableView.contentInset = UIEdgeInsetsMake(2, 0, 0, 0);
+
+		//	MV006798690000
+		all_movies()
 	
+		tableView.reloadData()
+		
+		let movie = gMovie[gIndexPath.section]
+
+		for i in 0...rowDictionary.count - 1
+		{
+			if rowDictionary[i].dict[KEY_TMS_ID] as! String == movie.movie[KEY_TMS_ID] as! String
+			{
+				tableView.scrollToRow(at: [i, NSNotFound], at: .top, animated: false)
+				break
+			}
+		}
+
 		switch UserDefault.getDayOffset()
 		{
 			case 0:
@@ -469,94 +483,78 @@ class ViewControllerBoxOffice: UIViewController
 
 				showdate.text = dateFormatter.string(from: day!)
 		}
-		
-//		tableView.layer.borderWidth = 1.0;
-//		tableView.layer.borderColor = UIColor.white.cgColor
-
-		tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-		tableView.separatorColor = UIColor.clear;
-
-        tableView.register(UINib(nibName: VALUE_L0_CELL_MOVIE, bundle: nil), forCellReuseIdentifier: VALUE_L0_CELL_MOVIE)
-        tableView.register(UINib(nibName: VALUE_L0_CELL_THEATER, bundle: nil), forCellReuseIdentifier: VALUE_L0_CELL_THEATER)
-		
-        tableView.register(UINib(nibName: VALUE_L1_CELL_MOVIE, bundle: nil), forCellReuseIdentifier: VALUE_L1_CELL_MOVIE)
-        tableView.register(UINib(nibName: VALUE_L1_CELL_THEATER, bundle: nil), forCellReuseIdentifier: VALUE_L1_CELL_THEATER)
-
-		tableView.register(UINib(nibName: VALUE_L2_CELL, bundle: nil), forCellReuseIdentifier: VALUE_L2_CELL)
-		
-		tableView.contentInset = UIEdgeInsetsMake(2, 0, 0, 0);
-
-		//	MV006798690000
-		if gState[KEY_CO_STATE] as! COType == .theater_detail { all_theaters() }
-		else { all_movies() }
-	
-		tableView.reloadData()
 	}
 }
 
+//	MARK: SectionHeaderDelegate Methods
 extension ViewControllerBoxOffice: SectionHeaderDelegate
 {
    func ShowSectionDetail(_ header: L0_Cell, section: Int)
     {
     	if (childViewControllers[0].childViewControllers[0] is ViewControllerTrailer) { return }
-
-		switch gState[KEY_CO_STATE] as! COType
+		
+		switch gState
 		{
-			case .movie_detail:
+			case .movie:
 				//	if we are showing Movie detail
 				//	and click is on L0 row show
 				//	Movie detail
 
-				gState[KEY_CO_INDEX]
-						= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }
+				let row
+					= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
-			case .theater_detail:
+				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView(index: row)
+			
+				gIndexPath.section = row
+				gIndexPath.row = NSNotFound
+			case .theater:
 				//	do opposite for Theater detail
 				//	and click is on L0 row show
 				//	Theater detail
 
-				gState[KEY_CO_INDEX]
-						= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }
+				let row
+					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
+				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(index: row)
 			default:
 				print("unexpected COType in toggleSectionIsExpanded")
 		}
+
     }
 
     func toggleSectionIsExpanded(_ header: L0_Cell, section: Int)
     {
     	if (childViewControllers[0].childViewControllers[0] is ViewControllerTrailer) { return }
-		
+
         let isExpanded = !rowDictionary[section].isExpanded
 		
         //	toggle collapse
  		header.setIsExpanded(isExpanded)
         rowDictionary[section].isExpanded = isExpanded
 		
-		switch gState[KEY_CO_STATE] as! COType
+		switch gState
 		{
-			case .movie_detail:
+			case .movie:
 				//	if we are showing Movie detail
 				//	and click is on L0 row show
 				//	Movie detail
 
-				gState[KEY_CO_INDEX]
-						= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }
+				let row
+					= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
-			case .theater_detail:
+				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView(index: row)
+				
+				gIndexPath.section = row
+				gIndexPath.row = NSNotFound
+			case .theater:
 				//	do opposite for Theater detail
 				//	and click is on L0 row show
 				//	Theater detail
 
-				gState[KEY_CO_INDEX]
-						= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }
+				let row
+					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
+				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(index: row)
 			default:
 				print("unexpected COType in toggleSectionIsExpanded")
 		}
@@ -660,7 +658,7 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 		
 		if cellID == VALUE_L1_CELL
 		{
-			if gState[KEY_CO_STATE] as! COType == .movie_detail { cellID += "_theater" }
+			if gState == .movie { cellID += "_theater" }
 			else {  cellID += "_movie" }
 		}
 
@@ -669,7 +667,7 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 		if rowDict[KEY_IS_VISIBLE] as! Bool == true { cell.isHidden = false }
 		else { cell.isHidden = true }
 
-		if gState[KEY_CO_STATE] as! COType == .movie_detail
+		if gState == .movie
 		{
 			if cellID == VALUE_L1_CELL_THEATER
 			{
@@ -680,7 +678,7 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 				(cell as! L2_Cell).time?.text = (rowDict[KEY_TIME] as! String)
 			}
 		}
-		else if gState[KEY_CO_STATE] as! COType == .theater_detail
+		else if gState == .theater
 		{
 			if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
 			{
@@ -714,36 +712,7 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 //	MARK: UITableView Delegate Methods
 extension ViewControllerBoxOffice : UITableViewDelegate
 {
-	func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
-	{
-		if gState[KEY_CO_STATE] as! COType == .theater_detail
-		{
-			pendingOperations.operationQueue.isSuspended = true
-		}
-    }
-    
-	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
-	{
-		if gState[KEY_CO_STATE] as! COType == .theater_detail
-		{
-			if !decelerate
-			{
-				loadDistanceforOnScreenSections()
-				pendingOperations.operationQueue.isSuspended = false
-			}
-		}
-    }
-    
-	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
-	{
-		if gState[KEY_CO_STATE] as! COType == .theater_detail
-		{
-			loadDistanceforOnScreenSections()
-			pendingOperations.operationQueue.isSuspended = false
-		}
-	}
-
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return (44.0) }
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return (42.0) }
 	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat { return (1.0) }
 
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -770,6 +739,9 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 		//	if ViewControllerTrailer is current embed
 		//	just ignore clicks on the UITableView
 		if (childViewControllers[0].childViewControllers[0] is ViewControllerTrailer) { return }
+
+		gIndexPath.section = indexPath.section
+		gIndexPath.row = indexPath.row
 
 		var rowDict = rowDictionary[indexPath.section].cell[indexPath.row]
 
@@ -821,24 +793,55 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 //           }
 //		}
 
-		switch gState[KEY_CO_STATE] as! COType
+		switch gState
 		{
-			case .movie_detail:
+			case .movie:
 				//	if click is on
 				//	L1 or L2 row show Theater detail
 
-				gState[KEY_CO_INDEX] = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }
+				let row = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
-			case .theater_detail:
+				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(index: row)
+			case .theater:
 				//	if click is on
 				//	L1 or L2 row show Movie detail
 
-				gState[KEY_CO_INDEX] = gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }
+				let row = gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
+				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView(index: row)
+			
+				gIndexPath.section = row
 			default:
 				print("unexpected COType in didSelectRowAt")
+		}
+	}
+	
+	func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
+	{
+		if gState == .theater
+		{
+			pendingOperations.operationQueue.isSuspended = true
+		}
+    }
+    
+	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+	{
+		if gState == .theater
+		{
+			if !decelerate
+			{
+				loadDistanceforOnScreenSections()
+				pendingOperations.operationQueue.isSuspended = false
+			}
+		}
+    }
+    
+	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+	{
+		if gState == .theater
+		{
+			loadDistanceforOnScreenSections()
+			pendingOperations.operationQueue.isSuspended = false
 		}
 	}
 }

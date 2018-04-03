@@ -146,12 +146,25 @@ class ViewControllerMarquee: UIViewController
 	
 	override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 
+	override func viewWillAppear(_ animated: Bool)
+	{super.viewWillAppear(animated); print("ViewControllerMarquee viewWillAppear ")
+	
+		//	only called on seque from ViewControllerBoxOffice
+		
+		tableView.scrollToRow(at: [0, gIndexPath.section], at: .middle, animated: true)
+	}
+
 	override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("ViewControllerMarquee viewWillDisappear ") }
+	{ super.viewWillDisappear(animated); print("ViewControllerMarquee viewWillDisappear ")
+
+		//	only called on seque to ViewControllerBoxOffice
+	}
 
     override func viewDidLoad()
 	{ super.viewDidLoad(); print("ViewControllerMarquee viewDidLoad ")
-		
+
+		//	only called on app launch
+
 		self.view.accessibilityIdentifier = AXID_marqueeView
 	
 		tableView.layer.borderWidth = 1.0;
@@ -233,8 +246,12 @@ extension ViewControllerMarquee : UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
-		gState = [KEY_CO_STATE : COType.movie_detail, KEY_CO_INDEX : indexPath.row]
-
+		//	moving to ViewControllerBoxOffice - this indexPath.row
+		//	becomes ViewControllerBoxOffice indexPath.section
+		gState = .movie
+		gIndexPath.section = indexPath.row
+		gIndexPath.row = NSNotFound
+		
 		self.performSegue(withIdentifier: S2_BOX_OFFICE,
 							sender: nil)
     }

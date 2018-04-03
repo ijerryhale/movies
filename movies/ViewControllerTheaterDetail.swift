@@ -15,9 +15,8 @@ class ViewControllerTheaterDetail: UIViewController
 	@IBOutlet weak var name: UILabel!
 	@IBOutlet weak var address: UILabel!
 
-	func updateView()
+	func updateView(index: Int)
 	{
-		let index = gState[KEY_CO_INDEX] as! Int
 		let theater = gTheater[index].theater
 		
 		name.text = theater[KEY_NAME] as? String

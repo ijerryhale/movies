@@ -107,9 +107,6 @@ extern NSString * const S2_SETTINGS;
 
 extern NSString * const S2_CONTAINER_UNWIND;
 
-extern NSString * const KEY_CO_STATE;
-extern NSString * const KEY_CO_INDEX;
-
 extern NSString * const NOTIF_DEFAULT_LAST_UPDATE_CHANGED;
 extern NSString * const NOTIF_DEFAULT_POSTAL_CODE_CHANGED;
 extern NSString * const NOTIF_DEFAULT_DAY_OFFSET_CHANGED;

@@ -20,7 +20,8 @@ class ViewControllerContainer: UIViewController
 		
 		let mdc: ViewControllerMovieDetail? = self.childViewControllers.compactMap({ $0 as? ViewControllerMovieDetail }).first
 
-		mdc?.updateView()
+		print(gIndexPath)
+		mdc?.updateView(index: gIndexPath.section)
 	}
 
 	func trailerSegueWind()
@@ -32,7 +33,7 @@ class ViewControllerContainer: UIViewController
 		self.performSegue(withIdentifier: S2_MOVIE_TRAILER, sender: self)
 	}
 
-	func updateMovieDetailView()
+	func updateMovieDetailView(index: Int)
 	{
 		var mdc: ViewControllerMovieDetail? = self.childViewControllers[0] as? ViewControllerMovieDetail
 		
@@ -55,10 +56,10 @@ class ViewControllerContainer: UIViewController
 			mdc = self.childViewControllers[0] as? ViewControllerMovieDetail
 		}
 
-		mdc?.updateView()
+		mdc?.updateView(index: index)
 	}
 
-	func updateTheaterDetailView()
+	func updateTheaterDetailView(index: Int)
 	{
 		var tdc: ViewControllerTheaterDetail? = self.childViewControllers[0] as? ViewControllerTheaterDetail
 
@@ -81,7 +82,7 @@ class ViewControllerContainer: UIViewController
 			tdc = self.childViewControllers[0] as? ViewControllerTheaterDetail
 		}
 		
-		tdc?.updateView()
+		tdc?.updateView(index: index)
 	}
 
 	@IBAction func unwindToContainer(segue: UIStoryboardSegue)
@@ -111,8 +112,8 @@ class ViewControllerContainer: UIViewController
 		if segue.identifier == S2_MOVIE_DETAIL
 		{
 			transistion(dest: segue.destination as! ViewControllerMovieDetail)
-			
-			(segue.destination as! ViewControllerMovieDetail).updateView()
+			print(gIndexPath)
+			(segue.destination as! ViewControllerMovieDetail).updateView(index: gIndexPath.section)
 		}
 		else if segue.identifier == S2_THEATER_DETAIL
 		{ transistion(dest: segue.destination as! ViewControllerTheaterDetail) }
@@ -125,7 +126,7 @@ class ViewControllerContainer: UIViewController
 	override func viewDidLoad()
 	{ super.viewDidLoad(); print("ViewControllerContainer viewDidLoad")
 
-		if gState[KEY_CO_STATE] as! COType == .theater_detail
+		if gState == .theater
 		{
 			self.performSegue(withIdentifier: S2_THEATER_DETAIL, sender: self)
 		}

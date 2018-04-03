@@ -26,7 +26,7 @@ class ViewControllerMap: UIViewController
 	override func viewWillAppear(_ animated: Bool)
 	{ super.viewWillAppear(animated); print("ViewControllerMap viewWillAppear ")
 
-		let index = gState[KEY_CO_INDEX] as! Int
+		let index = gIndexPath.section
 		let theater = gTheater[index].theater
 
 		//	let nameString = "West Wind El Rancho Drive-In"

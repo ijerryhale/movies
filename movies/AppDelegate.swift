@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-enum COType { case app_launch, theater_detail, movie_detail }
+enum COType { case marquee, theater, movie }
 enum OpState { case new, done, failed }
 
-
-var gState = [KEY_CO_STATE : COType.app_launch, KEY_CO_INDEX : 0] as [String : Any]
+var gState = COType.marquee
+var gIndexPath = IndexPath(row: NSNotFound, section: NSNotFound)
 var gIndex = [[String : AnyObject]]()
 var gTheater = [(theater: [String : AnyObject], distance: LazyDistance)]()
 var gMovie = [(movie: [String : AnyObject], poster: LazyPoster)]()
