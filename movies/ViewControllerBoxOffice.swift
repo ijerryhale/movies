@@ -420,8 +420,7 @@ class ViewControllerBoxOffice: UIViewController
 		//	print(segue.identifier)
 		if segue.identifier == S2_SETTINGS
 		{
-//			let pc = (segue.destination as? PreferenceViewController)!
-//			pc.callingViewControler = self
+
 		}
 	}
 
@@ -440,10 +439,18 @@ class ViewControllerBoxOffice: UIViewController
 	{ super.viewDidLoad(); print("ViewControllerBoxOffice viewDidLoad ")
 
 		//	only called from ViewControllerMarquee
+
+		let red = CGFloat((0x333333 & 0xFF0000) >> 16) / 255.0
+		let green = CGFloat((0x333333 & 0x00FF00) >> 8) / 255.0
+		let blue = CGFloat(0x333333 & 0x00FF) / 255.0
+
+		tableView.backgroundColor = UIColor(red: red,
+											green: green,
+											blue: blue,
+											alpha: 1.0)
 		tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-		tableView.separatorColor = UIColor.clear;
 
         tableView.register(UINib(nibName: VALUE_L0_CELL_MOVIE, bundle: nil), forCellReuseIdentifier: VALUE_L0_CELL_MOVIE)
         tableView.register(UINib(nibName: VALUE_L0_CELL_THEATER, bundle: nil), forCellReuseIdentifier: VALUE_L0_CELL_THEATER)
@@ -451,7 +458,7 @@ class ViewControllerBoxOffice: UIViewController
         tableView.register(UINib(nibName: VALUE_L1_CELL_THEATER, bundle: nil), forCellReuseIdentifier: VALUE_L1_CELL_THEATER)
 		tableView.register(UINib(nibName: VALUE_L2_CELL, bundle: nil), forCellReuseIdentifier: VALUE_L2_CELL)
 		
-		tableView.contentInset = UIEdgeInsetsMake(2, 0, 0, 0);
+//		tableView.contentInset = UIEdgeInsetsMake(1, 0, 0, 0);
 
 		//	MV006798690000
 		all_movies()

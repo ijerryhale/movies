@@ -149,7 +149,8 @@ class ViewControllerMarquee: UIViewController
 	override func viewWillAppear(_ animated: Bool)
 	{super.viewWillAppear(animated); print("ViewControllerMarquee viewWillAppear ")
 	
-		//	only called on seque from ViewControllerBoxOffice
+		//	called on seque from ViewControllerBoxOffice
+		//	and on intial application launch
 		
 		tableView.scrollToRow(at: [0, gIndexPath.section], at: .middle, animated: true)
 	}
