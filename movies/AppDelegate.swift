@@ -149,7 +149,10 @@ class AppDelegate: UIResponder
 
 			if ($1.movie[KEY_RATING] is NSNull) == false { rhsrating = $1.movie[KEY_RATING]! as! String }
 
-			if lhsrating != rhsrating { return lhsrating < rhsrating }
+			if lhsrating == "" { lhsrating = "NR" }
+			if rhsrating == "" { rhsrating = "NR" }
+
+			if lhsrating != rhsrating { return lhsrating > rhsrating }
 			else { return ($0.movie[KEY_TITLE]! as! String) < ($1.movie[KEY_TITLE]! as! String) }
 		}
 		

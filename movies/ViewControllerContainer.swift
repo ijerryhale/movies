@@ -20,7 +20,6 @@ class ViewControllerContainer: UIViewController
 		
 		let mdc: ViewControllerMovieDetail? = self.childViewControllers.compactMap({ $0 as? ViewControllerMovieDetail }).first
 
-		print(gIndexPath)
 		mdc?.updateView(index: gIndexPath.section)
 	}
 
@@ -112,7 +111,7 @@ class ViewControllerContainer: UIViewController
 		if segue.identifier == S2_MOVIE_DETAIL
 		{
 			transistion(dest: segue.destination as! ViewControllerMovieDetail)
-			print(gIndexPath)
+
 			(segue.destination as! ViewControllerMovieDetail).updateView(index: gIndexPath.section)
 		}
 		else if segue.identifier == S2_THEATER_DETAIL
