@@ -70,7 +70,7 @@ NSString * const MANAGED_CONTEXT_DID_SAVE_FAILED = @"DataManagerDidSaveFailedNot
 		abort();
 	}
  
-	return _persistentStoreCoordinator;
+	return (_persistentStoreCoordinator);
 }
 
 -(NSManagedObjectContext *)mainObjectContext

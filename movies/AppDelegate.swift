@@ -13,6 +13,8 @@ enum COType { case marquee, theater, movie }
 enum OpState { case new, done, failed }
 
 var gState = COType.marquee
+
+//	FIX THIS!!
 var gIndexPath = IndexPath(row: NSNotFound, section: NSNotFound)
 var gIndex = [[String : AnyObject]]()
 var gTheater = [(theater: [String : AnyObject], distance: LazyDistance)]()

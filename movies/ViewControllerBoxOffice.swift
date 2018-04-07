@@ -809,6 +809,9 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 				let row = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
 
 				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(index: row)
+			
+				gIndexPath.section = row
+
 			case .theater:
 				//	if click is on
 				//	L1 or L2 row show Movie detail
