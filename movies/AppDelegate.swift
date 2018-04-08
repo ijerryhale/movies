@@ -15,8 +15,8 @@ enum OpState { case new, done, failed }
 var gState = COType.marquee
 
 //	FIX THIS!!
-var gIndexPath = IndexPath(row: NSNotFound, section: NSNotFound)
-var gIndex = [[String : AnyObject]]()
+var gCurrIndex = Int()
+var gXMLIndex = [[String : AnyObject]]()
 var gTheater = [(theater: [String : AnyObject], distance: LazyDistance)]()
 var gMovie = [(movie: [String : AnyObject], poster: LazyPoster)]()
 
@@ -191,7 +191,7 @@ class AppDelegate: UIResponder
 
 			if (error != nil) { self.handleNetworkError(error: error); completion(false); return }
 
-			gIndex = index as! [[String : AnyObject]]
+			gXMLIndex = index as! [[String : AnyObject]]
 			
 			da.getTheaters(AppDelegate.getShowDateFromDayOffset(dayoffset: UserDefault.getDayOffset()), postalcode: UserDefault.getPostalCode())
 			{

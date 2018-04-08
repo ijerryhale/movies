@@ -20,7 +20,7 @@ class ViewControllerContainer: UIViewController
 		
 		let mdc: ViewControllerMovieDetail? = self.childViewControllers.compactMap({ $0 as? ViewControllerMovieDetail }).first
 
-		mdc?.updateView(index: gIndexPath.section)
+		mdc?.updateView(index: gCurrIndex)
 	}
 
 	func trailerSegueWind()
@@ -112,7 +112,7 @@ class ViewControllerContainer: UIViewController
 		{
 			transistion(dest: segue.destination as! ViewControllerMovieDetail)
 
-			(segue.destination as! ViewControllerMovieDetail).updateView(index: gIndexPath.section)
+			(segue.destination as! ViewControllerMovieDetail).updateView(index: gCurrIndex)
 		}
 		else if segue.identifier == S2_THEATER_DETAIL
 		{ transistion(dest: segue.destination as! ViewControllerTheaterDetail) }

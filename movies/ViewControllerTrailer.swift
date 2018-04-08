@@ -333,10 +333,10 @@ class ViewControllerTrailer: UIViewController
             self.slider.value = Float(timeElapsed)
         }
 
-		let movie = gMovie[gIndexPath.section]
+		let movie = gMovie[gCurrIndex]
 		//	don't have to check info here as we never
 		//	get here if there isn't a good info
-		let info = gIndex.filter({ $0[KEY_ID] as? String == movie.movie[KEY_FILM_ID] as? String }).first
+		let info = gXMLIndex.filter({ $0[KEY_ID] as? String == movie.movie[KEY_FILM_ID] as? String }).first
 
 		let previews = info?[KEY_PREVIEWS] as! [String : AnyObject]
 		let preview = previews[KEY_PREVIEW] as! [String : AnyObject]

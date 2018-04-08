@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SectionHeaderDelegate {
-	func ShowSectionDetail(_ header: L0_Cell, section: Int)
+	func showSectionDetail(_ header: L0_Cell, section: Int)
     func toggleSectionIsExpanded(_ header: L0_Cell, section: Int)
 }
 
@@ -48,7 +48,7 @@ class L0_Cell: UITableViewHeaderFooterView
 	{
 		let	cell = gestureRecognizer.view as? L0_Cell
 
-		delegate?.ShowSectionDetail(self, section: (cell?.section)!)
+		delegate?.showSectionDetail(self, section: (cell?.section)!)
     }
 
 	@objc func tapExpandCollapse(_ gestureRecognizer: UITapGestureRecognizer)

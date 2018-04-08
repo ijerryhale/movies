@@ -64,7 +64,7 @@ class ViewControllerMovieDetail : UIViewController
 		runtime.text = movie.movie[KEY_RUN_TIME] as? String
 		releasedate.text = movie.movie[KEY_RELEASE_DATE] as? String
 
-		let info = gIndex.filter({ $0[KEY_ID] as? String == movie.movie[KEY_FILM_ID] as? String }).first
+		let info = gXMLIndex.filter({ $0[KEY_ID] as? String == movie.movie[KEY_FILM_ID] as? String }).first
 
 		//	handle Rotten Tomato stuff
 		#if HAS_WEB_SERVICE

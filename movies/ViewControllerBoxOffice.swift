@@ -125,8 +125,7 @@ class ViewControllerBoxOffice: UIViewController
 	@IBAction func tapAllTheatersBtn(sender: UIButton)
 	{
 		gState = .theater
-		gIndexPath.section = 0
-		gIndexPath.row = NSNotFound
+		gCurrIndex = 0
 		
 		all_theaters()
 		tableView.reloadData()
@@ -138,8 +137,7 @@ class ViewControllerBoxOffice: UIViewController
 	@IBAction func tapAllMoviesBtn(sender: UIButton)
 	{
 		gState = .movie
-		gIndexPath.section = 0
-		gIndexPath.row = NSNotFound
+		gCurrIndex = 0
 
 		all_movies()
 		tableView.reloadData()
@@ -272,12 +270,15 @@ class ViewControllerBoxOffice: UIViewController
 
 			//	sort the Movies by Movie Rating, Movie Title
 			nowShowing.sort {
-			
-				let lhsrating = $0[KEY_RATING]! as! String
-				let rhsrating = $1[KEY_RATING]! as! String
+
+				var lhsrating = $0[KEY_RATING]! as! String
+				var rhsrating = $1[KEY_RATING]! as! String
 				
+				if lhsrating == "" { lhsrating = "NR" }
+				if rhsrating == "" { rhsrating = "NR" }
+
 			   if lhsrating != rhsrating
-			   { return lhsrating < rhsrating }
+			   { return lhsrating > rhsrating }
 				else { return ($0[KEY_TITLE]! as! String) < ($1[KEY_TITLE]! as! String) }
 			}
 
@@ -465,7 +466,7 @@ class ViewControllerBoxOffice: UIViewController
 	
 		tableView.reloadData()
 		
-		let movie = gMovie[gIndexPath.section]
+		let movie = gMovie[gCurrIndex]
 
 		for i in 0...rowDictionary.count - 1
 		{
@@ -496,8 +497,8 @@ class ViewControllerBoxOffice: UIViewController
 //	MARK: SectionHeaderDelegate Methods
 extension ViewControllerBoxOffice: SectionHeaderDelegate
 {
-   func ShowSectionDetail(_ header: L0_Cell, section: Int)
-    {
+	func showSectionDetail(_ header: L0_Cell, section: Int)
+	{
     	if (childViewControllers[0].childViewControllers[0] is ViewControllerTrailer) { return }
 		
 		switch gState
@@ -512,8 +513,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 
 				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView(index: row)
 			
-				gIndexPath.section = row
-				gIndexPath.row = NSNotFound
+				gCurrIndex = row
 			case .theater:
 				//	do opposite for Theater detail
 				//	and click is on L0 row show
@@ -523,6 +523,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
 
 				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(index: row)
+
 			default:
 				print("unexpected COType in toggleSectionIsExpanded")
 		}
@@ -551,8 +552,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 
 				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView(index: row)
 				
-				gIndexPath.section = row
-				gIndexPath.row = NSNotFound
+				gCurrIndex = row
 			case .theater:
 				//	do opposite for Theater detail
 				//	and click is on L0 row show
@@ -747,9 +747,6 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 		//	just ignore clicks on the UITableView
 		if (childViewControllers[0].childViewControllers[0] is ViewControllerTrailer) { return }
 
-		gIndexPath.section = indexPath.section
-		gIndexPath.row = indexPath.row
-
 		var rowDict = rowDictionary[indexPath.section].cell[indexPath.row]
 
 //		if singleRowSelect == true
@@ -809,8 +806,6 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 				let row = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
 
 				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(index: row)
-			
-				gIndexPath.section = row
 
 			case .theater:
 				//	if click is on
@@ -819,8 +814,7 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 				let row = gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }!
 
 				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView(index: row)
-			
-				gIndexPath.section = row
+
 			default:
 				print("unexpected COType in didSelectRowAt")
 		}
