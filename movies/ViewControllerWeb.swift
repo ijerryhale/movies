@@ -19,8 +19,7 @@ class ViewControllerWeb: UIViewController
 	{ super.viewDidLoad(); print("ViewControllerWeb viewDidLoad ")
 
 		//	open iTunes page for this Movie
-		let index = gCurrIndex
-        let url = URL(string: gMovie[index].movie[KEY_ITUNES_URL] as! String)
+        let url = URL(string: gMovie[gCurrMovie].movie[KEY_ITUNES_URL] as! String)
         if let unwrappedURL = url {
             
             let request = URLRequest(url: unwrappedURL)

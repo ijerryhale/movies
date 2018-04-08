@@ -20,7 +20,7 @@ class ViewControllerContainer: UIViewController
 		
 		let mdc: ViewControllerMovieDetail? = self.childViewControllers.compactMap({ $0 as? ViewControllerMovieDetail }).first
 
-		mdc?.updateView(index: gCurrIndex)
+		mdc?.updateView()
 	}
 
 	func trailerSegueWind()
@@ -32,7 +32,7 @@ class ViewControllerContainer: UIViewController
 		self.performSegue(withIdentifier: S2_MOVIE_TRAILER, sender: self)
 	}
 
-	func updateMovieDetailView(index: Int)
+	func updateMovieDetailView()
 	{
 		var mdc: ViewControllerMovieDetail? = self.childViewControllers[0] as? ViewControllerMovieDetail
 		
@@ -55,10 +55,10 @@ class ViewControllerContainer: UIViewController
 			mdc = self.childViewControllers[0] as? ViewControllerMovieDetail
 		}
 
-		mdc?.updateView(index: index)
+		mdc?.updateView()
 	}
 
-	func updateTheaterDetailView(index: Int)
+	func updateTheaterDetailView()
 	{
 		var tdc: ViewControllerTheaterDetail? = self.childViewControllers[0] as? ViewControllerTheaterDetail
 
@@ -81,7 +81,7 @@ class ViewControllerContainer: UIViewController
 			tdc = self.childViewControllers[0] as? ViewControllerTheaterDetail
 		}
 		
-		tdc?.updateView(index: index)
+		tdc?.updateView()
 	}
 
 	@IBAction func unwindToContainer(segue: UIStoryboardSegue)
@@ -112,7 +112,7 @@ class ViewControllerContainer: UIViewController
 		{
 			transistion(dest: segue.destination as! ViewControllerMovieDetail)
 
-			(segue.destination as! ViewControllerMovieDetail).updateView(index: gCurrIndex)
+			(segue.destination as! ViewControllerMovieDetail).updateView()
 		}
 		else if segue.identifier == S2_THEATER_DETAIL
 		{ transistion(dest: segue.destination as! ViewControllerTheaterDetail) }

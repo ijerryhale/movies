@@ -15,9 +15,9 @@ class ViewControllerTheaterDetail: UIViewController
 	@IBOutlet weak var name: UILabel!
 	@IBOutlet weak var address: UILabel!
 
-	func updateView(index: Int)
+	func updateView()
 	{
-		let theater = gTheater[index].theater
+		let theater = gTheater[gCurrTheater].theater
 		
 		name.text = theater[KEY_NAME] as? String
 		

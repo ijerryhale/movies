@@ -14,11 +14,13 @@ enum OpState { case new, done, failed }
 
 var gState = COType.marquee
 
-//	FIX THIS!!
-var gCurrIndex = Int()
-var gXMLIndex = [[String : AnyObject]]()
+var gCurrTheater : Int = 0
 var gTheater = [(theater: [String : AnyObject], distance: LazyDistance)]()
+
+var gCurrMovie : Int = 0
 var gMovie = [(movie: [String : AnyObject], poster: LazyPoster)]()
+
+var gXMLIndex = [[String : AnyObject]]()
 
 @UIApplicationMain
 class AppDelegate: UIResponder

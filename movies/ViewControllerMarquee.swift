@@ -152,7 +152,7 @@ class ViewControllerMarquee: UIViewController
 		//	called on seque from ViewControllerBoxOffice
 		//	and on intial application launch
 		gState = .marquee
-		tableView.scrollToRow(at: [0, gCurrIndex], at: .middle, animated: true)
+		tableView.scrollToRow(at: [0, gCurrMovie], at: .middle, animated: true)
 	}
 
 	override func viewWillDisappear(_ animated: Bool)
@@ -250,7 +250,7 @@ extension ViewControllerMarquee : UITableViewDelegate
 		//	moving to ViewControllerBoxOffice - this indexPath.row
 		//	becomes ViewControllerBoxOffice indexPath.section
 		gState = .movie
-		gCurrIndex = indexPath.row
+		gCurrMovie = indexPath.row
 		
 		self.performSegue(withIdentifier: S2_BOX_OFFICE,
 							sender: nil)

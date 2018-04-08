@@ -42,9 +42,9 @@ class ViewControllerMovieDetail : UIViewController
 		(parent?.parent as! ViewControllerBoxOffice).performSegue(withIdentifier: S2_ITUNES, sender: self)
 	}
 	
-	func updateView(index: Int)
+	func updateView()
 	{
-		let movie = gMovie[index]
+		let movie = gMovie[gCurrMovie]
 
 		if movie.movie[KEY_POSTER] is NSNull { poster.image = createGenericPoster(movie.movie[KEY_TITLE] as! String) }
 		else

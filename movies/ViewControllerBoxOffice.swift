@@ -125,25 +125,27 @@ class ViewControllerBoxOffice: UIViewController
 	@IBAction func tapAllTheatersBtn(sender: UIButton)
 	{
 		gState = .theater
-		gCurrIndex = 0
+		gCurrMovie = 0
+		gCurrTheater = 0
 		
 		all_theaters()
 		tableView.reloadData()
 		tableView.scrollToRow(at: [0, NSNotFound], at: .top, animated: false)
 		
-		(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView(index: 0)
+		(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView()
 	}
 
 	@IBAction func tapAllMoviesBtn(sender: UIButton)
 	{
 		gState = .movie
-		gCurrIndex = 0
+		gCurrMovie = 0
+		gCurrTheater = 0
 
 		all_movies()
 		tableView.reloadData()
 		tableView.scrollToRow(at: [0, NSNotFound], at: .top, animated: false)
 
-		(childViewControllers.first as! ViewControllerContainer).updateMovieDetailView(index: 0)
+		(childViewControllers.first as! ViewControllerContainer).updateMovieDetailView()
 	}
 
 	@IBAction func unwindToBoxOffice(segue: UIStoryboardSegue) { /*print("unwindToBoxOffice") */ }
@@ -466,7 +468,7 @@ class ViewControllerBoxOffice: UIViewController
 	
 		tableView.reloadData()
 		
-		let movie = gMovie[gCurrIndex]
+		let movie = gMovie[gCurrMovie]
 
 		for i in 0...rowDictionary.count - 1
 		{
@@ -508,22 +510,19 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				//	and click is on L0 row show
 				//	Movie detail
 
-				let row
+				gCurrMovie
 					= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView(index: row)
-			
-				gCurrIndex = row
+				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
 			case .theater:
 				//	do opposite for Theater detail
 				//	and click is on L0 row show
 				//	Theater detail
 
-				let row
+				gCurrTheater
 					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
-
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(index: row)
-
+				
+				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
 			default:
 				print("unexpected COType in toggleSectionIsExpanded")
 		}
@@ -547,21 +546,19 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				//	and click is on L0 row show
 				//	Movie detail
 
-				let row
+				gCurrMovie
 					= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView(index: row)
-				
-				gCurrIndex = row
+				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
 			case .theater:
 				//	do opposite for Theater detail
 				//	and click is on L0 row show
 				//	Theater detail
 
-				let row
+				gCurrTheater
 					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(index: row)
+				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
 			default:
 				print("unexpected COType in toggleSectionIsExpanded")
 		}
@@ -803,18 +800,16 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 				//	if click is on
 				//	L1 or L2 row show Theater detail
 
-				let row = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
-
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(index: row)
-
+				gCurrTheater = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
+				
+				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
 			case .theater:
 				//	if click is on
 				//	L1 or L2 row show Movie detail
 
-				let row = gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }!
+				gCurrMovie = gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView(index: row)
-
+				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
 			default:
 				print("unexpected COType in didSelectRowAt")
 		}
