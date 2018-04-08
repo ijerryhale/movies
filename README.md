@@ -29,6 +29,9 @@ Redesign UITableView to use Sections. Still a bit of work to do here but a lot o
 #### March 25, 2018
 Update embedded data.
 
+#### April 8, 2018
+Commit 281c8d0 should be fairly stable. Seque unwinds back to ViewControllerMarquee will now always do the right thing. Redesign to use Sections in ViewControllerBoxOffice is essentially done but overall color now looks too dark. But there is more compelling stuff to work on right now.
+
 ![marquee](https://user-images.githubusercontent.com/4106530/37880006-a4c080a6-3036-11e8-8692-86eba4b35286.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/37880008-b1ddb042-3036-11e8-9c9a-0dc0f987d60e.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 *Marquee* | *Theaters for Movie* |
