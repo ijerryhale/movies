@@ -30,8 +30,8 @@
                                     <segue destination="5SE-Yw-TSi" kind="show" identifier="s2_settings" animates="NO" id="WkJ-xQ-sq6"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="365" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ah9-IC-JCm">
-                                <rect key="frame" x="64" y="46" width="247" height="613"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="552" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ah9-IC-JCm">
+                                <rect key="frame" x="1" y="46" width="373" height="613"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -788,6 +788,6 @@
         <image name="tomato" width="12" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Bdf-X4-Bd5"/>
+        <segue reference="WkJ-xQ-sq6"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -6,6 +6,9 @@
 //  Copyright © 2018 jhale. All rights reserved.
 //
 
+//	405 x 600
+
+//	373 x 552
 import UIKit
 
 class Marquee_Cell: UITableViewCell
