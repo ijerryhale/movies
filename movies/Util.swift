@@ -182,40 +182,4 @@ func createGenericPoster(_ title: String) -> UIImage
 	return (image!)
 }
 
-func getTicketPurchasePageUrl(tmsID: String, theaterId: String, date: String, time: String) -> String
-{
-	//"07-18-2007+22:25"
-	
-//	let isPM = ("PM" == time.substring(from: time.index(time.endIndex, offsetBy: -2)))
-//
-//	let hour = time.substring(to: time.index(time.startIndex, offsetBy: 2))
-//	var min = time.substring(from: time.index(time.startIndex, offsetBy: 2))
-//
-//	min = min.substring(to: min.index(min.endIndex, offsetBy: -3))
-	//	print(hour)
-	//	print(min)
-	
-//	var timeStr = hour + min
-	
-//	if (isPM)
-//	{
-//		if (Int(hour)! < 12)
-//		{
-//			let fmt = Int(hour)! + 12
-//
-//			timeStr = String(fmt) + min;
-//		}
-//	}
-//	else if (Int(hour)! == 12) { timeStr = "00" + min }
-	
-	//	print(timeStr)
-	
-	//	theaterId = fandangoIDForTheaterID(theaterId);
-	
-	let url = ""
-
-	//	print(url)
-	return (url)
-}
-
 

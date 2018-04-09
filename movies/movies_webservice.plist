@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BUILD_TAG</key>
-	<string>0_9_006B</string>
+	<string>0_9_006C</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>107</string>
+	<string>108</string>
 	<key>IS_LOCAL_SERVER</key>
 	<true/>
 	<key>LSRequiresIPhoneOS</key>

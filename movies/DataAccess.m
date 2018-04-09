@@ -418,12 +418,12 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 			if (block)
 			{
 				//	create new row in MIData and save this data
-				MIData	*mid = [NSEntityDescription insertNewObjectForEntityForName:ENAME_MIDATA inManagedObjectContext:_managedObjectContext];
+				MIData	*mid = [NSEntityDescription insertNewObjectForEntityForName:ENAME_MIDATA inManagedObjectContext:self->_managedObjectContext];
 
 				[mid setData:responseObject];
 
 				NSError	*error = nil;
-				if ([_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
+				if ([self->_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
 				
 				#if 0
 					NSFetchRequest  *req = [[NSFetchRequest alloc]init];
@@ -528,14 +528,14 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 				parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id responseObject)
 		{
 			//	create new row in MTData and save this data
-			MTData	*mtd = [NSEntityDescription insertNewObjectForEntityForName:ENAME_MTDATA inManagedObjectContext:_managedObjectContext];
+			MTData	*mtd = [NSEntityDescription insertNewObjectForEntityForName:ENAME_MTDATA inManagedObjectContext:self->_managedObjectContext];
 
 			[mtd setData:responseObject];
 			[mtd setShowDate:showdate];
 			[mtd setPostalCode:postalcode];
 
 			NSError	*error = nil;
-			if ([_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
+			if ([self->_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
 			
 			#if 0
 				NSFetchRequest  *req = [[NSFetchRequest alloc]init];

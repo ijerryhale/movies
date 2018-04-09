@@ -222,12 +222,12 @@ extension AppDelegate : UIApplicationDelegate
 			if (rootViewController.responds(to: Selector(("canRotate"))))
 			{
 				// Unlock landscape view orientations for this view controller
-				return .allButUpsideDown;
+				return (.allButUpsideDown)
 			}
 		}
 
 		//	only allow portrait (standard behaviour)
-		return .portrait;
+		return (.portrait)
 	}
 
 	func applicationWillResignActive(_ application: UIApplication)
