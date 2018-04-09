@@ -58,7 +58,7 @@ class ViewControllerContainer: UIViewController
 		mdc?.updateView()
 	}
 
-	func updateTheaterDetailView()
+	func updateTheaterDetailView(_ enableBuyTickets: Bool)
 	{
 		var tdc: ViewControllerTheaterDetail? = self.childViewControllers[0] as? ViewControllerTheaterDetail
 
@@ -81,7 +81,7 @@ class ViewControllerContainer: UIViewController
 			tdc = self.childViewControllers[0] as? ViewControllerTheaterDetail
 		}
 		
-		tdc?.updateView()
+		tdc?.updateView(enableBuyTickets)
 	}
 
 	@IBAction func unwindToContainer(segue: UIStoryboardSegue)

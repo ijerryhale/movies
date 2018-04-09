@@ -14,8 +14,9 @@ class ViewControllerTheaterDetail: UIViewController
 	@IBOutlet weak var poster: UIImageView!
 	@IBOutlet weak var name: UILabel!
 	@IBOutlet weak var address: UILabel!
-
-	func updateView()
+	@IBOutlet weak var buyTicketsBtn: UIButton!
+	
+	func updateView(_ enableBuyTickets: Bool)
 	{
 		let theater = gTheater[gCurrTheater].theater
 		
@@ -36,6 +37,9 @@ class ViewControllerTheaterDetail: UIViewController
 		if !phone.isEmpty { addressString += "\n\n" + phone }
 
 		address.text = addressString
+		
+		if enableBuyTickets { buyTicketsBtn.isEnabled = true }
+		else { buyTicketsBtn.isEnabled = false }
 	}
 
 	@IBAction func showMapBtnPressed() { (parent?.parent as! ViewControllerBoxOffice).performSegue(withIdentifier: S2_MAP, sender: self) }

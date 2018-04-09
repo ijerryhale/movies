@@ -472,6 +472,7 @@
                     <size key="freeformSize" width="375" height="320"/>
                     <connections>
                         <outlet property="address" destination="EOU-Yv-0Dj" id="XKf-aU-qRG"/>
+                        <outlet property="buyTicketsBtn" destination="Hzc-DJ-Lf1" id="hrb-nq-hi0"/>
                         <outlet property="name" destination="pze-j9-Iwh" id="uiM-wo-mPp"/>
                         <outlet property="poster" destination="aBz-qS-u2y" id="ncR-9K-pBx"/>
                         <segue destination="zxP-oc-Z2O" kind="unwind" identifier="s2_container_unwind" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToContainerWithSegue:" id="rXk-O8-4P7"/>

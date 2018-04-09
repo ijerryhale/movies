@@ -155,7 +155,7 @@ func createGenericPoster(_ title: String) -> UIImage
 
 	let titleString =
 				NSMutableAttributedString(string: title,
-			attributes: [.font:UIFont(name: "Helvetica Neue", size: 14)!])
+			attributes: [.font:UIFont(name: "Helvetica Neue", size: 12)!])
 
 	let red = CGFloat((0x333333 & 0xFF0000) >> 16) / 255.0
 	let green = CGFloat((0x333333 & 0x00FF00) >> 8) / 255.0

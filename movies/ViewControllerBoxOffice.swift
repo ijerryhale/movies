@@ -132,7 +132,7 @@ class ViewControllerBoxOffice: UIViewController
 		tableView.reloadData()
 		tableView.scrollToRow(at: [0, NSNotFound], at: .top, animated: false)
 		
-		(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView()
+		(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView(false)
 	}
 
 	@IBAction func tapAllMoviesBtn(sender: UIButton)
@@ -522,7 +522,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				gCurrTheater
 					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
 				
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
+				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(false)
 			default:
 				print("unexpected COType in toggleSectionIsExpanded")
 		}
@@ -558,7 +558,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				gCurrTheater
 					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
+				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(false)
 			default:
 				print("unexpected COType in toggleSectionIsExpanded")
 		}
@@ -794,22 +794,38 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 //           }
 //		}
 
+		var enableBuyTickets = true
+		
 		switch gState
 		{
 			case .movie:
-				//	if click is on
-				//	L1 or L2 row show Theater detail
+				//	if click is on L1 or L2
+				//	row show Theater detail
+
+				if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL { enableBuyTickets = false }
 
 				gCurrTheater = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
-				
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView()
+
+				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(enableBuyTickets)
 			case .theater:
-				//	if click is on
-				//	L1 or L2 row show Movie detail
-
+				//	if click is on L1 row it's a
+				//	Movie, show Movie Detail
 				gCurrMovie = gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }!
+				
+				if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
+				{
+					(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
+				}
+				else	//	it's a Movie show time, show Theater Detail
+				{
+					//	L2 cells are always show times and have both
+					//	KEY_TMS_ID and KEY_ID
 
-				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
+					gCurrTheater = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
+
+					(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(enableBuyTickets)
+				}
+			
 			default:
 				print("unexpected COType in didSelectRowAt")
 		}
