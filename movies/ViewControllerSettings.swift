@@ -19,34 +19,16 @@ class ViewControllerSettings: UIViewController
 	@IBOutlet weak var version: UILabel!
 	@IBOutlet weak var build: UILabel!
 
-	private func get_show_date() -> String
-	{
-		let dayoffset = UserDefault.getDayOffset()
-
-		switch dayoffset
-		{
-			case 0:
-			return ("Today ")
-			case 1:
-			return ("Tommorrow ")
-			default:
-				let today = Date()
-				let day = Calendar.current.date(byAdding: .day, value: dayoffset, to: today)
-
-				let dateFormatter = DateFormatter()
-				dateFormatter.dateFormat = "EEE, MMM dd"
-				dateFormatter.locale = Locale(identifier: "en_US")
-			return (dateFormatter.string(from: day!) + " ")
-		}
-	}
-
 	func notif_showdate(notification: Notification)
-	{ print("notif_showdate")
-		self.showdateBtn.setTitle(get_show_date(), for: .normal)
-	}
+	{ print("ViewControllerSettings notif_showdate"); self.showdateBtn.setTitle(get_show_date(), for: .normal) }
 	
 	@objc func done(_ : UIBarButtonItem) { dismiss(animated: false, completion:nil); }
-	
+
+	deinit
+	{
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED))
+	}
+
 	override func viewDidLoad()
 	{ super.viewDidLoad(); print("ViewControllerSettings viewDidLoad")
 

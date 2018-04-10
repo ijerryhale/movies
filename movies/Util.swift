@@ -182,4 +182,24 @@ func createGenericPoster(_ title: String) -> UIImage
 	return (image!)
 }
 
+func get_show_date() -> String
+{
+	let dayoffset = UserDefault.getDayOffset()
+
+	switch dayoffset
+	{
+		case 0:
+		return ("Today ")
+		case 1:
+		return ("Tommorrow ")
+		default:
+			let today = Date()
+			let day = Calendar.current.date(byAdding: .day, value: dayoffset, to: today)
+
+			let dateFormatter = DateFormatter()
+			dateFormatter.dateFormat = "EEE, MMM dd"
+			dateFormatter.locale = Locale(identifier: "en_US")
+		return (dateFormatter.string(from: day!) + " ")
+	}
+}
 

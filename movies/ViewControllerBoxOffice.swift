@@ -411,8 +411,15 @@ class ViewControllerBoxOffice: UIViewController
 
 	func disableSettingsBtn() { settingsbtn.isEnabled = false }
 	func enableSettingsBtn() { settingsbtn.isEnabled = true }
-	
+	func notif_showdate(notification: Notification) { print("ViewControllerBoxOffice notif_showdate"); self.showdate.text = get_show_date() }
+
+	deinit
+	{
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED))
+	}
+
 	//	MARK: UIViewController overrides
+	//	func canRotate() -> Void { }
     override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue
 	{
 		return CustomUnwindSegue(identifier: identifier, source: fromViewController, destination: toViewController)
@@ -426,12 +433,16 @@ class ViewControllerBoxOffice: UIViewController
 
 		}
 	}
-
-	//	func canRotate() -> Void { }
 	
+	override func viewWillAppear(_ animated: Bool)
+	{ super.viewWillAppear(animated); print("ViewControllerBoxOffice viewWillAppear ")
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED),
+               object:nil, queue:nil, using:notif_showdate)
+	}
+
 	override func viewWillDisappear(_ animated: Bool)
 	{ super.viewWillDisappear(animated); print("ViewControllerBoxOffice viewWillDisappear ")
-		
+
 		if (isMovingFromParentViewController)
 		{
             UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
@@ -818,8 +829,8 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 				}
 				else	//	it's a Movie show time, show Theater Detail
 				{
-					//	L2 cells are always show times and have both
-					//	KEY_TMS_ID and KEY_ID
+					//	L2 cells are always show times and
+					//	have both KEY_TMS_ID and KEY_ID
 
 					gCurrTheater = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
 

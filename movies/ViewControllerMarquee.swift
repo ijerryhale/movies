@@ -45,11 +45,14 @@ class PendingMarqueeOperations
 //	MARK: ViewControllerMarquee
 class ViewControllerMarquee: UIViewController
 {
+	@IBOutlet weak var showdate: UILabel!
 	@IBOutlet weak var	tableView: UITableView!
 
 	@IBAction func unwindToMarquee(segue: UIStoryboardSegue) { }
 	@IBAction func tapSettinsBtn(sender: UIButton) { self.performSegue(withIdentifier: S2_SETTINGS, sender: self) }
 
+	func notif_showdate(notification: Notification) { print("ViewControllerMarquee notif_showdate"); self.showdate.text = get_show_date() }
+	
     let pendingOperations = PendingMarqueeOperations()
 
     func startOperationForPoster(poster: LazyPoster, indexPath: NSIndexPath)
@@ -131,6 +134,11 @@ class ViewControllerMarquee: UIViewController
         }
     }
 
+	deinit
+	{
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED))
+	}
+
 	//	MARK: UIViewController overrides
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
 	{
@@ -148,7 +156,10 @@ class ViewControllerMarquee: UIViewController
 
 	override func viewWillAppear(_ animated: Bool)
 	{super.viewWillAppear(animated); print("ViewControllerMarquee viewWillAppear ")
-	
+
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED),
+               object:nil, queue:nil, using:notif_showdate)
+
 		//	called on seque from ViewControllerBoxOffice
 		//	and on intial application launch
 		gState = .marquee
@@ -180,6 +191,21 @@ class ViewControllerMarquee: UIViewController
 		tableView.register(UINib(nibName: VALUE_MARQUEE_CELL, bundle: nil), forCellReuseIdentifier: VALUE_MARQUEE_CELL)
 
 		self.tableView.reloadData()
+		
+		switch UserDefault.getDayOffset()
+		{
+			case 0:
+				showdate.text = "Today"
+			case 1:
+				showdate.text = "Tommorrow"
+			default:
+				let day = Calendar.current.date(byAdding: .day, value: UserDefault.getDayOffset(), to: Date())
+				let dateFormatter = DateFormatter()
+				dateFormatter.dateFormat = "EEE, MMM dd"
+				dateFormatter.locale = Locale(identifier: "en_US")
+
+				showdate.text = dateFormatter.string(from: day!)
+		}
 	}
 }
 

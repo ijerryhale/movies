@@ -64,12 +64,24 @@ class AppDelegate: UIResponder
 	func notif_defaults_changed(notification: Notification)
 	{ print("notif_defaults_changed")
 
-		rebuild_theaters()
+		switch notification.name
 		{
-			(result) -> () in
-		
-			print(result)
+			case NSNotification.Name(rawValue: NOTIF_DEFAULT_LAST_UPDATE_CHANGED):
+			print(NOTIF_DEFAULT_LAST_UPDATE_CHANGED)
+			case NSNotification.Name(rawValue: NOTIF_DEFAULT_POSTAL_CODE_CHANGED):
+			print(NOTIF_DEFAULT_POSTAL_CODE_CHANGED)
+			case NSNotification.Name(rawValue: NOTIF_DEFAULT_DAY_OFFSET_CHANGED):
+			print(NOTIF_DEFAULT_DAY_OFFSET_CHANGED)
+			
+			default:
+				print("unknown notif")
 		}
+//		rebuild_theaters()
+//		{
+//			(result) -> () in
+//
+//			print(result)
+//		}
 	}
 
 	private func process_theaters(_ theaters: [[String : AnyObject]])
