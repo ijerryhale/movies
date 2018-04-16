@@ -26,7 +26,7 @@ class ViewControllerSettings: UIViewController
 
 	deinit
 	{
-		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED))
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED))
 	}
 
 	override func viewDidLoad()
@@ -51,7 +51,7 @@ class ViewControllerSettings: UIViewController
 
 		self.showdateBtn.setTitle(get_show_date(), for: .normal)
 		
-		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED),
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED),
                object:nil, queue:nil, using:notif_showdate)
 	}
 	

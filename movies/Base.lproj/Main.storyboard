@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFH-OZ-QqD">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFH-OZ-QqD" userLabel="Settings Btn">
                                 <rect key="frame" x="343" y="26" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="theaterinfo"/>
@@ -75,7 +75,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIm-kl-tUm">
-                                <rect key="frame" x="110" y="22" width="61" height="20"/>
+                                <rect key="frame" x="117" y="22" width="61" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -87,7 +87,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTc-5Q-sCf">
-                                <rect key="frame" x="177" y="22" width="53" height="20"/>
+                                <rect key="frame" x="188" y="22" width="53" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -114,21 +114,11 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRh-eA-sgP" userLabel="Settings Btn">
-                                <rect key="frame" x="343" y="26" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="theaterinfo"/>
-                                <connections>
-                                    <segue destination="5SE-Yw-TSi" kind="show" identifier="s2_settings" animates="NO" id="Bdf-X4-Bd5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="VvI-5s-btK"/>
                     <connections>
-                        <outlet property="settingsbtn" destination="BRh-eA-sgP" id="C7e-Mz-fOf"/>
                         <outlet property="showdate" destination="YyP-81-mF7" id="Day-K1-Pwc"/>
                         <outlet property="tableView" destination="khO-Df-sHF" id="g4d-RI-wn8"/>
                         <segue destination="CHi-D3-pk0" kind="unwind" identifier="s2_marquee" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToMarqueeWithSegue:" id="fd0-o4-hW5"/>
@@ -797,7 +787,4 @@
         <image name="theaterinfo" width="22" height="22"/>
         <image name="tomato" width="12" height="12"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="WkJ-xQ-sq6"/>
-    </inferredMetricsTieBreakers>
 </document>

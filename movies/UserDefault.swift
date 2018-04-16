@@ -30,7 +30,7 @@ class UserDefault
 		else if Calendar.current.compare(getLastUpdate(), to: date, toGranularity: .day) != .orderedSame
 		{
 			UserDefaults.standard.set(date, forKey: key.LastUpdate)
-			NotificationCenter.default.post(name:Notification.Name(rawValue:NOTIF_DEFAULT_LAST_UPDATE_CHANGED), object: nil, userInfo: nil)
+			NotificationCenter.default.post(name:Notification.Name(rawValue:NOTIF_LAST_UPDATE_CHANGED), object: nil, userInfo: nil)
 		}
 	}
 
@@ -41,7 +41,7 @@ class UserDefault
 		else if getDayOffset() != dayoffset
 		{
 			UserDefaults.standard.set(dayoffset, forKey: key.DayOffset)
-			NotificationCenter.default.post(name:Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED), object: nil, userInfo: nil)
+			NotificationCenter.default.post(name:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED), object: nil, userInfo: nil)
 		}
 	}
 
@@ -52,7 +52,7 @@ class UserDefault
 		else if getPostalCode() != postalcode
 		{
 			UserDefaults.standard.set(postalcode, forKey: key.PostalCode)
-			NotificationCenter.default.post(name:Notification.Name(rawValue:NOTIF_DEFAULT_POSTAL_CODE_CHANGED), object: nil, userInfo: nil)
+			NotificationCenter.default.post(name:Notification.Name(rawValue:NOTIF_POSTAL_CODE_CHANGED), object: nil, userInfo: nil)
 		}
 	}
 }

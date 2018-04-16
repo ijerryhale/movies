@@ -115,13 +115,11 @@ extension UITableView
 class ViewControllerBoxOffice: UIViewController
 {
     @IBOutlet weak var	showdate: UILabel!
-	@IBOutlet weak var	settingsbtn: UIButton!
-
 	@IBOutlet weak var	tableView: UITableView!
-
-	var singleRowSelect = false
-	var rowDictionary = [Section]()
 	
+	var rowDictionary = [Section]()
+	var singleRowSelect = false
+
 	@IBAction func tapAllTheatersBtn(sender: UIButton)
 	{
 		gState = .theater
@@ -409,16 +407,15 @@ class ViewControllerBoxOffice: UIViewController
 		}
 	}
 
-	func disableSettingsBtn() { settingsbtn.isEnabled = false }
-	func enableSettingsBtn() { settingsbtn.isEnabled = true }
-	func notif_showdate(notification: Notification) { print("ViewControllerBoxOffice notif_showdate"); self.showdate.text = get_show_date() }
-
-	deinit
-	{
-		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED))
-	}
+	//	update Show Date
+	func notif_dayoffset_changed(notification: Notification) { print("ViewControllerBoxOffice notif_dayoffset_changed"); self.showdate.text = get_show_date() }
 
 	//	MARK: UIViewController overrides
+	deinit
+	{
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED))
+	}
+
 	//	func canRotate() -> Void { }
     override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue
 	{
@@ -436,8 +433,10 @@ class ViewControllerBoxOffice: UIViewController
 	
 	override func viewWillAppear(_ animated: Bool)
 	{ super.viewWillAppear(animated); print("ViewControllerBoxOffice viewWillAppear ")
-		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED),
-               object:nil, queue:nil, using:notif_showdate)
+
+		//	observe for changes to DayOffset
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED),
+               object:nil, queue:nil, using:notif_dayoffset_changed)
 	}
 
 	override func viewWillDisappear(_ animated: Bool)
@@ -524,7 +523,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				gCurrMovie
 					= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
+				(childViewControllers.first as! ViewControllerContainer).updateMovieDetailView()
 			case .theater:
 				//	do opposite for Theater detail
 				//	and click is on L0 row show
@@ -533,7 +532,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				gCurrTheater
 					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
 				
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(false)
+				(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView(false)
 			default:
 				print("unexpected COType in toggleSectionIsExpanded")
 		}
@@ -560,7 +559,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				gCurrMovie
 					= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
+				(childViewControllers.first as! ViewControllerContainer).updateMovieDetailView()
 			case .theater:
 				//	do opposite for Theater detail
 				//	and click is on L0 row show
@@ -569,7 +568,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				gCurrTheater
 					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(false)
+				(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView(false)
 			default:
 				print("unexpected COType in toggleSectionIsExpanded")
 		}
@@ -817,7 +816,7 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 
 				gCurrTheater = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
 
-				(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(enableBuyTickets)
+				(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView(enableBuyTickets)
 			case .theater:
 				//	if click is on L1 row it's a
 				//	Movie, show Movie Detail
@@ -825,7 +824,7 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 				
 				if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
 				{
-					(childViewControllers[0] as! ViewControllerContainer).updateMovieDetailView()
+					(childViewControllers.first as! ViewControllerContainer).updateMovieDetailView()
 				}
 				else	//	it's a Movie show time, show Theater Detail
 				{
@@ -834,7 +833,7 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 
 					gCurrTheater = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
 
-					(childViewControllers[0] as! ViewControllerContainer).updateTheaterDetailView(enableBuyTickets)
+					(childViewControllers.first as! ViewControllerContainer).updateTheaterDetailView(enableBuyTickets)
 				}
 			
 			default:

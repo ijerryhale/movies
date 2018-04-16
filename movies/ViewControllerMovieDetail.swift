@@ -31,8 +31,6 @@ class ViewControllerMovieDetail : UIViewController
 
 	@IBAction func viewTrailerBtnPressed(_ sender: UIButton)
 	{
-		//	disable Prefs Button
-		(parent?.parent as! ViewControllerBoxOffice).disableSettingsBtn()
 		//	pop ViewControllerMovieDetail push ViewControllerTrailer
 		(parent as! ViewControllerContainer).trailerSegueWind()
 	}

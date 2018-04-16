@@ -45,8 +45,6 @@
 		2C3FA62A1F48DF4B008C1524 /* L1_Cell_theater.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C3FA6011F48C4C1008C1524 /* L1_Cell_theater.xib */; };
 		2C40588F1F50DDDC00A6D598 /* movies_embeddedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C40588E1F50DDDC00A6D598 /* movies_embeddedTests.m */; };
 		2C4FE13E1D82681A00F1A3FF /* DictionaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FE13C1D82681A00F1A3FF /* DictionaryKey.m */; };
-		2C51BE18207C014600A875EF /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C51BE16207C012F00A875EF /* AFNetworking.framework */; };
-		2C51BE19207C021200A875EF /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C51BE16207C012F00A875EF /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C59608C205F001100182FCD /* L0_Cell_theater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C59608A205F001000182FCD /* L0_Cell_theater.swift */; };
 		2C59608D205F001100182FCD /* L0_Cell_theater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C59608A205F001000182FCD /* L0_Cell_theater.swift */; };
 		2C59608E205F001100182FCD /* L0_Cell_movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C59608B205F001000182FCD /* L0_Cell_movie.swift */; };
@@ -60,6 +58,8 @@
 		2C8A60D81F623206005BF0A2 /* ViewControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A60D61F623206005BF0A2 /* ViewControllerContainer.swift */; };
 		2C8C19D21F5F776400058C18 /* AccessibilityString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D45941F5211BE003F529A /* AccessibilityString.m */; };
 		2C9C1D2C1E8749F00092AFE7 /* ViewControllerShowDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C1D2B1E8749F00092AFE7 /* ViewControllerShowDate.swift */; };
+		2CAE81FD2083C754007AB48C /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAE81FC2083C753007AB48C /* AFNetworking.framework */; };
+		2CAE81FE2083C758007AB48C /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CAE81FC2083C753007AB48C /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CBB8F271E91DF6900938728 /* ViewControllerTheaterDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBB8F261E91DF6900938728 /* ViewControllerTheaterDetail.swift */; };
 		2CBCC0A41E9EC78000FF1A08 /* DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCC0A31E9EC78000FF1A08 /* DataAccess.m */; };
 		2CC08E211E8DEBC700145487 /* ViewControllerTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC08E201E8DEBC700145487 /* ViewControllerTrailer.swift */; };
@@ -124,7 +124,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2C51BE19207C021200A875EF /* AFNetworking.framework in CopyFiles */,
+				2CAE81FE2083C758007AB48C /* AFNetworking.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +162,6 @@
 		2C4FE1271D82664100F1A3FF /* movies-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "movies-Bridging-Header.h"; path = "Movies/movies-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C4FE13C1D82681A00F1A3FF /* DictionaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryKey.m; path = Movies/DictionaryKey.m; sourceTree = "<group>"; };
 		2C4FE13D1D82681A00F1A3FF /* DictionaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryKey.h; path = Movies/DictionaryKey.h; sourceTree = "<group>"; };
-		2C51BE16207C012F00A875EF /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../_afnetworking/build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		2C59608A205F001000182FCD /* L0_Cell_theater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_theater.swift; path = movies/Resource/L0_Cell_theater.swift; sourceTree = "<group>"; };
 		2C59608B205F001000182FCD /* L0_Cell_movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_movie.swift; path = movies/Resource/L0_Cell_movie.swift; sourceTree = "<group>"; };
 		2C596090205F01E100182FCD /* L0_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell.swift; path = movies/Resource/L0_Cell.swift; sourceTree = "<group>"; };
@@ -186,6 +185,7 @@
 		2C8621981FA54860000BF3A2 /* MTData+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MTData+CoreDataProperties.h"; path = "movies/CoreData/MTData+CoreDataProperties.h"; sourceTree = "<group>"; };
 		2C8A60D61F623206005BF0A2 /* ViewControllerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerContainer.swift; sourceTree = "<group>"; };
 		2C9C1D2B1E8749F00092AFE7 /* ViewControllerShowDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerShowDate.swift; sourceTree = "<group>"; };
+		2CAE81FC2083C753007AB48C /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../_afnetworking/build/Debug-iphonesimulator/AFNetworking.framework"; sourceTree = "<group>"; };
 		2CBB8F261E91DF6900938728 /* ViewControllerTheaterDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTheaterDetail.swift; sourceTree = "<group>"; };
 		2CBCC0A21E9EC78000FF1A08 /* DataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataAccess.h; path = Movies/DataAccess.h; sourceTree = "<group>"; };
 		2CBCC0A31E9EC78000FF1A08 /* DataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataAccess.m; path = Movies/DataAccess.m; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C51BE18207C014600A875EF /* AFNetworking.framework in Frameworks */,
+				2CAE81FD2083C754007AB48C /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +300,7 @@
 		2C7BDC6E1E7B79DC00772D2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2C51BE16207C012F00A875EF /* AFNetworking.framework */,
+				2CAE81FC2083C753007AB48C /* AFNetworking.framework */,
 				2CFE840D207BF48800DAB7ED /* EarlGrey.framework */,
 			);
 			name = Frameworks;
@@ -644,7 +644,7 @@
 				CODE_SIGN_ENTITLEMENTS = movies/CoreData/core_data.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CZ3N3VN6HQ;
-				FRAMEWORK_SEARCH_PATHS = "~/Desktop/movies/_afnetworking/build/Debug-iphoneos";
+				FRAMEWORK_SEARCH_PATHS = "~/Desktop/movies/_afnetworking/build/Debug-iphonesimulator";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = movies/movies_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -674,7 +674,7 @@
 				CODE_SIGN_ENTITLEMENTS = movies/CoreData/core_data.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CZ3N3VN6HQ;
-				FRAMEWORK_SEARCH_PATHS = "~/Desktop/movies/_afnetworking/build/Debug-iphoneos";
+				FRAMEWORK_SEARCH_PATHS = "~/Desktop/movies/_afnetworking/build/Debug-iphonesimulator";
 				GCC_FAST_MATH = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = movies/movies_Prefix.pch;

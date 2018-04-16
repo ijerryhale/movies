@@ -189,8 +189,6 @@ class ViewControllerTrailer: UIViewController
 	{
 		player.pause()
 
-		//	disable Prefs Button
-		(parent?.parent as! ViewControllerBoxOffice).enableSettingsBtn()
 		//	pop ViewControllerTrailer push ViewControllerMovieDetail
 		(parent as! ViewControllerContainer).trailerSegueUnwind()
 	}

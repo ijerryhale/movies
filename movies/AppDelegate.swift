@@ -30,17 +30,6 @@ class AppDelegate: UIResponder
 	func handleNetworkError(error: Error?) { print("handleNetworkError: ", error as Any) }
 	func handleNoDataAvailable(error: Error?) { print("handleNoDataAvailable: ", error as Any) }
 
-	class func getShowDateFromDayOffset(dayoffset: Int) -> String
-	{
-		let day = Calendar.current.date(byAdding: .day, value: dayoffset, to: Date())
-		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "yyyy-MM-dd"
-		dateFormatter.locale = Locale(identifier: "en_US")
-		//print(df.string(from: day!))
-
-		return (dateFormatter.string(from: day!))
-	}
-
 	func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController?
 	{
 		if (rootViewController == nil) { return nil }
@@ -59,29 +48,6 @@ class AppDelegate: UIResponder
 		}
 		
 		return (rootViewController)
-	}
-
-	func notif_defaults_changed(notification: Notification)
-	{ print("notif_defaults_changed")
-
-		switch notification.name
-		{
-			case NSNotification.Name(rawValue: NOTIF_DEFAULT_LAST_UPDATE_CHANGED):
-			print(NOTIF_DEFAULT_LAST_UPDATE_CHANGED)
-			case NSNotification.Name(rawValue: NOTIF_DEFAULT_POSTAL_CODE_CHANGED):
-			print(NOTIF_DEFAULT_POSTAL_CODE_CHANGED)
-			case NSNotification.Name(rawValue: NOTIF_DEFAULT_DAY_OFFSET_CHANGED):
-			print(NOTIF_DEFAULT_DAY_OFFSET_CHANGED)
-			
-			default:
-				print("unknown notif")
-		}
-//		rebuild_theaters()
-//		{
-//			(result) -> () in
-//
-//			print(result)
-//		}
 	}
 
 	private func process_theaters(_ theaters: [[String : AnyObject]])
@@ -176,9 +142,12 @@ class AppDelegate: UIResponder
 	private func rebuild_theaters(completion: @escaping (_ result: Bool)->())
 	{ print("rebuild_theaters")
 
+		print("Show Date:", get_show_date_from_day_offset(UserDefault.getDayOffset()))
+		print("Postal Code:", UserDefault.getPostalCode())
+
 		let da = DataAccess()
 
-		da.getTheaters(AppDelegate.getShowDateFromDayOffset(dayoffset: UserDefault.getDayOffset()), postalcode: UserDefault.getPostalCode())
+		da.getTheaters(get_show_date_from_day_offset(UserDefault.getDayOffset()), postalcode: UserDefault.getPostalCode())
 		{
 			(theaterArray, error) in
 
@@ -197,6 +166,9 @@ class AppDelegate: UIResponder
 	private func rebuild_all(completion: @escaping (_ result: Bool)->())
 	{ print("rebuild_all")
 
+		print("Show Date:", get_show_date_from_day_offset(UserDefault.getDayOffset()))
+		print("Postal Code:", UserDefault.getPostalCode())
+
 		let da = DataAccess()
 
 		da.getIndex()
@@ -207,7 +179,7 @@ class AppDelegate: UIResponder
 
 			gXMLIndex = index as! [[String : AnyObject]]
 			
-			da.getTheaters(AppDelegate.getShowDateFromDayOffset(dayoffset: UserDefault.getDayOffset()), postalcode: UserDefault.getPostalCode())
+			da.getTheaters(get_show_date_from_day_offset(UserDefault.getDayOffset()), postalcode: UserDefault.getPostalCode())
 			{
 				(theaterArray, error) in
 
@@ -227,6 +199,35 @@ class AppDelegate: UIResponder
 
 extension AppDelegate : UIApplicationDelegate
 {
+	func notif_defaults_changed(notification: Notification)
+	{ print("AppDelegate notif_defaults_changed")
+
+		switch notification.name
+		{
+			case NSNotification.Name(rawValue: NOTIF_LAST_UPDATE_CHANGED):
+				print(NOTIF_LAST_UPDATE_CHANGED)
+			case NSNotification.Name(rawValue: NOTIF_POSTAL_CODE_CHANGED), NSNotification.Name(rawValue: NOTIF_DAY_OFFSET_CHANGED):
+				//	if PostalCode or DayOffset has
+				//	been changed make new request,
+				//	rebuild the Theaters array,
+				//	and reload the Marquee
+				rebuild_theaters()
+				{
+					(result) -> () in
+
+					gCurrMovie = 0
+					gCurrTheater = 0
+					
+					let mvc = self.window?.rootViewController as! ViewControllerMarquee
+					
+					mvc.tableView.reloadData()
+					mvc.tableView.scrollToRow(at: [0, NSNotFound], at: .top, animated: false)
+				}
+			default:
+					print("unknown notif")
+		}
+	}
+
 	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
 	{
 		if let rootViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController)
@@ -250,6 +251,26 @@ extension AppDelegate : UIApplicationDelegate
 		//	and it begins the transition to the background state.
 		//	Use this method to pause ongoing tasks, disable timers, and invalidate
 		//	graphics rendering callbacks. Games should use this method to pause the game.
+		
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_LAST_UPDATE_CHANGED))
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_POSTAL_CODE_CHANGED))
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED))
+	}
+
+	func applicationDidBecomeActive(_ application: UIApplication)
+	{ print("applicationDidBecomeActive")
+		//	Restart any tasks that were paused (or not yet started) while the
+		//	application was inactive. If the application was previously in
+		//	the background, optionally refresh the user interface.
+		
+		//	observe for changes in Settings
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_LAST_UPDATE_CHANGED),
+               object:nil, queue:nil, using:notif_defaults_changed)
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_POSTAL_CODE_CHANGED),
+               object:nil, queue:nil, using:notif_defaults_changed)
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED),
+               object:nil, queue:nil, using:notif_defaults_changed)
+
 	}
 
 	func applicationDidEnterBackground(_ application: UIApplication)
@@ -267,20 +288,9 @@ extension AppDelegate : UIApplicationDelegate
 		//	here you can undo many of the changes made on entering the background.
 	}
 
-	func applicationDidBecomeActive(_ application: UIApplication)
-	{ print("applicationDidBecomeActive")
-		//	Restart any tasks that were paused (or not yet started) while the
-		//	application was inactive. If the application was previously in
-		//	the background, optionally refresh the user interface.
-	}
-
 	func applicationWillTerminate(_ application: UIApplication)
 	{ print("applicationWillTerminate")
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-		
-		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_LAST_UPDATE_CHANGED))
-		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_POSTAL_CODE_CHANGED))
-		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED))
 	}
 
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
@@ -304,14 +314,6 @@ extension AppDelegate : UIApplicationDelegate
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
 	{ print("didFinishLaunchingWithOptions")
-		//	observe for changes to LastUpdate,
-		//	PostalCode, and DayOffset
-		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_LAST_UPDATE_CHANGED),
-               object:nil, queue:nil, using:notif_defaults_changed)
-		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_POSTAL_CODE_CHANGED),
-               object:nil, queue:nil, using:notif_defaults_changed)
-		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED),
-               object:nil, queue:nil, using:notif_defaults_changed)
 
 		rebuild_all()
 		{

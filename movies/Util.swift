@@ -203,3 +203,13 @@ func get_show_date() -> String
 	}
 }
 
+func get_show_date_from_day_offset(_ dayoffset: Int) -> String
+{
+	let day = Calendar.current.date(byAdding: .day, value: dayoffset, to: Date())
+	let dateFormatter = DateFormatter()
+	dateFormatter.dateFormat = "yyyy-MM-dd"
+	dateFormatter.locale = Locale(identifier: "en_US")
+	//print(df.string(from: day!))
+
+	return (dateFormatter.string(from: day!))
+}

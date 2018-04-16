@@ -120,9 +120,9 @@ NSString * const S2_SHOWDATE = @"s2_showdate";
 NSString * const S2_SETTINGS = @"s2_settings";
 NSString * const S2_CONTAINER_UNWIND = @"s2_container_unwind";
 
-NSString * const NOTIF_DEFAULT_LAST_UPDATE_CHANGED = @"Notif Default Last Update Changed";
-NSString * const NOTIF_DEFAULT_POSTAL_CODE_CHANGED = @"Notif Default Postal Code Changed";
-NSString * const NOTIF_DEFAULT_DAY_OFFSET_CHANGED = @"Notif Default Day Offset Changed";
+NSString * const NOTIF_LAST_UPDATE_CHANGED = @"Notif Last Update Changed";
+NSString * const NOTIF_POSTAL_CODE_CHANGED = @"Notif Postal Code Changed";
+NSString * const NOTIF_DAY_OFFSET_CHANGED = @"Notif Day Offset Changed";
 
 NSString * const ENAME_MIDATA = @"MIData";
 NSString * const ENAME_MTDATA = @"MTData";

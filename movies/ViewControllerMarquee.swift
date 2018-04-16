@@ -51,8 +51,6 @@ class ViewControllerMarquee: UIViewController
 	@IBAction func unwindToMarquee(segue: UIStoryboardSegue) { }
 	@IBAction func tapSettinsBtn(sender: UIButton) { self.performSegue(withIdentifier: S2_SETTINGS, sender: self) }
 
-	func notif_showdate(notification: Notification) { print("ViewControllerMarquee notif_showdate"); self.showdate.text = get_show_date() }
-	
     let pendingOperations = PendingMarqueeOperations()
 
     func startOperationForPoster(poster: LazyPoster, indexPath: NSIndexPath)
@@ -134,12 +132,15 @@ class ViewControllerMarquee: UIViewController
         }
     }
 
-	deinit
-	{
-		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED))
-	}
+	//	update Show Date
+	func notif_dayoffset_changed(notification: Notification) { print("ViewControllerMarquee notif_dayoffset_changed"); self.showdate.text = get_show_date() }
 
 	//	MARK: UIViewController overrides
+	deinit
+	{
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED))
+	}
+
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
 	{
 		if segue.identifier == S2_SETTINGS
@@ -153,15 +154,15 @@ class ViewControllerMarquee: UIViewController
     }
 	
 	override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
-
 	override func viewWillAppear(_ animated: Bool)
 	{super.viewWillAppear(animated); print("ViewControllerMarquee viewWillAppear ")
-
-		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DEFAULT_DAY_OFFSET_CHANGED),
-               object:nil, queue:nil, using:notif_showdate)
-
 		//	called on seque from ViewControllerBoxOffice
 		//	and on intial application launch
+		
+		//	observe for changes to DayOffset
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED),
+               object:nil, queue:nil, using:notif_dayoffset_changed)
+
 		gState = .marquee
 		tableView.scrollToRow(at: [0, gCurrMovie], at: .middle, animated: true)
 	}

@@ -406,7 +406,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 			MIData	*mid = rowArray[0];
 
 			block([self parseindex:mid.data], nil);
-			
+
 			return;
 		}
 
@@ -491,12 +491,12 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 {
 	#ifdef HAS_WEB_SERVICE
 		[self delete_mt_data_rows];
-	
+
 		NSFetchRequest	*fr = [[NSFetchRequest alloc] init];
 		[fr setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:_managedObjectContext]];
-	
+
 		[fr setPredicate:[NSPredicate predicateWithFormat:@"showDate == %@ AND postalCode == %@", showdate, postalcode]];
-	
+
 		NSError	*error = nil;
 		NSArray *rowArray = [_managedObjectContext executeFetchRequest:fr error:&error];
 		fr = nil;
@@ -507,7 +507,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 			if (rowArray.count > 1) NSLog(@"%i rows in MTData for getTheaters!!!", (int)rowArray.count);
 
 			MTData	*mtd = rowArray[0];
-			
+
 			block([self parsetheaters:mtd.data], nil);
 
 			return;
