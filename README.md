@@ -37,5 +37,5 @@ Commit 281c8d0 should be fairly stable. Seque unwinds back to ViewControllerMarq
 *Marquee* | *Theaters for Movie* |
 ![movies_for_theater](https://user-images.githubusercontent.com/4106530/38840096-c68a6248-4192-11e8-96dc-11ad3edf7820.png "Movies for Theater") | ![trailers](https://user-images.githubusercontent.com/4106530/38840106-d3503be2-4192-11e8-82bf-89d2556140ae.png "View Trailers") |
 *Movies for Theater* | *View Trailer* |
-![itunes](https://user-images.githubusercontent.com/4106530/38840114-de6d465a-4192-11e8-9974-b5caa9d1568b.png "iTunes Preview") | ![driving_directions](https://user-images.githubusercontent.com/4106530/38840125-e8c85018-4192-11e8-8620-c3a5eec2e60a.png "Driving Directions") |
+![itunes](https://user-images.githubusercontent.com/4106530/38840294-bc2e6686-4193-11e8-9f6e-6a1ce28a3531.png) "iTunes Preview") | ![driving_directions](https://user-images.githubusercontent.com/4106530/38840125-e8c85018-4192-11e8-8620-c3a5eec2e60a.png "Driving Directions") |
 *iTunes Preview* | *Driving Directions*
