@@ -32,10 +32,10 @@ Update embedded data.
 #### April 8, 2018
 Commit 281c8d0 should be fairly stable. Seque unwinds back to ViewControllerMarquee will now always do the right thing. Redesign to use Sections in ViewControllerBoxOffice is essentially done but overall color now looks too dark. But there is more compelling stuff to work on right now.
 
-![marquee](https://user-images.githubusercontent.com/4106530/38840080-a9654200-4192-11e8-9dfb-e36da92d8c30.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/38840087-bbf6731c-4192-11e8-9838-5ffcc53475cd.png "Theaters for Movie") |
+![marquee](https://user-images.githubusercontent.com/4106530/38840548-15881b40-4195-11e8-80cc-316c271e2bce.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/38840558-2215f2f6-4195-11e8-9b26-9455f008a901.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 *Marquee* | *Theaters for Movie* |
-![movies_for_theater](https://user-images.githubusercontent.com/4106530/38840096-c68a6248-4192-11e8-96dc-11ad3edf7820.png "Movies for Theater") | ![trailers](https://user-images.githubusercontent.com/4106530/38840106-d3503be2-4192-11e8-82bf-89d2556140ae.png "View Trailers") |
+![movies_for_theater](https://user-images.githubusercontent.com/4106530/38840567-2d42cbfe-4195-11e8-82e9-2c83602d6871.png "Movies for Theater") | ![trailers](https://user-images.githubusercontent.com/4106530/38840571-3b175eac-4195-11e8-8dfa-fdd67e3d224d.png) "View Trailers") |
 *Movies for Theater* | *View Trailer* |
-![itunes](https://user-images.githubusercontent.com/4106530/38840294-bc2e6686-4193-11e8-9f6e-6a1ce28a3531.png) "iTunes Preview") | ![driving_directions](https://user-images.githubusercontent.com/4106530/38840125-e8c85018-4192-11e8-8620-c3a5eec2e60a.png "Driving Directions") |
+![itunes](https://user-images.githubusercontent.com/4106530/38840582-4992d95c-4195-11e8-8e31-024383229cb8.png) "iTunes Preview") | ![driving_directions](https://user-images.githubusercontent.com/4106530/38840596-5af3f208-4195-11e8-85a3-2f5de4b2534d.png "Driving Directions") |
 *iTunes Preview* | *Driving Directions*
