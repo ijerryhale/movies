@@ -32,6 +32,9 @@ Update embedded data.
 #### April 8, 2018
 Commit 281c8d0 should be fairly stable. Seque unwinds back to ViewControllerMarquee will now always do the right thing. Redesign to use Sections in ViewControllerBoxOffice is essentially done but overall color now looks too dark. But there is more compelling stuff to work on right now.
 
+#### April 16, 2018
+Commit 2c4e409 should be stable. Update Marquee on Show Date or Postal Code change.
+
 ![marquee](https://user-images.githubusercontent.com/4106530/38840548-15881b40-4195-11e8-80cc-316c271e2bce.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/38840558-2215f2f6-4195-11e8-9b26-9455f008a901.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 *Marquee* | *Theaters for Movie* |
