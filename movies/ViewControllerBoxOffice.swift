@@ -13,7 +13,20 @@ import CoreLocation
 import MapKit
 import UIKit
 
-private let theaterOffset = 0
+//	set to false to disallow
+//	expand/collapse of L1_Cell
+let L1_CELL_CAN_EXPAND_COLLAPSE = true
+
+//	set to true to intially
+//	display all L1_Cell's
+//	as expanded
+let L1_CELL_INIT_EXPANDED = false
+
+//	set to true to allow only
+//	one L1_Cell to be expanded
+//	at a time
+let L1_CELL_SINGLE_ROW_SELECT = true
+
 
 public struct Section {
 
@@ -288,8 +301,8 @@ class ViewControllerBoxOffice: UIViewController
 
 				let tms_id = ns[KEY_TMS_ID] as! String
 
-				var l1_dict = [KEY_IS_EXPANDABLE : true,
-								KEY_IS_EXPANDED : true,
+				var l1_dict = [KEY_CAN_EXPAND : (L1_CELL_CAN_EXPAND_COLLAPSE ? true : false),
+								KEY_IS_EXPANDED : (L1_CELL_INIT_EXPANDED ? true : false),
 								KEY_IS_VISIBLE : true,
 								KEY_CELL_IDENTIFIER : VALUE_L1_CELL,
 								KEY_ADDITIONAL_ROWS : 0 ] as [String : Any]
@@ -312,9 +325,9 @@ class ViewControllerBoxOffice: UIViewController
 				{
 					rowNum += 1
 					
-					var l2_dict = [KEY_IS_EXPANDABLE : false,
+					var l2_dict = [KEY_CAN_EXPAND : false,
 									KEY_IS_EXPANDED : false,
-									KEY_IS_VISIBLE : true,
+									KEY_IS_VISIBLE : (L1_CELL_INIT_EXPANDED ? true : false),
 									KEY_CELL_IDENTIFIER : VALUE_L2_CELL,
 									KEY_ADDITIONAL_ROWS : 0 ] as [String : Any]
 					
@@ -361,8 +374,8 @@ class ViewControllerBoxOffice: UIViewController
 					{
 						rowNum += 1
 
-						var l1_dict = [KEY_IS_EXPANDABLE : true,
-										KEY_IS_EXPANDED : true,
+						var l1_dict = [KEY_CAN_EXPAND : (L1_CELL_CAN_EXPAND_COLLAPSE ? true : false),
+										KEY_IS_EXPANDED : (L1_CELL_INIT_EXPANDED ? true : false),
 										KEY_IS_VISIBLE : true,
 										KEY_CELL_IDENTIFIER : VALUE_L1_CELL,
 										KEY_ADDITIONAL_ROWS : 0 ] as [String : Any]
@@ -384,9 +397,9 @@ class ViewControllerBoxOffice: UIViewController
 						{
 							rowNum += 1
 							
-							var l2_dict = [KEY_IS_EXPANDABLE : false,
+							var l2_dict = [KEY_CAN_EXPAND : false,
 											KEY_IS_EXPANDED : false,
-											KEY_IS_VISIBLE : true,
+											KEY_IS_VISIBLE : (L1_CELL_INIT_EXPANDED ? true : false),
 											KEY_CELL_IDENTIFIER : VALUE_L2_CELL,
 											KEY_ADDITIONAL_ROWS : 0 ] as [String : Any]
 							
@@ -457,10 +470,10 @@ class ViewControllerBoxOffice: UIViewController
 		let green = CGFloat((0x333333 & 0x00FF00) >> 8) / 255.0
 		let blue = CGFloat(0x333333 & 0x00FF) / 255.0
 
-		tableView.backgroundColor = UIColor(red: red,
-											green: green,
-											blue: blue,
-											alpha: 1.0)
+		//	tableView.backgroundColor = UIColor(red: red,
+		//										green: green,
+		//										blue: blue,
+		//										alpha: 1.0)
 		tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -754,55 +767,55 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 		//	just ignore clicks on the UITableView
 		if (childViewControllers[0].childViewControllers[0] is ViewControllerTrailer) { return }
 
-		var rowDict = rowDictionary[indexPath.section].cell[indexPath.row]
+		var section = rowDictionary[indexPath.section]
+		var rowDict = section.cell[indexPath.row]
 
-//		if singleRowSelect == true
-//		&& rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
-//		{
-//			var index = 0
-//			for var rd in rowDictionary
-//			{
-//				if rd[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
-//				{
-//					if rd[KEY_IS_EXPANDED] as! Bool == true
-//					{
-//						rd[KEY_IS_EXPANDED] = false
-//					}
-//				}
-//				else if rd["additionalRows"] as! Int == 0
-//				{
-//					if rd["isVisible"] as! Bool == true
-//					{
-//						rd["isVisible"] = false
-//					}
-//				}
-//
-//				rowDictionary[index] = rd
-//
-//				index += 1
-//			}
-//		}
+		if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
+		{
+			if L1_CELL_SINGLE_ROW_SELECT == true
+			{
+				var index = 0
+				for var rd in section.cell
+				{
+					if rd[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
+					{
+						if rd[KEY_IS_EXPANDED] as! Bool == true
+						{
+							rd[KEY_IS_EXPANDED] = false
+						}
+					}
+					else if rd[KEY_ADDITIONAL_ROWS] as! Int == 0
+					{
+						if rd[KEY_IS_VISIBLE] as! Bool == true
+						{
+							rd[KEY_IS_VISIBLE] = false
+						}
+					}
 
-//		if rowDict[KEY_IS_EXPANDABLE] as! Bool == true
-//		{
-//            var shouldExpandAndShowSubRows = false
-//
-//            if rowDict[KEY_IS_EXPANDED] as! Bool == false
-//			{
-//                shouldExpandAndShowSubRows = true
-//            }
-//
-//            rowDict[KEY_IS_EXPANDED] = shouldExpandAndShowSubRows
-//
-//			for i in (indexPath.row + 1)...(indexPath.row + (rowDict[KEY_ADDITIONAL_ROWS] as! Int))
-//			{
-//				var d = rowDictionary[i] as [String:Any]
-//
-//				d[KEY_IS_VISIBLE] = shouldExpandAndShowSubRows
-//
-//				rowDictionary[i] = d
-//           }
-//		}
+					rowDictionary[indexPath.section].cell[index] = rd
+
+					index += 1
+				}
+			}
+
+			if rowDict[KEY_CAN_EXPAND] as! Bool == true
+			{
+				var shouldExpand = false
+
+				if rowDict[KEY_IS_EXPANDED] as! Bool == false { shouldExpand = true }
+
+				rowDict[KEY_IS_EXPANDED] = shouldExpand
+
+				for i in (indexPath.row + 1)...(indexPath.row + (rowDict[KEY_ADDITIONAL_ROWS] as! Int))
+				{
+					rowDictionary[indexPath.section].cell[i][KEY_IS_VISIBLE] = shouldExpand
+			   }
+			}
+
+			rowDictionary[indexPath.section].cell[indexPath.row] = rowDict
+			
+			tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .left)
+		}
 
 		var enableBuyTickets = true
 		

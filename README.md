@@ -35,6 +35,10 @@ Commit 281c8d0 should be fairly stable. Seque unwinds back to ViewControllerMarq
 #### April 16, 2018
 Commit 2c4e409 should be stable. Update Marquee on Show Date or Postal Code change.
 
+#### April 22, 2018
+
+Add variables to select how L1 Cell's are displayed/handled and restored all of the old SINGLEROWSELECT code which allowed for auto-collapsing L2 Cell's.
+
 ![marquee](https://user-images.githubusercontent.com/4106530/38840548-15881b40-4195-11e8-80cc-316c271e2bce.png "Marquee") | ![theaters_for_movie](https://user-images.githubusercontent.com/4106530/38840558-2215f2f6-4195-11e8-9b26-9455f008a901.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 *Marquee* | *Theaters for Movie* |

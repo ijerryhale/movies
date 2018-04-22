@@ -31,7 +31,16 @@ class L0_Cell_theater: L0_Cell
 		indicator.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-24).isActive = true
 
 		name.font = UIFont(name: "HelveticaNeue", size: 16)
-		name.textColor = UIColor.white
+		
+		let red = CGFloat((0x333333 & 0xFF0000) >> 16) / 255.0
+		let green = CGFloat((0x333333 & 0x00FF00) >> 8) / 255.0
+		let blue = CGFloat(0x333333 & 0x00FF) / 255.0
+
+		name.textColor = UIColor(red: red,
+								green: green,
+								blue: blue,
+								alpha: 1.0)
+		
 		name.translatesAutoresizingMaskIntoConstraints = false
 		name.textAlignment = .left
 

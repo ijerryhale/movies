@@ -21,7 +21,16 @@ class L0_Cell_movie: L0_Cell
 		let marginGuide = contentView.layoutMarginsGuide
 
 		title.font = UIFont(name: "HelveticaNeue", size: 16)
-		title.textColor = UIColor.white
+		
+		let red = CGFloat((0x333333 & 0xFF0000) >> 16) / 255.0
+		let green = CGFloat((0x333333 & 0x00FF00) >> 8) / 255.0
+		let blue = CGFloat(0x333333 & 0x00FF) / 255.0
+
+		title.textColor = UIColor(red: red,
+								green: green,
+								blue: blue,
+								alpha: 1.0)
+
 		title.translatesAutoresizingMaskIntoConstraints = false
 		title.textAlignment = .left
 
@@ -38,7 +47,12 @@ class L0_Cell_movie: L0_Cell
 		title.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:28).isActive = true
 
 		rating.font = UIFont(name: "HelveticaNeue", size: 12)
-		rating.textColor = UIColor.white
+		
+		rating.textColor = UIColor(red: red,
+								green: green,
+								blue: blue,
+								alpha: 1.0)
+
 		rating.translatesAutoresizingMaskIntoConstraints = false
 		rating.textAlignment = .left
 

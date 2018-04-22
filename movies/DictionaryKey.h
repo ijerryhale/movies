@@ -84,7 +84,7 @@ extern NSString * const VALUE_L1_CELL_THEATER;
 extern NSString * const VALUE_L2_CELL;
 
 //	required keys to track UITableViewCell
-extern NSString * const KEY_IS_EXPANDABLE;
+extern NSString * const KEY_CAN_EXPAND;
 extern NSString * const KEY_IS_EXPANDED;
 extern NSString * const KEY_IS_VISIBLE;
 extern NSString * const KEY_CELL_IDENTIFIER;
