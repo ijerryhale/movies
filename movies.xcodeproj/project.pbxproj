@@ -140,8 +140,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2C2A2ACA1F5A29E600636E69 /* Marquee_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Marquee_Cell.swift; path = movies/Resource/Marquee_Cell.swift; sourceTree = "<group>"; };
-		2C2A2ACB1F5A29E600636E69 /* Marquee_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Marquee_Cell.xib; path = movies/Resource/Marquee_Cell.xib; sourceTree = "<group>"; };
+		2C2A2ACA1F5A29E600636E69 /* Marquee_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Marquee_Cell.swift; path = movies/Resource/CustomCell/Marquee_Cell.swift; sourceTree = "<group>"; };
+		2C2A2ACB1F5A29E600636E69 /* Marquee_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Marquee_Cell.xib; path = movies/Resource/CustomCell/Marquee_Cell.xib; sourceTree = "<group>"; };
 		2C2D45931F5211BE003F529A /* AccessibilityString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessibilityString.h; path = movies/AccessibilityString.h; sourceTree = "<group>"; };
 		2C2D45941F5211BE003F529A /* AccessibilityString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessibilityString.m; path = movies/AccessibilityString.m; sourceTree = "<group>"; };
 		2C356AC41F48F3F40095F104 /* movies_webservice.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = movies_webservice.plist; sourceTree = "<group>"; };
@@ -150,21 +150,21 @@
 		2C3FA5F31F48C429008C1524 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = movies/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		2C3FA5F61F48C44E008C1524 /* index.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = index.xml; path = movies/Resource/index.xml; sourceTree = SOURCE_ROOT; };
 		2C3FA5F71F48C44E008C1524 /* theaters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = theaters.json; path = movies/Resource/theaters.json; sourceTree = SOURCE_ROOT; };
-		2C3FA5FE1F48C4C1008C1524 /* L1_Cell_movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L1_Cell_movie.swift; path = movies/Resource/L1_Cell_movie.swift; sourceTree = "<group>"; };
-		2C3FA5FF1F48C4C1008C1524 /* L1_Cell_movie.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = L1_Cell_movie.xib; path = movies/Resource/L1_Cell_movie.xib; sourceTree = "<group>"; };
-		2C3FA6001F48C4C1008C1524 /* L1_Cell_theater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L1_Cell_theater.swift; path = movies/Resource/L1_Cell_theater.swift; sourceTree = "<group>"; };
-		2C3FA6011F48C4C1008C1524 /* L1_Cell_theater.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = L1_Cell_theater.xib; path = movies/Resource/L1_Cell_theater.xib; sourceTree = "<group>"; };
-		2C3FA6021F48C4C1008C1524 /* L2_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L2_Cell.swift; path = movies/Resource/L2_Cell.swift; sourceTree = "<group>"; };
-		2C3FA6031F48C4C1008C1524 /* L2_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = L2_Cell.xib; path = movies/Resource/L2_Cell.xib; sourceTree = "<group>"; };
+		2C3FA5FE1F48C4C1008C1524 /* L1_Cell_movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L1_Cell_movie.swift; path = movies/Resource/CustomCell/L1_Cell_movie.swift; sourceTree = "<group>"; };
+		2C3FA5FF1F48C4C1008C1524 /* L1_Cell_movie.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = L1_Cell_movie.xib; path = movies/Resource/CustomCell/L1_Cell_movie.xib; sourceTree = "<group>"; };
+		2C3FA6001F48C4C1008C1524 /* L1_Cell_theater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L1_Cell_theater.swift; path = movies/Resource/CustomCell/L1_Cell_theater.swift; sourceTree = "<group>"; };
+		2C3FA6011F48C4C1008C1524 /* L1_Cell_theater.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = L1_Cell_theater.xib; path = movies/Resource/CustomCell/L1_Cell_theater.xib; sourceTree = "<group>"; };
+		2C3FA6021F48C4C1008C1524 /* L2_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L2_Cell.swift; path = movies/Resource/CustomCell/L2_Cell.swift; sourceTree = "<group>"; };
+		2C3FA6031F48C4C1008C1524 /* L2_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = L2_Cell.xib; path = movies/Resource/CustomCell/L2_Cell.xib; sourceTree = "<group>"; };
 		2C3FA6311F48DF4B008C1524 /* movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C40588C1F50DDDB00A6D598 /* movies_embeddedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = movies_embeddedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C40588E1F50DDDC00A6D598 /* movies_embeddedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = movies_embeddedTests.m; sourceTree = "<group>"; };
 		2C4FE1271D82664100F1A3FF /* movies-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "movies-Bridging-Header.h"; path = "Movies/movies-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C4FE13C1D82681A00F1A3FF /* DictionaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryKey.m; path = Movies/DictionaryKey.m; sourceTree = "<group>"; };
 		2C4FE13D1D82681A00F1A3FF /* DictionaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryKey.h; path = Movies/DictionaryKey.h; sourceTree = "<group>"; };
-		2C59608A205F001000182FCD /* L0_Cell_theater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_theater.swift; path = movies/Resource/L0_Cell_theater.swift; sourceTree = "<group>"; };
-		2C59608B205F001000182FCD /* L0_Cell_movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_movie.swift; path = movies/Resource/L0_Cell_movie.swift; sourceTree = "<group>"; };
-		2C596090205F01E100182FCD /* L0_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell.swift; path = movies/Resource/L0_Cell.swift; sourceTree = "<group>"; };
+		2C59608A205F001000182FCD /* L0_Cell_theater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_theater.swift; path = movies/Resource/CustomCell/L0_Cell_theater.swift; sourceTree = "<group>"; };
+		2C59608B205F001000182FCD /* L0_Cell_movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_movie.swift; path = movies/Resource/CustomCell/L0_Cell_movie.swift; sourceTree = "<group>"; };
+		2C596090205F01E100182FCD /* L0_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell.swift; path = movies/Resource/CustomCell/L0_Cell.swift; sourceTree = "<group>"; };
 		2C6BDEEC2065DD5200FF6322 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2C83BF371D82238E006B4CC6 /* movies_embedded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movies_embedded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C83BF3A1D82238E006B4CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../Movies/AppDelegate.swift; sourceTree = "<group>"; };
@@ -190,8 +190,8 @@
 		2CBCC0A21E9EC78000FF1A08 /* DataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataAccess.h; path = Movies/DataAccess.h; sourceTree = "<group>"; };
 		2CBCC0A31E9EC78000FF1A08 /* DataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataAccess.m; path = Movies/DataAccess.m; sourceTree = "<group>"; };
 		2CC08E201E8DEBC700145487 /* ViewControllerTrailer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTrailer.swift; sourceTree = "<group>"; };
-		2CCED7001FA54D0B00DB9A95 /* ShowDate_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowDate_Cell.swift; path = movies/Resource/ShowDate_Cell.swift; sourceTree = "<group>"; };
-		2CCED7011FA54D0B00DB9A95 /* ShowDate_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShowDate_Cell.xib; path = movies/Resource/ShowDate_Cell.xib; sourceTree = "<group>"; };
+		2CCED7001FA54D0B00DB9A95 /* ShowDate_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowDate_Cell.swift; path = movies/Resource/CustomCell/ShowDate_Cell.swift; sourceTree = "<group>"; };
+		2CCED7011FA54D0B00DB9A95 /* ShowDate_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShowDate_Cell.xib; path = movies/Resource/CustomCell/ShowDate_Cell.xib; sourceTree = "<group>"; };
 		2CCED7061FA54D9E00DB9A95 /* ViewControllerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSettings.swift; sourceTree = "<group>"; };
 		2CCED7091FA54EE500DB9A95 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		2CD0227F1F58D1A800032D92 /* ViewControllerMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMap.swift; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C09CE071DA1E322000F1FC1 /* CustomCells */ = {
+		2C09CE071DA1E322000F1FC1 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
 				2CCED7001FA54D0B00DB9A95 /* ShowDate_Cell.swift */,
@@ -248,7 +248,7 @@
 				2C3FA6021F48C4C1008C1524 /* L2_Cell.swift */,
 				2C3FA6031F48C4C1008C1524 /* L2_Cell.xib */,
 			);
-			name = CustomCells;
+			name = CustomCell;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -269,7 +269,7 @@
 				2C3FA5F71F48C44E008C1524 /* theaters.json */,
 				2C3FA5F01F48C429008C1524 /* LaunchScreen.storyboard */,
 				2C3FA5F21F48C429008C1524 /* Main.storyboard */,
-				2C09CE071DA1E322000F1FC1 /* CustomCells */,
+				2C09CE071DA1E322000F1FC1 /* CustomCell */,
 			);
 			name = Resource;
 			sourceTree = "<group>";

@@ -173,10 +173,10 @@ class ViewControllerTrailer: UIViewController
 	{
 		if player.rate != 1.0
 		{
-            // Not playing forward, so play.
+            // not playing, so play
  			if currentTime == duration
 			{
-                // At end, so got back to begining.
+                // at end, go back to begining
 				currentTime = 0.0
 			}
 
@@ -195,10 +195,10 @@ class ViewControllerTrailer: UIViewController
 
     // MARK: - KVO Observation
 
-    // Update our UI when player or `player.currentItem` changes.
+    //	update UI when player or `player.currentItem` changes.
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?)
 	{
-        // Make sure the this KVO callback was intended for this view controller.
+        //	make sure the this KVO callback was intended for this view controller
         guard context == &playerViewControllerKVOContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
@@ -206,7 +206,7 @@ class ViewControllerTrailer: UIViewController
 
 		if keyPath == #keyPath(ViewControllerTrailer.player.currentItem.duration)
 		{
-            // Update `timeSlider` and enable / disable controls when `duration` > 0.0.
+            //	update `timeSlider` and enable / disable controls when `duration` > 0.0
 
             /*
                 Handle `NSNull` value for `NSKeyValueChangeNewKey`, i.e. when 
@@ -242,7 +242,7 @@ class ViewControllerTrailer: UIViewController
         }
         else if keyPath == #keyPath(ViewControllerTrailer.player.currentItem.status)
 		{
-            // Display an error if status becomes `.Failed`.
+            //	display error if status becomes `.Failed`
 
             /*
                 Handle `NSNull` value for `NSKeyValueChangeNewKey`, i.e. when
@@ -266,7 +266,8 @@ class ViewControllerTrailer: UIViewController
         }
     }
 
-    // Trigger KVO for anyone observing our properties affected by player and player.currentItem
+    //	trigger KVO for anyone observing our properties
+	//	affected by player and player.currentItem
     override class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>
 	{
         let affectedKeyPathsMappingByKey: [String: Set<String>] = [
@@ -322,7 +323,8 @@ class ViewControllerTrailer: UIViewController
 		
         playerView.playerLayer.player = player
 
-		//	make sure we don't have a strong reference cycle by only capturing self as weak.
+		//	make sure we don't have a strong reference
+		//	cycle by only capturing self as weak
         let interval = CMTimeMake(1, 1)
         timeObserverToken = player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main)
 		{ [unowned self] time in
@@ -343,7 +345,6 @@ class ViewControllerTrailer: UIViewController
 		
 		//	have to remove BASE_URL from path
 		#if HAS_WEB_SERVICE
-				//	have to remove BASE_URL from path
 			var baseURL = DataAccess.url_BASE()
 			let range = baseURL?.range(of:"s")
 			if let startLocation = range?.lowerBound,

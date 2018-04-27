@@ -466,14 +466,6 @@ class ViewControllerBoxOffice: UIViewController
 
 		//	only called from ViewControllerMarquee
 
-		let red = CGFloat((0x333333 & 0xFF0000) >> 16) / 255.0
-		let green = CGFloat((0x333333 & 0x00FF00) >> 8) / 255.0
-		let blue = CGFloat(0x333333 & 0x00FF) / 255.0
-
-		//	tableView.backgroundColor = UIColor(red: red,
-		//										green: green,
-		//										blue: blue,
-		//										alpha: 1.0)
 		tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -483,24 +475,12 @@ class ViewControllerBoxOffice: UIViewController
         tableView.register(UINib(nibName: VALUE_L1_CELL_MOVIE, bundle: nil), forCellReuseIdentifier: VALUE_L1_CELL_MOVIE)
         tableView.register(UINib(nibName: VALUE_L1_CELL_THEATER, bundle: nil), forCellReuseIdentifier: VALUE_L1_CELL_THEATER)
 		tableView.register(UINib(nibName: VALUE_L2_CELL, bundle: nil), forCellReuseIdentifier: VALUE_L2_CELL)
-		
-//		tableView.contentInset = UIEdgeInsetsMake(1, 0, 0, 0);
 
 		//	MV006798690000
 		all_movies()
 	
 		tableView.reloadData()
-		
-		let movie = gMovie[gCurrMovie]
-
-		for i in 0...rowDictionary.count - 1
-		{
-			if rowDictionary[i].dict[KEY_TMS_ID] as! String == movie.movie[KEY_TMS_ID] as! String
-			{
-				tableView.scrollToRow(at: [i, NSNotFound], at: .top, animated: false)
-				break
-			}
-		}
+		tableView.scrollToRow(at: [gCurrMovie, NSNotFound], at: .top, animated: false)
 
 		switch UserDefault.getDayOffset()
 		{
@@ -682,7 +662,7 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 	{
 		let rowDict = rowDictionary[indexPath.section].cell[indexPath.row]
 		var cellID = rowDict[KEY_CELL_IDENTIFIER] as! String
-		
+
 		if cellID == VALUE_L1_CELL
 		{
 			if gState == .movie { cellID += "_theater" }
@@ -809,7 +789,7 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 				for i in (indexPath.row + 1)...(indexPath.row + (rowDict[KEY_ADDITIONAL_ROWS] as! Int))
 				{
 					rowDictionary[indexPath.section].cell[i][KEY_IS_VISIBLE] = shouldExpand
-			   }
+				}
 			}
 
 			rowDictionary[indexPath.section].cell[indexPath.row] = rowDict
@@ -824,7 +804,6 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 			case .movie:
 				//	if click is on L1 or L2
 				//	row show Theater detail
-
 				if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL { enableBuyTickets = false }
 
 				gCurrTheater = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
