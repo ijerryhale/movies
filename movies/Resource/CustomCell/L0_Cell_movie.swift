@@ -39,11 +39,7 @@ class L0_Cell_movie: L0_Cell
 
         contentView.addSubview(title)
 
-		title.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
-
-		title.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
-		title.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
-
+		title.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant:2).isActive = true
 		title.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:28).isActive = true
 
 		rating.font = UIFont(name: "HelveticaNeue", size: 12)
@@ -58,11 +54,7 @@ class L0_Cell_movie: L0_Cell
 
         contentView.addSubview(rating)
 
-		rating.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
-
-		rating.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
-		rating.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
-
+		rating.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant:2).isActive = true
 		rating.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-8).isActive = true
 
 		rating.isUserInteractionEnabled = true

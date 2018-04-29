@@ -49,25 +49,22 @@ class L0_Cell_theater: L0_Cell
 
         contentView.addSubview(name)
 
-		name.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
-		
-		name.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
-		name.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
-
+		name.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant:2).isActive = true
 		name.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:28).isActive = true
 		
 		distance.font = UIFont(name: "HelveticaNeue", size: 12)
-		distance.textColor = UIColor.white
+		
+		distance.textColor = UIColor(red: red,
+								green: green,
+								blue: blue,
+								alpha: 1.0)
+
 		distance.translatesAutoresizingMaskIntoConstraints = false
 		distance.textAlignment = .left
 
         contentView.addSubview(distance)
 		
-		distance.heightAnchor.constraint(equalTo: marginGuide.heightAnchor).isActive = true
-		
 		distance.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
-		distance.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
-		
 		distance.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-8).isActive = true
 	
 		distance.isUserInteractionEnabled = true

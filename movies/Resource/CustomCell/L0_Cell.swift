@@ -35,7 +35,6 @@ class L0_Cell: UITableViewHeaderFooterView
         disclosureButton.translatesAutoresizingMaskIntoConstraints = false
         disclosureButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
         disclosureButton.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
-		disclosureButton.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
 
 		disclosureButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:4).isActive = true
 	
