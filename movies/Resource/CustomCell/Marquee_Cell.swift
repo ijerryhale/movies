@@ -20,4 +20,11 @@ class Marquee_Cell: UITableViewCell
 	{
 		super.init(coder: aDecoder)
 	}
+	
+	override func didMoveToSuperview()
+	{
+		super.didMoveToSuperview()
+		
+		indicator.color = UIColor.black
+	}
 }

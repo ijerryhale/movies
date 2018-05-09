@@ -30,23 +30,37 @@ class AppDelegate: UIResponder
 	func handleNetworkError(error: Error?) { print("handleNetworkError: ", error as Any) }
 	func handleNoDataAvailable(error: Error?) { print("handleNoDataAvailable: ", error as Any) }
 
-	func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController?
+	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
+	{
+		if let topViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController)
+		{
+			if (topViewController.responds(to: Selector(("canRotate"))))
+			{
+				//	unlock landscape view orientations for this view controller
+				return (.allButUpsideDown)
+			}
+		}
+		
+		//	only allow portrait (standard behaviour)
+		return (.portrait)
+	}
+		
+	private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController?
 	{
 		if (rootViewController == nil) { return nil }
-		
-		if (rootViewController.isKind(of: (UITabBarController).self))
+		if (rootViewController.isKind(of: UITabBarController.self))
 		{
-			return topViewControllerWithRootViewController(rootViewController: (rootViewController as! UITabBarController).selectedViewController)
+		  return (topViewControllerWithRootViewController(rootViewController: (rootViewController as! UITabBarController).selectedViewController))
 		}
-		else if (rootViewController.isKind(of:(UINavigationController).self))
+		else if (rootViewController.isKind(of: UINavigationController.self))
 		{
-			return topViewControllerWithRootViewController(rootViewController: (rootViewController as! UINavigationController).visibleViewController)
+		  return (topViewControllerWithRootViewController(rootViewController: (rootViewController as! UINavigationController).visibleViewController))
 		}
 		else if (rootViewController.presentedViewController != nil)
 		{
-			return topViewControllerWithRootViewController(rootViewController: rootViewController.presentedViewController)
+		  return (topViewControllerWithRootViewController(rootViewController: rootViewController.presentedViewController))
 		}
-		
+
 		return (rootViewController)
 	}
 
@@ -226,21 +240,6 @@ extension AppDelegate : UIApplicationDelegate
 			default:
 					print("unknown notif")
 		}
-	}
-
-	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
-	{
-		if let rootViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController)
-		{
-			if (rootViewController.responds(to: Selector(("canRotate"))))
-			{
-				// Unlock landscape view orientations for this view controller
-				return (.allButUpsideDown)
-			}
-		}
-
-		//	only allow portrait (standard behaviour)
-		return (.portrait)
 	}
 
 	func applicationWillResignActive(_ application: UIApplication)

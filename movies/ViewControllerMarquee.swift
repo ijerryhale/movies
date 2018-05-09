@@ -135,6 +135,7 @@ class ViewControllerMarquee: UIViewController
 	//	update Show Date
 	func notif_dayoffset_changed(notification: Notification) { print("ViewControllerMarquee notif_dayoffset_changed"); self.showdate.text = get_show_date() }
 
+	@objc func canRotate() -> Void {}
 	//	MARK: UIViewController overrides
 	deinit
 	{
@@ -152,7 +153,7 @@ class ViewControllerMarquee: UIViewController
 	{
 		return CustomUnwindSegue(identifier: identifier, source: fromViewController, destination: toViewController)
     }
-	
+
 	override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 	override func viewWillAppear(_ animated: Bool)
 	{super.viewWillAppear(animated); print("ViewControllerMarquee viewWillAppear ")
@@ -161,7 +162,7 @@ class ViewControllerMarquee: UIViewController
 		
 		//	observe for changes to DayOffset
 		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED),
-               object:nil, queue:nil, using:notif_dayoffset_changed)
+		   object:nil, queue:nil, using:notif_dayoffset_changed)
 
 		gState = .marquee
 		tableView.scrollToRow(at: [0, gCurrMovie], at: .middle, animated: true)
@@ -171,6 +172,8 @@ class ViewControllerMarquee: UIViewController
 	{ super.viewWillDisappear(animated); print("ViewControllerMarquee viewWillDisappear ")
 
 		//	only called on seque to ViewControllerBoxOffice
+		if (self.isMovingFromParentViewController)
+		{ UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation") }
 	}
 
     override func viewDidLoad()
@@ -229,7 +232,7 @@ extension ViewControllerMarquee : UITableViewDataSource
         switch thisPoster.state
 		{
 			case .failed:
-				///	print(".failed")
+				//	print(".failed")
 				cell.indicator.stopAnimating()
 			case .new:
 				//	print(".new")
