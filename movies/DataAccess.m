@@ -165,55 +165,30 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 @end
 
-#define IS_LOCAL_SERVER
+#define IS_SSL_CONNECTION
 
-@implementation IndexClient
-
-+(instancetype)sharedClient
-{
-    static IndexClient	*_sharedClient = nil;
-    static dispatch_once_t		onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedClient = [[IndexClient alloc] initWithBaseURL:[NSURL URLWithString:[DataAccess URL_BASE]]];
-
-		#ifdef IS_LOCAL_SERVER
-			_sharedClient.securityPolicy = [AFSecurityPolicy defaultPolicy];
-		#else
-			_sharedClient.securityPolicy
-								= [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-		#endif
-
-			_sharedClient.responseSerializer
-								= [AFHTTPResponseSerializer serializer];
-			[_sharedClient.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    });
-
-    return (_sharedClient);
-}
-@end
-
-@implementation TheaterClient
+@implementation AFHTTPClient
 
 +(instancetype)sharedClient
 {
-    static TheaterClient	*_sharedClient = nil;
-    static dispatch_once_t			onceToken;
+    static AFHTTPClient		*sharedClient = nil;
+    static dispatch_once_t	onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedClient = [[TheaterClient alloc] initWithBaseURL:[NSURL URLWithString:[DataAccess URL_BASE]]];
+        sharedClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:[DataAccess URL_BASE]]];
 
-		#ifdef IS_LOCAL_SERVER
-			_sharedClient.securityPolicy = [AFSecurityPolicy defaultPolicy];
+		#ifdef IS_SSL_CONNECTION
+			sharedClient.securityPolicy = [AFSecurityPolicy defaultPolicy];
 		#else
-			_sharedClient.securityPolicy
+			sharedClient.securityPolicy
 								= [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
 		#endif
 
-			_sharedClient.responseSerializer
+		sharedClient.responseSerializer
 								= [AFHTTPResponseSerializer serializer];
-			[_sharedClient.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+		[sharedClient.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     });
 
-    return (_sharedClient);
+    return (sharedClient);
 }
 @end
 
@@ -400,7 +375,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 	NSMutableString	*url = [NSMutableString stringWithString:[DataAccess URL_INDEX]];
 
-	[[IndexClient sharedClient] GET:url
+	[[AFHTTPClient sharedClient] GET:url
 			parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id responseObject)
 	{
 		if (block)
@@ -493,7 +468,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 	[url appendString:[self URL_FRAG]];
 	[url appendString:postalcode];
 
-	[[TheaterClient sharedClient] GET:url
+	[[AFHTTPClient sharedClient] GET:url
 				parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id responseObject)
 	{
 		//	create new row in MTData and save this data

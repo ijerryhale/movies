@@ -24,13 +24,7 @@ typedef NSUInteger XMLReaderOptions;
 
 @end
 
-@interface IndexClient : AFHTTPSessionManager
-
-+(instancetype)sharedClient;
-
-@end
-
-@interface TheaterClient : AFHTTPSessionManager
+@interface AFHTTPClient : AFHTTPSessionManager
 
 +(instancetype)sharedClient;
 
