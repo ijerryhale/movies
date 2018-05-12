@@ -177,10 +177,10 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
         sharedClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:[DataAccess URL_BASE]]];
 
 		#ifdef IS_SSL_CONNECTION
-			sharedClient.securityPolicy = [AFSecurityPolicy defaultPolicy];
-		#else
 			sharedClient.securityPolicy
 								= [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+		#else
+			sharedClient.securityPolicy = [AFSecurityPolicy defaultPolicy];
 		#endif
 
 		sharedClient.responseSerializer
