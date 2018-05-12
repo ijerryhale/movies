@@ -65,33 +65,31 @@ class ViewControllerMovieDetail : UIViewController
 		let info = gXMLIndex.filter({ $0[KEY_ID] as? String == movie.movie[KEY_FILM_ID] as? String }).first
 
 		//	handle Rotten Tomato stuff
-		#if HAS_WEB_SERVICE
-			let tomatoRating = Int(movie.movie[KEY_TOMATO_RATING] as! String)
+		let tomatoRating = Int(movie.movie[KEY_TOMATO_RATING] as! String)
 
-			if tomatoRating != nil
-			{
-				if tomatoRating! < 1
-				{
-					tomatorating.isHidden = true
-					tomato.isHidden = true
-				}
-				else
-				{
-					tomatorating.text = movie.movie[KEY_TOMATO_RATING] as? String
-					
-					if tomatoRating! > 59 { tomato.image = UIImage(named: "tomato.png") }
-					else { tomato.image = UIImage(named: "splat.png") }
-
-					tomatorating.isHidden = false
-					tomato.isHidden = false
-				}
-			}
-			else
+		if tomatoRating != nil
+		{
+			if tomatoRating! < 1
 			{
 				tomatorating.isHidden = true
 				tomato.isHidden = true
 			}
-		#endif
+			else
+			{
+				tomatorating.text = movie.movie[KEY_TOMATO_RATING] as? String
+				
+				if tomatoRating! > 59 { tomato.image = UIImage(named: "tomato.png") }
+				else { tomato.image = UIImage(named: "splat.png") }
+
+				tomatorating.isHidden = false
+				tomato.isHidden = false
+			}
+		}
+		else
+		{
+			tomatorating.isHidden = true
+			tomato.isHidden = true
+		}
 
 		if info == nil
 		{

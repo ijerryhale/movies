@@ -344,19 +344,17 @@ class ViewControllerTrailer: UIViewController
 		var trailerURL = preview[KEY_TEXT] as! String
 		
 		//	have to remove BASE_URL from path
-		#if HAS_WEB_SERVICE
-			var baseURL = DataAccess.url_BASE()
-			let range = baseURL?.range(of:"s")
-			if let startLocation = range?.lowerBound,
-			let endLocation = range?.upperBound
-			{
-				baseURL?.replaceSubrange(startLocation ..< endLocation, with: "")
-				baseURL = baseURL! + "/"
-			}
+		var baseURL = DataAccess.url_BASE()
+		let range = baseURL?.range(of:"s")
+		if let startLocation = range?.lowerBound,
+		let endLocation = range?.upperBound
+		{
+			baseURL?.replaceSubrange(startLocation ..< endLocation, with: "")
+			baseURL = baseURL! + "/"
+		}
 
-			let trailerstring = trailerURL.replacingOccurrences(of: baseURL!, with: "")
-			trailerURL = trailerstring as String
-		#endif
+		let trailerstring = trailerURL.replacingOccurrences(of: baseURL!, with: "")
+		trailerURL = trailerstring as String
 
 		let url = DataAccess.get_URL(trailerURL)
 		asset = AVURLAsset(url: url!, options: nil)

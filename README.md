@@ -5,7 +5,9 @@ Displays a list of Theaters and Movies for given Location and Day.
 
 * movies demonstrates how to set an initial UITableCell image and then replace that image with a lazily loaded image. movies will also lazy load the computed distance from the Current Location to a given Theater.
 
-* The movies XCode project contains a 'movies_embedded' target which will load an embedded set of Theater data.
+#### May 12, 2018
+
+Moved all of the embedded data to cormya and got rid of embedded target and embedded data in the XCode project. While cormya is slow right now this makes a lot of stuff a lot simpler than it was.
 
 ## Requirements
 

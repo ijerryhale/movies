@@ -76,17 +76,15 @@ class AppDelegate: UIResponder
 		//	create a set to hold Movie tms_id's
 		let tms_id: NSMutableSet = NSMutableSet()
 
-		#if HAS_WEB_SERVICE
-			//	have to remove BASE_URL from path
-			var baseURL = DataAccess.url_BASE()
-			let range = baseURL?.range(of:"s")
-			if let startLocation = range?.lowerBound,
-			let endLocation = range?.upperBound
-			{
-				baseURL?.replaceSubrange(startLocation ..< endLocation, with: "")
-				baseURL = baseURL! + "/"
-			}
-		#endif
+		//	have to remove BASE_URL from path
+		var baseURL = DataAccess.url_BASE()
+		let range = baseURL?.range(of:"s")
+		if let startLocation = range?.lowerBound,
+		let endLocation = range?.upperBound
+		{
+			baseURL?.replaceSubrange(startLocation ..< endLocation, with: "")
+			baseURL = baseURL! + "/"
+		}
 
 		//	loop thru the Theaters and create a unique set of Movies
 		for i in 0...theaters.count - 1

@@ -6,6 +6,9 @@
 //  Copyright © 2018 jhale. All rights reserved.
 //
 
+//	https://cormya.com/jsonserver/movies/focus_features/7-days-in-entebbe/7-days-in-entebbe-trailer-1_h.480.mov
+//	https://cormya.com/jsonserver/trailers/focus_features/7-days-in-entebbe/images/poster-large.jpg
+
 #import "ManagedObjectContext.h"
 
 #import "MIData+CoreDataProperties.h"
@@ -162,7 +165,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 @end
 
-#ifdef HAS_WEB_SERVICE
+#define IS_LOCAL_SERVER
 
 @implementation IndexClient
 
@@ -173,11 +176,12 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     dispatch_once(&onceToken, ^{
         _sharedClient = [[IndexClient alloc] initWithBaseURL:[NSURL URLWithString:[DataAccess URL_BASE]]];
 
-		if ([DataAccess IS_LOCAL_SERVER])
+		#ifdef IS_LOCAL_SERVER
 			_sharedClient.securityPolicy = [AFSecurityPolicy defaultPolicy];
-		else
+		#else
 			_sharedClient.securityPolicy
 								= [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+		#endif
 
 			_sharedClient.responseSerializer
 								= [AFHTTPResponseSerializer serializer];
@@ -197,11 +201,12 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     dispatch_once(&onceToken, ^{
         _sharedClient = [[TheaterClient alloc] initWithBaseURL:[NSURL URLWithString:[DataAccess URL_BASE]]];
 
-		if ([DataAccess IS_LOCAL_SERVER])
+		#ifdef IS_LOCAL_SERVER
 			_sharedClient.securityPolicy = [AFSecurityPolicy defaultPolicy];
-		else
+		#else
 			_sharedClient.securityPolicy
 								= [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+		#endif
 
 			_sharedClient.responseSerializer
 								= [AFHTTPResponseSerializer serializer];
@@ -211,7 +216,6 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     return (_sharedClient);
 }
 @end
-#endif
 
 @interface DataAccess()
 	-(void)delete_mt_data_rows;
@@ -229,16 +233,6 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 	_managedObjectContext = [ManagedObjectContext sharedInstance].managedObjectContext;
 
     return (self);
-}
-
-+(BOOL)IS_LOCAL_SERVER
-{
-    static dispatch_once_t once;
-    static BOOL IS_LOCAL_SERVER;
-    dispatch_once(&once, ^{
-        IS_LOCAL_SERVER = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"IS_LOCAL_SERVER"]boolValue];
-	});
-    return (IS_LOCAL_SERVER);
 }
 
 +(NSString *)URL_BASE
@@ -283,14 +277,9 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 +(NSURL *)GET_URL:(NSString *)path
 {
-	#ifdef HAS_WEB_SERVICE
-		NSString	*string = [[DataAccess URL_BASE] stringByAppendingFormat:@"/%@", path];
-		NSURL		*url = [NSURL URLWithString:string];
-	#else
-		NSString	*string = [@"file://" stringByAppendingString:[[NSBundle mainBundle] resourcePath]];
-		NSURL		*url = [NSURL URLWithString:[string stringByAppendingFormat:@"/%@", path]];
-	#endif
-	
+	NSString	*string = [[DataAccess URL_BASE] stringByAppendingFormat:@"/%@", path];
+	NSURL		*url = [NSURL URLWithString:string];
+
 	return (url);
 }
 
@@ -387,73 +376,59 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 -(void)getIndex:(void (^)(NSArray *index, NSError *error))block
 {
-	#ifdef HAS_WEB_SERVICE
-		[self delete_mi_data_rows];
+	[self delete_mi_data_rows];
 
-		NSFetchRequest	*fr = [[NSFetchRequest alloc] init];
+	NSFetchRequest	*fr = [[NSFetchRequest alloc] init];
 
-		[fr setEntity:[NSEntityDescription entityForName:ENAME_MIDATA inManagedObjectContext:_managedObjectContext]];
+	[fr setEntity:[NSEntityDescription entityForName:ENAME_MIDATA inManagedObjectContext:_managedObjectContext]];
 
-		NSError	*error = nil;
-		NSArray *rowArray = [_managedObjectContext executeFetchRequest:fr error:&error];
-		fr = nil;
+	NSError	*error = nil;
+	NSArray *rowArray = [_managedObjectContext executeFetchRequest:fr error:&error];
+	fr = nil;
 
-		if (rowArray.count)
+	if (rowArray.count)
+	{
+		NSLog(@"Using Data Store for Index");
+		if (rowArray.count > 1) NSLog(@"%i rows in MIData for getIndex!!!", (int)rowArray.count);
+
+		MIData	*mid = rowArray[0];
+
+		block([self parseindex:mid.data], nil);
+
+		return;
+	}
+
+	NSMutableString	*url = [NSMutableString stringWithString:[DataAccess URL_INDEX]];
+
+	[[IndexClient sharedClient] GET:url
+			parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id responseObject)
+	{
+		if (block)
 		{
-			NSLog(@"Using Data Store for Index");
-			if (rowArray.count > 1) NSLog(@"%i rows in MIData for getIndex!!!", (int)rowArray.count);
+			//	create new row in MIData and save this data
+			MIData	*mid = [NSEntityDescription insertNewObjectForEntityForName:ENAME_MIDATA inManagedObjectContext:self->_managedObjectContext];
 
-			MIData	*mid = rowArray[0];
+			[mid setData:responseObject];
 
-			block([self parseindex:mid.data], nil);
+			NSError	*error = nil;
+			if ([self->_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
+			
+			#if 0
+				NSFetchRequest  *req = [[NSFetchRequest alloc]init];
+				[req setEntity:[NSEntityDescription entityForName:ENAME_MIDATA inManagedObjectContext:_managedObjectContext]];
+				NSArray *array = [_managedObjectContext executeFetchRequest:req error:&error];
 
-			return;
+				for (mid in array) { NSLog(@"%@", mid.creationDate); }
+			#endif
+			
+			block([self parseindex:responseObject], nil);
 		}
-
-		NSMutableString	*url = [NSMutableString stringWithString:[DataAccess URL_INDEX]];
-
-		[[IndexClient sharedClient] GET:url
-				parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id responseObject)
-		{
-			if (block)
-			{
-				//	create new row in MIData and save this data
-				MIData	*mid = [NSEntityDescription insertNewObjectForEntityForName:ENAME_MIDATA inManagedObjectContext:self->_managedObjectContext];
-
-				[mid setData:responseObject];
-
-				NSError	*error = nil;
-				if ([self->_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
-				
-				#if 0
-					NSFetchRequest  *req = [[NSFetchRequest alloc]init];
-					[req setEntity:[NSEntityDescription entityForName:ENAME_MIDATA inManagedObjectContext:_managedObjectContext]];
-					NSArray *array = [_managedObjectContext executeFetchRequest:req error:&error];
-
-					for (mid in array) { NSLog(@"%@", mid.creationDate); }
-				#endif
-				
-				block([self parseindex:responseObject], nil);
-			}
-		}
-		 
-		failure:^(NSURLSessionDataTask *__unused task, NSError *error)
-		{
-			 if (block) block([NSArray array], error);
-		}];
-    #else
-		NSMutableString	*string = [NSMutableString string];
-	
-		[string appendString:@"file://"];
-		[string appendString:[[NSBundle mainBundle] bundlePath]];
-		[string appendString:@"/"];
-		[string appendString:[DataAccess URL_INDEX]];
-		[string appendString:@".xml"];
-	
-		NSURL		*url = [NSURL URLWithString:string];
-	
-		if (block) block([self parseindex:[NSData dataWithContentsOfURL:url]], nil);
-    #endif
+	}
+	 
+	failure:^(NSURLSessionDataTask *__unused task, NSError *error)
+	{
+		 if (block) block([NSArray array], error);
+	}];
 }
 
 -(NSArray *)parsetheaters:(NSData *)data
@@ -489,83 +464,64 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 -(void)getTheaters:(NSString *)showdate postalcode:(NSString *)postalcode
 								completion:(void (^)(NSArray *theaterArray, NSError *error))block
 {
-	#ifdef HAS_WEB_SERVICE
-		[self delete_mt_data_rows];
+	[self delete_mt_data_rows];
 
-		NSFetchRequest	*fr = [[NSFetchRequest alloc] init];
-		[fr setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:_managedObjectContext]];
+	NSFetchRequest	*fr = [[NSFetchRequest alloc] init];
+	[fr setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:_managedObjectContext]];
 
-		[fr setPredicate:[NSPredicate predicateWithFormat:@"showDate == %@ AND postalCode == %@", showdate, postalcode]];
+	[fr setPredicate:[NSPredicate predicateWithFormat:@"showDate == %@ AND postalCode == %@", showdate, postalcode]];
+
+	NSError	*error = nil;
+	NSArray *rowArray = [_managedObjectContext executeFetchRequest:fr error:&error];
+	fr = nil;
+
+	if (rowArray.count)
+	{
+		NSLog(@"Using Data Store for Theaters");
+		if (rowArray.count > 1) NSLog(@"%i rows in MTData for getTheaters!!!", (int)rowArray.count);
+
+		MTData	*mtd = rowArray[0];
+
+		block([self parsetheaters:mtd.data], nil);
+
+		return;
+	}
+
+	NSMutableString	*url = [NSMutableString stringWithString:[DataAccess URL_STRING]];
+
+	[url appendString:showdate];
+	[url appendString:[self URL_FRAG]];
+	[url appendString:postalcode];
+
+	[[TheaterClient sharedClient] GET:url
+				parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id responseObject)
+	{
+		//	create new row in MTData and save this data
+		MTData	*mtd = [NSEntityDescription insertNewObjectForEntityForName:ENAME_MTDATA inManagedObjectContext:self->_managedObjectContext];
+
+		[mtd setData:responseObject];
+		[mtd setShowDate:showdate];
+		[mtd setPostalCode:postalcode];
 
 		NSError	*error = nil;
-		NSArray *rowArray = [_managedObjectContext executeFetchRequest:fr error:&error];
-		fr = nil;
-
-		if (rowArray.count)
-		{
-			NSLog(@"Using Data Store for Theaters");
-			if (rowArray.count > 1) NSLog(@"%i rows in MTData for getTheaters!!!", (int)rowArray.count);
-
-			MTData	*mtd = rowArray[0];
-
-			block([self parsetheaters:mtd.data], nil);
-
-			return;
-		}
-
-		NSMutableString	*url = [NSMutableString stringWithString:[DataAccess URL_STRING]];
-
-		if ([DataAccess IS_LOCAL_SERVER])
-			[url appendString:@".json"];
-		else
-		{
-			[url appendString:showdate];
-			[url appendString:[self URL_FRAG]];
-			[url appendString:postalcode];
-		}
-
-		[[TheaterClient sharedClient] GET:url
-				parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id responseObject)
-		{
-			//	create new row in MTData and save this data
-			MTData	*mtd = [NSEntityDescription insertNewObjectForEntityForName:ENAME_MTDATA inManagedObjectContext:self->_managedObjectContext];
-
-			[mtd setData:responseObject];
-			[mtd setShowDate:showdate];
-			[mtd setPostalCode:postalcode];
-
-			NSError	*error = nil;
-			if ([self->_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
+		if ([self->_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
 			
-			#if 0
-				NSFetchRequest  *req = [[NSFetchRequest alloc]init];
-				[req setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:_managedObjectContext]];
+		#if 0
+			NSFetchRequest  *req = [[NSFetchRequest alloc]init];
+			[req setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:_managedObjectContext]];
 				NSArray *array = [_managedObjectContext executeFetchRequest:req error:&error];
 
-				for (mtd in array) { NSLog(@"%@", mtd.dateFetched);
+			for (mtd in array) { NSLog(@"%@", mtd.dateFetched);
 					NSLog(@"%@", mtd.postalCode); NSLog(@"%@", mtd.showDate); }
-			#endif
+		#endif
 			
-			if (block) block([self parsetheaters:responseObject], nil);
+		if (block) block([self parsetheaters:responseObject], nil);
 		}
 		 
-		failure:^(NSURLSessionDataTask *__unused task, NSError *error)
-		{
-			 if (block) block([NSArray array], error);
-		}];
-    #else
-		NSMutableString	*string = [NSMutableString string];
-	
-		[string appendString:@"file://"];
-		[string appendString:[[NSBundle mainBundle] bundlePath]];
-		[string appendString:@"/"];
-		[string appendString:[DataAccess URL_STRING]];
-		[string appendString:@".json"];
-	
-		NSURL		*url = [NSURL URLWithString:string];
-		
-		if (block) block([self parsetheaters:[NSData dataWithContentsOfURL:url]], nil);
-    #endif
+	failure:^(NSURLSessionDataTask *__unused task, NSError *error)
+	{
+		if (block) block([NSArray array], error);
+	}];
 }
 @end
 

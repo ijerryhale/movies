@@ -6,10 +6,7 @@
 //  Copyright © 2018 jhale. All rights reserved.
 //
 
-
-#ifdef HAS_WEB_SERVICE
-	#import "AFNetworking/AFNetworking.h"
-#endif
+#import "AFNetworking/AFNetworking.h"
 
 enum {
     XMLReaderOptionsProcessNamespaces           = 1 << 0, // Specifies whether the receiver reports the namespace and the qualified name of an element.
@@ -27,8 +24,6 @@ typedef NSUInteger XMLReaderOptions;
 
 @end
 
-#ifdef HAS_WEB_SERVICE
-
 @interface IndexClient : AFHTTPSessionManager
 
 +(instancetype)sharedClient;
@@ -40,13 +35,11 @@ typedef NSUInteger XMLReaderOptions;
 +(instancetype)sharedClient;
 
 @end
-#endif
 
 @interface DataAccess : NSObject
 
 	@property (strong) NSManagedObjectContext   *managedObjectContext;
 
-+(BOOL)IS_LOCAL_SERVER;
 +(NSString *)URL_BASE;
 +(NSString *)URL_INDEX;
 +(NSString *)URL_STRING;
