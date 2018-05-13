@@ -165,7 +165,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 @end
 
-#define IS_SSL_CONNECTION
+//	#define IS_SSL_CONNECTION
 
 @implementation AFHTTPClient
 
