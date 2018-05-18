@@ -6,8 +6,7 @@
 //  Copyright © 2018 jhale. All rights reserved.
 //
 
-//	https://cormya.com/jsonserver/movies/focus_features/7-days-in-entebbe/7-days-in-entebbe-trailer-1_h.480.mov
-//	https://cormya.com/jsonserver/trailers/focus_features/7-days-in-entebbe/images/poster-large.jpg
+#import "DictionaryKey.h"
 
 #import "ManagedObjectContext.h"
 
@@ -15,8 +14,6 @@
 #import "MTData+CoreDataProperties.h"
 
 #import "DataAccess.h"
-
-#import "DictionaryKey.h"
 
 //	I didn't build this XML Parser,
 //	I don't really know who did

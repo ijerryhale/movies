@@ -287,7 +287,8 @@ extension AppDelegate : UIApplicationDelegate
 
 	func applicationWillTerminate(_ application: UIApplication)
 	{ print("applicationWillTerminate")
-		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+		//	called when the application is about to terminate
+		//	save data if appropriate. See also applicationDidEnterBackground:.
 	}
 
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool

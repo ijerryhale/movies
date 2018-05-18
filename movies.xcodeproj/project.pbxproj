@@ -106,8 +106,8 @@
 		2C40588C1F50DDDB00A6D598 /* movies_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = movies_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C40588E1F50DDDC00A6D598 /* movies_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = movies_Tests.m; sourceTree = "<group>"; };
 		2C4FE1271D82664100F1A3FF /* movies-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "movies-Bridging-Header.h"; path = "Movies/movies-Bridging-Header.h"; sourceTree = "<group>"; };
-		2C4FE13C1D82681A00F1A3FF /* DictionaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryKey.m; path = Movies/DictionaryKey.m; sourceTree = "<group>"; };
-		2C4FE13D1D82681A00F1A3FF /* DictionaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryKey.h; path = Movies/DictionaryKey.h; sourceTree = "<group>"; };
+		2C4FE13C1D82681A00F1A3FF /* DictionaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryKey.m; path = movies/DictionaryKey.m; sourceTree = "<group>"; };
+		2C4FE13D1D82681A00F1A3FF /* DictionaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryKey.h; path = movies/DictionaryKey.h; sourceTree = "<group>"; };
 		2C59608A205F001000182FCD /* L0_Cell_theater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_theater.swift; path = movies/Resource/CustomCell/L0_Cell_theater.swift; sourceTree = "<group>"; };
 		2C59608B205F001000182FCD /* L0_Cell_movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_movie.swift; path = movies/Resource/CustomCell/L0_Cell_movie.swift; sourceTree = "<group>"; };
 		2C596090205F01E100182FCD /* L0_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell.swift; path = movies/Resource/CustomCell/L0_Cell.swift; sourceTree = "<group>"; };
@@ -130,8 +130,8 @@
 		2C8A60D61F623206005BF0A2 /* ViewControllerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerContainer.swift; sourceTree = "<group>"; };
 		2C9C1D2B1E8749F00092AFE7 /* ViewControllerShowDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerShowDate.swift; sourceTree = "<group>"; };
 		2CBB8F261E91DF6900938728 /* ViewControllerTheaterDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTheaterDetail.swift; sourceTree = "<group>"; };
-		2CBCC0A21E9EC78000FF1A08 /* DataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataAccess.h; path = Movies/DataAccess.h; sourceTree = "<group>"; };
-		2CBCC0A31E9EC78000FF1A08 /* DataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataAccess.m; path = Movies/DataAccess.m; sourceTree = "<group>"; };
+		2CBCC0A21E9EC78000FF1A08 /* DataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataAccess.h; path = movies/DataAccess.h; sourceTree = "<group>"; };
+		2CBCC0A31E9EC78000FF1A08 /* DataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataAccess.m; path = movies/DataAccess.m; sourceTree = "<group>"; };
 		2CC08E201E8DEBC700145487 /* ViewControllerTrailer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTrailer.swift; sourceTree = "<group>"; };
 		2CCED7001FA54D0B00DB9A95 /* ShowDate_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowDate_Cell.swift; path = movies/Resource/CustomCell/ShowDate_Cell.swift; sourceTree = "<group>"; };
 		2CCED7011FA54D0B00DB9A95 /* ShowDate_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShowDate_Cell.xib; path = movies/Resource/CustomCell/ShowDate_Cell.xib; sourceTree = "<group>"; };
@@ -212,18 +212,18 @@
 				2C4FE13D1D82681A00F1A3FF /* DictionaryKey.h */,
 				2C4FE13C1D82681A00F1A3FF /* DictionaryKey.m */,
 				2C86218B1FA5484B000BF3A2 /* CoreData */,
-				2C4FE1321D8267EF00F1A3FF /* Data Access */,
+				2C4FE1321D8267EF00F1A3FF /* DataAccess */,
 			);
 			name = "Objective C";
 			sourceTree = "<group>";
 		};
-		2C4FE1321D8267EF00F1A3FF /* Data Access */ = {
+		2C4FE1321D8267EF00F1A3FF /* DataAccess */ = {
 			isa = PBXGroup;
 			children = (
 				2CBCC0A21E9EC78000FF1A08 /* DataAccess.h */,
 				2CBCC0A31E9EC78000FF1A08 /* DataAccess.m */,
 			);
-			name = "Data Access";
+			name = DataAccess;
 			sourceTree = "<group>";
 		};
 		2C7BDC6E1E7B79DC00772D2B /* Frameworks */ = {

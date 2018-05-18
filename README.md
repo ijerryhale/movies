@@ -1,5 +1,5 @@
 ## movies
-Displays a list of Theaters and Movies for given Location and Day.
+Display a list of Theaters and Movies for given Location and Day.
 
 * movies contains an example of an embedded UIView which hosts a ContainerController which in turn manages multiple UIViewControllers and Segues.
 
