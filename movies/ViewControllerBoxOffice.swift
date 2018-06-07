@@ -462,7 +462,7 @@ class ViewControllerBoxOffice: UIViewController
 	}
 
 	override func viewDidLoad()
-	{ super.viewDidLoad(); print("ViewControllerBoxOffice viewDidLoad ")
+	{ super.viewDidLoad(); print("ViewControllerBoxOffice viewDidLoad")
 
 		//	only called from ViewControllerMarquee
 

@@ -249,7 +249,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 +(NSURL *)GET_URL:(NSString *)path
 {
-	NSString	*string = [[DataAccess URL_BASE] stringByAppendingFormat:@"/%@", path];
+	NSString	*string = [[DataAccess URL_BASE] stringByAppendingString:path];
 	NSURL		*url = [NSURL URLWithString:string];
 
 	return (url);
@@ -257,7 +257,8 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 +(NSData *)GET_DATA:(NSString *)path
 {
-	NSData	*data = [NSData dataWithContentsOfURL:[DataAccess GET_URL:path]];
+	NSURL	*url = [DataAccess GET_URL:path];
+	NSData	*data = [NSData dataWithContentsOfURL:url];
 	
 	if (data == nil)
 	{
@@ -429,7 +430,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 				[theaters addObject:pages[j][k]];
 	}
 
-	return(theaters);
+	return (theaters);
 }
 
 #pragma mark -
@@ -488,7 +489,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 		#endif
 			
 		if (block) block([self parsetheaters:responseObject], nil);
-		}
+	}
 		 
 	failure:^(NSURLSessionDataTask *__unused task, NSError *error)
 	{
