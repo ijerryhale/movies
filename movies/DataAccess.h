@@ -39,7 +39,6 @@ typedef NSUInteger XMLReaderOptions;
 +(NSString *)URL_STRING;
 
 +(NSURL *)GET_URL:(NSString *)path;
-+(NSData *)GET_DATA:(NSString *)path;
 
 -(NSArray *)parseindex:(NSData *)data;
 -(NSArray *)parsetheaters:(NSData *)array;

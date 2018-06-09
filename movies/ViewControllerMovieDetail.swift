@@ -44,14 +44,25 @@ class ViewControllerMovieDetail : UIViewController
 	{
 		let movie = gMovie[gCurrMovie]
 
-		if movie.movie[KEY_POSTER] is NSNull { poster.image = createGenericPoster(movie.movie[KEY_TITLE] as! String) }
-		else
+		poster.image = createGenericPoster(movie.movie[KEY_TITLE] as! String)
+		
+		if movie.movie[KEY_POSTER] is NSNull == false
 		{
-			if let data = DataAccess.get_DATA(movie.movie[KEY_POSTER] as! String)
+			URLSession.shared.dataTask(with: NSURL(string: DataAccess.url_BASE()
+											+ (movie.movie[KEY_POSTER] as! String))! as URL, completionHandler:
 			{
-				poster.image = UIImage(data: data)!
-			}
-			else { poster.image = createGenericPoster(movie.movie[KEY_TITLE] as! String) }
+				(data, response, error) -> Void in
+
+				guard
+					let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+					let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+					let data = data, error == nil,
+					let image = UIImage(data: data)
+				else { return }
+
+				DispatchQueue.main.async(execute: { self.poster.image = image })
+
+			}).resume()
 		}
 
 		filmtitle.text = movie.movie[KEY_TITLE] as? String

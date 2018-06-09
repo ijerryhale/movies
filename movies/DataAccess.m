@@ -255,19 +255,6 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 	return (url);
 }
 
-+(NSData *)GET_DATA:(NSString *)path
-{
-	NSURL	*url = [DataAccess GET_URL:path];
-	NSData	*data = [NSData dataWithContentsOfURL:url];
-	
-	if (data == nil)
-	{
-		return nil;
-	}
-	
-	return (data);
-}
-
 -(void)delete_mi_data_rows
 {
 	//	delete anything in MIData

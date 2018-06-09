@@ -61,20 +61,32 @@ class ViewControllerMarquee: UIViewController
 			let lazyPoster: LazyPoster
 			
 			init(lazyPoster: LazyPoster) { self.lazyPoster = lazyPoster }
-			
+
 			override func main()
 			{
 				if self.isCancelled { return }
 				
 				if lazyPoster.urlString.isEmpty == false
 				{
-					if let data = DataAccess.get_DATA(lazyPoster.urlString)
+					URLSession.shared.dataTask(with: NSURL(string: DataAccess.url_BASE()
+																+ lazyPoster.urlString)! as URL, completionHandler:
 					{
-						self.lazyPoster.image = UIImage(data: data)!
-					}
-				}
+						(data, response, error) -> Void in
 
-				self.lazyPoster.state = .done
+						guard
+							let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+							let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+							let data = data, error == nil,
+							let image = UIImage(data: data)
+						else { return }
+
+						DispatchQueue.main.async(execute:
+						{
+							self.lazyPoster.image = image
+							self.lazyPoster.state = .done
+						})
+					}).resume()
+				}
 			}
 		}
 
