@@ -9,7 +9,7 @@ Display a list of Theaters and Movies for given Location and Day.
 
 #### May 12, 2018
 
-Moved all of the embedded data to cormya and got rid of embedded target and embedded data in the XCode project. While cormya is slow right now this makes a lot of stuff a lot simpler than it was.
+Moved all of the embedded data to cormya.com and got rid of embedded target and embedded data in the XCode project. cormya.com is very slow right now but this makes a lot of stuff a lot simpler than it was.
 
 ## Requirements
 
