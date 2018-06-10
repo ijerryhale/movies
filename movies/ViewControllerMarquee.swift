@@ -67,25 +67,15 @@ class ViewControllerMarquee: UIViewController
 				if self.isCancelled { return }
 				
 				if lazyPoster.urlString.isEmpty == false
-				{
-					URLSession.shared.dataTask(with: NSURL(string: DataAccess.url_BASE()
-																+ lazyPoster.urlString)! as URL, completionHandler:
+				{					
+					let	url = DataAccess.url_BASE() + lazyPoster.urlString
+					let data = NSData(contentsOf: URL(string:url)!)
+					
+					DispatchQueue.main.async(execute:
 					{
-						(data, response, error) -> Void in
-
-						guard
-							let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-							let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-							let data = data, error == nil,
-							let image = UIImage(data: data)
-						else { return }
-
-						DispatchQueue.main.async(execute:
-						{
-							self.lazyPoster.image = image
-							self.lazyPoster.state = .done
-						})
-					}).resume()
+						self.lazyPoster.image = UIImage(data:data! as Data)!
+						self.lazyPoster.state = .done
+					})
 				}
 			}
 		}

@@ -356,15 +356,15 @@ class ViewControllerBoxOffice: UIViewController
 		for i in 0...gMovie.count - 1
 		{
 			rowNum += 1
-
 			var additionalRows = 0
 
 			//	add Movie title and tms_id to dictionary
 			let	this_tms_id = gMovie[i].movie[KEY_TMS_ID] as! String
+			let rating = gMovie[i].movie[KEY_RATING]
 			
 			var section = Section(tmsid: this_tms_id,
 								title: gMovie[i].movie[KEY_TITLE] as! String,
-								rating: gMovie[i].movie[KEY_RATING] as! String)
+								rating: rating is NSNull ? "NR" : rating as! String)
 
 			for j in 0...gTheater.count - 1
 			{

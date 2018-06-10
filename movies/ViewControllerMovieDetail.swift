@@ -48,28 +48,33 @@ class ViewControllerMovieDetail : UIViewController
 		
 		if movie.movie[KEY_POSTER] is NSNull == false
 		{
-			URLSession.shared.dataTask(with: NSURL(string: DataAccess.url_BASE()
-											+ (movie.movie[KEY_POSTER] as! String))! as URL, completionHandler:
-			{
-				(data, response, error) -> Void in
+//			URLSession.shared.dataTask(with: NSURL(string: DataAccess.url_BASE()
+//											+ (movie.movie[KEY_POSTER] as! String))! as URL, completionHandler:
+//			{
+//				(data, response, error) -> Void in
+//
+//				guard
+//					let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+//					let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+//					let data = data, error == nil,
+//					let image = UIImage(data: data)
+//				else { return }
+//
+//				DispatchQueue.main.async(execute: { self.poster.image = image })
+//
+//			}).resume()
 
-				guard
-					let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-					let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-					let data = data, error == nil,
-					let image = UIImage(data: data)
-				else { return }
-
-				DispatchQueue.main.async(execute: { self.poster.image = image })
-
-			}).resume()
+			let	url = DataAccess.url_BASE() + (movie.movie[KEY_POSTER] as! String)
+			let data = NSData(contentsOf: URL(string:url)!)
+	
+			DispatchQueue.main.async(execute: { self.poster.image = UIImage(data:data! as Data)! })
 		}
 
 		filmtitle.text = movie.movie[KEY_TITLE] as? String
 		
-		if (movie.movie[KEY_RATING] is NSNull) == false { rating.text = movie.movie[KEY_RATING] as? String }
-		else { rating.text = "NR" }
-		
+		if (movie.movie[KEY_RATING] is NSNull) { rating.text = "NR" }
+		else { rating.text = movie.movie[KEY_RATING] as? String }
+
 		runtime.text = movie.movie[KEY_RUN_TIME] as? String
 		releasedate.text = movie.movie[KEY_RELEASE_DATE] as? String
 
