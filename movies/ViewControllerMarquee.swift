@@ -67,16 +67,19 @@ class ViewControllerMarquee: UIViewController
 				if self.isCancelled { return }
 				
 				if lazyPoster.urlString.isEmpty == false
-				{					
+				{
 					let	url = DataAccess.url_BASE() + lazyPoster.urlString
 					let data = NSData(contentsOf: URL(string:url)!)
 					
+					guard
+						let imgdata = data, let image = UIImage(data: imgdata as Data)
+						else { return }
+					
 					DispatchQueue.main.async(execute:
-					{
-						self.lazyPoster.image = UIImage(data:data! as Data)!
-						self.lazyPoster.state = .done
-					})
+					{ self.lazyPoster.image = image })
 				}
+				
+				self.lazyPoster.state = .done
 			}
 		}
 
@@ -244,10 +247,9 @@ extension ViewControllerMarquee : UITableViewDataSource
 				{
 					self.startOperationForPoster(poster: thisPoster, indexPath: indexPath as NSIndexPath)
 				}
-
 			case .done:
-				//	print(".done")
 				cell.indicator.stopAnimating()
+				//	print(".done")
         }
         
         return (cell)

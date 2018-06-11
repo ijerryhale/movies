@@ -7,11 +7,12 @@
 //
 
 #import "DictionaryKey.h"
-
 #import "ManagedObjectContext.h"
 
 #import "MIData+CoreDataProperties.h"
 #import "MTData+CoreDataProperties.h"
+
+#import "AFImageDownloader.h"
 
 #import "DataAccess.h"
 
@@ -255,6 +256,17 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 	return (url);
 }
 
+#pragma mark -
++ (void)downloadImageForURLRequest:(NSString *)path
+							success:(void (^)(NSURLRequest *request, NSHTTPURLResponse  *response, UIImage *responseObject))success
+							failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure
+{
+
+	NSURLRequest	*request = [NSURLRequest requestWithURL:[NSURL URLWithString:path] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+
+	[[AFImageDownloader defaultInstance] downloadImageForURLRequest:request success:success failure:failure];
+}
+
 -(void)delete_mi_data_rows
 {
 	//	delete anything in MIData
@@ -305,16 +317,11 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 	NSDateFormatter	*dateFormatter = [[NSDateFormatter alloc] init];
 	dateFormatter.dateFormat = @"yyyy-MM-dd";
 
-	NSUInteger today =
-		[[NSCalendar currentCalendar] ordinalityOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitEra forDate:[NSDate date]];
-
 	for (NSUInteger i = rowArray.count - 1;i < -1;i--)
 	{
 		MTData		*data = rowArray[i];
-		NSUInteger	showDate =
-		[[NSCalendar currentCalendar] ordinalityOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitEra forDate:[dateFormatter dateFromString:data.showDate]];
-		
-		if (showDate < today)
+
+		if ([data.showDate isEqualToString:[dateFormatter stringFromDate:[NSDate date]]] == NO)
 		{
 			[_managedObjectContext deleteObject:rowArray[i]];
 
@@ -420,10 +427,9 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 	return (theaters);
 }
 
-#pragma mark -
 -(void)getTheaters:(NSString *)showdate postalcode:(NSString *)postalcode
 								completion:(void (^)(NSArray *theaterArray, NSError *error))block
-{
+{ NSLog(@"DataAccess.getTheaters");
 	[self delete_mt_data_rows];
 
 	NSFetchRequest	*fr = [[NSFetchRequest alloc] init];
@@ -468,11 +474,10 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 			
 		#if 0
 			NSFetchRequest  *req = [[NSFetchRequest alloc]init];
-			[req setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:_managedObjectContext]];
-				NSArray *array = [_managedObjectContext executeFetchRequest:req error:&error];
+		[req setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:self->_managedObjectContext]];
+		NSArray *array = [self->_managedObjectContext executeFetchRequest:req error:&error];
 
-			for (mtd in array) { NSLog(@"%@", mtd.dateFetched);
-					NSLog(@"%@", mtd.postalCode); NSLog(@"%@", mtd.showDate); }
+			for (mtd in array) { NSLog(@"%@", mtd.postalCode); NSLog(@"%@", mtd.showDate); }
 		#endif
 			
 		if (block) block([self parsetheaters:responseObject], nil);

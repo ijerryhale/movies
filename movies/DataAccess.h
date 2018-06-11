@@ -32,13 +32,16 @@ typedef NSUInteger XMLReaderOptions;
 
 @interface DataAccess : NSObject
 
-	@property (strong) NSManagedObjectContext   *managedObjectContext;
+@property (strong) NSManagedObjectContext   *managedObjectContext;
 
 +(NSString *)URL_BASE;
 +(NSString *)URL_INDEX;
 +(NSString *)URL_STRING;
 
 +(NSURL *)GET_URL:(NSString *)path;
++ (void)downloadImageForURLRequest:(NSString *)path
+					success:(void (^)(NSURLRequest *request, NSHTTPURLResponse  *response, UIImage *responseObject))success
+					failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure;
 
 -(NSArray *)parseindex:(NSData *)data;
 -(NSArray *)parsetheaters:(NSData *)array;

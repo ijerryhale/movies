@@ -493,7 +493,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = movies/movies_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/afnetworking";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/afnetworking",
+					"$(PROJECT_DIR)/afnetworking/AFNetworking",
+					"$(PROJECT_DIR)/afnetworking/UIKit+AFNetworking",
+				);
 				INFOPLIST_FILE = movies/movies.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -519,7 +523,11 @@
 				GCC_FAST_MATH = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = movies/movies_Prefix.pch;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/afnetworking";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/afnetworking",
+					"$(PROJECT_DIR)/afnetworking/AFNetworking",
+					"$(PROJECT_DIR)/afnetworking/UIKit+AFNetworking",
+				);
 				INFOPLIST_FILE = movies/movies.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

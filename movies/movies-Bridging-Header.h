@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#import "AFNetworking/AFNetworking.h"
+
 #import "DictionaryKey.h"
 #import "AccessibilityString.h"
 #import "DataAccess.h"

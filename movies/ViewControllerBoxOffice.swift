@@ -644,7 +644,6 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 														section: section,
 														lat: Double(lat)!, long: Double(long)!)
 						}
-
 					case .done:
 						//	print(".done")
 						theaterHeader.indicator.stopAnimating()

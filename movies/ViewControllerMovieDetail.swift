@@ -48,26 +48,18 @@ class ViewControllerMovieDetail : UIViewController
 		
 		if movie.movie[KEY_POSTER] is NSNull == false
 		{
-//			URLSession.shared.dataTask(with: NSURL(string: DataAccess.url_BASE()
-//											+ (movie.movie[KEY_POSTER] as! String))! as URL, completionHandler:
-//			{
-//				(data, response, error) -> Void in
-//
-//				guard
-//					let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-//					let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-//					let data = data, error == nil,
-//					let image = UIImage(data: data)
-//				else { return }
-//
-//				DispatchQueue.main.async(execute: { self.poster.image = image })
-//
-//			}).resume()
+			DataAccess.downloadImage(forURLRequest: DataAccess.url_BASE() + (movie.movie[KEY_POSTER] as! String), success:
+			{
+				(request, response, responseObject) in
 
-			let	url = DataAccess.url_BASE() + (movie.movie[KEY_POSTER] as! String)
-			let data = NSData(contentsOf: URL(string:url)!)
-	
-			DispatchQueue.main.async(execute: { self.poster.image = UIImage(data:data! as Data)! })
+				DispatchQueue.main.async(execute: { self.poster.image = responseObject! })
+			},
+			failure:
+			{
+				(request, response, error) in
+
+				if let err = error { print("\nError: " + err.localizedDescription) }
+			})
 		}
 
 		filmtitle.text = movie.movie[KEY_TITLE] as? String
