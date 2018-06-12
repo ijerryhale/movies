@@ -9,12 +9,16 @@ Display a list of Theaters and Movies for given Location and Day.
 
 #### May 12, 2018
 
-Moved all of the embedded data to cormya.com and got rid of embedded target and embedded data in the XCode project. cormya.com is very slow right now but this makes a lot of stuff a lot simpler than it was.
+Move all of the embedded data to cormya.com. Get rid of embedded target and embedded data in the XCode project. cormya.com is very slow right now but this makes a lot of stuff a lot simpler than it was.
+
+#### June 12, 2018
+
+Add CoreData code to cache all of the Movie Posters and retrieve Posters from that cache. Still needs a bit of work but most of it is done. movies will only run on iOS 11+ now as the CoreData table MPData contains a URI (NSURL) field which requires XCode 9+ Tools and iOS 11+.
 
 ## Requirements
 
 - XCode 9+
-- iOS 10+
+- iOS 11+
 - Swift 4+
 
 

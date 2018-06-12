@@ -113,5 +113,5 @@ extern NSString * const NOTIF_DAY_OFFSET_CHANGED;
 
 extern NSString * const ENAME_MIDATA;
 extern NSString * const ENAME_MTDATA;
-
+extern NSString * const ENAME_MPDATA;
 

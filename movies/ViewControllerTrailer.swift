@@ -344,7 +344,7 @@ class ViewControllerTrailer: UIViewController
 		var trailerURL = preview[KEY_TEXT] as! String
 		
 		//	have to remove BASE_URL from path
-		var baseURL = DataAccess.url_BASE()
+		var baseURL = DataHelper.url_BASE()
 		let range = baseURL?.range(of:"s")
 		if let startLocation = range?.lowerBound,
 		let endLocation = range?.upperBound
@@ -356,7 +356,7 @@ class ViewControllerTrailer: UIViewController
 		let trailerstring = trailerURL.replacingOccurrences(of: baseURL!, with: "")
 		trailerURL = trailerstring as String
 
-		let url = DataAccess.get_URL(trailerURL)
+		let url = DataHelper.get_URL(trailerURL)
 		asset = AVURLAsset(url: url!, options: nil)
 
 		player.play()

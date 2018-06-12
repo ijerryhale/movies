@@ -49,6 +49,8 @@
 		2CCED70B1FA54EE500DB9A95 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCED7091FA54EE500DB9A95 /* UserLocation.swift */; };
 		2CD022811F58D1A800032D92 /* ViewControllerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0227F1F58D1A800032D92 /* ViewControllerMap.swift */; };
 		2CD022841F58D7C100032D92 /* ViewControllerWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD022821F58D7C100032D92 /* ViewControllerWeb.swift */; };
+		2CDB75C320CF516F00CE5410 /* MPData+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB75C220CF516F00CE5410 /* MPData+CoreDataProperties.m */; };
+		2CDB75C420CF5D1E00CE5410 /* MPData+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C800A7420CF111500449B61 /* MPData+CoreDataClass.m */; };
 		2CEF91D51FA5506800B7B470 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEF91D31FA5506700B7B470 /* UserDefault.swift */; };
 		2CFE840F207BF4A600DAB7ED /* EarlGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CFE840D207BF48800DAB7ED /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -112,6 +114,8 @@
 		2C59608B205F001000182FCD /* L0_Cell_movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell_movie.swift; path = movies/Resource/CustomCell/L0_Cell_movie.swift; sourceTree = "<group>"; };
 		2C596090205F01E100182FCD /* L0_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = L0_Cell.swift; path = movies/Resource/CustomCell/L0_Cell.swift; sourceTree = "<group>"; };
 		2C6BDEEC2065DD5200FF6322 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2C800A7320CF111500449B61 /* MPData+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MPData+CoreDataClass.h"; path = "movies/CoreData/MPData+CoreDataClass.h"; sourceTree = "<group>"; };
+		2C800A7420CF111500449B61 /* MPData+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "MPData+CoreDataClass.m"; path = "movies/CoreData/MPData+CoreDataClass.m"; sourceTree = "<group>"; };
 		2C83BF3A1D82238E006B4CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../Movies/AppDelegate.swift; sourceTree = "<group>"; };
 		2C83BF3C1D82238E006B4CC6 /* ViewControllerMarquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMarquee.swift; sourceTree = "<group>"; };
 		2C83BF411D82238E006B4CC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 		2CCED7091FA54EE500DB9A95 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		2CD0227F1F58D1A800032D92 /* ViewControllerMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMap.swift; sourceTree = "<group>"; };
 		2CD022821F58D7C100032D92 /* ViewControllerWeb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerWeb.swift; sourceTree = "<group>"; };
+		2CDB75C120CF516F00CE5410 /* MPData+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MPData+CoreDataProperties.h"; path = "movies/CoreData/MPData+CoreDataProperties.h"; sourceTree = "<group>"; };
+		2CDB75C220CF516F00CE5410 /* MPData+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "MPData+CoreDataProperties.m"; path = "movies/CoreData/MPData+CoreDataProperties.m"; sourceTree = "<group>"; };
 		2CE7C8C01EAEB4FB001DB7C7 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		2CEF91D31FA5506700B7B470 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		2CF70E9B1DA2C25F00EF4FA9 /* ViewControllerMovieDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMovieDetail.swift; sourceTree = "<group>"; };
@@ -285,6 +291,10 @@
 			children = (
 				2C8621901FA5485F000BF3A2 /* ManagedObjectContext.h */,
 				2C8621961FA5485F000BF3A2 /* ManagedObjectContext.m */,
+				2CDB75C120CF516F00CE5410 /* MPData+CoreDataProperties.h */,
+				2CDB75C220CF516F00CE5410 /* MPData+CoreDataProperties.m */,
+				2C800A7320CF111500449B61 /* MPData+CoreDataClass.h */,
+				2C800A7420CF111500449B61 /* MPData+CoreDataClass.m */,
 				2C8621911FA5485F000BF3A2 /* MIData+CoreDataClass.h */,
 				2C8621971FA5485F000BF3A2 /* MIData+CoreDataClass.m */,
 				2C8621951FA5485F000BF3A2 /* MIData+CoreDataProperties.h */,
@@ -409,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CDB75C420CF5D1E00CE5410 /* MPData+CoreDataClass.m in Sources */,
 				2CD022841F58D7C100032D92 /* ViewControllerWeb.swift in Sources */,
 				2C59608D205F001100182FCD /* L0_Cell_theater.swift in Sources */,
 				2CCED6F91FA54A0900DB9A95 /* MIData+CoreDataProperties.m in Sources */,
@@ -429,6 +440,7 @@
 				2C3FA6191F48DF4B008C1524 /* ViewControllerTrailer.swift in Sources */,
 				2C3FA61B1F48DF4B008C1524 /* ViewControllerMarquee.swift in Sources */,
 				2CD022811F58D1A800032D92 /* ViewControllerMap.swift in Sources */,
+				2CDB75C320CF516F00CE5410 /* MPData+CoreDataProperties.m in Sources */,
 				2CCED6F41FA5491D00DB9A95 /* ManagedObjectContext.m in Sources */,
 				2CCED6FB1FA54A0900DB9A95 /* MTData+CoreDataProperties.m in Sources */,
 				2C8C19D21F5F776400058C18 /* AccessibilityString.m in Sources */,
@@ -499,7 +511,7 @@
 					"$(PROJECT_DIR)/afnetworking/UIKit+AFNetworking",
 				);
 				INFOPLIST_FILE = movies/movies.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jhale.movies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -529,7 +541,7 @@
 					"$(PROJECT_DIR)/afnetworking/UIKit+AFNetworking",
 				);
 				INFOPLIST_FILE = movies/movies.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LLVM_LTO = YES_THIN;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jhale.movies;

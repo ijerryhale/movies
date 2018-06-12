@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -548,7 +547,7 @@
                                     <segue destination="VjJ-ta-Ezt" kind="unwind" customClass="CustomUnwindSegue" customModule="movies" customModuleProvider="target" unwindAction="unwindToBoxOfficeWithSegue:" id="VhB-pH-ayc"/>
                                 </connections>
                             </button>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28V-0z-rt4">
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28V-0z-rt4" customClass="WKWebView" customModule="movies" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="59" width="375" height="608"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -564,7 +563,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p7D-vu-ZQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="VjJ-ta-Ezt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-370" y="-1824"/>
+            <point key="canvasLocation" x="-371" y="-1908"/>
         </scene>
         <!--Settings-->
         <scene sceneID="cYa-OA-Smb">
@@ -712,6 +711,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.82352941180000006" green="0.82352941180000006" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vx-zq-fZH">
+                                <rect key="frame" x="16" y="114" width="84" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Clear Cache"/>
+                                <connections>
+                                    <action selector="clearCache:" destination="8Zx-vA-PlY" eventType="touchUpInside" id="voV-hY-Izd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="wXt-uk-syh"/>

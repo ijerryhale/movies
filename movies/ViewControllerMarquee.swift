@@ -68,15 +68,25 @@ class ViewControllerMarquee: UIViewController
 				
 				if lazyPoster.urlString.isEmpty == false
 				{
-					let	url = DataAccess.url_BASE() + lazyPoster.urlString
-					let data = NSData(contentsOf: URL(string:url)!)
-					
-					guard
-						let imgdata = data, let image = UIImage(data: imgdata as Data)
-						else { return }
-					
-					DispatchQueue.main.async(execute:
-					{ self.lazyPoster.image = image })
+					let url = DataHelper.get_URL(lazyPoster.urlString)
+					let da = DataAccess()
+			
+					if let imgdata = da.getCachedPoster(url), let image = UIImage(data: imgdata as Data)
+					{
+						DispatchQueue.main.async(execute: { self.lazyPoster.image = image })
+					}
+					else
+					{
+						let data = NSData(contentsOf: url!)
+						
+						guard
+							let imgdata = data, let image = UIImage(data: imgdata as Data)
+							else { return }
+
+						DispatchQueue.main.async(execute: { self.lazyPoster.image = image })
+						
+						da.cachePoster(url, data: data! as Data)
+					}
 				}
 				
 				self.lazyPoster.state = .done

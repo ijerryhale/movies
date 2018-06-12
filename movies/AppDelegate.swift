@@ -77,7 +77,7 @@ class AppDelegate: UIResponder
 		let tms_id: NSMutableSet = NSMutableSet()
 
 		//	have to remove BASE_URL from path
-		var baseURL = DataAccess.url_BASE()
+		var baseURL = DataHelper.url_BASE()
 		let range = baseURL?.range(of:"s")
 		if let startLocation = range?.lowerBound,
 		let endLocation = range?.upperBound
@@ -157,9 +157,7 @@ class AppDelegate: UIResponder
 		print("Show Date:", get_show_date_from_day_offset(UserDefault.getDayOffset()))
 		print("Postal Code:", UserDefault.getPostalCode())
 
-		let da = DataAccess()
-
-		da.getTheaters(get_show_date_from_day_offset(UserDefault.getDayOffset()), postalcode: UserDefault.getPostalCode())
+		DataAccess().getTheaters(get_show_date_from_day_offset(UserDefault.getDayOffset()), postalcode: UserDefault.getPostalCode())
 		{
 			(theaterArray, error) in
 
@@ -267,7 +265,9 @@ extension AppDelegate : UIApplicationDelegate
                object:nil, queue:nil, using:notif_defaults_changed)
 		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED),
                object:nil, queue:nil, using:notif_defaults_changed)
-
+		
+		//	clear any old cached Posters
+		DataAccess().trimPosterCache()
 	}
 
 	func applicationDidEnterBackground(_ application: UIApplication)
@@ -283,6 +283,7 @@ extension AppDelegate : UIApplicationDelegate
 	{ print("applicationWillEnterForeground")
 		//	Called as part of the transition from the background to the active state;
 		//	here you can undo many of the changes made on entering the background.
+
 	}
 
 	func applicationWillTerminate(_ application: UIApplication)
@@ -293,7 +294,7 @@ extension AppDelegate : UIApplicationDelegate
 
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
 	{ print("willFinishLaunchingWithOptions")
-
+		
 		//	init locationManager
 		_ = UserLocation.shared
 
@@ -308,6 +309,7 @@ extension AppDelegate : UIApplicationDelegate
 		{ UserDefault.setPostalCode("95014") }
 
 		//	print(Array(UserDefaults.standard.dictionaryRepresentation()))
+		
 		return (true)
 	}
 	

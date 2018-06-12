@@ -19,6 +19,11 @@ class ViewControllerSettings: UIViewController
 	@IBOutlet weak var version: UILabel!
 	@IBOutlet weak var build: UILabel!
 
+	@IBAction func clearCache(_ sender: Any)
+	{
+		DataAccess().clearCachedData()
+	}
+	
 	func notif_showdate(notification: Notification)
 	{ print("ViewControllerSettings notif_showdate"); self.showdateBtn.setTitle(get_show_date(), for: .normal) }
 	

@@ -6,13 +6,14 @@
 //  Copyright © 2018 jhale. All rights reserved.
 //
 
+#import "AFImageDownloader.h"
+
 #import "DictionaryKey.h"
 #import "ManagedObjectContext.h"
 
 #import "MIData+CoreDataProperties.h"
 #import "MTData+CoreDataProperties.h"
-
-#import "AFImageDownloader.h"
+#import "MPData+CoreDataProperties.h"
 
 #import "DataAccess.h"
 
@@ -172,7 +173,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     static AFHTTPClient		*sharedClient = nil;
     static dispatch_once_t	onceToken;
     dispatch_once(&onceToken, ^{
-        sharedClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:[DataAccess URL_BASE]]];
+        sharedClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:[DataHelper URL_BASE]]];
 
 		#ifdef IS_SSL_CONNECTION
 			sharedClient.securityPolicy
@@ -190,11 +191,39 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 }
 @end
 
+@implementation DataHelper
+
++(NSString *)URL_BASE
+{
+    static dispatch_once_t once;
+    static NSString * URL_BASE;
+    dispatch_once(&once, ^{
+        URL_BASE = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"URL_BASE"];
+    });
+    return (URL_BASE);
+}
+
++(NSURL *)GET_URL:(NSString *)path { return ([NSURL URLWithString:[[DataHelper URL_BASE] stringByAppendingString:path]]); }
+
++ (void)downloadImageForURLRequest:(NSURL *)url
+							success:(void (^)(NSURLRequest *request, NSHTTPURLResponse  *response, UIImage *responseObject))success
+							failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure
+{
+	NSURLRequest	*request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+
+	[[AFImageDownloader defaultInstance] downloadImageForURLRequest:request success:success failure:failure];
+}
+
+@end
+
+
 @interface DataAccess()
+	-(NSString *)URL_INDEX;
+	-(NSString *)URL_FRAG;
+	-(NSString *)URL_STRING;
+
 	-(void)delete_mt_data_rows;
 	-(void)delete_mi_data_rows;
-
-	-(NSString *)URL_FRAG;
 @end
 
 @implementation DataAccess
@@ -208,17 +237,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     return (self);
 }
 
-+(NSString *)URL_BASE
-{
-    static dispatch_once_t once;
-    static NSString * URL_BASE;
-    dispatch_once(&once, ^{
-        URL_BASE = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"URL_BASE"];
-    });
-    return (URL_BASE);
-}
-
-+(NSString *)URL_STRING
+-(NSString *)URL_STRING
 {
     static dispatch_once_t once;
     static NSString * URL_STRING;
@@ -228,7 +247,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     return (URL_STRING);
 }
 
-+(NSString *)URL_INDEX
+-(NSString *)URL_INDEX
 {
     static dispatch_once_t once;
     static NSString * URL_INDEX;
@@ -248,23 +267,118 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     return (URL_FRAG);
 }
 
-+(NSURL *)GET_URL:(NSString *)path
-{
-	NSString	*string = [[DataAccess URL_BASE] stringByAppendingString:path];
-	NSURL		*url = [NSURL URLWithString:string];
+#pragma mark -
 
-	return (url);
+-(void)clearCachedData
+{ NSLog(@"DataAccess.clearCachedData");
+
+	NSError			*error = nil;
+	NSFetchRequest  *fr = [[NSFetchRequest alloc]init];
+	[fr setEntity:[NSEntityDescription entityForName:ENAME_MIDATA inManagedObjectContext:self->_managedObjectContext]];
+
+	NSArray *rowArray = [self->_managedObjectContext executeFetchRequest:fr error:&error];
+
+	for (NSManagedObject *row in rowArray)
+	  [_managedObjectContext deleteObject:row];
+
+    if ([_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
+	
+	[fr setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:self->_managedObjectContext]];
+	rowArray = [self->_managedObjectContext executeFetchRequest:fr error:&error];
+
+	for (NSManagedObject *row in rowArray)
+	  [_managedObjectContext deleteObject:row];
+
+    if ([_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
+
+	[fr setEntity:[NSEntityDescription entityForName:ENAME_MPDATA inManagedObjectContext:self->_managedObjectContext]];
+	rowArray = [self->_managedObjectContext executeFetchRequest:fr error:&error];
+
+	for (NSManagedObject *row in rowArray)
+	  [_managedObjectContext deleteObject:row];
+
+    if ([_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
 }
 
-#pragma mark -
-+ (void)downloadImageForURLRequest:(NSString *)path
-							success:(void (^)(NSURLRequest *request, NSHTTPURLResponse  *response, UIImage *responseObject))success
-							failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure
+-(NSData *)getCachedPoster:(NSURL *)url
+{ NSLog(@"DataAccess.getCachedPoster");
+
+	NSError			*error = nil;
+	NSFetchRequest	*fr = [[NSFetchRequest alloc] init];
+	[fr setEntity:[NSEntityDescription entityForName:ENAME_MPDATA inManagedObjectContext:_managedObjectContext]];
+	[fr setPredicate:[NSPredicate predicateWithFormat:@"url == %@", url]];
+
+	NSArray *rowArray = [_managedObjectContext executeFetchRequest:fr error:&error];
+	fr = nil;
+
+	if (rowArray.count == 1)
+	{
+		MPData	*mpd = rowArray[0];
+		NSLog(@"Poster Cache Hit: %@", mpd.url);
+		return (mpd.data);
+	}
+	
+	NSLog(@"No Cached Poster for: %@", url);
+	return (nil);
+}
+
+-(void)cachePoster:(NSURL *)url data:(NSData *)data
+{ NSLog(@"DataAccess.cachePoster");
+
+	//	create new row in MPData and save this data
+	MPData	*mpd = [NSEntityDescription insertNewObjectForEntityForName:ENAME_MPDATA inManagedObjectContext:self->_managedObjectContext];
+
+	[mpd setUrl:url];
+	[mpd setData:data];
+
+	NSError	*error = nil;
+	if ([self->_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
+
+	#if 0
+		NSFetchRequest  *fr = [[NSFetchRequest alloc]init];
+		[fr setEntity:[NSEntityDescription entityForName:ENAME_MPDATA inManagedObjectContext:self->_managedObjectContext]];
+		NSArray *rowArray = [self->_managedObjectContext executeFetchRequest:fr error:&error];
+
+		for (mpd in rowArray) { NSLog(@"%@ %@", mpd.url, mpd.data); }
+	#endif
+}
+
+-(void)trimPosterCache
 {
+	//	delete anything in MPData that
+	//	is more than two weeks old
+	NSError			*error = nil;
+	NSFetchRequest	*fr = [[NSFetchRequest alloc] init];
+	[fr setEntity:[NSEntityDescription entityForName:ENAME_MPDATA inManagedObjectContext:_managedObjectContext]];
+	[fr setIncludesPropertyValues:NO];   //    only fetch the managedObjectID
 
-	NSURLRequest	*request = [NSURLRequest requestWithURL:[NSURL URLWithString:path] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+	NSArray *rowArray = [_managedObjectContext executeFetchRequest:fr error:&error];
+	fr = nil;
 
-	[[AFImageDownloader defaultInstance] downloadImageForURLRequest:request success:success failure:failure];
+	if (rowArray.count == 0)
+		return;
+
+	NSDateFormatter	*dateFormatter = [[NSDateFormatter alloc] init];
+	dateFormatter.dateFormat = @"yyyy-MM-dd";
+
+	NSDateComponents	*offsetComponents = [[NSDateComponents alloc] init];
+	[offsetComponents setDay:-14];	//	look for anything older than two weeks
+
+	NSCalendar	*gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+	NSDate		*fortnight = [gregorian dateByAddingComponents:offsetComponents toDate:[NSDate date] options:0];
+	//	NSLog(@"%@", fortnight);
+
+	for (MPData *mpd in rowArray)
+	{
+		NSDate	*creationDate = [dateFormatter dateFromString:mpd.creationDate];
+
+		if ([creationDate earlierDate: fortnight] == creationDate)
+		{ NSLog(@"Deleting Poster at URL: %@ from Database", mpd.url);
+			[_managedObjectContext deleteObject:mpd];
+
+			 if ([_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
+		}
+	}
 }
 
 -(void)delete_mi_data_rows
@@ -329,7 +443,6 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 		}
 	}
 }
-
 -(NSArray *)parseindex:(NSData *)data
 { NSLog(@"DataAccess.parseindex");
 
@@ -365,7 +478,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 		return;
 	}
 
-	NSMutableString	*url = [NSMutableString stringWithString:[DataAccess URL_INDEX]];
+	NSMutableString	*url = [NSMutableString stringWithString:[self URL_INDEX]];
 
 	[[AFHTTPClient sharedClient] GET:url
 			parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id responseObject)
@@ -381,11 +494,11 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 			if ([self->_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
 			
 			#if 0
-				NSFetchRequest  *req = [[NSFetchRequest alloc]init];
-				[req setEntity:[NSEntityDescription entityForName:ENAME_MIDATA inManagedObjectContext:_managedObjectContext]];
-				NSArray *array = [_managedObjectContext executeFetchRequest:req error:&error];
+				NSFetchRequest  *fr = [[NSFetchRequest alloc]init];
+			[fr setEntity:[NSEntityDescription entityForName:ENAME_MIDATA inManagedObjectContext:self->_managedObjectContext]];
+				NSArray *rowArray = [self->_managedObjectContext executeFetchRequest:fr error:&error];
 
-				for (mid in array) { NSLog(@"%@", mid.creationDate); }
+				for (mid in rowArray) { NSLog(@"%@", mid.creationDate); }
 			#endif
 			
 			block([self parseindex:responseObject], nil);
@@ -429,7 +542,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 -(void)getTheaters:(NSString *)showdate postalcode:(NSString *)postalcode
 								completion:(void (^)(NSArray *theaterArray, NSError *error))block
-{ NSLog(@"DataAccess.getTheaters");
+{
 	[self delete_mt_data_rows];
 
 	NSFetchRequest	*fr = [[NSFetchRequest alloc] init];
@@ -453,7 +566,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 		return;
 	}
 
-	NSMutableString	*url = [NSMutableString stringWithString:[DataAccess URL_STRING]];
+	NSMutableString	*url = [NSMutableString stringWithString:[self URL_STRING]];
 
 	[url appendString:showdate];
 	[url appendString:[self URL_FRAG]];
@@ -473,11 +586,11 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 		if ([self->_managedObjectContext save:&error] == false) { NSLog(@"Couldn't save to Data Store: %@", [error localizedDescription]); }
 			
 		#if 0
-			NSFetchRequest  *req = [[NSFetchRequest alloc]init];
-		[req setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:self->_managedObjectContext]];
-		NSArray *array = [self->_managedObjectContext executeFetchRequest:req error:&error];
+			NSFetchRequest  *fr = [[NSFetchRequest alloc]init];
+			[fr setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:self->_managedObjectContext]];
+			NSArray *rowArray = [self->_managedObjectContext executeFetchRequest:fr error:&error];
 
-			for (mtd in array) { NSLog(@"%@", mtd.postalCode); NSLog(@"%@", mtd.showDate); }
+			for (mtd in rowArray) { NSLog(@"%@ %@", mtd.postalCode, mtd.showDate); }
 		#endif
 			
 		if (block) block([self parsetheaters:responseObject], nil);

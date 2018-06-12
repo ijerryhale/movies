@@ -48,18 +48,30 @@ class ViewControllerMovieDetail : UIViewController
 		
 		if movie.movie[KEY_POSTER] is NSNull == false
 		{
-			DataAccess.downloadImage(forURLRequest: DataAccess.url_BASE() + (movie.movie[KEY_POSTER] as! String), success:
+			let url = DataHelper.get_URL(movie.movie[KEY_POSTER] as! String)
+			let da = DataAccess()
+			
+			if let imgdata = da.getCachedPoster(url), let image = UIImage(data: imgdata as Data)
 			{
-				(request, response, responseObject) in
-
-				DispatchQueue.main.async(execute: { self.poster.image = responseObject! })
-			},
-			failure:
+				self.poster.image = image
+			}
+			else
 			{
-				(request, response, error) in
+				DataHelper.downloadImage(forURLRequest: url, success:
+				{
+					(request, response, responseObject) in
 
-				if let err = error { print("\nError: " + err.localizedDescription) }
-			})
+					DispatchQueue.main.async(execute: { self.poster.image = responseObject! })
+					
+					da.cachePoster(url, data: UIImageJPEGRepresentation(responseObject!, 1))
+				},
+				failure:
+				{
+					(request, response, error) in
+
+					if let err = error { print("\nError: " + err.localizedDescription) }
+				})
+			}
 		}
 
 		filmtitle.text = movie.movie[KEY_TITLE] as? String
