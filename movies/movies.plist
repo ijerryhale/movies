@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BUILD_TAG</key>
-	<string>0_9_00BD</string>
+	<string>0_9_00BE</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>189</string>
+	<string>190</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -57,7 +57,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>URL_BASE</key>
-	<string>http://cormya.com/jsonserver</string>
+	<string>http://localhost/jsonserver</string>
 	<key>URL_FRAG</key>
 	<string>&amp;postal_code=</string>
 	<key>URL_INDEX</key>
