@@ -29,4 +29,3 @@ Add CoreData code to cache all of the Movie Posters and retrieve Posters from th
 **Movies for Theater** | **View Trailer** |
 ![itunes](https://cormya.com/image/_itunes_preview.png "iTunes Preview") | ![driving_directions](https://cormya.com/image/_driving_directions.png "Driving Directions") |
 **iTunes Preview** | **Driving Directions**
-w
