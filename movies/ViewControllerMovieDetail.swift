@@ -85,11 +85,9 @@ class ViewControllerMovieDetail : UIViewController
 		let info = gXMLIndex.filter({ $0[KEY_ID] as? String == movie.movie[KEY_FILM_ID] as? String }).first
 
 		//	handle Rotten Tomato stuff
-		let tomatoRating = Int(movie.movie[KEY_TOMATO_RATING] as! String)
-
-		if tomatoRating != nil
+		if let tomatoRating = Int(movie.movie[KEY_TOMATO_RATING] as! String)
 		{
-			if tomatoRating! < 1
+			if tomatoRating < 1
 			{
 				tomatorating.isHidden = true
 				tomato.isHidden = true
@@ -98,7 +96,7 @@ class ViewControllerMovieDetail : UIViewController
 			{
 				tomatorating.text = movie.movie[KEY_TOMATO_RATING] as? String
 				
-				if tomatoRating! > 59 { tomato.image = UIImage(named: "tomato.png") }
+				if tomatoRating > 59 { tomato.image = UIImage(named: "tomato.png") }
 				else { tomato.image = UIImage(named: "splat.png") }
 
 				tomatorating.isHidden = false
@@ -126,6 +124,7 @@ class ViewControllerMovieDetail : UIViewController
 
 			let c = thisInfo?[KEY_CAST] as! [String : AnyObject]
 			cast.text = c[KEY_TEXT] as? String
+			cast.scrollRangeToVisible(NSMakeRange(0, 0))
 			cast.flashScrollIndicators()
 
 			let g = thisInfo?[KEY_GENRES] as! [String : AnyObject]

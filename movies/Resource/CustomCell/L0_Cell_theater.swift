@@ -20,7 +20,10 @@ class L0_Cell_theater: L0_Cell
     { super.init(reuseIdentifier: reuseIdentifier)
 
 		let marginGuide = contentView.layoutMarginsGuide
-		
+		let red = CGFloat((0x333333 & 0xFF0000) >> 16) / 255.0
+		let green = CGFloat((0x333333 & 0x00FF00) >> 8) / 255.0
+		let blue = CGFloat(0x333333 & 0x00FF) / 255.0
+
 		//	indicator.hidesWhenStopped = false
 		//	indicator.startAnimating()
 		indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -30,41 +33,29 @@ class L0_Cell_theater: L0_Cell
 		indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
 		indicator.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-24).isActive = true
 
-		name.font = UIFont(name: "HelveticaNeue", size: 16)
-		
-		let red = CGFloat((0x333333 & 0xFF0000) >> 16) / 255.0
-		let green = CGFloat((0x333333 & 0x00FF00) >> 8) / 255.0
-		let blue = CGFloat(0x333333 & 0x00FF) / 255.0
-
-		name.textColor = UIColor(red: red,
-								green: green,
-								blue: blue,
-								alpha: 1.0)
+		name.font = UIFont(name: "Arial", size: 16)
+		name.textColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
 		
 		name.translatesAutoresizingMaskIntoConstraints = false
 		name.textAlignment = .left
-
+		name.lineBreakMode = .byTruncatingMiddle
 		name.isUserInteractionEnabled = true
 		name.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapExpandCollapse(_:))))
 
         contentView.addSubview(name)
 
-		name.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant:2).isActive = true
+		name.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant:6).isActive = true
 		name.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:28).isActive = true
 		
-		distance.font = UIFont(name: "HelveticaNeue", size: 12)
-		
-		distance.textColor = UIColor(red: red,
-								green: green,
-								blue: blue,
-								alpha: 1.0)
+		distance.font = UIFont(name: "Arial", size: 14)
+		distance.textColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
 
 		distance.translatesAutoresizingMaskIntoConstraints = false
 		distance.textAlignment = .left
 
         contentView.addSubview(distance)
 		
-		distance.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
+		distance.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant:8).isActive = true
 		distance.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-8).isActive = true
 	
 		distance.isUserInteractionEnabled = true

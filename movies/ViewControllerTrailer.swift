@@ -350,7 +350,6 @@ class ViewControllerTrailer: UIViewController
 		let endLocation = range?.upperBound
 		{
 			baseURL?.replaceSubrange(startLocation ..< endLocation, with: "")
-			baseURL = baseURL! + "/"
 		}
 
 		let trailerstring = trailerURL.replacingOccurrences(of: baseURL!, with: "")

@@ -115,3 +115,5 @@ extern NSString * const ENAME_MIDATA;
 extern NSString * const ENAME_MTDATA;
 extern NSString * const ENAME_MPDATA;
 
+extern NSUInteger THEME_COLOR;
+extern float ALPHA_VALUE;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0A656920D07DF4005FD7E1 /* UIColor+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A656720D07DF3005FD7E1 /* UIColor+Theme.m */; };
+		2C0A656D20D07EB7005FD7E1 /* LabelPadded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A656C20D07EB6005FD7E1 /* LabelPadded.swift */; };
 		2C222E8F20A782E60039E375 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C222E8E20A782E60039E375 /* AFNetworking.framework */; };
 		2C222E9220A785F80039E375 /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C222E8E20A782E60039E375 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C2A2ACD1F5A29E600636E69 /* Marquee_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A2ACA1F5A29E600636E69 /* Marquee_Cell.swift */; };
@@ -89,6 +91,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C0A656720D07DF3005FD7E1 /* UIColor+Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Theme.m"; path = "movies/UIColor+Theme.m"; sourceTree = "<group>"; };
+		2C0A656820D07DF3005FD7E1 /* UIColor+Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Theme.h"; path = "movies/UIColor+Theme.h"; sourceTree = "<group>"; };
+		2C0A656C20D07EB6005FD7E1 /* LabelPadded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelPadded.swift; sourceTree = "<group>"; };
 		2C222E8E20A782E60039E375 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "afnetworking/build/Debug-iphonesimulator/AFNetworking.framework"; sourceTree = "<group>"; };
 		2C2A2ACA1F5A29E600636E69 /* Marquee_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Marquee_Cell.swift; path = movies/Resource/CustomCell/Marquee_Cell.swift; sourceTree = "<group>"; };
 		2C2A2ACB1F5A29E600636E69 /* Marquee_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Marquee_Cell.xib; path = movies/Resource/CustomCell/Marquee_Cell.xib; sourceTree = "<group>"; };
@@ -217,6 +222,8 @@
 				2C2D45941F5211BE003F529A /* AccessibilityString.m */,
 				2C4FE13D1D82681A00F1A3FF /* DictionaryKey.h */,
 				2C4FE13C1D82681A00F1A3FF /* DictionaryKey.m */,
+				2C0A656820D07DF3005FD7E1 /* UIColor+Theme.h */,
+				2C0A656720D07DF3005FD7E1 /* UIColor+Theme.m */,
 				2C86218B1FA5484B000BF3A2 /* CoreData */,
 				2C4FE1321D8267EF00F1A3FF /* DataAccess */,
 			);
@@ -269,6 +276,7 @@
 				2CEF91D31FA5506700B7B470 /* UserDefault.swift */,
 				2CCED7091FA54EE500DB9A95 /* UserLocation.swift */,
 				2C83BF3A1D82238E006B4CC6 /* AppDelegate.swift */,
+				2C0A656C20D07EB6005FD7E1 /* LabelPadded.swift */,
 				2C9C1D2B1E8749F00092AFE7 /* ViewControllerShowDate.swift */,
 				2CCED7061FA54D9E00DB9A95 /* ViewControllerSettings.swift */,
 				2CD022821F58D7C100032D92 /* ViewControllerWeb.swift */,
@@ -420,12 +428,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CDB75C420CF5D1E00CE5410 /* MPData+CoreDataClass.m in Sources */,
+				2C0A656920D07DF4005FD7E1 /* UIColor+Theme.m in Sources */,
 				2CD022841F58D7C100032D92 /* ViewControllerWeb.swift in Sources */,
 				2C59608D205F001100182FCD /* L0_Cell_theater.swift in Sources */,
 				2CCED6F91FA54A0900DB9A95 /* MIData+CoreDataProperties.m in Sources */,
 				2C3FA6101F48DF4B008C1524 /* ViewControllerTheaterDetail.swift in Sources */,
 				2C3FA6111F48DF4B008C1524 /* L1_Cell_movie.swift in Sources */,
 				2CCED6F81FA54A0900DB9A95 /* MIData+CoreDataClass.m in Sources */,
+				2C0A656D20D07EB7005FD7E1 /* LabelPadded.swift in Sources */,
 				2C3FA6121F48DF4B008C1524 /* ViewControllerShowDate.swift in Sources */,
 				2C59608F205F001100182FCD /* L0_Cell_movie.swift in Sources */,
 				2C3FA6151F48DF4B008C1524 /* DictionaryKey.m in Sources */,

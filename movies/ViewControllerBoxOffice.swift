@@ -284,9 +284,19 @@ class ViewControllerBoxOffice: UIViewController
 			//	sort the Movies by Movie Rating, Movie Title
 			nowShowing.sort {
 
-				var lhsrating = $0[KEY_RATING]! as! String
-				var rhsrating = $1[KEY_RATING]! as! String
+				var lhsrating = "NR"
+				var rhsrating = "NR"
 				
+				if ($0[KEY_RATING] is NSNull) == false
+				{
+					lhsrating = $0[KEY_RATING] as! String
+				}
+
+				if ($1[KEY_RATING] is NSNull) == false
+				{
+					rhsrating = $1[KEY_RATING] as! String
+				}
+
 				if lhsrating == "" { lhsrating = "NR" }
 				if rhsrating == "" { rhsrating = "NR" }
 
@@ -308,7 +318,10 @@ class ViewControllerBoxOffice: UIViewController
 								KEY_ADDITIONAL_ROWS : 0 ] as [String : Any]
 
 				l1_dict[KEY_TITLE] = ns[KEY_TITLE] as! String
-				l1_dict[KEY_RATING] = ns[KEY_RATING] as! String
+
+				if ns[KEY_RATING] is NSNull { l1_dict[KEY_RATING] = "NR" }
+				else { l1_dict[KEY_RATING] = ns[KEY_RATING] as! String }
+				
 				l1_dict[KEY_TMS_ID] = tms_id
 				
 				let alltimes = ns[KEY_ALL_TIMES] as! NSArray
@@ -591,7 +604,7 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 
 			movieHeader.title.text = rowDict.dict[KEY_TITLE] as? String
 			
-			var rating = ""
+			var rating = "NR"
 
 			if (rowDict.dict[KEY_RATING] is NSNull) == false
 			{
@@ -699,7 +712,7 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 						case "PG-13", "R", "NC17", "PG", "G":
 							rating = rowDict[KEY_RATING] as! String
 						default:
-							rating = ""
+							rating = "NR"
 					}
 				}
 
@@ -718,9 +731,6 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 //	MARK: UITableView Delegate Methods
 extension ViewControllerBoxOffice : UITableViewDelegate
 {
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return (42.0) }
-	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat { return (1.0) }
-
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
 	{
 		let cell: [String : Any] = rowDictionary[indexPath.section].cell[indexPath.row]
@@ -793,7 +803,7 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 
 			rowDictionary[indexPath.section].cell[indexPath.row] = rowDict
 			
-			tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .left)
+			tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .automatic)
 		}
 
 		var enableBuyTickets = true

@@ -128,4 +128,23 @@ NSString * const ENAME_MIDATA = @"MIData";
 NSString * const ENAME_MTDATA = @"MTData";
 NSString * const ENAME_MPDATA = @"MPData";
 
+//	theme colors
+//	blue theme color
+#define	THEME_COLOR_BLUE		0x76D6FF
+#define	THEME_ALPHA_BLUE		0.4
+
+//	sky theme color
+#define	THEME_COLOR_SKY			0x73FDFF
+#define	THEME_ALPHA_SKY			0.6
+
+//	aluminum theme color
+#define	THEME_COLOR_ALUMINUM	0xA9A9A9
+#define	THEME_ALPHA_ALUMINUM	0.4
+//
+//	cherry theme color
+#define	THEME_COLOR_CHERRY		0xFF2600
+#define	THEME_ALPHA_CHERRY		0.3
+
+NSUInteger THEME_COLOR = THEME_COLOR_BLUE;
+float ALPHA_VALUE = THEME_ALPHA_BLUE;
 

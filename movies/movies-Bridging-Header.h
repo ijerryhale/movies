@@ -11,6 +11,7 @@
 
 #import "AFNetworking/AFNetworking.h"
 
+#import "UIColor+Theme.h"
 #import "DictionaryKey.h"
 #import "AccessibilityString.h"
 #import "DataAccess.h"
