@@ -19,7 +19,6 @@ class L0_Cell_theater: L0_Cell
     override init(reuseIdentifier: String?)
     { super.init(reuseIdentifier: reuseIdentifier)
 
-		let marginGuide = contentView.layoutMarginsGuide
 		let red = CGFloat((0x333333 & 0xFF0000) >> 16) / 255.0
 		let green = CGFloat((0x333333 & 0x00FF00) >> 8) / 255.0
 		let blue = CGFloat(0x333333 & 0x00FF) / 255.0
@@ -39,14 +38,16 @@ class L0_Cell_theater: L0_Cell
 		name.translatesAutoresizingMaskIntoConstraints = false
 		name.textAlignment = .left
 		name.lineBreakMode = .byTruncatingMiddle
-		name.isUserInteractionEnabled = true
-		name.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapExpandCollapse(_:))))
 
         contentView.addSubview(name)
 
-		name.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant:6).isActive = true
 		name.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:28).isActive = true
-		
+		name.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.68).isActive = true
+		name.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+
+		name.isUserInteractionEnabled = true
+		name.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapExpandCollapse(_:))))
+
 		distance.font = UIFont(name: "Arial", size: 14)
 		distance.textColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
 
@@ -55,7 +56,7 @@ class L0_Cell_theater: L0_Cell
 
         contentView.addSubview(distance)
 		
-		distance.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant:8).isActive = true
+		distance.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
 		distance.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant:-8).isActive = true
 	
 		distance.isUserInteractionEnabled = true

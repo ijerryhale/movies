@@ -17,7 +17,6 @@ class L0_Cell: UITableViewHeaderFooterView
 {
 	let disclosureButton = UIButton()
 	let backgroundview = UIView()
-	
 	var delegate: SectionHeaderDelegate?
     var section: Int = 0
 	
@@ -26,31 +25,28 @@ class L0_Cell: UITableViewHeaderFooterView
     override init(reuseIdentifier: String?)
     { super.init(reuseIdentifier: reuseIdentifier)
 
-        let marginGuide = contentView.layoutMarginsGuide
-
 		contentView.backgroundColor = UIColor.clear
-	backgroundview.setBorderColor(UIColor.themeColor(THEME_COLOR))
+		
 		backgroundview.setCornerRadius(3)
-		backgroundview.setBorderWidth(1)
 		backgroundview.backgroundColor = UIColor.themeColor(THEME_COLOR)
-		
-		contentView.addSubview(backgroundview)
 
+		contentView.addSubview(backgroundview)
+	
 		backgroundview.translatesAutoresizingMaskIntoConstraints = false
-		backgroundview.leftAnchor.constraint(equalTo: marginGuide.leftAnchor, constant:-11).isActive = true
-		backgroundview.rightAnchor.constraint(equalTo: marginGuide.rightAnchor, constant:11).isActive = true
-		backgroundview.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant:-6).isActive = true
-		backgroundview.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor, constant:6).isActive = true
+		backgroundview.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 4).isActive = true
+		backgroundview.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.98).isActive = true
 		
+		backgroundview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2).isActive = true
+		backgroundview.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.92).isActive = true
+
         disclosureButton.setImage(UIImage(named: "carat.png"), for: UIControlState.normal)
 		disclosureButton.setImage(UIImage(named: "carat-open.png"), for: UIControlState.selected)
 
         contentView.addSubview(disclosureButton)
 
         disclosureButton.translatesAutoresizingMaskIntoConstraints = false
-        disclosureButton.widthAnchor.constraint(equalToConstant: 26).isActive = true
-        disclosureButton.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant:4).isActive = true
-		disclosureButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:4).isActive = true
+		disclosureButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+		disclosureButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:12).isActive = true
 	
 		disclosureButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapExpandCollapse(_:))))
 
