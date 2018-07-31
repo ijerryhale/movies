@@ -19,9 +19,9 @@ Add CoreData code to cache all of the Movie Posters and retrieve Posters from th
 
 Write a bunch of back end PHP code and run everything thorough a PHP script. Move any special handling of text out of project and into PHP files. Remove any text processing code from project.
 
-* turned off 'View Trailer' Button temporarily as there is a bug in a PHP file which I have not fixed yet.
-
 * Because virtually everything is being cached now it may be required to 'Erase All Content and Settings' if the app hits a bug.
+
+* turned off 'View Trailer' Button temporarily as there is a bug in a PHP file which I have not fixed yet.
 
 * There is a lot going on backend wise which is not turned on yet, but I need to walk away from this for a bit.
 
