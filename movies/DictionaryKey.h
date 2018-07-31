@@ -41,9 +41,6 @@ extern NSString * const KEY_TMS_ID;
 
 extern NSString * const KEY_FILM_ID;
 
-extern NSString * const KEY_FANDANGO_ID;
-extern NSString * const KEY_FANDANGOID;
-
 extern NSString * const KEY_TITLE;
 extern NSString * const KEY_RATING;
 extern NSString * const KEY_RELEASE_DATE;

@@ -284,21 +284,8 @@ class ViewControllerBoxOffice: UIViewController
 			//	sort the Movies by Movie Rating, Movie Title
 			nowShowing.sort {
 
-				var lhsrating = "NR"
-				var rhsrating = "NR"
-				
-				if ($0[KEY_RATING] is NSNull) == false
-				{
-					lhsrating = $0[KEY_RATING] as! String
-				}
-
-				if ($1[KEY_RATING] is NSNull) == false
-				{
-					rhsrating = $1[KEY_RATING] as! String
-				}
-
-				if lhsrating == "" { lhsrating = "NR" }
-				if rhsrating == "" { rhsrating = "NR" }
+				let lhsrating = $0[KEY_RATING] as! String
+				let rhsrating = $1[KEY_RATING] as! String
 
 			   if lhsrating != rhsrating
 			   { return lhsrating > rhsrating }
@@ -317,13 +304,10 @@ class ViewControllerBoxOffice: UIViewController
 								KEY_CELL_IDENTIFIER : VALUE_L1_CELL,
 								KEY_ADDITIONAL_ROWS : 0 ] as [String : Any]
 
-				l1_dict[KEY_TITLE] = ns[KEY_TITLE] as! String
-
-				if ns[KEY_RATING] is NSNull { l1_dict[KEY_RATING] = "NR" }
-				else { l1_dict[KEY_RATING] = ns[KEY_RATING] as! String }
-				
 				l1_dict[KEY_TMS_ID] = tms_id
-				
+				l1_dict[KEY_TITLE] = ns[KEY_TITLE] as! String
+				l1_dict[KEY_RATING] = ns[KEY_RATING] as! String
+
 				let alltimes = ns[KEY_ALL_TIMES] as! NSArray
 
 				additionalRows += alltimes.count + 1
@@ -603,21 +587,7 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 			let	movieHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: cellID)  as? L0_Cell_movie ?? L0_Cell_movie(reuseIdentifier: cellID)
 
 			movieHeader.title.text = rowDict.dict[KEY_TITLE] as? String
-			
-			var rating = "NR"
-
-			if (rowDict.dict[KEY_RATING] is NSNull) == false
-			{
-				switch rowDict.dict[KEY_RATING] as! String
-				{
-					case "PG-13", "R", "NC17", "PG", "G":
-						rating = rowDict.dict[KEY_RATING] as! String
-					default:
-						rating = "NR"
-				}
-			}
-
-			movieHeader.rating.text = rating
+			movieHeader.rating.text = rowDict.dict[KEY_RATING] as? String
 
 			movieHeader.setIsExpanded(rowDictionary[section].isExpanded)
 			movieHeader.section = section
@@ -702,21 +672,7 @@ extension ViewControllerBoxOffice : UITableViewDataSource
 			if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
 			{
 				(cell as! L1_Cell_movie).title?.text = (rowDict[KEY_TITLE] as! String)
-
-				var rating = "NR"
-
-				if (rowDict[KEY_RATING] is NSNull) == false
-				{
-					switch rowDict[KEY_RATING] as! String
-					{
-						case "PG-13", "R", "NC17", "PG", "G":
-							rating = rowDict[KEY_RATING] as! String
-						default:
-							rating = "NR"
-					}
-				}
-
-				(cell as! L1_Cell_movie).rating.text = rating
+				(cell as! L1_Cell_movie).rating?.text = (rowDict[KEY_RATING] as! String)
 			}
 			else
 			{

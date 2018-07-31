@@ -33,7 +33,9 @@ typedef NSUInteger XMLReaderOptions;
 @interface DataHelper : NSObject
 
 +(NSString *)URL_BASE;
-+(NSURL *)GET_URL:(NSString *)path;
+
++(NSURL *)GET_URL_TRAILER:(NSString *)path;
++(NSURL *)GET_URL_POSTER:(NSString *)path;
 
 + (void)downloadImageForURLRequest:(NSURL *)url
 					success:(void (^)(NSURLRequest *request, NSHTTPURLResponse  *response, UIImage *responseObject))success

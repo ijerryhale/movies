@@ -80,15 +80,14 @@ class ViewControllerSettings: UIViewController
 		//	UserDefault.setUsingCurrentLocation(false)
 		UserDefault.setLastUpdate(Date())
 		UserDefault.setDayOffset(0)
-		UserDefault.setPostalCode("92315")
+		UserDefault.setPostalCode("95014")
 		
 		self.view.setNeedsDisplay()
 	}
 	
 	override func didReceiveMemoryWarning()
-	{
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	{ super.didReceiveMemoryWarning()
+
 	}
 }
 

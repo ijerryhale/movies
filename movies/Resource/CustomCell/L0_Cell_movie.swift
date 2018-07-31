@@ -32,7 +32,7 @@ class L0_Cell_movie: L0_Cell
         contentView.addSubview(title)
 
 		title.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:28).isActive = true
-		title.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.81).isActive = true
+		title.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.80).isActive = true
 		title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
 	
 		title.isUserInteractionEnabled = true
@@ -52,7 +52,5 @@ class L0_Cell_movie: L0_Cell
 		rating.isUserInteractionEnabled = true
 		
 		rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(L0_Cell.tapExpandCollapse(_:))))
-
-
    }
 }

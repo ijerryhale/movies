@@ -66,21 +66,14 @@ class Geocode {
 	
 	func geocodePostalCode(postalcode: String)
 	{
-//		let country = "USA"
-//		let street = "Conklin Rd."
-//		let city = "Big Bear Lake"
-//		let state = "CA"
-//		let postalcode = "92315"
-
-        // Create Address String
+        //	create address string
         //	let address = "\(country), \(city), \(street), \(state), \(postalcode)"
 		let address = "\(postalcode)"
 
-        // Geocode Address String
+        //	geocode address string
         geocoder.geocodeAddressString(address)
 		{ (placemarks, error) in
-            // Process Response
-        // Update View
+            // process response
 			if let error = error
 			{
 				self.delegate.geocodeDidSucceed(placemark: nil, error: error)
@@ -116,31 +109,28 @@ class Geocode {
 		//	create Location
 		let location = CLLocation(latitude: latitude, longitude: longitude)
 
-		// Geocode Location
-	
+		//	geocode location
 		geocoder.reverseGeocodeLocation(location)
 		{
+			//	process response
 			(placemarks, error) in
-				//	process response
-			
-				// Update View
-				//  geocodeButton.isHidden = false
-				//  activityIndicatorView.stopAnimating()
+			//  geocodeButton.isHidden = false
+			//  activityIndicatorView.stopAnimating()
 
-				if let error = error { print("Unable to Reverse Geocode Location (\(error))") }
+			if let error = error { print("Unable to Reverse Geocode Location (\(error))") }
+			else
+			{
+				if let placemarks = placemarks, let placemark = placemarks.first
+				{
+					//	postalcode = placemark.postalCode!
+					self.delegate.geocodeDidSucceed(placemark: placemark, error: error)
+				}
 				else
 				{
-					if let placemarks = placemarks, let placemark = placemarks.first
-					{
-						//	postalcode = placemark.postalCode!
-						self.delegate.geocodeDidSucceed(placemark: placemark, error: error)
-					}
-					else
-					{
-						self.delegate.geocodeDidFail(placemark: nil, error: error!)
-						print("No Matching Addresses Found")
-					}
+					self.delegate.geocodeDidFail(placemark: nil, error: error!)
+					print("No Matching Addresses Found")
 				}
+			}
 		}
 	}
 }

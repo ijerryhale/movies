@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BUILD_TAG</key>
-	<string>0_9_00C0</string>
+	<string>0_9_00C1</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>192</string>
+	<string>193</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -57,12 +57,18 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>URL_BASE</key>
-	<string>http://cormya.com/jsonserver</string>
+	<string>https://cormya.com</string>
 	<key>URL_FRAG</key>
 	<string>&amp;postal_code=</string>
 	<key>URL_INDEX</key>
-	<string>index.xml</string>
+	<string>movies/index.php</string>
+	<key>URL_POSTER</key>
+	<string>movies/poster.php?url=</string>
 	<key>URL_STRING</key>
-	<string>theaters.php?show_date=</string>
+	<string>movies/theaters.php?show_date=</string>
+	<key>URL_TRAILER</key>
+	<string>movies/trailer.php?url=</string>
+	<key>__URL_BASE</key>
+	<string>http://localhost</string>
 </dict>
 </plist>

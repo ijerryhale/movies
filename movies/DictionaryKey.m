@@ -13,7 +13,7 @@
 NSString * const KEY_DAY_OFFSET = @"offset";
 
 NSString	*gShowDate = @"";
-NSString	*gPostalCode = @"92315";
+NSString	*gPostalCode = @"95014";
 
 NSString * const KEY_ID = @"id";
 NSString * const KEY_NAME = @"name";
@@ -47,10 +47,6 @@ NSString * const KEY_TMS_ID = @"tms_id";
 
 //	index uses different key
 NSString * const KEY_FILM_ID = @"film_id";
-
-//	index uses different key
-NSString * const KEY_FANDANGO_ID = @"fandango_id";
-NSString * const KEY_FANDANGOID = @"fandangoid";
 
 NSString * const KEY_TITLE = @"title";
 NSString * const KEY_RATING = @"rating";

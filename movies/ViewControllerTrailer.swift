@@ -108,7 +108,6 @@ class ViewControllerTrailer: UIViewController
 	}
     
     // MARK: - Asset Loading
-
     func asynchronouslyLoadURLAsset(_ newAsset: AVURLAsset)
 	{
         /*
@@ -355,7 +354,7 @@ class ViewControllerTrailer: UIViewController
 		let trailerstring = trailerURL.replacingOccurrences(of: baseURL!, with: "")
 		trailerURL = trailerstring as String
 
-		let url = DataHelper.get_URL(trailerURL)
+		let url = DataHelper.get_URL_TRAILER(trailerURL)
 		asset = AVURLAsset(url: url!, options: nil)
 
 		player.play()

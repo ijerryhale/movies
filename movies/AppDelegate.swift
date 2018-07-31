@@ -80,13 +80,6 @@ class AppDelegate: UIResponder
 		for i in 0...theaters.count - 1
 		{
 			var t = theaters[i] as [String : AnyObject]
-
-			if (t[KEY_RELEASE_DATE] is NSNull) { gTheater[i].theater[KEY_RELEASE_DATE] = "" as AnyObject }
-			if (t[KEY_RUN_TIME] is NSNull) { gTheater[i].theater[KEY_RUN_TIME] = "" as AnyObject }
-
-			if (t[KEY_TEL] is NSNull) { gTheater[i].theater[KEY_TEL] = "" as AnyObject }
-			if (t[KEY_TOMATO_RATING] is NSNull) { gTheater[i].theater[KEY_TOMATO_RATING] = "" as AnyObject }
-
 			//	thisMov is one Movie in this Theaters 'now_showing' array
 			for var thisMov in t[KEY_NOW_SHOWING] as! [[String:AnyObject]]
 			{
@@ -95,17 +88,10 @@ class AppDelegate: UIResponder
 				if tms_id.contains(tmsid) { continue }
 
 				tms_id.add(tmsid)
-				var urlString = ""
 
-				if (thisMov[KEY_POSTER] is NSNull) == false
-				{
-					urlString = thisMov[KEY_POSTER] as! String
-				}
-
-				let lazyPoster = LazyPoster(title: thisMov[KEY_TITLE] as! String, urlString: urlString)
+				let lazyPoster = LazyPoster(title: thisMov[KEY_TITLE] as! String, urlString: thisMov[KEY_POSTER]!)
 
 				//	dumpData(urlString, filmID: thisMov[KEY_FILM_ID] as? String)
-				
 				gMovie.append((thisMov, lazyPoster))
 			}
 
@@ -120,19 +106,12 @@ class AppDelegate: UIResponder
 
 			gTheater.append((t, lazyDistance))
 		}
-		//	sort Movies by Rating, Title -- if
-		//	Rating is blank label as Not Rated
+
+		//	sort Movies by Rating, Title
 		gMovie.sort
 		{
-			var lhsrating = "NR"
-			var rhsrating = "NR"
-
-			if ($0.movie[KEY_RATING] is NSNull) == false { lhsrating = $0.movie[KEY_RATING]! as! String }
-
-			if ($1.movie[KEY_RATING] is NSNull) == false { rhsrating = $1.movie[KEY_RATING]! as! String }
-
-			if lhsrating == "" { lhsrating = "NR" }
-			if rhsrating == "" { rhsrating = "NR" }
+			let lhsrating = $0.movie[KEY_RATING]! as! String
+			let rhsrating = $1.movie[KEY_RATING]! as! String
 
 			if lhsrating != rhsrating { return lhsrating > rhsrating }
 			else { return ($0.movie[KEY_TITLE]! as! String) < ($1.movie[KEY_TITLE]! as! String) }
@@ -147,7 +126,8 @@ class AppDelegate: UIResponder
 		print("Show Date:", get_show_date_from_day_offset(UserDefault.getDayOffset()))
 		print("Postal Code:", UserDefault.getPostalCode())
 
-		DataAccess().getTheaters(get_show_date_from_day_offset(UserDefault.getDayOffset()), postalcode: UserDefault.getPostalCode())
+		DataAccess().getTheaters(get_show_date_from_day_offset(UserDefault.getDayOffset()),
+									postalcode: UserDefault.getPostalCode())
 		{
 			(theaterArray, error) in
 

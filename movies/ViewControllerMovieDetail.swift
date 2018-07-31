@@ -45,10 +45,10 @@ class ViewControllerMovieDetail : UIViewController
 		let movie = gMovie[gCurrMovie]
 
 		poster.image = createGenericPoster(movie.movie[KEY_TITLE] as! String)
-		
-		if movie.movie[KEY_POSTER] is NSNull == false
+
+		if movie.movie[KEY_POSTER] as! String != ""
 		{
-			let url = DataHelper.get_URL(movie.movie[KEY_POSTER] as! String)
+			let url = DataHelper.get_URL_POSTER(movie.movie[KEY_POSTER] as! String)
 			let da = DataAccess()
 			
 			if let imgdata = da.getCachedPoster(url), let image = UIImage(data: imgdata as Data)
@@ -75,10 +75,7 @@ class ViewControllerMovieDetail : UIViewController
 		}
 
 		filmtitle.text = movie.movie[KEY_TITLE] as? String
-		
-		if (movie.movie[KEY_RATING] is NSNull) { rating.text = "NR" }
-		else { rating.text = movie.movie[KEY_RATING] as? String }
-
+		rating.text = movie.movie[KEY_RATING] as? String
 		runtime.text = movie.movie[KEY_RUN_TIME] as? String
 		releasedate.text = movie.movie[KEY_RELEASE_DATE] as? String
 
@@ -142,11 +139,12 @@ class ViewControllerMovieDetail : UIViewController
 			let preview = previews[KEY_PREVIEW] as! [String : AnyObject]
 			let  m = preview[KEY_TEXT] as! String
 			
-			if (m.utf8.count) > 0 { viewTrailerBtn?.isEnabled = true }
-			else { viewTrailerBtn?.isEnabled = false }
+			//	FIX THIS!!
+			//	if (m.utf8.count) > 0 { viewTrailerBtn?.isEnabled = true }
+			//	else { viewTrailerBtn?.isEnabled = false }
 		}
 
-		if movie.movie[KEY_ITUNES_URL] == nil
+		if movie.movie[KEY_ITUNES_URL] as! String == ""
 		{ viewIniTunesBtn?.isEnabled = false }
 		else
 		{

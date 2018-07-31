@@ -15,6 +15,19 @@ Move all of the embedded data to cormya.com. Get rid of embedded target and embe
 
 Add CoreData code to cache all of the Movie Posters and retrieve Posters from that cache. Still needs a bit of work but most of it is done. movies will only run on iOS 11+ now as the CoreData table MPData contains a URI (NSURL) field which requires XCode 9+ Tools and iOS 11+.
 
+#### July 31, 2018
+
+Write a bunch of back end PHP code and run everything thorough a PHP script. Move any special handling of text out of project and into PHP files. Remove any text processing code from project.
+
+* turned off 'View Trailer' Button temporarily as there is a bug in a PHP file which I have not fixed yet.
+
+* Because virtually everything is being cached now it may be required to 'Erase All Content and Settings' if the app hits a bug.
+
+* There is a lot going on backend wise which is not turned on yet, but I need to walk away from this for a bit.
+
+
+
+
 ## Requirements
 
 - XCode 9+

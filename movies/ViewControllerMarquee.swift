@@ -68,7 +68,7 @@ class ViewControllerMarquee: UIViewController
 				
 				if lazyPoster.urlString.isEmpty == false
 				{
-					let url = DataHelper.get_URL(lazyPoster.urlString)
+					let url = DataHelper.get_URL_POSTER(lazyPoster.urlString)
 					let da = DataAccess()
 			
 					if let imgdata = da.getCachedPoster(url), let image = UIImage(data: imgdata as Data)

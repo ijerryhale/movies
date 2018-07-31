@@ -191,6 +191,12 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 }
 @end
 
+@interface DataHelper()
+
+	+(NSString *)URL_POSTER;
+	+(NSString *)URL_TRAILER;
+@end
+
 @implementation DataHelper
 
 +(NSString *)URL_BASE
@@ -203,7 +209,47 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     return (URL_BASE);
 }
 
-+(NSURL *)GET_URL:(NSString *)path { return ([NSURL URLWithString:[[DataHelper URL_BASE] stringByAppendingString:path]]); }
++(NSString *)URL_POSTER
+{
+    static dispatch_once_t once;
+    static NSString * URL_POSTER;
+    dispatch_once(&once, ^{
+        URL_POSTER = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"URL_POSTER"];
+    });
+    return (URL_POSTER);
+}
+
++(NSString *)URL_TRAILER
+{
+    static dispatch_once_t once;
+    static NSString * URL_TRAILER;
+    dispatch_once(&once, ^{
+        URL_TRAILER = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"URL_TRAILER"];
+    });
+    return (URL_TRAILER);
+}
+
++(NSURL *)GET_URL_TRAILER:(NSString *)path
+{
+	NSString	*pathString = [DataHelper URL_BASE];
+	
+	pathString = [pathString stringByAppendingString:@"/"];
+	pathString = [pathString stringByAppendingString:[DataHelper URL_TRAILER]];
+	pathString = [pathString stringByAppendingString:path];
+
+	return ([NSURL URLWithString:pathString]);
+}
+
++(NSURL *)GET_URL_POSTER:(NSString *)path
+{
+	NSString	*pathString = [DataHelper URL_BASE];
+	
+	pathString = [pathString stringByAppendingString:@"/"];
+	pathString = [pathString stringByAppendingString:[DataHelper URL_POSTER]];
+	pathString = [pathString stringByAppendingString:path];
+
+	return ([NSURL URLWithString:pathString]);
+}
 
 + (void)downloadImageForURLRequest:(NSURL *)url
 							success:(void (^)(NSURLRequest *request, NSHTTPURLResponse  *response, UIImage *responseObject))success
@@ -216,9 +262,10 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 
 @end
 
-
 @interface DataAccess()
+
 	-(NSString *)URL_INDEX;
+
 	-(NSString *)URL_FRAG;
 	-(NSString *)URL_STRING;
 
@@ -514,16 +561,8 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 -(NSArray *)parsetheaters:(NSData *)data
 { NSLog(@"DataAccess.parsetheaters");
 
-	NSString	*jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-	jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&#x00E4;" withString:@"ä"];
-    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&#x00E9;" withString:@"é"];
-    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&apos;" withString:@"'"];
-    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-
-	NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError	*error = nil;
-    NSArray	*array = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
+    NSArray	*array = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
 
 	NSMutableArray	*theaters = [NSMutableArray array];
 
