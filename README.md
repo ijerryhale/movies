@@ -21,12 +21,11 @@ Write a bunch of back end PHP code and run everything thorough a PHP script. Mov
 
 * Because virtually everything is being cached now it may be required to 'Erase All Content and Settings' if the app hits a bug.
 
-* turned off 'View Trailer' Button temporarily as there is a bug in a PHP file which I have not fixed yet.
-
 * There is a lot going on backend wise which is not turned on yet, but I need to walk away from this for a bit.
 
+#### August 5, 2018
 
-
+Fix Movie Trailers, re-enable 'View Trailers' Button.
 
 ## Requirements
 
