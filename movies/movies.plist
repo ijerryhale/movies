@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BUILD_TAG</key>
-	<string>0_9_00C2</string>
+	<string>0_9_00C3</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>194</string>
+	<string>195</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -64,8 +64,8 @@
 	<string>movies/index.php</string>
 	<key>URL_POSTER</key>
 	<string>movies/poster.php?url=</string>
-	<key>URL_STRING</key>
-	<string>movies/theaters.php?show_date=</string>
+	<key>URL_THEATER</key>
+	<string>movies/theater.php?show_date=</string>
 	<key>URL_TRAILER</key>
 	<string>movies/trailer.php?url=</string>
 	<key>__URL_BASE</key>

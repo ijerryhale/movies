@@ -267,7 +267,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 	-(NSString *)URL_INDEX;
 
 	-(NSString *)URL_FRAG;
-	-(NSString *)URL_STRING;
+	-(NSString *)URL_THEATER;
 
 	-(void)delete_mt_data_rows;
 	-(void)delete_mi_data_rows;
@@ -284,14 +284,14 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
     return (self);
 }
 
--(NSString *)URL_STRING
+-(NSString *)URL_THEATER
 {
     static dispatch_once_t once;
-    static NSString * URL_STRING;
+    static NSString * URL_THEATER;
     dispatch_once(&once, ^{
-        URL_STRING = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"URL_STRING"];
+        URL_THEATER = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"URL_THEATER"];
     });
-    return (URL_STRING);
+    return (URL_THEATER);
 }
 
 -(NSString *)URL_INDEX
@@ -605,7 +605,7 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 		return;
 	}
 
-	NSMutableString	*url = [NSMutableString stringWithString:[self URL_STRING]];
+	NSMutableString	*url = [NSMutableString stringWithString:[self URL_THEATER]];
 
 	[url appendString:showdate];
 	[url appendString:[self URL_FRAG]];

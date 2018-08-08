@@ -339,18 +339,7 @@ class ViewControllerTrailer: UIViewController
 
 		let previews = info?[KEY_PREVIEWS] as! [String : AnyObject]
 		let preview = previews[KEY_PREVIEW] as! [String : AnyObject]
-		let trailerURL = preview[KEY_TEXT] as! String
-		
-		//	have to remove URL_BASE from path
-		var baseURL = DataHelper.url_BASE()
-		let range = baseURL?.range(of:"s")
-		if let startLocation = range?.lowerBound,
-		let endLocation = range?.upperBound
-		{
-			baseURL?.replaceSubrange(startLocation ..< endLocation, with: "")
-		}
-
-		let data = NSData(contentsOf: DataHelper.get_URL_TRAILER(trailerURL.replacingOccurrences(of: baseURL!, with: "") as String)!)
+		let data = NSData(contentsOf: DataHelper.get_URL_TRAILER(preview[KEY_TEXT] as! String))
 		let datastring = NSString(data: data! as Data, encoding: String.Encoding.utf8.rawValue)! as String
 
 		asset = AVURLAsset(url: URL(string: datastring.filter { !" \n".contains($0) })! , options: nil)
