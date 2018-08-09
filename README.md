@@ -14,10 +14,10 @@ Display a list of Theaters and Movies for given Location and Day.
 - Swift 4+
 
 
-![marquee](https://cormya.com/image/_marquee.png "Marquee") | ![theaters_for_movie](https://cormya.com/image/theaters_for_movie.png "Theaters for Movie") |
+![marquee](https://cormya.com/image/_marquee.png "Marquee") | ![theaters_for_movie](https://cormya.com/image/_theaters_for_movie.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 **Marquee** | **Theaters for Movie** |
-![movies_for_theater](https://cormya.com/image/movies_for_theater.png "Movies for Theater") | ![trailers](https://cormya.com/image/_view_trailer.png "View Trailers") |
+![movies_for_theater](https://cormya.com/image/_movies_for_theater.png "Movies for Theater") | ![trailers](https://cormya.com/image/_view_trailer.png "View Trailers") |
 **Movies for Theater** | **View Trailer** |
 ![itunes](https://cormya.com/image/_itunes_preview.png "iTunes Preview") | ![driving_directions](https://cormya.com/image/driving_directions.png "Driving Directions") |
 **iTunes Preview** | **Driving Directions**

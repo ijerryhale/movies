@@ -341,8 +341,8 @@ class ViewControllerTrailer: UIViewController
 		let preview = previews[KEY_PREVIEW] as! [String : AnyObject]
 		let data = NSData(contentsOf: DataHelper.get_URL_TRAILER(preview[KEY_TEXT] as! String))
 		let datastring = NSString(data: data! as Data, encoding: String.Encoding.utf8.rawValue)! as String
-
-		asset = AVURLAsset(url: URL(string: datastring.filter { !" \n".contains($0) })! , options: nil)
+		
+		asset = AVURLAsset(url: URL(string: datastring.filter { !"\n".contains($0) } )! , options: nil)
 
 		player.play()
     }
