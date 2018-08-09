@@ -19,5 +19,5 @@ Display a list of Theaters and Movies for given Location and Day.
 **Marquee** | **Theaters for Movie** |
 ![movies_for_theater](https://cormya.com/image/_movies_for_theater.png "Movies for Theater") | ![trailers](https://cormya.com/image/_view_trailer.png "View Trailers") |
 **Movies for Theater** | **View Trailer** |
-![itunes](https://cormya.com/image/_itunes_preview.png "iTunes Preview") | ![driving_directions](https://cormya.com/image/driving_directions.png "Driving Directions") |
+![itunes](https://cormya.com/image/itunes_preview.png "iTunes Preview") | ![driving_directions](https://cormya.com/image/driving_directions.png "Driving Directions") |
 **iTunes Preview** | **Driving Directions**
