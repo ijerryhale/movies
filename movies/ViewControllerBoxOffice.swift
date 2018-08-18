@@ -431,15 +431,6 @@ class ViewControllerBoxOffice: UIViewController
 	{
 		return CustomUnwindSegue(identifier: identifier, source: fromViewController, destination: toViewController)
     }
-
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-	{
-		//	print(segue.identifier)
-		if segue.identifier == S2_SETTINGS
-		{
-
-		}
-	}
 	
 	override func viewWillAppear(_ animated: Bool)
 	{ super.viewWillAppear(animated); print("ViewControllerBoxOffice viewWillAppear ")

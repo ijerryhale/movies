@@ -13,6 +13,8 @@ class ViewControllerShowDate: UIViewController
 {
 	@IBOutlet weak var tableView: UITableView!
 	
+	@IBAction func tapDoneBtn(_ sender: Any) { dismiss(animated: true, completion: nil) }
+
 	//	MARK: UIViewController overrides
 	override func viewWillDisappear(_ animated: Bool)
 	{ super.viewWillDisappear(animated); print("ViewControllerShowDate viewWillDisappear ") }

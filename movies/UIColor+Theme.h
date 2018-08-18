@@ -37,15 +37,15 @@ IB_DESIGNABLE
 @end
 
 IB_DESIGNABLE
-@interface UILabel (Theme)
--(void)setBackColor:(UIColor *)color;
+@interface UISearchBar (Theme)
 -(void)setBorderColor:(UIColor *)color;
 -(void)setBorderWidth:(CGFloat)width;
 -(void)setCornerRadius:(CGFloat)radius;
 @end
 
 IB_DESIGNABLE
-@interface UISearchBar (Theme)
+@interface UILabel (Theme)
+-(void)setBackColor:(UIColor *)color;
 -(void)setBorderColor:(UIColor *)color;
 -(void)setBorderWidth:(CGFloat)width;
 -(void)setCornerRadius:(CGFloat)radius;

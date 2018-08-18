@@ -87,21 +87,14 @@ extern NSString * const KEY_IS_VISIBLE;
 extern NSString * const KEY_CELL_IDENTIFIER;
 extern NSString * const KEY_ADDITIONAL_ROWS;
 
-
 extern NSString * const S2_MOVIE_TRAILER;
 extern NSString * const S2_THEATER_DETAIL;
 extern NSString * const S2_MOVIE_DETAIL;
-
 extern NSString * const S2_CONTAINER;
 extern NSString * const S2_BOX_OFFICE;
 extern NSString * const S2_MARQUEE;
 extern NSString * const S2_MAP;
-
 extern NSString * const S2_ITUNES;
-
-extern NSString * const S2_SHOWDATE;
-extern NSString * const S2_SETTINGS;
-
 extern NSString * const S2_CONTAINER_UNWIND;
 
 extern NSString * const NOTIF_LAST_UPDATE_CHANGED;

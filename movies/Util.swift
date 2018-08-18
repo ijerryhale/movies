@@ -18,7 +18,6 @@ class EmptySegue: UIStoryboardSegue
 	}
 }
 
-
 //	MARK: CustomSegue
 class CustomSegue: UIStoryboardSegue
 {

@@ -6,9 +6,6 @@
 //  Copyright © 2018 jhale. All rights reserved.
 //
 
-//	LazyPoster class and lazy loading code is based upon:
-//	https://www.raywenderlich.com/76341/use-nsoperation-nsoperationqueue-swift
-
 import QuartzCore
 import Foundation
 import UIKit
@@ -38,20 +35,52 @@ class PendingMarqueeOperations
 		var queue = OperationQueue()
 		queue.name = UUID().uuidString
 		queue.maxConcurrentOperationCount = 1
-		return queue
+		return (queue)
 	}()
 }
 
 //	MARK: ViewControllerMarquee
 class ViewControllerMarquee: UIViewController
 {
-	@IBOutlet weak var showdate: UILabel!
+	@IBOutlet weak var postalCode: UITextField!
+	@IBOutlet weak var showdateBtn: UIButton!
 	@IBOutlet weak var	tableView: UITableView!
 
 	@IBAction func unwindToMarquee(segue: UIStoryboardSegue) { }
-	@IBAction func tapSettinsBtn(sender: UIButton) { self.performSegue(withIdentifier: S2_SETTINGS, sender: self) }
+	@IBAction func postalCodeChangedValue(_ sender: UITextField)
+	{
+		//	FIX THIS!!
+		var postalCode = sender.text
+		
+		if (postalCode != "95014"
+			&& postalCode != "10021"
+			&& postalCode != "60601"
+			&& postalCode != "90024") { postalCode = "95014"; self.postalCode.text = postalCode }
 
-    let pendingOperations = PendingMarqueeOperations()
+		UserDefault.setPostalCode(postalCode!)
+	}
+
+	@IBAction func tapGetBtn(_ sender: Any)
+	{
+		(UIApplication.shared.delegate as! AppDelegate).rebuild_theaters()
+		{
+			(result) -> () in
+
+			gCurrMovie = 0
+			gCurrTheater = 0
+
+			self.tableView.reloadData()
+			self.tableView.scrollToRow(at: [0, NSNotFound], at: .top, animated: false)
+		}
+	}
+	
+	let pendingOperations = PendingMarqueeOperations()
+
+	func notif_showdate(notification: Notification)
+	{ print("ViewControllerSettings notif_showdate");
+	
+		self.showdateBtn.setTitle(get_show_date(), for: .normal)
+	}
 
     func startOperationForPoster(poster: LazyPoster, indexPath: NSIndexPath)
 	{
@@ -139,64 +168,60 @@ class ViewControllerMarquee: UIViewController
 
             for indexPath in toBeStarted
 			{
-                let indexPath = indexPath as NSIndexPath
-				let thisPoster = gMovie[indexPath.row].poster
-			
-                startOperationForPoster(poster: thisPoster, indexPath: indexPath)
+				startOperationForPoster(poster: gMovie[indexPath.row].poster, indexPath: indexPath as NSIndexPath)
             }
         }
     }
 
-	//	update Show Date
-	func notif_dayoffset_changed(notification: Notification) { print("ViewControllerMarquee notif_dayoffset_changed"); self.showdate.text = get_show_date() }
-
 	@objc func canRotate() -> Void {}
 	//	MARK: UIViewController overrides
-	deinit
-	{
-		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED))
-	}
-
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-	{
-		if segue.identifier == S2_SETTINGS
-		{
-		}
-	}
-
     override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue
 	{
 		return CustomUnwindSegue(identifier: identifier, source: fromViewController, destination: toViewController)
     }
 
-	override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
+	override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning(); print("ViewControllerMarquee didReceiveMemoryWarning")}
 	override func viewWillAppear(_ animated: Bool)
-	{super.viewWillAppear(animated); print("ViewControllerMarquee viewWillAppear ")
+	{ super.viewWillAppear(animated); print("ViewControllerMarquee viewWillAppear")
+
 		//	called on seque from ViewControllerBoxOffice
 		//	and on intial application launch
-		
-		//	observe for changes to DayOffset
-		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED),
-		   object:nil, queue:nil, using:notif_dayoffset_changed)
 
+		//	NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_LAST_UPDATE_CHANGED),
+        //       object:nil, queue:nil, using:notif_defaults_changed)
+		//	NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_POSTAL_CODE_CHANGED),
+        //       object:nil, queue:nil, using:notif_defaults_changed)
+        
+		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED),
+               object:nil, queue:nil, using:notif_showdate)
+
+		postalCode.text = UserDefault.getPostalCode()
+		postalCode.delegate = self
+		
 		gState = .marquee
 		tableView.scrollToRow(at: [0, gCurrMovie], at: .middle, animated: true)
 	}
 
 	override func viewWillDisappear(_ animated: Bool)
-	{ super.viewWillDisappear(animated); print("ViewControllerMarquee viewWillDisappear ")
+	{ super.viewWillDisappear(animated); print("ViewControllerMarquee viewWillDisappear")
 
 		//	only called on seque to ViewControllerBoxOffice
-		if (self.isMovingFromParentViewController)
-		{ UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation") }
+
+		if (self.isMovingFromParentViewController) { UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation") }
+		
+		//	NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_LAST_UPDATE_CHANGED))
+		//	NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_POSTAL_CODE_CHANGED))
+		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED))
 	}
 
+	@objc func doneButtonAction() { postalCode.resignFirstResponder() }
+
     override func viewDidLoad()
-	{ super.viewDidLoad(); print("ViewControllerMarquee viewDidLoad ")
+	{ super.viewDidLoad(); print("ViewControllerMarquee viewDidLoad")
 
 		//	only called on app launch
-
-		self.view.accessibilityIdentifier = AXID_marqueeView
+		
+		view.accessibilityIdentifier = AXID_marqueeView
 	
 		tableView.layer.borderWidth = 1.0;
 		tableView.layer.borderColor = UIColor.white.cgColor
@@ -206,25 +231,35 @@ class ViewControllerMarquee: UIViewController
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 		
 		tableView.accessibilityLabel = AXLABEL_marqueeTableView
-
 		tableView.register(UINib(nibName: VALUE_MARQUEE_CELL, bundle: nil), forCellReuseIdentifier: VALUE_MARQUEE_CELL)
 
-		self.tableView.reloadData()
+		tableView.reloadData()
+	
+		showdateBtn.setTitle(get_show_date(), for: .normal)
 		
-		switch UserDefault.getDayOffset()
-		{
-			case 0:
-				showdate.text = "Today"
-			case 1:
-				showdate.text = "Tommorrow"
-			default:
-				let day = Calendar.current.date(byAdding: .day, value: UserDefault.getDayOffset(), to: Date())
-				let dateFormatter = DateFormatter()
-				dateFormatter.dateFormat = "EEE, MMM dd"
-				dateFormatter.locale = Locale(identifier: "en_US")
+		let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+		doneToolbar.barStyle = UIBarStyle.default
 
-				showdate.text = dateFormatter.string(from: day!)
-		}
+		var items = [UIBarButtonItem]()
+
+		items.append(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil))
+		items.append(UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(ViewControllerMarquee.doneButtonAction)))
+
+		doneToolbar.items = items
+		doneToolbar.sizeToFit()
+
+		postalCode.inputAccessoryView = doneToolbar
+	}
+}
+
+//	MARK: UITextFieldDelegate Delegate Methods
+extension ViewControllerMarquee : UITextFieldDelegate
+{
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool
+	{
+		textField.resignFirstResponder()
+		
+		return (true)
 	}
 }
 
@@ -232,19 +267,15 @@ class ViewControllerMarquee: UIViewController
 extension ViewControllerMarquee : UITableViewDataSource
 {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-	{
-        return gMovie.count
-    }
+	{ return (gMovie.count) }
     
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
         let cell = tableView.dequeueReusableCell(withIdentifier: VALUE_MARQUEE_CELL, for: indexPath) as! Marquee_Cell
 		
-		let thisPoster = gMovie[indexPath.row].poster
+		cell.poster.image = gMovie[indexPath.row].poster.image
 		
-		cell.poster.image = thisPoster.image
-		
-        switch thisPoster.state
+        switch gMovie[indexPath.row].poster.state
 		{
 			case .failed:
 				//	print(".failed")
@@ -255,7 +286,7 @@ extension ViewControllerMarquee : UITableViewDataSource
 				
 				if (!tableView.isDragging && !tableView.isDecelerating)
 				{
-					self.startOperationForPoster(poster: thisPoster, indexPath: indexPath as NSIndexPath)
+					self.startOperationForPoster(poster: gMovie[indexPath.row].poster, indexPath: indexPath as NSIndexPath)
 				}
 			case .done:
 				cell.indicator.stopAnimating()
@@ -270,9 +301,7 @@ extension ViewControllerMarquee : UITableViewDataSource
 extension ViewControllerMarquee : UITableViewDelegate
 {
 	func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
-	{
-		pendingOperations.operationQueue.isSuspended = true
-    }
+	{ pendingOperations.operationQueue.isSuspended = true }
     
 	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
 	{
@@ -296,7 +325,6 @@ extension ViewControllerMarquee : UITableViewDelegate
 		gState = .movie
 		gCurrMovie = indexPath.row
 		
-		self.performSegue(withIdentifier: S2_BOX_OFFICE,
-							sender: nil)
+		self.performSegue(withIdentifier: S2_BOX_OFFICE, sender: nil)
     }
 }

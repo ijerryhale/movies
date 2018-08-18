@@ -7,6 +7,10 @@ Display a list of Theaters and Movies for given Location and Day.
 
 * This version of movies will return real time data for Postal Codes 95014, 10021, 60601, and 90024. movies will default to returning data for Postal Code 95014.
 
+### August 18, 2018
+
+Move Postal Code and Show Date onto Marquee. Fix Bugs
+
 ## Requirements
 
 - XCode 9+
@@ -14,7 +18,7 @@ Display a list of Theaters and Movies for given Location and Day.
 - Swift 4+
 
 
-![marquee](https://cormya.com/image/_marquee.png "Marquee") | ![theaters_for_movie](https://cormya.com/image/_theaters_for_movie.png "Theaters for Movie") |
+![marquee](https://cormya.com/image/marquee.png "Marquee") | ![theaters_for_movie](https://cormya.com/image/_theaters_for_movie.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 **Marquee** | **Theaters for Movie** |
 ![movies_for_theater](https://cormya.com/image/_movies_for_theater.png "Movies for Theater") | ![trailers](https://cormya.com/image/_view_trailer.png "View Trailers") |

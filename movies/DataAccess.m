@@ -478,11 +478,17 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 	NSDateFormatter	*dateFormatter = [[NSDateFormatter alloc] init];
 	dateFormatter.dateFormat = @"yyyy-MM-dd";
 
+	unsigned int		flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+	NSCalendar			*calendar = [NSCalendar currentCalendar];
+	NSDateComponents	*components = [calendar components:flags fromDate:[NSDate date]];
+	NSDate				*todaysdate = [calendar dateFromComponents:components];
+
 	for (NSUInteger i = rowArray.count - 1;i < -1;i--)
 	{
-		MTData		*data = rowArray[i];
+		MTData	*data = rowArray[i];
+		NSDate	*showdate = [dateFormatter dateFromString:data.showDate];
 
-		if ([data.showDate isEqualToString:[dateFormatter stringFromDate:[NSDate date]]] == NO)
+		if ([showdate compare:todaysdate] == NSOrderedAscending)
 		{
 			[_managedObjectContext deleteObject:rowArray[i]];
 
@@ -584,12 +590,12 @@ NSString *const kXMLParseTextNodeKey	=	@"text";
 {
 	[self delete_mt_data_rows];
 
+	NSError			*error = nil;
 	NSFetchRequest	*fr = [[NSFetchRequest alloc] init];
 	[fr setEntity:[NSEntityDescription entityForName:ENAME_MTDATA inManagedObjectContext:_managedObjectContext]];
 
 	[fr setPredicate:[NSPredicate predicateWithFormat:@"showDate == %@ AND postalCode == %@", showdate, postalcode]];
-
-	NSError	*error = nil;
+	
 	NSArray *rowArray = [_managedObjectContext executeFetchRequest:fr error:&error];
 	fr = nil;
 

@@ -138,10 +138,9 @@ class ViewControllerMovieDetail : UIViewController
 			let previews = info?[KEY_PREVIEWS] as! [String : AnyObject]
 			let preview = previews[KEY_PREVIEW] as! [String : AnyObject]
 			let  m = preview[KEY_TEXT] as! String
-			
-			//	FIX THIS!!
-			//	if (m.utf8.count) > 0 { viewTrailerBtn?.isEnabled = true }
-			//	else { viewTrailerBtn?.isEnabled = false }
+
+			if (m.utf8.count) > 0 { viewTrailerBtn?.isEnabled = true }
+			else { viewTrailerBtn?.isEnabled = false }
 		}
 
 		if movie.movie[KEY_ITUNES_URL] as! String == ""

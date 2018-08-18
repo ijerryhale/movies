@@ -43,12 +43,6 @@
 -(void)setCornerRadius:(CGFloat)radius { self.layer.cornerRadius = radius; self.layer.masksToBounds = radius > 0; }
 @end
 
-@implementation UIImageView (Theme)
--(void)setBorderColor:(UIColor *)color{ self.layer.borderColor = [UIColor themeColor:THEME_COLOR].CGColor; }
--(void)setBorderWidth:(CGFloat)width { self.layer.borderWidth = width; }
--(void)setCornerRadius:(CGFloat)radius { self.layer.cornerRadius = radius; self.layer.masksToBounds = radius > 0; }
-@end
-
 @implementation UILabel (Theme)
 -(void)setBackColor:(UIColor *)color { self.layer.backgroundColor = [UIColor themeColor:THEME_COLOR].CGColor; }
 -(void)setBorderColor:(UIColor *)color { self.layer.borderColor = [UIColor themeColor:THEME_COLOR].CGColor; }

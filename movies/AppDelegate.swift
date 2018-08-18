@@ -6,6 +6,11 @@
 //  Copyright © 2018 jhale. All rights reserved.
 //
 
+//	95014
+//	10021
+//	60601
+//	90024
+
 import Foundation
 import UIKit
 
@@ -120,12 +125,12 @@ class AppDelegate: UIResponder
 		print("process_theaters end")
 	}
 	
-	private func rebuild_theaters(completion: @escaping (_ result: Bool)->())
+	func rebuild_theaters(completion: @escaping (_ result: Bool)->())
 	{ print("rebuild_theaters")
 
 		print("Show Date:", get_show_date_from_day_offset(UserDefault.getDayOffset()))
 		print("Postal Code:", UserDefault.getPostalCode())
-
+		
 		DataAccess().getTheaters(get_show_date_from_day_offset(UserDefault.getDayOffset()),
 									postalcode: UserDefault.getPostalCode())
 		{
@@ -179,35 +184,6 @@ class AppDelegate: UIResponder
 
 extension AppDelegate : UIApplicationDelegate
 {
-	func notif_defaults_changed(notification: Notification)
-	{ print("AppDelegate notif_defaults_changed")
-
-		switch notification.name
-		{
-			case NSNotification.Name(rawValue: NOTIF_LAST_UPDATE_CHANGED):
-				print(NOTIF_LAST_UPDATE_CHANGED)
-			case NSNotification.Name(rawValue: NOTIF_POSTAL_CODE_CHANGED), NSNotification.Name(rawValue: NOTIF_DAY_OFFSET_CHANGED):
-				//	if PostalCode or DayOffset has
-				//	been changed make new request,
-				//	rebuild the Theaters array,
-				//	and reload the Marquee
-				rebuild_theaters()
-				{
-					(result) -> () in
-
-					gCurrMovie = 0
-					gCurrTheater = 0
-					
-					let mvc = self.window?.rootViewController as! ViewControllerMarquee
-					
-					mvc.tableView.reloadData()
-					mvc.tableView.scrollToRow(at: [0, NSNotFound], at: .top, animated: false)
-				}
-			default:
-					print("unknown notif")
-		}
-	}
-
 	func applicationWillResignActive(_ application: UIApplication)
 	{ print("applicationWillResignActive")
 		//	Sent when the application is about to move from active to inactive state.
@@ -216,10 +192,6 @@ extension AppDelegate : UIApplicationDelegate
 		//	and it begins the transition to the background state.
 		//	Use this method to pause ongoing tasks, disable timers, and invalidate
 		//	graphics rendering callbacks. Games should use this method to pause the game.
-		
-		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_LAST_UPDATE_CHANGED))
-		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_POSTAL_CODE_CHANGED))
-		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED))
 	}
 
 	func applicationDidBecomeActive(_ application: UIApplication)
@@ -227,14 +199,6 @@ extension AppDelegate : UIApplicationDelegate
 		//	Restart any tasks that were paused (or not yet started) while the
 		//	application was inactive. If the application was previously in
 		//	the background, optionally refresh the user interface
-
-		//	observe for changes in Settings
-		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_LAST_UPDATE_CHANGED),
-               object:nil, queue:nil, using:notif_defaults_changed)
-		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_POSTAL_CODE_CHANGED),
-               object:nil, queue:nil, using:notif_defaults_changed)
-		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED),
-               object:nil, queue:nil, using:notif_defaults_changed)
 		
 		//	clear any old cached Posters
 		DataAccess().trimPosterCache()
@@ -253,7 +217,6 @@ extension AppDelegate : UIApplicationDelegate
 	{ print("applicationWillEnterForeground")
 		//	Called as part of the transition from the background to the active state;
 		//	here you can undo many of the changes made on entering the background.
-
 	}
 
 	func applicationWillTerminate(_ application: UIApplication)

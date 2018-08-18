@@ -100,20 +100,14 @@ NSString * const KEY_CELL_IDENTIFIER = @"cellIdentifier";
 NSString * const KEY_ADDITIONAL_ROWS = @"additionalRows";
 
 //	Segue values
-
 NSString * const S2_MOVIE_TRAILER = @"s2_movie_trailer";
 NSString * const S2_THEATER_DETAIL = @"s2_theater_detail";
 NSString * const S2_MOVIE_DETAIL = @"s2_movie_detail";
-
 NSString * const S2_CONTAINER = @"s2_container";
 NSString * const S2_BOX_OFFICE = @"s2_box_office";
 NSString * const S2_MARQUEE = @"s2_marquee";
 NSString * const S2_MAP = @"s2_map";
-
 NSString * const S2_ITUNES = @"s2_itunes";
-
-NSString * const S2_SHOWDATE = @"s2_showdate";
-NSString * const S2_SETTINGS = @"s2_settings";
 NSString * const S2_CONTAINER_UNWIND = @"s2_container_unwind";
 
 NSString * const NOTIF_LAST_UPDATE_CHANGED = @"Notif Last Update Changed";
