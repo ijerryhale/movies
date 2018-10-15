@@ -13,7 +13,7 @@ Move Postal Code and Show Date onto Marquee. Fix Bugs
 
 ### October 15, 2018
 
-Update to Swift 4.2
+Update to XCode 10, Swift 4.2
 
 
 ## Requirements
