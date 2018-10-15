@@ -41,7 +41,7 @@ class ViewControllerMap: UIViewController
 		addressString += aa?[KEY_STATE] as! String
 
 		//	print(addressString)
-		let request = MKLocalSearchRequest()
+		let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = addressString
         request.region = mapView.region
 
@@ -102,7 +102,7 @@ extension ViewControllerMap : MKMapViewDelegate
         pinView?.canShowCallout = true
         let smallSquare = CGSize(width: 48, height: 48)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "theater"), for: UIControlState())
+        button.setBackgroundImage(UIImage(named: "theater"), for: UIControl.State())
         button.addTarget(self, action: #selector(ViewControllerMap.getDirections), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         

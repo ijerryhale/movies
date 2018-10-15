@@ -48,7 +48,7 @@ class ViewControllerMovieDetail : UIViewController
 
 		if movie.movie[KEY_POSTER] as! String != ""
 		{
-			let url = DataHelper.get_URL_POSTER(movie.movie[KEY_POSTER] as! String)
+			let url = DataHelper.get_URL_POSTER((movie.movie[KEY_POSTER] as! String))
 			let da = DataAccess()
 			
 			if let imgdata = da.getCachedPoster(url), let image = UIImage(data: imgdata as Data)
@@ -63,7 +63,7 @@ class ViewControllerMovieDetail : UIViewController
 
 					DispatchQueue.main.async(execute: { self.poster.image = responseObject! })
 					
-					da.cachePoster(url, data: UIImageJPEGRepresentation(responseObject!, 1))
+					da.cachePoster(url, data: responseObject!.jpegData(compressionQuality: 1))
 				},
 				failure:
 				{

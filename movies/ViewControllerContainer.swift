@@ -14,11 +14,11 @@ class ViewControllerContainer: UIViewController
 	func trailerSegueUnwind()
 	{
 		//	pop the ViewControllerTrailer and push the ViewControllerMovieDetail
-		let tc: ViewControllerTrailer = self.childViewControllers[0] as! ViewControllerTrailer
+		let tc: ViewControllerTrailer = self.children[0] as! ViewControllerTrailer
 		tc.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: tc)
 		self.performSegue(withIdentifier: S2_MOVIE_DETAIL, sender: self)
 		
-		let mdc: ViewControllerMovieDetail? = self.childViewControllers.compactMap({ $0 as? ViewControllerMovieDetail }).first
+		let mdc: ViewControllerMovieDetail? = self.children.compactMap({ $0 as? ViewControllerMovieDetail }).first
 
 		mdc?.updateView()
 	}
@@ -26,7 +26,7 @@ class ViewControllerContainer: UIViewController
 	func trailerSegueWind()
 	{
 		//	pop the ViewControllerMovieDetail and push the ViewControllerTrailer
-		let mdc: ViewControllerMovieDetail? = self.childViewControllers.compactMap({ $0 as? ViewControllerMovieDetail }).first
+		let mdc: ViewControllerMovieDetail? = self.children.compactMap({ $0 as? ViewControllerMovieDetail }).first
 		
 		mdc?.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: mdc)
 		self.performSegue(withIdentifier: S2_MOVIE_TRAILER, sender: self)
@@ -34,15 +34,15 @@ class ViewControllerContainer: UIViewController
 
 	func updateMovieDetailView()
 	{
-		var mdc: ViewControllerMovieDetail? = self.childViewControllers[0] as? ViewControllerMovieDetail
+		var mdc: ViewControllerMovieDetail? = self.children[0] as? ViewControllerMovieDetail
 		
 		if mdc == nil
 		{
-			let tdc: ViewControllerTheaterDetail? = self.childViewControllers[0] as? ViewControllerTheaterDetail
+			let tdc: ViewControllerTheaterDetail? = self.children[0] as? ViewControllerTheaterDetail
 		
 			if tdc == nil
 			{
-				let tc: ViewControllerTrailer? = self.childViewControllers[0] as? ViewControllerTrailer
+				let tc: ViewControllerTrailer? = self.children[0] as? ViewControllerTrailer
 				
 				tc?.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: tc)
 			}
@@ -52,7 +52,7 @@ class ViewControllerContainer: UIViewController
 			}
 			
 			self.performSegue(withIdentifier: S2_MOVIE_DETAIL, sender: self)
-			mdc = self.childViewControllers[0] as? ViewControllerMovieDetail
+			mdc = self.children[0] as? ViewControllerMovieDetail
 		}
 
 		mdc?.updateView()
@@ -60,15 +60,15 @@ class ViewControllerContainer: UIViewController
 
 	func updateTheaterDetailView(_ enableBuyTickets: Bool)
 	{
-		var tdc: ViewControllerTheaterDetail? = self.childViewControllers[0] as? ViewControllerTheaterDetail
+		var tdc: ViewControllerTheaterDetail? = self.children[0] as? ViewControllerTheaterDetail
 
 		if tdc == nil
 		{
-			let mdc: ViewControllerMovieDetail? = self.childViewControllers[0] as? ViewControllerMovieDetail
+			let mdc: ViewControllerMovieDetail? = self.children[0] as? ViewControllerMovieDetail
 		
 			if mdc == nil
 			{
-				let tc: ViewControllerTrailer? = self.childViewControllers[0] as? ViewControllerTrailer
+				let tc: ViewControllerTrailer? = self.children[0] as? ViewControllerTrailer
 				
 				tc?.performSegue(withIdentifier: S2_CONTAINER_UNWIND, sender: tc)
 			}
@@ -78,7 +78,7 @@ class ViewControllerContainer: UIViewController
 			}
 			
 			self.performSegue(withIdentifier: S2_THEATER_DETAIL, sender: self)
-			tdc = self.childViewControllers[0] as? ViewControllerTheaterDetail
+			tdc = self.children[0] as? ViewControllerTheaterDetail
 		}
 		
 		tdc?.updateView(enableBuyTickets)
@@ -86,10 +86,10 @@ class ViewControllerContainer: UIViewController
 
 	@IBAction func unwindToContainer(segue: UIStoryboardSegue)
 	{
-		let source = self.childViewControllers[0]
-        source.willMove(toParentViewController: nil)
+		let source = self.children[0]
+        source.willMove(toParent: nil)
         source.view.removeFromSuperview()
-        source.removeFromParentViewController()
+        source.removeFromParent()
 	}
 
 	//	MARK: UIViewController overrides
@@ -98,14 +98,14 @@ class ViewControllerContainer: UIViewController
 		//	print(segue.identifier)
 			func transistion(dest : UIViewController)
 			{
-				self.addChildViewController(dest)
+				self.addChild(dest)
 				let destView : UIView = dest.view
 				
 				destView.autoresizingMask = [ .flexibleWidth, .flexibleHeight ]
 				destView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
 				self.view.addSubview(destView)
 				
-				dest.didMove(toParentViewController: self)
+				dest.didMove(toParent: self)
 			}
 
 		if segue.identifier == S2_MOVIE_DETAIL

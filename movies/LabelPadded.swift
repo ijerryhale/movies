@@ -9,7 +9,7 @@ class LabelPadded: UILabel
 {
    override func drawText(in rect: CGRect)
     {
-         super.drawText(in: UIEdgeInsetsInsetRect(rect, UIEdgeInsets(top: 0, left: CGFloat(2), bottom: 0, right: CGFloat(4))))
+         super.drawText(in: rect.inset(by: UIEdgeInsets(top: 0, left: CGFloat(2), bottom: 0, right: CGFloat(4))))
     }
 
     override public var intrinsicContentSize: CGSize

@@ -39,8 +39,8 @@ class L0_Cell: UITableViewHeaderFooterView
 		backgroundview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2).isActive = true
 		backgroundview.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.92).isActive = true
 
-        disclosureButton.setImage(UIImage(named: "carat.png"), for: UIControlState.normal)
-		disclosureButton.setImage(UIImage(named: "carat-open.png"), for: UIControlState.selected)
+        disclosureButton.setImage(UIImage(named: "carat.png"), for: UIControl.State.normal)
+		disclosureButton.setImage(UIImage(named: "carat-open.png"), for: UIControl.State.selected)
 
         contentView.addSubview(disclosureButton)
 

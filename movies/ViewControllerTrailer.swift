@@ -45,8 +45,8 @@ class ViewControllerTrailer: UIViewController
         get { return CMTimeGetSeconds(player.currentTime()) }
         
         set {
-            let newTime = CMTimeMakeWithSeconds(newValue, 1)
-            player.seek(to: newTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+            let newTime = CMTimeMakeWithSeconds(newValue, preferredTimescale: 1)
+            player.seek(to: newTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
         }
     }
 
@@ -216,7 +216,7 @@ class ViewControllerTrailer: UIViewController
                 newDuration = newDurationAsValue.timeValue
             }
             else {
-                newDuration = kCMTimeZero
+                newDuration = CMTime.zero
             }
 
             let hasValidDuration = newDuration.isNumeric && newDuration.value != 0
@@ -237,7 +237,7 @@ class ViewControllerTrailer: UIViewController
             let buttonImageName = newRate == 1.0 ? "pause" : "play"
             let buttonImage = UIImage(named: buttonImageName)
 
-            playPauseBtn.setImage(buttonImage, for: UIControlState())
+            playPauseBtn.setImage(buttonImage, for: UIControl.State())
         }
         else if keyPath == #keyPath(ViewControllerTrailer.player.currentItem.status)
 		{
@@ -247,11 +247,11 @@ class ViewControllerTrailer: UIViewController
                 Handle `NSNull` value for `NSKeyValueChangeNewKey`, i.e. when
                 `player.currentItem` is nil.
             */
-            let newStatus: AVPlayerItemStatus
+            let newStatus: AVPlayerItem.Status
 
             if let newStatusAsNumber = change?[NSKeyValueChangeKey.newKey] as? NSNumber
 			{
-                newStatus = AVPlayerItemStatus(rawValue: newStatusAsNumber.intValue)!
+                newStatus = AVPlayerItem.Status(rawValue: newStatusAsNumber.intValue)!
             }
             else
 			{
@@ -284,7 +284,7 @@ class ViewControllerTrailer: UIViewController
         let alertTitle = NSLocalizedString("alert.error.title", comment: "Alert title for errors")
         let defaultAlertMessage = NSLocalizedString("error.default.description", comment: "Default error message when no NSError provided")
 
-        let alert = UIAlertController(title: alertTitle, message: message == nil ? defaultAlertMessage : message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: alertTitle, message: message == nil ? defaultAlertMessage : message, preferredStyle: UIAlertController.Style.alert)
 
         let alertActionTitle = NSLocalizedString("alert.error.actions.OK", comment: "OK on error alert")
 
@@ -324,7 +324,7 @@ class ViewControllerTrailer: UIViewController
 
 		//	make sure we don't have a strong reference
 		//	cycle by only capturing self as weak
-        let interval = CMTimeMake(1, 1)
+        let interval = CMTimeMake(value: 1, timescale: 1)
         timeObserverToken = player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main)
 		{ [unowned self] time in
             let timeElapsed = Float(CMTimeGetSeconds(time))
@@ -339,7 +339,7 @@ class ViewControllerTrailer: UIViewController
 
 		let previews = info?[KEY_PREVIEWS] as! [String : AnyObject]
 		let preview = previews[KEY_PREVIEW] as! [String : AnyObject]
-		let data = NSData(contentsOf: DataHelper.get_URL_TRAILER(preview[KEY_TEXT] as! String))
+		let data = NSData(contentsOf: DataHelper.get_URL_TRAILER((preview[KEY_TEXT] as! String)))
 		let datastring = NSString(data: data! as Data, encoding: String.Encoding.utf8.rawValue)! as String
 		
 		asset = AVURLAsset(url: URL(string: datastring.filter { !"\n".contains($0) } )! , options: nil)

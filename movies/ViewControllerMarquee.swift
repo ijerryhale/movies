@@ -207,7 +207,7 @@ class ViewControllerMarquee: UIViewController
 
 		//	only called on seque to ViewControllerBoxOffice
 
-		if (self.isMovingFromParentViewController) { UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation") }
+		if (self.isMovingFromParent) { UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation") }
 		
 		//	NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_LAST_UPDATE_CHANGED))
 		//	NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_POSTAL_CODE_CHANGED))
@@ -242,8 +242,8 @@ class ViewControllerMarquee: UIViewController
 
 		var items = [UIBarButtonItem]()
 
-		items.append(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil))
-		items.append(UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(ViewControllerMarquee.doneButtonAction)))
+		items.append(UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil))
+		items.append(UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(ViewControllerMarquee.doneButtonAction)))
 
 		doneToolbar.items = items
 		doneToolbar.sizeToFit()

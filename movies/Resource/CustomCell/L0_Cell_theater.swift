@@ -12,7 +12,7 @@ class L0_Cell_theater: L0_Cell
 {
 	var name = UILabel()
 	var distance = UILabel()
-	var indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+	var indicator = UIActivityIndicatorView(style: .gray)
 	
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 

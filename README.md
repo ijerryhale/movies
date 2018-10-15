@@ -11,11 +11,16 @@ Display a list of Theaters and Movies for given Location and Day.
 
 Move Postal Code and Show Date onto Marquee. Fix Bugs
 
+### October 15, 2018
+
+Update to Swift 4.2
+
+
 ## Requirements
 
-- XCode 9+
+- XCode 10+
 - iOS 11+
-- Swift 4+
+- Swift 4.2+
 
 
 ![marquee](https://cormya.com/image/marquee.png "Marquee") | ![theaters_for_movie](https://cormya.com/image/_theaters_for_movie.png "Theaters for Movie") |

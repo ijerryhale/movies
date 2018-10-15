@@ -369,6 +369,7 @@
 				TargetAttributes = {
 					2C3FA60E1F48DF4B008C1524 = {
 						DevelopmentTeam = CZ3N3VN6HQ;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					2C40588B1F50DDDB00A6D598 = {
@@ -528,8 +529,9 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "movies/movies-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -558,8 +560,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "movies/movies-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Release;
 		};
@@ -582,6 +585,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jhale.movies-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/movies.app/movies";
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -604,6 +608,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jhale.movies-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/movies.app/movies";
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Release;
 		};
