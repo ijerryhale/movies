@@ -18,15 +18,15 @@ Update to XCode 10, Swift 4.2
 
 ## Requirements
 
-- XCode 10+
+- XCode 10.1+
 - iOS 11+
 - Swift 4.2+
 
 
-![marquee](https://cormya.com/image/marquee.png "Marquee") | ![theaters_for_movie](https://cormya.com/image/_theaters_for_movie.png "Theaters for Movie") |
+![marquee](https://cormya.com/image/marquee.png "Marquee") | ![theaters_for_movie](https://cormya.com/image/theaters_for_movie.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 **Marquee** | **Theaters for Movie** |
-![movies_for_theater](https://cormya.com/image/_movies_for_theater.png "Movies for Theater") | ![trailers](https://cormya.com/image/_view_trailer.png "View Trailers") |
+![movies_for_theater](https://cormya.com/image/movies_for_theater.png "Movies for Theater") | ![trailers](https://cormya.com/image/view_trailer.png "View Trailers") |
 **Movies for Theater** | **View Trailer** |
 ![itunes](https://cormya.com/image/itunes_preview.png "iTunes Preview") | ![driving_directions](https://cormya.com/image/driving_directions.png "Driving Directions") |
 **iTunes Preview** | **Driving Directions**
