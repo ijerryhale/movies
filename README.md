@@ -9,9 +9,7 @@ Display a list of Theaters and Movies for given Location and Day.
 
 * movies uses the essentially the same AFNetworking HTTP data access layer that the Stocks sample does. movies adds a CoreData layer that will store JSON data locally so that a given call to the server is made only once. Movie Poster images are also stored locally.
 
-* movies is making calls against my server which is pretty slow.
-
-Additionally, for a given Location and Postal Code the system will cache the data once on the server and once locally so that the first call for a unique Location, Day, and device is slow. Any subsequent calls are much faster.
+* movies is making calls against my server which is pretty slow. Additionally, for a given Location and Postal Code the system will cache the data once on the server and once locally so that the first call for a unique Location, Day, and device is slow. Any subsequent calls are much faster.
 
 ## August 18, 2018
 
