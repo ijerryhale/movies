@@ -3,7 +3,7 @@
 //  movies
 //
 //  Created by Jerry Hale on 10/7/17.
-//  Copyright © 2018 jhale. All rights reserved.
+//  Copyright © 2019 jhale. All rights reserved.
 //
 
 import CoreLocation

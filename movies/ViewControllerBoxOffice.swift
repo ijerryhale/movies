@@ -3,7 +3,7 @@
 //  movies
 //
 //  Created by Jerry Hale on 10/2/16.
-//  Copyright © 2018 jhale. All rights reserved.
+//  Copyright © 2019 jhale. All rights reserved.
 //
 //	3/20/18 - rewrote most of this to account
 //	for using Sections in UITableView
@@ -502,7 +502,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				//	Movie detail
 
 				gCurrMovie
-					= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }!
+					= gMovie.firstIndex{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }!
 
 				(children.first as! ViewControllerContainer).updateMovieDetailView()
 			case .theater:
@@ -511,7 +511,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				//	Theater detail
 
 				gCurrTheater
-					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
+					= gTheater.firstIndex{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
 				
 				(children.first as! ViewControllerContainer).updateTheaterDetailView(false)
 			default:
@@ -538,7 +538,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				//	Movie detail
 
 				gCurrMovie
-					= gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }!
+					= gMovie.firstIndex{ $0.movie[KEY_TMS_ID] as! String == rowDictionary[section].dict[KEY_TMS_ID] as! String }!
 
 				(children.first as! ViewControllerContainer).updateMovieDetailView()
 			case .theater:
@@ -547,7 +547,7 @@ extension ViewControllerBoxOffice: SectionHeaderDelegate
 				//	Theater detail
 
 				gCurrTheater
-					= gTheater.index{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
+					= gTheater.firstIndex{ $0.theater[KEY_ID] as! String == rowDictionary[section].dict[KEY_ID] as! String }!
 
 				(children.first as! ViewControllerContainer).updateTheaterDetailView(false)
 			default:
@@ -762,13 +762,13 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 				//	row show Theater detail
 				if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL { enableBuyTickets = false }
 
-				gCurrTheater = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
+				gCurrTheater = gTheater.firstIndex{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
 
 				(children.first as! ViewControllerContainer).updateTheaterDetailView(enableBuyTickets)
 			case .theater:
 				//	if click is on L1 row it's a
 				//	Movie, show Movie Detail
-				gCurrMovie = gMovie.index{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }!
+				gCurrMovie = gMovie.firstIndex{ $0.movie[KEY_TMS_ID] as! String == rowDict[KEY_TMS_ID] as! String }!
 				
 				if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL
 				{
@@ -779,7 +779,7 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 					//	L2 cells are always show times and
 					//	have both KEY_TMS_ID and KEY_ID
 
-					gCurrTheater = gTheater.index{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
+					gCurrTheater = gTheater.firstIndex{ $0.theater[KEY_ID] as! String == rowDict[KEY_ID] as! String }!
 
 					(children.first as! ViewControllerContainer).updateTheaterDetailView(enableBuyTickets)
 				}

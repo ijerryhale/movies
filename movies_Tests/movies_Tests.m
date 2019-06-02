@@ -3,7 +3,7 @@
 //  movies_Tests
 //
 //  Created by Jerry Hale on 8/25/17.
-//  Copyright © 2017 jhale. All rights reserved.
+//  Copyright © 2019 jhale. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>

@@ -1,5 +1,5 @@
 //	LabelPadded.swift
-// Copyright (c) 2018 Jerry Hale
+// Copyright (c) 2019 Jerry Hale
 
 //
 //  Created by Jerry Hale on 5/28/18.
