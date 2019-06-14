@@ -35,40 +35,6 @@ class AppDelegate: UIResponder
 	func handleNetworkError(error: Error?) { print("handleNetworkError: ", error as Any) }
 	func handleNoDataAvailable(error: Error?) { print("handleNoDataAvailable: ", error as Any) }
 
-	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
-	{
-		if let topViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController)
-		{
-			if (topViewController.responds(to: Selector(("canRotate"))))
-			{
-				//	unlock landscape view orientations for this view controller
-				return (.allButUpsideDown)
-			}
-		}
-		
-		//	only allow portrait (standard behaviour)
-		return (.portrait)
-	}
-		
-	private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController?
-	{
-		if (rootViewController == nil) { return nil }
-		if (rootViewController.isKind(of: UITabBarController.self))
-		{
-		  return (topViewControllerWithRootViewController(rootViewController: (rootViewController as! UITabBarController).selectedViewController))
-		}
-		else if (rootViewController.isKind(of: UINavigationController.self))
-		{
-		  return (topViewControllerWithRootViewController(rootViewController: (rootViewController as! UINavigationController).visibleViewController))
-		}
-		else if (rootViewController.presentedViewController != nil)
-		{
-		  return (topViewControllerWithRootViewController(rootViewController: rootViewController.presentedViewController))
-		}
-
-		return (rootViewController)
-	}
-
 	private func process_theaters(_ theaters: [[String : AnyObject]])
 	{ print("process_theaters start")
 

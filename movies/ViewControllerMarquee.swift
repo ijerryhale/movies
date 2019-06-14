@@ -173,7 +173,6 @@ class ViewControllerMarquee: UIViewController
         }
     }
 
-	@objc func canRotate() -> Void {}
 	//	MARK: UIViewController overrides
     override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue
 	{

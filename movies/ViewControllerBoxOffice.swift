@@ -426,7 +426,6 @@ class ViewControllerBoxOffice: UIViewController
 		NotificationCenter.default.removeObserver(Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED))
 	}
 
-	//	func canRotate() -> Void { }
     override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue
 	{
 		return CustomUnwindSegue(identifier: identifier, source: fromViewController, destination: toViewController)
@@ -439,7 +438,25 @@ class ViewControllerBoxOffice: UIViewController
 		NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:NOTIF_DAY_OFFSET_CHANGED),
                object:nil, queue:nil, using:notif_dayoffset_changed)
 	}
-
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { [unowned self] _ in
+            if newCollection.verticalSizeClass == .compact
+            {
+                self.view.backgroundColor = UIColor.red
+            }
+            else
+            {
+                self.view.backgroundColor = UIColor.green
+            }
+        })
+        { [unowned self] _ in
+            self.view.backgroundColor = UIColor.blue
+        }
+    }
 	override func viewWillDisappear(_ animated: Bool)
 	{ super.viewWillDisappear(animated); print("ViewControllerBoxOffice viewWillDisappear ")
 

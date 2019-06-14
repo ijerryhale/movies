@@ -347,7 +347,7 @@ class ViewControllerTrailer: UIViewController
 		player.play()
     }
 
-	override func viewDidLoad()
+    override func viewDidLoad()
 	{
 		super.viewDidLoad(); print("ViewControllerTrailer viewDidLoad ")
 		
