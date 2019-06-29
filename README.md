@@ -23,6 +23,10 @@ Update to XCode 10, Swift 4.2
 
 Update to Swift 5. I am currently working on this version as I have time so that there be bugs here.
 
+## June 29, 2019
+
+Fixed some bugs and created some of the required Constraints. Still quite a bit of work to do but this version is pretty well behaved on all devices.
+
 ## Requirements
 
 - XCode 10+
@@ -30,10 +34,10 @@ Update to Swift 5. I am currently working on this version as I have time so that
 - Swift 5+
 
 
-![marquee](https://cormya.com/image/_marquee.png "Marquee") | ![theaters_for_movie](https://cormya.com/image/_theaters_for_movie.png "Theaters for Movie") |
+![marquee](https://cormya.com/image/20190629_marquee.png "Marquee") | ![theaters_for_movie](https://cormya.com/image/20190629_theaters_for_movie.png "Theaters for Movie") |
 :-------------------------:|:-------------------------:
 **Marquee** | **Theaters for Movie** |
-![movies_for_theater](https://cormya.com/image/_movies_for_theater.png "Movies for Theater") | ![trailers](https://cormya.com/image/_view_trailer.png "View Trailers") |
-**Movies for Theater** | **View Trailer** |
-![itunes](https://cormya.com/image/_itunes_preview.png "iTunes Preview") | ![driving_directions](https://cormya.com/image/_driving_directions.png "Driving Directions") |
-**iTunes Preview** | **Driving Directions**
+![movies_for_theater](https://cormya.com/image/20190629_movies_for_theater.png "Movies for Theater") | ![trailers](https://cormya.com/image/20190629_view_trailer.png "View Trailers") |
+**Movies for Theater** | **View Trailer** 
+
+ ![itunes](https://cormya.com/image/20190629_auto_layout.png "Rotated")

@@ -439,24 +439,25 @@ class ViewControllerBoxOffice: UIViewController
                object:nil, queue:nil, using:notif_dayoffset_changed)
 	}
     
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator)
-    {
-        super.willTransition(to: newCollection, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: { [unowned self] _ in
-            if newCollection.verticalSizeClass == .compact
-            {
-                self.view.backgroundColor = UIColor.red
-            }
-            else
-            {
-                self.view.backgroundColor = UIColor.green
-            }
-        })
-        { [unowned self] _ in
-            self.view.backgroundColor = UIColor.blue
-        }
-    }
+//    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator)
+//    {
+//        super.willTransition(to: newCollection, with: coordinator)
+//        
+//        coordinator.animate(alongsideTransition: { [unowned self] _ in
+//            if newCollection.verticalSizeClass == .compact
+//            {
+//                self.view.backgroundColor = UIColor.red
+//            }
+//            else
+//            {
+//                self.view.backgroundColor = UIColor.green
+//            }
+//        })
+//        { [unowned self] _ in
+//            self.view.backgroundColor = UIColor.blue
+//        }
+//    }
+
 	override func viewWillDisappear(_ animated: Bool)
 	{ super.viewWillDisappear(animated); print("ViewControllerBoxOffice viewWillDisappear ")
 
