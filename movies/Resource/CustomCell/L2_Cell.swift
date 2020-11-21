@@ -2,8 +2,8 @@
 //  L2_Cell.swift
 //  movies
 //
-//  Created by Jerry Hale on 5/27/17.
-//  Copyright © 2018 jhale. All rights reserved.
+//  Created by Jerry Hale on 5/27/17
+//  Copyright © 2018-2020 jhale. All rights reserved
 //
 
 import UIKit

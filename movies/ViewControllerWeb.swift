@@ -2,8 +2,8 @@
 //  ViewControllerWeb.swift
 //  movies
 //
-//  Created by Jerry Hale on 3/30/17.
-//  Copyright © 2019 jhale. All rights reserved.
+//  Created by Jerry Hale on 3/30/17
+//  Copyright © 2018-2020 jhale. All rights reserved
 //
 
 import UIKit

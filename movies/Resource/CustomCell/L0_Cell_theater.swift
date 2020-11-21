@@ -2,8 +2,8 @@
 //  L0_Cell_theater.swift
 //  movies
 //
-//  Created by Jerry Hale on 3/21/18.
-//  Copyright © 2018 jhale. All rights reserved.
+//  Created by Jerry Hale on 3/21/18
+//  Copyright © 2018-2020 jhale. All rights reserved
 //
 
 import UIKit

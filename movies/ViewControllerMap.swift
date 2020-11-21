@@ -2,8 +2,8 @@
 //  ViewControllerMap.swift
 //  movies
 //
-//  Created by Jerry Hale on 3/30/17.
-//  Copyright © 2019 jhale. All rights reserved.
+//  Created by Jerry Hale on 3/30/17
+//  Copyright © 2018-2020 jhale. All rights reserved
 //
 
 import UIKit
@@ -49,7 +49,7 @@ class ViewControllerMap: UIViewController
 		
         search.start { response, _ in
             guard let response = response else { return }
-            var matchingItems: [MKMapItem] = response.mapItems
+            let matchingItems: [MKMapItem] = response.mapItems
 			
 			let placemark = matchingItems[0].placemark
 			//	print(placemark)

@@ -2,8 +2,8 @@
 //  ViewControllerBoxOffice.swift
 //  movies
 //
-//  Created by Jerry Hale on 10/2/16.
-//  Copyright © 2019 jhale. All rights reserved.
+//  Created by Jerry Hale on 10/2/16
+//  Copyright © 2018-2020 jhale. All rights reserved
 //
 //	3/20/18 - rewrote most of this to account
 //	for using Sections in UITableView
@@ -721,7 +721,7 @@ extension ViewControllerBoxOffice : UITableViewDelegate
 		//	just ignore clicks on the UITableView
 		if (children[0].children[0] is ViewControllerTrailer) { return }
 
-		var section = rowDictionary[indexPath.section]
+		let section = rowDictionary[indexPath.section]
 		var rowDict = section.cell[indexPath.row]
 
 		if rowDict[KEY_CELL_IDENTIFIER] as! String == VALUE_L1_CELL

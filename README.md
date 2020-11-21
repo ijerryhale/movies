@@ -25,12 +25,16 @@ Update to Swift 5. I am currently working on this version as I have time so that
 
 ## June 29, 2019
 
-Fixed some bugs and created some of the required Constraints. Still quite a bit of work to do but this version is pretty well behaved on all devices.
+Fix some bugs and created some of the required Constraints. Still quite a bit of work to do but this version is pretty well behaved on all devices.
+
+##  November 21, 2020
+
+Minor updates, fix a couple of minor bugs and build in XCode 12.2
 
 ## Requirements
 
-- XCode 10+
-- iOS 11+
+- XCode 12.2+
+- iOS 11.2+
 - Swift 5+
 
 

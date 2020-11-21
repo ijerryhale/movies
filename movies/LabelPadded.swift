@@ -1,8 +1,10 @@
-//	LabelPadded.swift
-// Copyright (c) 2019 Jerry Hale
-
 //
-//  Created by Jerry Hale on 5/28/18.
+//  LabelPadded.swift
+//  movies
+//
+//  Created by Jerry Hale on 5/28/18
+//  Copyright © 2018-2020 jhale. All rights reserved
+//
 
 @IBDesignable
 class LabelPadded: UILabel

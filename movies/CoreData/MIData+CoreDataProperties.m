@@ -2,8 +2,8 @@
 //  MIData+CoreDataProperties.m
 //  movies
 //
-//  Created by Jerry Hale on 10/27/17.
-//  Copyright © 2019 jhale. All rights reserved.
+//  Created by Jerry Hale on 10/27/17
+//  Copyright © 2018-2020 jhale. All rights reserved
 //
 //
 

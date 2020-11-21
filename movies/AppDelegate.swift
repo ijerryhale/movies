@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  movies
 //
-//  Created by Jerry Hale on 10/7/17.
-//  Copyright © 2019 jhale. All rights reserved.
+//  Created by Jerry Hale on 10/7/17
+//  Copyright © 2018-2020 jhale. All rights reserved
 //
 
 //	95014
@@ -50,9 +50,9 @@ class AppDelegate: UIResponder
 		//	loop thru the Theaters and create a unique set of Movies
 		for i in 0...theaters.count - 1
 		{
-			var t = theaters[i] as [String : AnyObject]
+			let t = theaters[i] as [String : AnyObject]
 			//	thisMov is one Movie in this Theaters 'now_showing' array
-			for var thisMov in t[KEY_NOW_SHOWING] as! [[String:AnyObject]]
+			for thisMov in t[KEY_NOW_SHOWING] as! [[String:AnyObject]]
 			{
 				let tmsid = (thisMov as [String : AnyObject])[KEY_TMS_ID] as! String
 

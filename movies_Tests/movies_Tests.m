@@ -2,8 +2,8 @@
 //  movies_Tests.m
 //  movies_Tests
 //
-//  Created by Jerry Hale on 8/25/17.
-//  Copyright © 2019 jhale. All rights reserved.
+//  Created by Jerry Hale on 8/25/17
+//  Copyright © 2018-2020 jhale. All rights reserved
 //
 
 #import <XCTest/XCTest.h>

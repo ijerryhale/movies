@@ -2,8 +2,8 @@
 //  ViewControllerMovieDetail.swift
 //  movies
 //
-//  Created by Jerry Hale on 4/2/17.
-//  Copyright © 2019 jhale. All rights reserved.
+//  Created by Jerry Hale on 4/2/17
+//  Copyright © 2018-2020 jhale. All rights reserved
 //
 
 //	194 X 134
@@ -121,8 +121,6 @@ class ViewControllerMovieDetail : UIViewController
 
 			let c = thisInfo?[KEY_CAST] as! [String : AnyObject]
 			cast.text = c[KEY_TEXT] as? String
-			cast.scrollRangeToVisible(NSMakeRange(0, 0))
-			cast.flashScrollIndicators()
 
 			let g = thisInfo?[KEY_GENRES] as! [String : AnyObject]
 			genre.text = g[KEY_TEXT] as? String
@@ -132,8 +130,6 @@ class ViewControllerMovieDetail : UIViewController
 			
 			let s = thisInfo?[KEY_SUMMARY] as! [String : AnyObject]
 			summary.text = s[KEY_TEXT] as? String
-			summary.scrollRangeToVisible(NSMakeRange(0, 0))
-			summary.flashScrollIndicators()
 
 			let previews = info?[KEY_PREVIEWS] as! [String : AnyObject]
 			let preview = previews[KEY_PREVIEW] as! [String : AnyObject]
@@ -143,7 +139,7 @@ class ViewControllerMovieDetail : UIViewController
 			else { viewTrailerBtn?.isEnabled = false }
 		}
         
-		if movie.movie[KEY_ITUNES_URL] as! String == ""
+        if movie.movie[KEY_ITUNES_URL] as! String == ""
 		{ viewIniTunesBtn?.isEnabled = false }
 		else
 		{
@@ -153,7 +149,7 @@ class ViewControllerMovieDetail : UIViewController
 			else { viewIniTunesBtn?.isEnabled = false }
 		}
 	}
-	//	func getTicketPurchasePageUrl(movieId, theaterId, time) -> String
+
 	@objc func segue_to_marquee()
 	{
 		gState = .marquee
@@ -161,7 +157,13 @@ class ViewControllerMovieDetail : UIViewController
 	}
 
 	//	MARK: UIViewController overrides
-	override func viewWillDisappear(_ animated: Bool)
+    override func viewWillLayoutSubviews()
+    {
+        summary.setContentOffset(.zero, animated: false)
+        cast.setContentOffset(.zero, animated: false)
+    }
+
+    override func viewWillDisappear(_ animated: Bool)
 	{ super.viewWillDisappear(animated); print("ViewControllerMovieDetail viewWillDisappear ") }
 
 	override func viewDidLoad()
